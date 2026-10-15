@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>第10次课｜办公实战：Word文档生成与批量处理</title><style>:root{--blue:#2456c4;--blue-dark:#173a86;--ink:#142033;--muted:#55657c;--line:#d7e2f4;--soft:#f5f8ff;--warm:#fff7e8;--ok:#ecfdf5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef3fa;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.page-shell{width:min(1100px,calc(100% - 32px));margin:32px auto 80px}.hero,.lesson-section{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07)}
+.hero{padding:42px 48px}.eyebrow,.section-kicker{margin:0 0 10px;color:var(--blue);font-weight:800;letter-spacing:.06em}.hero h1{margin:0;font-size:clamp(36px,5vw,62px);line-height:1.15}
+.jump-nav{position:sticky;top:0;z-index:5;display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;padding:14px;background:rgba(245,248,255,.95);border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(10px)}
+.jump-nav a,.back-top{color:var(--blue-dark);text-decoration:none;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.lesson-section{padding:38px 42px;margin-top:22px}.lesson-section h2{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:0 0 24px}.lesson-section h3{font-size:25px;line-height:1.4;color:var(--blue-dark);margin:0 0 14px}
+.task-focus,.result-card,.case-summary,.teacher-demo,.material-card,.success-state{border-radius:18px;padding:20px 24px;margin:18px 0}.task-focus{background:linear-gradient(135deg,#e9f1ff,#f8fbff);border:2px solid #bfd2fa;font-size:27px}.result-card{background:var(--soft);border:1px solid var(--line)}.filename{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue-dark);font-weight:800;overflow-wrap:anywhere}
+.concept-list,.step-list{display:grid;gap:20px}.concept-card,.step-card{position:relative;border:1px solid var(--line);background:#fbfcff;border-radius:20px;padding:26px}.one-line{font-size:20px}.thinking-question{margin:20px 0 10px;padding:16px 18px;background:var(--warm);border-left:5px solid #f59e0b;border-radius:12px}
+details{border:1px solid #b7caf0;background:#eef4ff;border-radius:14px;padding:14px 18px}summary{cursor:pointer;color:var(--blue-dark);font-weight:800}.answer-panel p{margin:12px 0 0}
+.lesson-figure,.route-figure{margin:22px 0}.lesson-figure img,.route-figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:18px;background:#fff}.lesson-figure figcaption,.route-figure figcaption{color:var(--muted);font-size:17px;margin-top:10px}
+.case-summary{background:var(--soft);border:1px solid var(--line)}.teacher-demo{background:var(--warm);border:1px solid #f6d58a}.teacher-demo li{margin:8px 0}
+.step-card{padding:30px}.step-number{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;font-size:26px;font-weight:900;margin-bottom:12px}.material-card{background:var(--soft);border:1px solid var(--line)}.success-state{background:var(--ok);border:1px solid #a7e8c3}
+.copy-block{position:relative;margin:18px 0}.copy-button{border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;padding:11px 17px;cursor:pointer;margin-bottom:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#f8fafc;border-radius:14px;padding:20px;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}th{background:#eaf1ff;color:var(--blue-dark)}
+.back-top{display:inline-block;margin-top:20px}@media(max-width:640px){.page-shell{width:min(100% - 16px,1100px);margin:8px auto 48px}.hero,.lesson-section{border-radius:16px}.hero{padding:28px 22px}.lesson-section{padding:26px 18px}.jump-nav{position:static}.jump-nav a{font-size:14px;padding:7px 10px}.task-focus{font-size:22px}.concept-card,.step-card{padding:20px 16px}th,td{font-size:14px;padding:9px}pre{font-size:14px;padding:15px}}
+@media print{body{background:#fff}.jump-nav,.copy-button,.back-top{display:none}.page-shell{width:100%;margin:0}.hero,.lesson-section{box-shadow:none}}
+.route-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}.route-step{min-height:92px;padding:16px 10px;border:1px solid var(--line);border-radius:16px;background:var(--soft);text-align:center;font-weight:800;color:var(--blue-dark)}.route-step span{display:block;color:var(--blue);font-size:14px}.notice{padding:16px 18px;border-left:5px solid var(--blue);border-radius:12px;background:#eef4ff}.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.comparison-grid>div{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}.shot-label{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;background:#eaf1ff;color:var(--blue-dark);font-size:14px;font-weight:800}.software-shot img{max-width:900px;margin-inline:auto}.compact-list li{margin:6px 0}
+@media(max-width:640px){.route-list{grid-template-columns:1fr}.route-step{min-height:auto;text-align:left}.comparison-grid{grid-template-columns:1fr}.software-shot img{max-width:100%}.lesson-figure figcaption{font-size:15px}.lesson-section h3{font-size:22px}.one-line{font-size:18px}}
+
+/* 全课共用的视觉样式。以用户确认的第十课样式为标准；在旧样式之后加载。 */
+:root{--blue:#2456c4;--blue-dark:#173a86;--ink:#142033;--muted:#55657c;--line:#d7e2f4;--soft:#f5f8ff;--warm:#fff7e8;--ok:#ecfdf5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef3fa;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+img,svg,figure,picture,video{max-width:100%;height:auto;box-sizing:border-box}
+.page-shell,body .course-main-inner{width:calc(100% - 188px);max-width:1440px;margin:28px 24px 80px 164px}.hero,.lesson-section{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07)}
+.hero{padding:42px 48px}.eyebrow,.section-kicker{margin:0 0 10px;color:var(--blue);font-weight:800;letter-spacing:.06em}.hero h1{margin:0;font-size:clamp(36px,5vw,62px);line-height:1.15}
+.jump-nav{position:fixed;left:0;top:clamp(90px,15vh,170px);z-index:99;width:152px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-left:none;border-radius:0 14px 14px 0;box-shadow:3px 6px 20px rgba(23,58,134,.08);padding:10px 8px;display:flex;flex-direction:column;gap:6px;margin:0;transition:transform .28s cubic-bezier(.4,0,.2,1),box-shadow .2s ease;user-select:none}
+.jump-nav-header{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.jump-nav-title{font-size:13px;font-weight:800;color:var(--blue-dark);letter-spacing:.02em;display:flex;align-items:center;gap:4px}
+.jump-nav-toggle{background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px;border-radius:6px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s ease,color .15s ease}
+.jump-nav-toggle:hover{background:var(--soft);color:var(--blue)}
+.jump-nav-body{display:flex;flex-direction:column;gap:5px}
+.jump-nav-list{display:flex;flex-direction:column;gap:5px}
+.jump-nav a,.jump-nav-link{display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:8px;background:transparent;border:1px solid transparent;color:#334155;text-decoration:none;font-size:13px;font-weight:700;line-height:1.3;transition:all .18s ease}
+.jump-nav a:hover,.jump-nav-link:hover{background:#f0f5ff;color:var(--blue);transform:translateX(3px);border-color:#dbeafe}
+.jump-nav .nav-idx{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;border-radius:5px;background:var(--soft);border:1px solid var(--line);color:var(--blue);font-size:11px;font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.jump-nav .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jump-nav a.active,.jump-nav-link.active{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff!important;box-shadow:0 4px 12px rgba(36,86,196,.22);transform:translateX(4px);border-color:transparent}
+.jump-nav a.active .nav-idx,.jump-nav-link.active .nav-idx{background:rgba(255,255,255,.22);color:#fff;border-color:rgba(255,255,255,.4)}
+.jump-nav-top{display:flex;align-items:center;justify-content:center;gap:6px;padding:5px 6px;margin-top:2px;border-top:1px dashed var(--line);color:var(--muted);font-size:12px;text-decoration:none;font-weight:700;border-radius:6px;transition:all .15s ease}
+.jump-nav-top:hover{color:var(--blue);background:var(--soft)}
+.jump-nav.is-collapsed{transform:translateX(-122px);box-shadow:2px 4px 14px rgba(23,58,134,.06)}
+.jump-nav.is-collapsed .jump-nav-header{border-bottom:none;padding-bottom:2px}
+.jump-nav.is-collapsed .jump-nav-title{display:none}
+.jump-nav.is-collapsed .jump-nav-toggle{margin-left:auto;transform:rotate(180deg)}
+.jump-nav.is-collapsed .jump-nav-body{opacity:0;pointer-events:none;max-height:0;overflow:hidden}
+.back-top{color:var(--blue-dark);text-decoration:none;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.lesson-section{padding:38px 42px;margin-top:22px}.lesson-section h2{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:0 0 24px}.lesson-section h3{font-size:25px;line-height:1.4;color:var(--blue-dark);margin:0 0 14px}
+.task-focus,.result-card,.case-summary,.teacher-demo,.material-card,.success-state{border-radius:18px;padding:20px 24px;margin:18px 0}.task-focus{background:linear-gradient(135deg,#e9f1ff,#f8fbff);border:2px solid #bfd2fa;font-size:27px}.result-card{background:var(--soft);border:1px solid var(--line)}.filename{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue-dark);font-weight:800;overflow-wrap:anywhere}
+.concept-list,.step-list{display:grid;gap:20px}.concept-card,.step-card{position:relative;border:1px solid var(--line);background:#fbfcff;border-radius:20px;padding:26px}.one-line{font-size:20px}.thinking-question{margin:26px 0 14px;padding:18px 22px;background:var(--warm);border-left:5px solid #f59e0b;border-radius:14px;font-size:18px;line-height:1.75}
+details{border:1px solid #b7caf0;background:#eef4ff;border-radius:14px;padding:14px 18px}summary{cursor:pointer;color:var(--blue-dark);font-weight:800}.answer-panel p{margin:12px 0 0}
+.thinking-card{margin:32px 0 28px;padding:24px 28px;background:linear-gradient(135deg,#fffdf8 0%,#fff9ec 100%);border:1px solid #fde68a;border-left:5px solid #f59e0b;border-radius:18px;box-shadow:0 6px 20px rgba(245,158,11,.06)}
+.thinking-header{margin-bottom:12px}
+.thinking-badge{display:inline-block;margin-bottom:10px;padding:4px 12px;background:#fef3c7;color:#b45309;font-size:14px;font-weight:800;border-radius:999px;border:1px solid #fde68a;letter-spacing:.04em}
+.thinking-card .thinking-question{margin:0 0 14px!important;font-size:19px;font-weight:700;line-height:1.75;color:#78350f;background:transparent;border:none;padding:0}
+.thinking-card details.answer-panel{margin-top:16px;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:14px 20px;box-shadow:0 2px 8px rgba(245,158,11,.04)}
+.thinking-card details summary{cursor:pointer;color:#b45309;font-weight:800;font-size:16px;outline:none;user-select:none;transition:color .15s ease}
+.thinking-card details summary:hover{color:#d97706}
+.thinking-card details[open] summary{margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed #fde68a}
+.thinking-card .answer-body,.thinking-card .answer-panel p{margin:10px 0 0;color:#451a03;font-size:17px;line-height:1.8}
+.lesson-figure,.route-figure{margin:28px 0;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 4px 18px rgba(36,86,196,.05)}
+.lesson-figure a,.route-figure a{display:block;width:100%;overflow:hidden;background:#fff;text-align:center}
+.lesson-figure img,.route-figure img{display:block;width:100%;max-width:100%;height:auto;margin:0 auto;border:none;border-radius:0;background:#fff;object-fit:contain}
+.lesson-figure figcaption,.route-figure figcaption{color:var(--muted);font-size:15px;line-height:1.65;padding:12px 20px;margin:0;border-top:1px solid var(--line);background:#fbfdff;text-align:left}
+.case-summary{background:var(--soft);border:1px solid var(--line)}.teacher-demo{background:var(--warm);border:1px solid #f6d58a}.teacher-demo li{margin:8px 0}
+.step-card{padding:30px}.step-number{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;font-size:26px;font-weight:900;margin-bottom:12px}.material-card{background:var(--soft);border:1px solid var(--line)}.success-state{background:var(--ok);border:1px solid #a7e8c3}
+.copy-block{position:relative;margin:18px 0}.copy-button{border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;padding:11px 17px;cursor:pointer;margin-bottom:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#f8fafc;border-radius:14px;padding:20px;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}th{background:#eaf1ff;color:var(--blue-dark)}
+.back-top{display:inline-block;margin-top:20px}@media(max-width:640px){.page-shell,body .course-main-inner{width:min(100% - 16px,1400px);margin:8px auto 48px}.hero,.lesson-section{border-radius:16px}.hero{padding:28px 22px}.lesson-section{padding:26px 18px}.task-focus{font-size:22px}.concept-card,.step-card{padding:20px 16px}th,td{font-size:14px;padding:9px}pre{font-size:14px;padding:15px}}
+@media print{body{background:#fff}.jump-nav,.copy-button,.back-top{display:none}.page-shell{width:100%;margin:0}.hero,.lesson-section{box-shadow:none}}
+.route-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}.route-step{min-height:92px;padding:16px 10px;border:1px solid var(--line);border-radius:16px;background:var(--soft);text-align:center;font-weight:800;color:var(--blue-dark)}.route-step span{display:block;color:var(--blue);font-size:14px}.notice{padding:16px 18px;border-left:5px solid var(--blue);border-radius:12px;background:#eef4ff}.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.comparison-grid>div{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}.shot-label{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;background:#eaf1ff;color:var(--blue-dark);font-size:14px;font-weight:800}.software-shot img{max-width:900px;margin-inline:auto}.compact-list li{margin:6px 0}
+@media(max-width:640px){.route-list{grid-template-columns:1fr}.route-step{min-height:auto;text-align:left}.comparison-grid{grid-template-columns:1fr}.software-shot img{max-width:100%}.lesson-figure figcaption{font-size:15px}.lesson-section h3{font-size:22px}.one-line{font-size:18px}}
+
+body{font-size:19px;line-height:1.8}
+.page-shell,body .course-main-inner{max-width:1400px}
+.hero h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;text-wrap:balance}
+.lesson-section{scroll-margin-top:100px}
+.lesson-section h2{font-size:clamp(28px,3vw,36px);line-height:1.35;padding-bottom:16px;border-bottom:2px solid var(--line);margin:0 0 26px}
+.lesson-section h3{font-size:25px;line-height:1.5;margin:0 0 18px;color:var(--blue-dark)}
+.lesson-section h4{font-size:21px;line-height:1.5;margin:28px 0 14px;color:var(--blue-dark)}
+.lesson-section h5{font-size:21px;line-height:1.5;margin:0 0 16px;color:var(--blue-dark)}
+.lesson-section p{margin:12px 0}
+.lesson-section ul{margin:12px 0;padding-left:1.4em}
+.lesson-section li+li{margin-top:10px}
+.concept-card+.concept-card{margin-top:24px}
+.concept-card,.step-card{min-width:0;padding:26px}
+.step-list{gap:24px;margin-top:18px}
+.task-focus{font-size:22px;line-height:1.7;padding:20px 24px;margin:20px 0 24px!important}
+#task>h4{font-size:18px;color:var(--muted);margin:24px 0 8px}
+.filename{margin-top:8px!important;padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+.lesson-figure{margin:28px 0;max-width:100%}
+.lesson-figure img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+.lesson-figure figcaption{font-size:15px;line-height:1.65;padding:12px 20px;border-top:1px solid var(--line);background:#fbfdff}
+.thinking-question{margin:28px 0 16px!important;padding:18px 22px}
+.answer-panel{margin-top:16px}
+.answer-panel p{margin:12px 0 0}
+.step-card>p:has(>b:first-child){background:var(--ok);border:1px solid #a7e8c3;border-radius:12px;padding:14px 18px;margin-top:20px}
+pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;font-size:16px;line-height:1.85;margin:18px 0}
+#practice .step-card:first-child>pre{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.copy-block{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:22px 0}
+.copy-block pre{margin:0}
+.copy-button{align-self:flex-start;margin:0;padding:12px 20px;line-height:1.5}
+.copy-button:hover{background:var(--blue-dark)}
+.copy-button:focus-visible,.jump-nav a:focus-visible,summary:focus-visible{outline:3px solid #f59e0b;outline-offset:4px}
+table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:17px;line-height:1.75;margin:20px 0}
+th,td{padding:14px 16px;overflow-wrap:anywhere;word-break:normal}
+#practice tr:has(>th:nth-child(2):last-child) th:first-child{width:78%}
+#practice tr:has(>th:nth-child(2):last-child) th:last-child{width:22%}
+#finish th:nth-child(1){width:23%}
+#finish th:nth-child(2){width:39%}
+#finish th:nth-child(3){width:38%}
+tbody tr:nth-child(even){background:#f5f8ff}
+code{overflow-wrap:anywhere}
+[hidden]{display:none!important}
+@media(max-width:640px){
+ body{font-size:17px;line-height:1.8}
+ .hero{padding:26px 20px}
+ .lesson-section{padding:24px 18px;scroll-margin-top:16px}
+ .lesson-section h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ .lesson-section h3{font-size:22px}
+ .lesson-section h4,.lesson-section h5{font-size:19px}
+ .concept-card,.step-card{padding:20px 14px;border-radius:16px}
+ .concept-card+.concept-card{margin-top:20px}
+ .task-focus{font-size:19px;padding:16px}
+ .filename{font-size:16px;padding:12px}
+ .step-card>p:has(>b:first-child){padding:12px}
+ pre{font-size:14px;padding:14px}
+ table{font-size:14px;line-height:1.7}
+ th,td{padding:10px 8px}
+ #finish th:nth-child(1){width:22%}
+ #finish th:nth-child(2),#finish th:nth-child(3){width:39%}
+}
+@media(min-width:1024px){
+ .page-shell,body .course-main-inner{
+  width:calc(100% - 188px)!important;
+  max-width:1440px!important;
+  margin-left:164px!important;
+  margin-right:24px!important;
+ }
+ body:has(.jump-nav.is-collapsed) .page-shell,body:has(.jump-nav.is-collapsed) .course-main-inner{
+  margin-left:48px!important;
+  width:calc(100% - 72px)!important;
+ }
+}
+@media(max-width:1023px){
+ .page-shell,body .course-main-inner{
+  width:min(100% - 32px,1400px)!important;
+  max-width:100%!important;
+  margin:20px auto 60px!important;
+ }
+ .jump-nav{position:sticky;top:0;left:0;width:100%;border-radius:0;border:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 12px;gap:8px;transform:none!important;box-shadow:0 2px 10px rgba(0,0,0,.04);background:rgba(255,255,255,.96)}
+ .jump-nav-header,.jump-nav-top{display:none!important}
+ .jump-nav-body{display:flex;flex-direction:row;opacity:1!important;pointer-events:auto!important;max-height:none!important;overflow:visible!important}
+ .jump-nav-list{display:flex;flex-direction:row;gap:8px;flex-wrap:nowrap;white-space:nowrap}
+ .jump-nav a,.jump-nav-link{padding:6px 12px;font-size:13px;border:1px solid var(--line);border-radius:999px;background:#fff;transform:none!important}
+ .jump-nav .nav-label{opacity:1!important;max-width:none!important}
+ .jump-nav a.active,.jump-nav-link.active{transform:none!important}
+}
+@media print{
+ body{font-size:12pt}
+ .lesson-section h2{font-size:22pt}
+ .lesson-section h3{font-size:17pt}
+ .lesson-section h4,.lesson-section h5{font-size:14pt}
+ .lesson-section,.step-card,.concept-card{box-shadow:none}
+ h2,h3,h4,h5{break-after:avoid}
+ .lesson-figure{break-inside:avoid}
+ pre{background:#f5f8ff;color:var(--ink);border:1px solid var(--line)}
+}
+
+
+/* 旧课次模板使用同一套视觉规则，保留其既有内容布局。 */
+body.lesson-page{background:#eef3fa;color:var(--ink);font-size:19px;line-height:1.8}
+body .course-main{height:auto;min-height:100vh;overflow:visible;background:transparent;padding:0}
+body .course-shell{display:block;max-width:none;margin:0}
+body .course-main-inner{width:calc(100% - 188px);max-width:1440px;padding:0;margin:28px 24px 80px 164px}
+body .detail-header{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:42px 48px;margin:0 0 22px}
+body .detail-header h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;margin:0;color:var(--ink)}
+body .detail-header .hero-mark{color:var(--blue);font-size:16px;font-weight:800;margin:0 0 10px}
+body .first-block,body .part{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:38px 42px;margin:22px 0;scroll-margin-top:100px}
+body .first-block h2,body .part h2{font-size:clamp(28px,3vw,36px);line-height:1.35;margin:0 0 26px;padding-bottom:16px;border-bottom:2px solid var(--line);color:var(--ink)}
+body .first-block h3,body .part h3{font-size:25px;line-height:1.5;color:var(--blue-dark);margin:20px 0 16px}
+body .first-block h4,body .part h4{font-size:21px;line-height:1.5;color:var(--blue-dark);margin:24px 0 14px}
+body .first-block p,body .part p,body .practice-task p,body .practice-task ol{font-size:19px;line-height:1.8}
+body .section-kicker{color:var(--blue);font-size:18px;line-height:1.5;margin:0 0 10px}
+body .practice-task,body .core-concept-grid article,body .step-cards article{background:#fbfcff;border:1px solid var(--line);border-radius:20px;padding:26px;margin:0;min-width:0}
+body .practice-task+.practice-task{margin-top:24px}
+body .task-shot img,body .step-shot img,body .concept-example-figure img{width:100%;height:auto;max-height:none;object-fit:contain}
+body .file-example{padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+body .core-concept-grid p{font-size:19px;line-height:1.8}
+@media(max-width:640px){
+ body.lesson-page{font-size:17px}
+ body .course-main-inner{width:calc(100% - 16px);margin:8px auto 48px;padding:0}
+ body .detail-header{padding:26px 20px;border-radius:16px}
+ body .first-block,body .part{padding:24px 18px;border-radius:16px;scroll-margin-top:16px}
+ body .first-block h2,body .part h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ body .first-block h3,body .part h3{font-size:22px}
+ body .first-block h4,body .part h4{font-size:19px}
+ body .first-block p,body .part p,body .practice-task p,body .practice-task ol,body .core-concept-grid p{font-size:17px}
+ body .practice-task,body .core-concept-grid article,body .step-cards article{padding:20px 14px;border-radius:16px}
+}
+@media print{
+ body .course-main-inner{width:100%;margin:0}
+ body .detail-header,body .first-block,body .part{box-shadow:none}
+ body .detail-header h1{font-size:26pt}
+ body .first-block h2,body .part h2{font-size:22pt}
+ body .first-block h3,body .part h3{font-size:17pt}
+ body .first-block p,body .part p{font-size:12pt}
+}
+
+/* 截图图注只展示描述；独立来源说明仅在显示层隐藏，不删除内容源。
+   不隐藏 source-card / source-content：它们可能包含截图或教学正文。
+   来源与描述混在普通文本中的情况，CSS无法按文字内容拆分。 */
+:is(.page-shell,.course-main) :is(.source,.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{
+ display:block;margin:10px 0 0;padding:0;border:0;background:transparent;
+ color:var(--muted);font-size:15px;font-weight:400;line-height:1.65;text-align:left;
+}
+body figure figcaption:empty{display:none}
+body figure figcaption :is(.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+@media(max-width:640px){
+ body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{font-size:14px;line-height:1.7;margin-top:8px}
+}
+
+/* ============================================================
+   PPT 幻灯片翻页演示模式 (Presentation Mode)
+   ============================================================ */
+body.is-ppt-mode{background:#0b1120!important;overflow:hidden!important;height:100vh!important;width:100vw!important;margin:0!important;padding:0!important}
+body.is-ppt-mode .page-shell,body.is-ppt-mode .course-main,body.is-ppt-mode .jump-nav,body.is-ppt-mode .back-top,body.is-ppt-mode .ppt-open-trigger{display:none!important}
+.ppt-stage{display:none;position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 20%,#1e293b 0%,#0b1120 100%);align-items:center;justify-content:center;overflow:hidden}
+body.is-ppt-mode .ppt-stage{display:flex!important}
+.ppt-cards-container{width:min(1420px,94vw);height:min(820px,88vh);position:relative;display:flex;align-items:center;justify-content:center}
+.ppt-slide-card{width:100%;height:100%;background:#ffffff;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.5);padding:36px 48px;overflow-y:auto;box-sizing:border-box;display:none;flex-direction:column;position:relative;animation:pptSlideIn .24s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes pptSlideIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ppt-slide-card.active{display:flex!important}
+.ppt-slide-card h1{font-size:clamp(30px,3vw,44px)!important;line-height:1.25!important;margin:0 0 16px!important;color:var(--ink)!important}
+.ppt-slide-card h2{font-size:clamp(25px,2.4vw,34px)!important;line-height:1.3!important;margin:0 0 18px!important;padding-bottom:12px!important;border-bottom:2px solid var(--line)!important;color:var(--blue-dark)!important}
+.ppt-slide-card h3{font-size:23px!important;color:var(--blue-dark)!important;margin:0 0 14px!important}
+.ppt-slide-card p,.ppt-slide-card li{font-size:19px!important;line-height:1.75!important}
+.ppt-slide-card pre{font-size:16px!important;line-height:1.7!important;padding:18px 22px!important;border-radius:14px!important}
+.ppt-slide-card .task-focus{font-size:23px!important;padding:20px 26px!important}
+.ppt-slide-card .lesson-figure img{max-height:360px!important;object-fit:contain!important;border-radius:12px!important}
+.ppt-slide-card table{font-size:17px!important}
+.ppt-slide-card th,.ppt-slide-card td{padding:12px 14px!important}
+.ppt-slide-badge{display:inline-flex;align-items:center;gap:6px;background:var(--soft);color:var(--blue);font-weight:800;font-size:14px;padding:4px 14px;border-radius:999px;border:1px solid var(--line);margin-bottom:14px;align-self:flex-start}
+.ppt-nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:32px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10001;transition:all .2s ease;user-select:none}
+.ppt-nav-btn:hover{background:rgba(36,86,196,.85);border-color:rgba(255,255,255,.6);transform:translateY(-50%) scale(1.1);box-shadow:0 8px 24px rgba(36,86,196,.4)}
+.ppt-nav-prev{left:20px}
+.ppt-nav-next{right:20px}
+.ppt-nav-btn:disabled{opacity:.12;cursor:not-allowed;pointer-events:none}
+.ppt-topbar{position:fixed;top:18px;right:28px;display:flex;align-items:center;gap:10px;z-index:10002}
+.ppt-top-btn{background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s ease}
+.ppt-top-btn:hover{background:rgba(255,255,255,.28);border-color:#fff;transform:translateY(-1px)}
+.ppt-top-btn.exit:hover{background:rgba(239,68,68,.85);border-color:transparent}
+.ppt-footer{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,23,42,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);padding:6px 18px;border-radius:999px;color:#e2e8f0;font-size:14px;font-weight:700;z-index:10002;box-shadow:0 10px 24px rgba(0,0,0,.35);user-select:none;white-space:nowrap}
+.ppt-footer .ppt-page-counter{color:#60a5fa;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ppt-footer .ppt-hint{color:#94a3b8;font-size:12px;font-weight:400;border-left:1px solid rgba(255,255,255,.18);padding-left:12px}
+.ppt-open-trigger{position:fixed;top:18px;right:24px;z-index:98;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(36,86,196,.3);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s cubic-bezier(.16,1,.3,1);user-select:none}
+.ppt-open-trigger:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 24px rgba(36,86,196,.45)}
+@media(max-width:640px){.ppt-open-trigger{display:none}}
+</style>
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第10次课 · 2学时 · 办公实战：Word文档生成与批量处理</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson09.html" data-course-lesson="lesson09">← 上一课</a><a href="lesson11.html" data-course-lesson="lesson11">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><main class="page-shell" id="top"><header class="hero"><p class="eyebrow">第三章 · 第10次课 · 2学时</p><h1>办公实战：Word文档生成与批量处理</h1></header><nav class="jump-nav" aria-label="本课导航"><a href="#review">知识回顾</a><a href="#task">任务预告</a><a href="#concepts">基础概念</a><a href="#case">核心案例</a><a href="#practice">实践任务</a><a href="#finish">本课总结</a></nav><section class="lesson-section" id="review"><h2>00 知识回顾</h2><h3>专家与专家团</h3><div><ul>
+<li>专家负责一类任务的方法，专家团把不同环节分工后汇总成一个成果。</li>
+<li>材料没有提供的信息不能让AI补造，生成后仍要人工核对。</li>
+</ul>
+</div></section><section class="lesson-section" id="task"><h2>01 任务预告</h2><h3>比较两版活动方案，完成一份差异核验报告</h3><p class="task-focus"><b>完成一份“两版方案差异核验”Word文档：把新增、删除、修改、仅格式变化分别列清，逐项写出原文位置、可能影响和待确认问题。</b></p><h4>作业命名格式</h4><p class="filename"><code>10_两版方案差异核验_姓名.docx</code></p></section><section class="lesson-section" id="concepts"><h2>02 基础概念</h2><article class="concept-card"><h3>概念 1｜正式文档：先定读者和结构，再写正文</h3><figure class="lesson-figure"><img data-image-id="lesson10-concept1" loading="lazy" alt="WorkBuddy生成团建策划框架稿：左侧为任务与生成说明，右侧为Word文档预览。" src="assets/img/79ba402ee2f4b753.webp"><figcaption>左侧说明人数、文档用途和结构要求；右侧框架稿列出活动目标与待确认事项。</figcaption></figure><div><p>① 正式文档需要让指定读者完成一件事。先说清交给谁、用于讨论还是审批、依据什么材料、需要哪些章节，再让AI写初稿。</p>
+<p>② 截图中先明确约80人规模、简洁实用和讨论活动方向的用途，再生成策划框架。正文将目标建议与【待确认】事项分开；AI给出的示例费用或安排仍须人工核实，不能视为已批准事实。</p>
+</div><p class="thinking-question"><b>思考题：</b> 只说“写一份正式方案”，没有读者和材料，AI写得完整就能提交吗？</p><details class="answer-panel"><summary>参考答案：点击展开</summary><p><b>答案：</b> 不能。还要确认受众、用途、结构和事实来源，检查标题、预算与缺失项。</p></details></article><article class="concept-card"><h3>概念 2｜版本对比：逐项定位变化，再判断影响</h3><figure class="lesson-figure"><img data-image-id="lesson10-concept3" loading="lazy" alt="概念示意图：活动方案的新增、删除、修改和仅格式变化四类差异。" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjczNCIgdmlld0JveD0iMCAwIDEyMDAgNzM0Ij48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI3MzQiIGZpbGw9IiNmM2Y2ZmIiLz48ZyBmb250LWZhbWlseT0iUGluZ0ZhbmcgU0MsTWljcm9zb2Z0IFlhSGVpLHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjUwIiB5PSI2NyIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzE1MmM0OSI+54mI5pys5Y+Y5YyW77ya5YiG57G75LmL5ZCO77yM5LuN6KaB5Zue5p+l5Y6f5Y+lPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxMTUiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiM1MjY0N2IiPuamguW/teekuuaEj+WbviDCtyDor77loILmqKHmi5/mtLvliqjmlrnmoYggwrcg5q+P6aG56K6w5b2V54mI5pys44CB56ug6IqC5ZKM5Y6f5Y+lPC90ZXh0PjxyZWN0IHg9IjQ1IiB5PSIxNTUiIHdpZHRoPSIxMTEwIiBoZWlnaHQ9IjEwMCIgcng9IjE0IiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjZDFkY2U5Ii8+PHRleHQgeD0iNjgiIHk9IjE5NCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFjNWI4NiI+5paw5aKePC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTkzIiBmb250LXNpemU9IjIzIiBmaWxsPSIjMjQzNjRhIj52M++8muaXoOesrDfoioIg4oaSIHY077ya5paw5aKe5aSp5rCU6aKE5qGIPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMjMwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTI2NDdiIj7orrDlvZXmlrDlop7lhoXlrrnvvJvmgaLlpI3ml7bpl7Tku43mnKrmmI7noa48L3RleHQ+PHJlY3QgeD0iNDUiIHk9IjI3MSIgd2lkdGg9IjExMTAiIGhlaWdodD0iMTAwIiByeD0iMTQiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNkMWRjZTkiLz48dGV4dCB4PSI2OCIgeT0iMzEwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMWM1Yjg2Ij7liKDpmaQ8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIzMDkiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMyNDM2NGEiPnYz77ya5LiN5o6l5Y+X546w5Zy65oql5ZCNIOKGkiB2NO+8muaXoOWvueW6lOWPpTwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjM0NiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzUyNjQ3YiI+5LuF56Gu6K6k5Y+l5a2Q5Yig6Zmk77yM5LiN6IO95pat6KiA546w5Zy65oql5ZCN5bey6I635om55YeGPC90ZXh0PjxyZWN0IHg9IjQ1IiB5PSIzODciIHdpZHRoPSIxMTEwIiBoZWlnaHQ9IjEwMCIgcng9IjE0IiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjZDFkY2U5Ii8+PHRleHQgeD0iNjgiIHk9IjQyNiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFjNWI4NiI+5L+u5pS5PC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iNDI1IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMjQzNjRhIj52M++8mumihOeul+S4iumZkDgwMOWFgyDihpIgdjTvvJoxMjAw5YWDPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iNDYyIiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTI2NDdiIj7lpI3nrpc2MDArMjAw5LiOOTAwKzMwMO+8m+aguOWvuemHkemineWPmOWMljwvdGV4dD48cmVjdCB4PSI0NSIgeT0iNTAzIiB3aWR0aD0iMTExMCIgaGVpZ2h0PSIxMDAiIHJ4PSIxNCIgZmlsbD0id2hpdGUiIHN0cm9rZT0iI2QxZGNlOSIvPjx0ZXh0IHg9IjY4IiB5PSI1NDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxYzViODYiPuS7heagvOW8j+WPmOWMljwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjU0MSIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzI0MzY0YSI+56ysNuiKguaWh+Wtl+ebuOWQjO+8muato+aWh+agt+W8jyDihpIg5qCH6aKYMjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjU3OCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzUyNjQ3YiI+5b+F6aG75omT5byA5a6e6ZmFRE9DWOajgOafpeagt+W8j++8jOaWh+Wtl+agh+azqOS4jeetieS6juWunua1izwvdGV4dD48dGV4dCB4PSI1MCIgeT0iNjg5IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMjc0ODYzIj7kv53nlZnljp/mlofku7bvvJvmiqXlkYrliJflh7rlj6/og73lvbHlk43kuI7lvoXnoa7orqTpobnvvIzkuI3ku6Pmm7/otJ/otKPkurrlrqHmibnjgII8L3RleHQ+PC9nPjwvc3ZnPg=="><figcaption>概念示意图｜逐项看旧版与新版，先记录变化，再核对原句和真实样式。</figcaption></figure><div><p>① 版本对比把变化分为新增、删除、修改和仅格式变化；批量处理则把同一规则用于多份文件。两者都要先确定输入范围、输出命名和检查口径，避免覆盖原稿。</p>
+<p>② 图中以课堂模拟活动方案说明四类变化。教师团建案例只修订一份文档；学生实践比较两版方案。若以后批量生成同类Word，每份都要分别检查人数、日期、表格与待确认项，不能只看第一份成功。</p>
+</div><p class="thinking-question"><b>思考题：</b> “不接受现场报名”在新版中消失，可以直接说“新版允许现场报名”吗？</p><details class="answer-panel"><summary>参考答案：点击展开</summary><p><b>答案：</b> 不能。只能确认原句被删除；是否允许现场报名仍要询问负责人，不能把删除否定句直接当成新的批准。</p></details></article></section><section class="lesson-section" id="case"><h2>03 核心案例</h2><h3>例子｜从团建需求到可审阅的Word策划方案</h3><h4>案例背景</h4><p>假如你是公司行政助理，负责人让你先为约80人的团队起草团建框架，用于讨论活动方向。初稿审阅后，负责人明确提出：规模调整为100人，目标压缩为3条，流程改成表格，细化预算项目，并补充迟到、设备故障、超时及安全问题的预案，形成供审批的v2。初稿与修改任务都有具体用途，日期、场地、费用和人选尚未确认。以下需求作为课堂模拟，截图用来观察文档结构和修改结果。</p><h4>案例图</h4><figure class="lesson-figure"><img data-image-id="lesson10-case-old" loading="lazy" alt="团建策划v2审批稿：标题、100人规模、目标、流程表及待确认事项。" src="assets/img/0c2e16b9021e3045.webp"><figcaption>v2稿标明100人规模，目标压缩为3条，流程使用表格，日期和场地等事项仍标为【待确认】。</figcaption></figure><div><p>① 对照前面的约80人框架稿，本图显示文档已转为100人规模的审批稿。人数和用途变化来自明确的修改要求，不能由AI自行决定。</p>
+<p>② 目标、流程、分组安排和风险预案按反馈调整，其他未知事实仍为【待确认】。“审批稿”只是交付用途，不代表方案已经批准或正式生效。</p>
+</div><p class="notice" hidden="hidden"></p><h4>教师演示步骤</h4><div class="step-list"><article class="step-card"><h5>步骤①｜整理事实与文档要求</h5><p>教师分别列出两轮要求：第一轮为约80人、提交部门负责人讨论方向、语言简洁实用；第二轮明确调整为100人，并要求目标压缩、流程表格化及补充预算与风险预案。日期、场地、费用和具体负责人仍待确认。学生观察哪些是已确认修改，哪些只是AI建议。</p><p class="notice" hidden="hidden">检查标准：两轮人数要求分开记录，日期、场地和费用不猜填；下面的实际对话先展示约80人初稿的已知与待确认项。</p><figure class="lesson-figure"><a href="assets/img/394237117155dede.webp"><img src="assets/img/394237117155dede.webp" alt="WorkBuddy根据约80人团建模拟需求列出已知事实；日期、场地等保持待确认。" data-image-id="lesson10-案例截图01-1" loading="lazy"></a><figcaption>看提示词与“已知事实”表：约80人和讨论用途有依据，日期、场地、金额与负责人仍为【待确认】。</figcaption></figure></article><article class="step-card"><h5>步骤②｜先让AI列结构和处理计划</h5><p>教师在WorkBuddy新任务中输入：“为约80人的团队起草团建策划，提交部门负责人讨论活动方向。先列可用事实、缺失信息和文档大纲，不写完整正文。大纲包含目标、主题建议、流程、互动安排、预算构成、分工、风险预案；未知事项写【待确认】，建议须标明是建议。说明DOCX输出与检查步骤。”学生观察AI是否先列结构，是否把建议当成事实。</p><p class="notice" hidden="hidden">检查标准：只返回事实、缺失项和结构计划，不抢先生成完整方案；下面的真实回复仍是标题与占位说明，没有正文。</p><figure class="lesson-figure"><a href="assets/img/b18ade4993b1f5f9.webp"><img src="assets/img/b18ade4993b1f5f9.webp" alt="WorkBuddy为约80人团建Word框架列出缺失信息和文档大纲，尚未生成正文。" data-image-id="lesson10-案例截图02-1" loading="lazy"></a><figcaption>看“缺失信息”和“Word文档大纲”：目标、主题、流程等先列结构，时间、场地与预算留待负责人确认。</figcaption></figure></article><article class="step-card"><h5>步骤③｜审查计划与写作口径</h5><p>教师先确认初稿大纲服务于讨论方向，约80人规模与材料一致，预算示例未被当成实际支出，待确认项完整。修改前再核对负责人已经明确同意按100人规模修订；未确认的人数变化不能执行。有无依据的日期、费用或人选，先改计划再生成。</p><p class="notice" hidden="hidden">检查标准：约80人与100人分别对应两轮要求，预算建议不写成已批准金额。真实审查指出：初稿预算科目虽未填金额，仍需明确写为“建议分类，最终以负责人确认为准”；修订后才进入生成。</p><figure class="lesson-figure"><a href="assets/img/3448f20549e0dd98.webp"><img src="assets/img/3448f20549e0dd98.webp" alt="WorkBuddy审查约80人团建计划：五项中四项通过，预算科目建议属性需补写。" data-image-id="lesson10-案例截图03-1" loading="lazy"></a><figcaption>看第4项“需修改”：预算科目清单也要标明只是建议分类；没有具体金额，不等于所有表述都已经安全。</figcaption></figure></article><article class="step-card"><h5>步骤④｜生成初稿并按差异修改</h5><p>计划通过后先要求生成可编辑团建框架DOCX，包含目标、主题、流程、分组、预算构成、分工与风险预案；未知事实写【待确认】。审阅后再发送明确反馈：“在上一版基础上修订为100人规模，目标压缩为3条，流程用表格，列为时间、环节、主要内容、负责人、物料；预算列项目、预计金额、数量、单价和备注，未知数字不补造；补充迟到、设备故障、超时及安全问题预案。语言正式简洁，另存v2，并列修改说明，保留v1。”学生对照截图观察修改结果，不从头重写整篇。</p><p class="notice" hidden="hidden">检查标准：v1保留，v2按差异反馈修订，修改说明与正文一致；本节案例图可对照修订结果，课堂现场还需展示具体修改操作。</p></article><article class="step-card"><h5>步骤⑤｜打开DOCX，核对与记录修改</h5><p>教师用WPS打开两版DOCX，检查v1约80人、v2为已确认的100人，目标与表格是否按反馈调整；日期、场地及未确认金额是否仍可识别。逐项回读修改说明，检查标题、编号、表格宽度与分页。“审批稿”不得误写为“已批准方案”。若工具仅返回文字，将内容粘贴到WPS并保存DOCX，再关闭重开；不能把聊天回复当作文件已保存。</p><p class="notice" hidden="hidden">检查标准：两版DOCX都能重开，标题和流程表正常，待确认项仍在；以实际打开文件的结果为准。</p></article></div></section><section class="lesson-section" id="practice"><h2>04 实践任务</h2><p class="notice">主软件为WorkBuddy，WPS负责准备材料、人工核对和保存报告；只使用以下课堂模拟方案，不修改源文件，也不代替方案负责人作审批判断。</p><div class="step-list"><article class="step-card"><h3>步骤①｜准备v3、v4方案与报告文档</h3><p>在WPS分别新建policy-v3.docx和policy-v4.docx，按下方材料录入对应版本，仅复制正文，不复制括号内课堂标注。两版第1—5节和第7节按相同规则排版；v3第6节标题为正文样式，v4同一句设为“标题2”，保证仅格式变化可检查。另建最终报告，写“材料说明、AI计划、审查结论、差异清单、影响与待确认、核对记录”六个标题。</p><pre>【课堂模拟材料：校园创意市集活动方案；不是真实通知】
+两版具有相同章节编号；除第6节标题样式外，均采用相同字体和版式。
+
+【v3】
+1 活动安排：2026年10月16日14:00—17:00，在校园文化广场举行。
+2 预算：物料费600元、宣传费200元，预算上限800元。
+3 人员分工：学生社团负责布置，指导教师负责现场秩序。
+4 审批条件：指导教师确认方案后方可开展；不得未经确认自行开展。
+5 注意事项：参加者须提前报名；不接受现场报名。
+6 联络信息：联系人及联系电话【待确认】。（本节标题为普通正文样式）
+
+【v4】
+1 活动安排：2026年10月23日14:00—17:00，在学生活动中心一楼大厅举行。
+2 预算：物料费900元、宣传费300元，预算上限1200元。
+3 人员分工：学生社团负责布置，后勤联络员负责现场秩序。
+4 审批条件：指导教师和活动中心管理员均确认方案后方可开展；不得未经确认自行开展。
+5 注意事项：参加者须提前报名。
+6 联络信息：联系人及联系电话【待确认】。（本节标题改为“标题2”样式，文字内容不变）
+7 天气预案：遇暴雨暂停，恢复时间另行通知。
+
+补充说明：括号内是课堂版式标注，不属于文档正文。第6节只有样式变化。材料未提供后勤联络员姓名、联系方式、审批是否完成及方案是否正式生效。</pre><p><b>完成后：</b> 两份源文件可打开，章节编号对应，第6节文字一致但样式不同；报告“材料说明”记录文件名与课堂模拟性质。</p></article><article class="step-card"><h3>步骤②｜让WorkBuddy先列比较计划</h3><p>把两份DOCX放入本次WorkBuddy工作区或添加为任务材料，再发送提示词A。若读取失败，先核对路径和文件是否可打开；也可用下方完整材料做文字对比，但必须写明“未检查真实DOCX样式”，不能把格式变化说成已实测。</p><div class="copy-block"><pre id="prompt-a">下方已经包含课堂材料，不需要另贴材料。
+请先制定两版方案的比较计划，暂不输出最终报告。
+若本任务已提供policy-v3.docx、policy-v4.docx，请先确认能读取两份文件；以DOCX为事实来源，下方文字用于课堂核对。两者不一致时列出冲突，等待确认。
+比较新增、删除、修改、仅格式变化四类差异；给每项附版本、章节编号和原句。重点检查金额、日期、责任主体、审批条件、例外及否定表达。
+说明如何检查真实样式，如何把可能影响与待确认问题分开；不作法律或审批结论，不改动源文件。
+若只读取下方文字，声明未核验DOCX实际样式，格式部分仅依据课堂标注。
+
+【课堂模拟材料：校园创意市集活动方案；不是真实通知】
+两版具有相同章节编号；除第6节标题样式外，均采用相同字体和版式。
+
+【v3】
+1 活动安排：2026年10月16日14:00—17:00，在校园文化广场举行。
+2 预算：物料费600元、宣传费200元，预算上限800元。
+3 人员分工：学生社团负责布置，指导教师负责现场秩序。
+4 审批条件：指导教师确认方案后方可开展；不得未经确认自行开展。
+5 注意事项：参加者须提前报名；不接受现场报名。
+6 联络信息：联系人及联系电话【待确认】。（本节标题为普通正文样式）
+
+【v4】
+1 活动安排：2026年10月23日14:00—17:00，在学生活动中心一楼大厅举行。
+2 预算：物料费900元、宣传费300元，预算上限1200元。
+3 人员分工：学生社团负责布置，后勤联络员负责现场秩序。
+4 审批条件：指导教师和活动中心管理员均确认方案后方可开展；不得未经确认自行开展。
+5 注意事项：参加者须提前报名。
+6 联络信息：联系人及联系电话【待确认】。（本节标题改为“标题2”样式，文字内容不变）
+7 天气预案：遇暴雨暂停，恢复时间另行通知。
+
+补充说明：括号内是课堂版式标注，不属于文档正文。第6节只有样式变化。材料未提供后勤联络员姓名、联系方式、审批是否完成及方案是否正式生效。</pre><button class="copy-button" data-copy-target="prompt-a" type="button">复制提示词A</button></div><p><b>完成后：</b> AI只返回比较计划；列出了四类差异、原文定位方法及待确认项，将计划保存到报告“AI计划”。</p></article><article class="step-card"><h3>步骤③｜审查分类规则和原文定位方法</h3><p>检查计划是否覆盖新增、删除、修改、仅格式变化；每项是否保留两版章节与原句，是否重点核对金额、日期、责任主体、审批条件及否定表达。禁止覆盖源文件；未知内容不能补造。若AI打算把“删除不接受现场报名”直接解释为允许报名，先让它修正。</p><p><b>完成后：</b> 在报告“审查结论”写“通过：仅比较并生成报告，保留源文件，结论可回查”，或“不通过：[具体问题]”；有错先修订计划。</p></article><article class="step-card"><h3>步骤④｜生成差异清单与影响初稿</h3><p>计划通过后发送提示词B。若输出DOCX，直接打开核对；若仅返回文字，把结果粘贴到报告相应章节。检查每行确实有原句和位置；“可能影响”只是供负责人核对的提示，不写成新制度已生效。</p><div class="copy-block"><pre id="prompt-b">下方已经包含课堂材料，不需要另贴材料。
+比较计划已经人工审查，请按确认的口径生成《两版方案差异核验报告》。
+事实来源与冲突处理沿用已确认计划；只比较，不修改policy-v3.docx和policy-v4.docx。
+报告分为材料说明、差异清单、可能影响、待确认问题、核对记录。
+差异表列：编号、差异类别、v3位置与原句、v4位置与原句、变化说明、可能影响、人工核验状态。新增项旧版写“无对应条款”，删除项新版写“无对应条款”；同一变化不重复计数。
+重点核对金额、日期、责任主体、审批条件、例外和否定表达。不能因否定句消失就断言相反行为已获批准；不能断言新版已生效。
+仅格式变化须有实际DOCX样式检查依据；若只有课堂文字标注，写“依据标注，真实样式待核验”。金额合计只按给出的数字核算，不增加支出。
+能够生成文件时，把报告另存为10_两版方案差异核验_姓名.docx（姓名由我填写），保留两份源文件；若无法生成文件，返回完整报告正文，并明确尚未保存DOCX。
+
+【课堂模拟材料：校园创意市集活动方案；不是真实通知】
+两版具有相同章节编号；除第6节标题样式外，均采用相同字体和版式。
+
+【v3】
+1 活动安排：2026年10月16日14:00—17:00，在校园文化广场举行。
+2 预算：物料费600元、宣传费200元，预算上限800元。
+3 人员分工：学生社团负责布置，指导教师负责现场秩序。
+4 审批条件：指导教师确认方案后方可开展；不得未经确认自行开展。
+5 注意事项：参加者须提前报名；不接受现场报名。
+6 联络信息：联系人及联系电话【待确认】。（本节标题为普通正文样式）
+
+【v4】
+1 活动安排：2026年10月23日14:00—17:00，在学生活动中心一楼大厅举行。
+2 预算：物料费900元、宣传费300元，预算上限1200元。
+3 人员分工：学生社团负责布置，后勤联络员负责现场秩序。
+4 审批条件：指导教师和活动中心管理员均确认方案后方可开展；不得未经确认自行开展。
+5 注意事项：参加者须提前报名。
+6 联络信息：联系人及联系电话【待确认】。（本节标题改为“标题2”样式，文字内容不变）
+7 天气预案：遇暴雨暂停，恢复时间另行通知。
+
+补充说明：括号内是课堂版式标注，不属于文档正文。第6节只有样式变化。材料未提供后勤联络员姓名、联系方式、审批是否完成及方案是否正式生效。</pre><button class="copy-button" data-copy-target="prompt-b" type="button">复制提示词B</button></div><p><b>完成后：</b> 报告包含四类差异、定位、影响和待确认问题；无法检查样式的地方有明确限制说明。</p></article><article class="step-card"><h3>步骤⑤｜逐项回查，保存报告并重新打开</h3><div><table>
+<thead>
+<tr>
+<th>检查什么</th>
+<th>正确／有错</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增、删除、修改、仅格式变化四类均有说明，未重复计数</td>
+<td>[填写]</td>
+</tr>
+<tr>
+<td>每项变化有版本、章节编号与原句，金额合计可回查</td>
+<td>[填写]</td>
+</tr>
+<tr>
+<td>日期、地点、责任人、审批条件和否定表达均被检查</td>
+<td>[填写]</td>
+</tr>
+<tr>
+<td>第6节真实样式核验情况如实记录；未知内容仍待确认</td>
+<td>[填写]</td>
+</tr>
+<tr>
+<td>原文件未改，报告能打开，未断言方案已审批或生效</td>
+<td>[填写]</td>
+</tr>
+</tbody>
+</table>
+</div><p>人工参考：第1节日期、地点改变；第2节金额改变且两版合计分别为800元、1200元；第3节现场秩序责任主体改变；第4节增加确认主体；第5节删除否定句；第6节仅标题样式改变；第7节新增天气预案。分类允许把第4节记为“修改”并说明新增条件，不重复计数。至少回查一项否定表达及一项金额，不推断方案已批准。</p><p><b>完成后：</b> 保存为“10_两版方案差异核验_姓名.docx”，关闭后重新打开；报告包含计划、审查、差异、影响与核对记录，两份源文件未被覆盖。</p></article></div></section><section class="lesson-section" id="finish"><h2>05 本课总结</h2><h3>成果卡</h3><div><table>
+<thead>
+<tr>
+<th>我的作品</th>
+<th>我的文件里应有</th>
+<th>提交前检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>两版方案差异核验报告</td>
+<td>材料与文件说明<br>AI计划及审查结论<br>四类差异与原文定位<br>可能影响、待确认问题及核对记录</td>
+<td>□ 文件名正确<br>□ 否定表达未被误判<br>□ 金额能回查<br>□ 样式核验情况如实说明<br>□ 原文件保留且报告重开正常</td>
+</tr>
+</tbody>
+</table>
+</div></section><footer><p>知识回顾</p><p>任务预告</p><p>基础概念</p><p>核心案例</p><p>实践任务</p><p>本课总结</p><p>返回顶部 ↑</p></footer><a class="back-top" href="#top">返回顶部 ↑</a></main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

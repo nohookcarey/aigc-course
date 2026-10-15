@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第21次课｜国内无代码工作流：搭建第一条可运行路径</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第21次课 · 2学时 · 国内无代码工作流：搭建第一条可运行路径</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson26.html" data-course-lesson="lesson26">← 上一课</a><a href="lesson28.html" data-course-lesson="lesson28">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第六章｜AIGC应用与实践 · 第21次课 · 2 学时</p>
+      <h1>国内无代码工作流：搭建第一条可运行路径</h1>
+      
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>上一课用追问明确用途并画了流程。本课先在画布上跑通一条不带分支的路径，学会让本次材料进入模型、再显示结果。</p>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <p><b>本课成果：</b> 一条闲置物品介绍工作流。换成另一段商品材料仍能生成新文案，输入不会被写死在提示词里。</p>
+<p><b>主工具：</b> <a href="https://yuanqi.tencent.com/">腾讯元器</a>，登录后在智能体应用内使用工作流管理。不需要安装编程工具或申请外部接口密钥。模型选择当前账号有权限的一款。</p>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜节点与连线：固定处理顺序</h3>
+<p>节点是一项具体操作，连线规定下一步去哪里。本课用“开始→大模型→回复→结束”。大模型改写文字，回复节点显示文字，结束节点完成流程；这四种职责不同。</p>
+<p><b>例子：</b> 模型成功运行但没有回复节点，调试详情可能有结果，对话区却看不到文案。</p>
+<h3>2｜变量：装入本次材料的位置</h3>
+<p>变量可以理解为一个有名称的小格子，每次运行装入不同值。“商品材料”是格子的用途，“白色台灯……”是本次值。变量名不是材料本身。</p>
+<p><b>例子：</b> 模型输入material引用“用户本轮对话内容”。这次输入台灯，下次输入耳机，提示词规则保持不变。</p>
+<h3>3｜引用与固定值：选来源，或写死内容</h3>
+<p>引用会读取上游或系统中的本次值；固定值每次都一样。处理用户材料时要选引用。如果把教师样例填成固定值，学生改了输入，输出仍会讲教师的台灯。</p>
+<p><b>例子：</b> 输入变量material的数据来源选择“引用→用户本轮对话内容”；在提示词内插入material变量标签。</p>
+<h3>4｜调试：看哪一步真正拿到了材料</h3>
+<p>调试是用一份输入试跑，查看节点的输入与输出。绿色成功状态只能说明节点执行结束，仍要看实际内容是否是这次材料；错误位置可从第一个没得到正确输入的节点找起。</p>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>教师示范｜把台灯材料带进四个节点</h3>
+<p><b>课堂模拟输入：</b> 白色台灯，使用半年，三档亮度正常，底座有擦痕，附电源线。没有提供品牌、价格与保修。</p>
+<h3>操作①｜创建并连接</h3>
+<p>进入应用的“工作流管理”，选择“新建→手动录入”，名称写“闲置介绍”，描述写“根据本次商品材料生成简短介绍”。确定后进入画布。</p>
+<figure class="lesson-figure"><a href="assets/img/799173a7a4a82b46.webp" title="点击查看大图"><img src="assets/img/799173a7a4a82b46.webp" alt="元器新建工作流" loading="lazy"></a><figcaption></p>
+<p>新建窗口填写名称和用途，确定后进入画布。</figcaption></figure>
+<p>从左侧添加一个“大模型”和一个“回复”节点，保留开始与结束节点。拖动节点连接点，连接成：开始→大模型→回复→结束。</p>
+<figure class="lesson-figure"><a href="assets/img/26b8666cf2e4e5ab.webp" title="点击查看大图"><img src="assets/img/26b8666cf2e4e5ab.webp" alt="元器画布节点面板" loading="lazy"></a><figcaption></p>
+<p>左侧选择节点，画布连线规定顺序；本课只保留四个需要的节点。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/d58cd090ca52e797.webp" title="点击查看大图"><img src="assets/img/d58cd090ca52e797.webp" alt="开始节点中，SYS.UserQuery对应本轮对话内容；它与对话历史是不同的变量。" loading="lazy"></a><figcaption></p>
+<p>开始节点中，SYS.UserQuery对应本轮对话内容；它与对话历史是不同的变量。</figcaption></figure>
+<h3>操作②｜配置模型输入</h3>
+<p>点击大模型节点，在右侧“输入变量”添加material，数据来源选择“引用”，从列表选择系统变量“用户本轮对话内容”。选一款有权限的模型。复制下面的规则，再在末尾输入“/”，选material插入变量标签。</p>
+<div class="copy-block">
+      <pre id="lesson27-code-1"><code class="language-text">将商品材料改写成“标题、使用状态、外观与配件”三部分。语气自然，保留材料写明的缺点，不增加品牌、价格、续航或保修。不输出操作过程，只输出介绍。
+商品材料：
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson27-code-1" type="button">复制代码</button>
+    </div><p><b>这里要做的动作：</b> 提示词末尾插入material标签，而不是把“material”当普通文字敲进去，也不要粘贴固定台灯样例作为变量值。</p>
+<figure class="lesson-figure"><a href="assets/img/824b9ccff3cef1c7.webp" title="点击查看大图"><img src="assets/img/824b9ccff3cef1c7.webp" alt="输入变量示例：左侧是变量名，中间选择引用，右侧选择来源节点。" loading="lazy"></a><figcaption></p>
+<p>输入变量示例：左侧是变量名，中间选择引用，右侧选择来源节点。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/7ba86c65230f23be.webp" title="点击查看大图"><img src="assets/img/7ba86c65230f23be.webp" alt="提示词中插入紫色变量标签，标签会带入本次值；图中示例为borrowTime，本课使用material。" loading="lazy"></a><figcaption></p>
+<p>提示词中插入紫色变量标签，标签会带入本次值；图中示例为borrowTime，本课使用material。</figcaption></figure>
+<h3>操作③｜让回复读模型结果</h3>
+<p>点击回复节点，添加输入变量answer，来源选择“引用→大模型节点→Output→Content（输出内容）”。在“回复内容”处用变量选择器插入answer。将回复接到结束；不是把模型思考过程Thought当作作品。</p>
+<figure class="lesson-figure"><a href="assets/img/1b56951ca6e1fcb1.webp" title="点击查看大图"><img src="assets/img/1b56951ca6e1fcb1.webp" alt="元器模型输出变量" loading="lazy"></a><figcaption></p>
+<p>Content是生成内容；Thought是思考过程；Error是运行错误。回复本课成果时选择Content。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/43d1f6d0d6fc7375.webp" title="点击查看大图"><img src="assets/img/43d1f6d0d6fc7375.webp" alt="回复节点示例：先引用上游值，再把变量标签插入回复内容；本课在同一位置配置answer。" loading="lazy"></a><figcaption></p>
+<p>回复节点示例：先引用上游值，再把变量标签插入回复内容；本课在同一位置配置answer。</figcaption></figure>
+<h3>操作④｜输入台灯，再换材料</h3>
+<p>点画布右上角“调试”，在测试输入框发送模拟台灯材料。展开模型详情，看material是否为本次台灯文字，再看对话区是否显示三部分文案。第二次换成耳机材料，确认输出跟着变化。</p>
+<p><b>教学结果样例：</b> “闲置白色台灯，三档亮度正常”；“使用半年”；“底座有擦痕，附电源线”。若第二次还讲台灯，检查输入是否误设为固定值；若没有回复，检查回复的answer是否引用Content。</p>
+<p><b>参考：</b> <a href="https://yuanqi.tencent.com/guide/workflow-create-config-debug">元器创建与调试</a>、<a href="https://yuanqi.tencent.com/guide/workflow-llm-node">大模型</a>、<a href="https://yuanqi.tencent.com/guide/workflow-end-node">回复与结束的区别</a>。</p>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜做一个自己的闲置介绍流程</h2>
+        <p><b>底料任选：</b> 蓝牙音箱：用一年，声音正常，边角有磕碰，只附充电线；双肩包：用一学期，拉链正常，底部有磨痕，无其他配件。都是课堂模拟，也可替换成自己的闲置物品描述。</p>
+<h3>操作①｜搭建并选择语气</h3>
+<p>按案例连接四个节点。模型输入material引用本轮对话，在提示词末尾插入变量。自己选择“简洁直接”或“自然耐心”语气，并把这条规则加入提示词。</p>
+<h3>操作②｜绑定回复后试跑</h3>
+<p>回复的answer引用模型Content，回复正文插入answer。发送选中的材料，打开模型详情看它收到的是这次物品描述。</p>
+<h3>操作③｜换一件物品再运行</h3>
+<p>换成另一份底料。若两个结果是同一件物品，改正固定值或变量绑定；若文案删掉缺点，在提示词补上“保留外观缺点”。</p>
+<p><b>最后看三项：</b> 材料会随输入变化；回复区显示文案；语气与自己选择一致。<b>成果：一条可重复运行的介绍流程。</b></p>
+<p><b>无账号的练习方式：</b> 在豆包或千问用同一规则处理两份材料，并标出“输入、改写、显示”对应位置。这能练规则，不能代替画布连线与变量绑定练习。</p>
+
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <p>本课把输入、处理和回复分开配置。连线决定顺序，引用让下一步读取本次材料，回复节点把生成内容显示出来。</p>
+<p><b>下节预告：</b> 把整理与改写拆成两个模型节点，观察上一步的输出如何成为下一步输入。</p>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

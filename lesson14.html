@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第14次课｜文件管理与会议记录</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第14次课 · 2学时 · 文件管理与会议记录</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson13.html" data-course-lesson="lesson13">← 上一课</a><a href="lesson15.html" data-course-lesson="lesson15">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第三章｜AI 办公与数据处理 · 第 14 次课 · 2 学时</p>
+      <h1>文件管理与会议记录</h1>
+      <div style="margin-top:14px;color:var(--muted);font-size:18px;line-height:1.6;"><p>能用图不用字，能看视频少看文。用 AI 高效归档散乱文件，从口语速记中提炼出责任到人、截止期明确、绝无脑补的行动看板。</p>
+</div>
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <ul>
+<li><b>上节留存</b>：PPT 自动生成的本质是“结构化大纲（Markdown）向原生母版（PPTX）的矢量映射”，绝不轻信死图。</li>
+<li><b>本节攻坚</b>：职场日常两项最高频基本功——<b>文件 TPV 规范归档</b>与<b>会议录音速记提炼（FDA 模型）</b>，彻底消灭“最终版”与“废话散文纪要”。</li>
+</ul>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <h3>今天要完成什么？</h3>
+<ul>
+<li><b>最终作品</b>：一份规范的项目文件归档索引、会议行动项看板与 AI 过程记录留痕（含分类规则、责任人、截止期、状态标记与纠偏记录）。</li>
+<li><b>交作业文件名</b>：<code>14_校园报修小程序_资料归档与会议看板_姓名.xlsx</code></li>
+<li><b>合格标准（看这5条）</b>：
+<ol>
+<li>包含 <code>文件索引目录</code>、<code>会议行动看板</code> 与 <code>AI过程记录</code> 三个独立工作表；</li>
+<li>建立“日期-项目-分类-版本”（TPV）标准命名规范，彻底剔除“最终版”、“修改3”等随意字眼；</li>
+<li>从会议速记中提炼行动项，每项必须明确【事项描述、责任人、完成期限、验收标准】；</li>
+<li>遇到未敲定、发言模糊事项，<b>严格标注“待定核实”，绝不主观推测或强行定责</b>；</li>
+<li>设立专门的 <code>AI过程记录</code> 工作表完整留痕（Prompt、初始输出与人工纠偏说明），完成本地目录只读物理隔离与防误删实操验证，重新打开文件排版无损。</li>
+</ol>
+</li>
+</ul>
+<h3>避坑预警：借助 AI 整理时的 4 类典型翻车</h3>
+<figure class="lesson-figure"><a href="assets/img/4e7f7c75835c1311.webp" title="点击查看大图"><img src="assets/img/4e7f7c75835c1311.webp" alt="课堂模拟示意图：误删旧稿、脑补决议、擅自定责与编造期限" loading="lazy"></a><figcaption>图解：课堂模拟示意图——旧稿不能随意删除；未定事项不能写成决议；建议不能变成责任指派；“尽快”不能脑补为“明天完成”。</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">典型翻车现象</th>
+<th style="text-align:left">产生原因分析</th>
+<th style="text-align:left">核心防御提示词</th>
+<th style="text-align:left">我们的正确操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><b>❌ 1. 脑补未决事项</b></td>
+<td style="text-align:left">口头探讨被 AI 当成正式决议</td>
+<td style="text-align:left"><code>“区分讨论观点与最终决议，未达成一致的仅列入待定议题。”</code></td>
+<td style="text-align:left">核对会议结尾结论，未敲定者坚决不写进决议</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>❌ 2. 强行指派责任人</b></td>
+<td style="text-align:left">谁发言积极就把任务安在谁头上</td>
+<td style="text-align:left"><code>“责任人必须依原文明确指派；未指派的统一填‘待确认’，严禁推测。”</code></td>
+<td style="text-align:left">责任人列出现模糊处标黄，线下交组织者确认</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>❌ 3. 编造截止时间</b></td>
+<td style="text-align:left">把“下周搞一下”脑补为具体几月几日</td>
+<td style="text-align:left"><code>“严格摘录原文时间节点；未指明确切日期的，一律标记‘待定’。”</code></td>
+<td style="text-align:left">将“尽快”、“下周”等口语统一提取为待定</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>❌ 4. 物理误删旧稿</b></td>
+<td style="text-align:left">AI 认为相似文件无用，直接覆盖或删除</td>
+<td style="text-align:left"><code>“历史版本完整保留并按版本号归档，严禁直接覆盖或删除源文件。”</code></td>
+<td style="text-align:left">建立 <code>00_原件</code> 只读隔离目录，杜绝误覆盖</td>
+</tr>
+</tbody>
+</table>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>概念 1｜现代文件命名法则：TPV 规范体系</h3>
+<p>摒弃个人随意命名，采用团队协作与数字资产管理的高效命名法则——<b>TPV 规范体系（时间 Time - 项目 Project - 版本 Version）</b>：</p>
+<div class="copy-block">
+      <pre id="lesson14-code-1"><code class="language-text">标准公式：[YYYYMMDD]_[项目名]_[模块分类]_[版本号].[扩展名]
+
+❌ 错误命名：迎新晚会策划案_改了又改最终终稿(2).docx
+✅ 规范命名：20260924_迎新晚会_策划方案_v2.0_送审版.docx
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson14-code-1" type="button">复制代码</button>
+    </div><ul>
+<li><b>T（Time，时间维度）</b>：首位统一采用 <code>YYYYMMDD</code>（如 <code>20260924</code>），确保在任何操作系统下按名称正序排列时，均能自动按真实时间线顺序呈现；</li>
+<li><b>P（Project / Topic，项目与模块）</b>：指明所属项目与具体业务模块（如 <code>校园报修小程序_需求确认稿</code>、<code>迎新晚会_赞助名单</code>）；</li>
+<li><b>V（Version / Status，版本与状态）</b>：采用规范数字版本号 <code>v1.0</code>、<code>v2.0</code>（小修补用 <code>v1.1</code>，里程碑用 <code>v2.0</code>），彻底消灭“最终版”、“最新版”、“修改稿”等无法回溯的混乱字眼。</li>
+</ul>
+<hr>
+<h3>概念 2｜会议纪要三层过滤模型：FDA</h3>
+<p>拒绝录音转写原文大段搬家，使用三层漏斗严格脱水过滤：</p>
+<div class="copy-block">
+      <pre id="lesson14-code-2"><code class="language-text">F 事实（Fact）   ➔ 讨论了什么背景与现状（保留争议双方观点）
+       │
+D 决议（Decision）➔ 领导当场定案了什么（未定案项一律归入待定库）
+       │
+A 行动（Action）  ➔ 散会后谁该干什么（责任人 + 截止时限 + 具象验收物）
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson14-code-2" type="button">复制代码</button>
+    </div><div class="thinking-card">
+  <div class="thinking-header">
+    <span class="thinking-badge">💡 思考探究</span>
+    <p class="thinking-question">在部门会议中，主管随口说：“这个展板主视觉颜色偏暗，小李你平时审美不错，可以多留心看看。”AI 提炼纪要写道：“【行动项】小李负责于明天完成展板重新设计并定稿。”这样归纳合理吗？为什么？</p>
+  </div>
+  <details class="answer-panel"><summary>点击展开查看参考分析</summary>
+<div class="answer-body"><p><b>极不合理！</b> 这是典型的“口语闲聊当工作指派”和“凭空捏造时限”：</p>
+<ol>
+<li><b>性质混淆</b>：主管仅是探讨审美，并未正式立项或指定小李负责；</li>
+<li><b>凭空捏造</b>：原文无“明天完成”和“重新设计”，纯属 AI 幻觉；</li>
+<li><b>正确做法</b>：写入讨论要点：“大家讨论展板色调偏暗，建议调整”；若需小李跟进，必须由主管明确指派后方可录入行动项。</li>
+</ol></div></details>
+</div>
+<hr>
+<h3>概念 3｜基于 SMART 原则的课堂精简自检三要素</h3>
+<p>在管理学与目标制定中，国际通用权威的 <b>SMART 原则</b>（Specific 目标具体、Measurable 成果可衡量、Achievable 步骤切实可达成、Relevant 与项目强相关、Time-bound 有严格截止时限，详见权威 <a href="https://www.cdc.gov/training-development/php/about/design-training-learning-objectives.html">CDC 培训与目标设计指南</a>）。</p>
+<p>针对日常会议纪要与行动看板整理中<b>最容易缺失、最容易产生推诿扯皮</b>的三大痛点漏洞，本课提炼出<b>面向实操的“极简三要素自检项”</b>：</p>
+<ul>
+<li><b>责任具体到人（对应 Specific）</b>：必须指派到具体责任人姓名，未指派统一标注“待确认”，严禁推测或写泛化的“各部门推进”；</li>
+<li><b>交付可衡量验收（对应 Measurable）</b>：必须有明确的交付物形态（如具体的表格、文档、清单、测试报告），拒绝“继续跟进”、“认真落实”等抽象空话；</li>
+<li><b>截止有明确时限（对应 Time-bound）</b>：必须精确到具体工作日或截止时间点，未敲定必须明确标注“待定”，严禁模糊写“尽快”、“下周前”。</li>
+</ul>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>案例剖析：真实项目复盘——某数字化团队“AI 纪要翻车事故”反思与治理 SOP</h3>
+<p>在某高校数字化校园协作项目的推进复盘中，项目团队总结了一次典型的“AI 纪要事故”教训：</p>
+<blockquote>
+<p>“项目助理将 1 小时的会议录音转写文本直接发给 AI 总结，未做人工核验与防脑补约束，便将生成的纪要发到项目协同群。结果引发跨部门严重异议：</p>
+<ol>
+<li><b>把未决讨论当成正式决议</b>：关于是否在第一阶段增加在线支付功能，后勤与研发激烈讨论未定，AI 竟总结为‘双方一致同意上线在线支付’；</li>
+<li><b>擅自定责抓壮丁</b>：会上后勤老师随口说‘小陈对各楼栋比较熟悉’，AI 竟在纪要里写‘【行动项】小陈周四前完成全校 32 栋宿舍现场摸排’；</li>
+<li><b>凭空捏造交付时限</b>：客户提到‘等测试版出来再定上线时间’，AI 却把发言中提到的‘9月25日确认需求’错判为‘9月25日系统正式上线’，险些导致重大交付事故。”</li>
+</ol>
+</blockquote>
+<hr>
+<h3>📺 精选实战视频推荐（能看视频，少看文字！）</h3>
+<p>通过优秀 UP 主的直观演示，在 3~5 分钟内快速掌握文件归档与会议 AI 提取精髓（经教学核验，各外链均稳定有效）：</p>
+<figure class="lesson-figure"><p>视频封面请在下方原作者页面查看。</p><figcaption>图解：📺 推荐视频一：UP主「像素队长」《如何给文件夹分类和命名 告别乱糟糟的电脑》▶️ <a href="https://www.bilibili.com/video/BV1NX4y1T7dt/">点击直达 B 站播放完整视频</a></figcaption></figure>
+<figure class="lesson-figure"><p>视频封面请在下方原作者页面查看。</p><figcaption>图解：📺 推荐视频二：UP主「木本同学」《受够了低效会议？是时候用智能会议纪要解放双手了！》▶️ <a href="https://www.bilibili.com/video/BV1AW4izoEQg/">点击直达 B 站播放完整视频</a></figcaption></figure>
+<figure class="lesson-figure"><p>视频封面请在下方原作者页面查看。</p><figcaption>图解：📺 推荐视频三：UP主「科技虾_」《免费vs付费，会议纪要工具哪家强？结果真的比较意外》▶️ <a href="https://www.bilibili.com/video/BV1zSV26aEcs/">点击直达 B 站播放完整视频</a></figcaption></figure>
+<hr>
+<h3>📸 真实系统资产治理截图示范</h3>
+<p>项目团队坚持的两项核心文件管理硬规则：</p>
+<figure class="lesson-figure"><a href="assets/img/87e394289ef69719.webp" title="点击查看大图"><img src="assets/img/87e394289ef69719.webp" alt="规范的原件只读归档目录" loading="lazy"></a><figcaption>图解：规则一｜原件物理隔离与只读锁定——建立独立的 <code>00_原件</code> 目录，将原始录音、初始需求草稿等全部纳入；系统属性明确勾选【已锁定】并赋予【只读 (Read only)】权限，杜绝任何覆盖与误删风险。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/b814209c04235e58.webp" title="点击查看大图"><img src="assets/img/b814209c04235e58.webp" alt="标准TPV文件版本迭代结构" loading="lazy"></a><figcaption>图解：规则二｜TPV 规范演进——在业务子目录下采用 <code>YYYYMMDD_项目名_模块_版本号</code> 清晰展示版本递增（v1.0 ➔ v2.0），保留完整历史版本，彻底告别“最终版”混乱。</figcaption></figure>
+<hr>
+<h3>提示词武器：防脑补防御性会议提炼模板</h3>
+<p>复制以下提示词给 <b>WorkBuddy</b> 或通用大模型：</p>
+<div class="copy-block">
+      <pre id="lesson14-code-3"><code class="language-text">你是一名严谨的行政督办专家。请分析以下会议口语速记，输出结构化纪要表格，必须严格遵守以下红线：
+1. 【议题与事实】按讨论主题归纳事实，如实保留各方分歧；
+2. 【决议定案】仅记录形成明确共识的结论；未决事项放入“待跟进事项”，严禁写成决议；
+3. 【行动项看板】表格输出：任务编号、核心事项、所属模块、责任人、截止时间、验收标准；
+4. 【红线铁律】责任人必须在原文中有明确指派，未指派统一填“待确认”；截止时间未明确具体日期的统一填“待定”，严禁凭空臆造时间或指派人员！
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson14-code-3" type="button">复制代码</button>
+    </div><hr>
+<blockquote>
+<p>💡 <b>从认知到动手的过渡</b>：
+掌握了“TPV 规范命名”、“FDA 漏斗过滤”与“防脑补提示词”，接下来我们在【04 实践任务】中实操真实项目《校园报修小程序》的需求会议材料规整！</p>
+</blockquote>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜以《校园报修小程序》为实战，制作文件索引与会议行动看板</h2>
+        <h3>真实业务场景与练习材料</h3>
+<p>你担任后勤处数字化项目组助理。今天（2026年9月24日），项目组召开了“校园报修小程序（第一阶段）”需求与进度评审会。
+桌面上堆放着 4 个前期散乱命名的项目资料，群里刚刚发来了本次会议的录音原件。
+你的任务是：从一段纯音频出发，提取文本、人工核验、提炼行动看板，并最终为整个项目资产建立规范的 TPV 归档与只读物理隔离！</p>
+<blockquote>
+<p>📌 <b>实训素材获取途径</b>：
+本课实训<b>仅提供真实会议音频原件</b>（<code>校园报修小程序_会议录音_20260924_自然语音版.mp3</code>），已统一上传至 <b>【学习通 ➔ AIGC应用与实践 ➔ 资料】</b>。请同学们先在学习通下载音频，通过 AI 转写并自主核验！</p>
+</blockquote>
+<hr>
+<h3>🧭 动手前必读：为什么实训里会有两个提示词？到底怎么做？</h3>
+<p>很多同学可能会疑惑：“为什么步骤里突然出现两个提示词？我到底该怎么跟 AI 互动？”
+其实，今天我们要帮项目组解决<b>两个完全不同维度的实际痛点</b>，就像通关打怪，分两大战役进行：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">战役阶段</th>
+<th style="text-align:left">我们手头的痛点</th>
+<th style="text-align:left">我们派给 AI 的任务</th>
+<th style="text-align:left">对应的提示词武器</th>
+<th style="text-align:left">最终输出成果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><b>【战役一·会议篇】</b><br>（步骤 1 ➔ 步骤 3）</td>
+<td style="text-align:left">手里只有一段吵吵嚷嚷的会议录音，大段口语无法直接指派工作</td>
+<td style="text-align:left">让 AI 扮演<b>行政督办专家</b>，过滤口语废话，把讨论提炼为责任清晰的表格</td>
+<td style="text-align:left"><b>【提示词 1】</b><br>防脑补会议提炼模板</td>
+<td style="text-align:left">输出 <b>《会议行动看板》</b><br>（任务编号、责任人、截止时间、验收标准）</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>【战役二·文件篇】</b><br>（步骤 4）</td>
+<td style="text-align:left">会议开完了，桌面上堆满 4 个旧草稿 + 1 个录音原件 + 刚才新出炉的纪要，名字杂乱无章</td>
+<td style="text-align:left">让 AI 切换身份，扮演<b>数字资产管理专家</b>，按 TPV 规范重命名并规划隔离目录</td>
+<td style="text-align:left"><b>【提示词 2】</b><br>TPV 资产规范规划模板</td>
+<td style="text-align:left">输出 <b>《文件索引目录》</b><br>（原文件名、TPV 新文件名、建议归档路径）</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>【战役三·实操篇】</b><br>（步骤 5 ➔ 步骤 7）</td>
+<td style="text-align:left">需要交付可考核的实训成果，并在电脑中真正建立受保护的项目文件夹</td>
+<td style="text-align:left">打开 WPS 把两张表存入同一个 Excel，并在电脑里真实建立只读原件目录</td>
+<td style="text-align:left">人工落盘操作</td>
+<td style="text-align:left">交付 <b><code>14_..._姓名.xlsx</code></b>（含 3 个工作表）并在本地建立受保护目录</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>协同工具分工</h3>
+<ul>
+<li><b>AI 协同软件（WorkBuddy / 语音转写工具）</b>：
+<ol>
+<li>语音转文字：将会议录音原件自动转写为初始速记文本；</li>
+<li>智能提炼：针对核验后的速记，运用 FDA 模型防御性提取核心决议与行动看板；</li>
+<li>资产规划：统一制定符合 TPV 规范的重命名方案与“00_原件物理隔离”归档目录树。</li>
+</ol>
+</li>
+<li><b>专业软件（WPS 表格 / Excel）</b>：
+承接 AI 结构化输出结果，构建包含【文件索引目录】、【会议行动看板】与【AI过程记录】的完整实训工作簿，标黄待定项，完成交付落盘。</li>
+<li><b>操作系统文件管理器（Windows 资源管理器 / macOS 访达）</b>：
+实际创建归档目录树，对原始数据实施系统级“只读保护”并完成防误删安全验证。</li>
+</ul>
+<hr>
+<h3>第 1 步｜从学习通下载音频，用 AI 语音转文字（提取速记草稿）</h3>
+<ol>
+<li>从学习通下载音频原件 <code>校园报修小程序_会议录音_20260924_自然语音版.mp3</code>；</li>
+<li>打开具备语音识别能力的 AI 协同工具（如 WorkBuddy 语音转文字功能、或飞书妙记、通义听悟、微信语音输入等转写工具）；</li>
+<li>导入该音频文件，启动自动语音识别（ASR），导出初始的会议文字速记草稿。</li>
+</ol>
+<hr>
+<h3>第 2 步｜对照音频核验，人工排查 3 个高危听录陷阱</h3>
+<p>AI 语音转写不可避免地存在<b>同音词混淆、专有名词识别不准、说话人切分错误</b>等缺陷。请对照音频原件，重点回听并校准以下 3 个关键高危陷阱：</p>
+<ol>
+<li><b>陷阱 1（专有名词与功能状态）</b>：
+<ul>
+<li>检查状态机：核对是否正确识别为“待受理、处理中、已完成”3 个状态；</li>
+<li>检查否定句：核实是否将“旧稿里的待评价取消”、“在线评价和支付都不放在第一阶段”准确识别，防止漏词导致语义反转。</li>
+</ul>
+</li>
+<li><b>陷阱 2（时间反转高危陷阱）</b>：
+<ul>
+<li>重点回听 01:00 左右对话：客户明确表示“九月二十五日改成需求清单确认日，不是上线日。先给我们测试版，正式上线等测试通过再定”。</li>
+<li>确保速记稿中绝不能将“9月25日”误记为“上线日”。</li>
+</ul>
+</li>
+<li><b>陷阱 3（责任人与时间节点）</b>：
+<ul>
+<li>回听结尾项目经理的复述，校对产品经理（9月25日发需求清单）、客户（9月28日发楼栋与维修组）、项目经理（9月30日确认测试负责人）的对应关系。</li>
+</ul>
+</li>
+</ol>
+<p>校准完成后，保存为一份干净可信的《校准版会议速记文本》。</p>
+<hr>
+<h3>第 3 步｜【战役一·会议篇】发【提示词 1】给 AI，生成《会议行动看板》</h3>
+<p><b>怎么做？保姆级 3 步操作</b>：</p>
+<ol>
+<li><b>复制提示词</b>：点击下方代码框的【复制】按钮；</li>
+<li><b>填入你的速记</b>：在提示词中找到 <code>[请在此处粘贴你在第2步中核验校准后的会议速记文本]</code>，替换为你第 2 步校准好的文字；</li>
+<li><b>发送给 AI</b>：发给 WorkBuddy（或大模型），AI 会自动按 FDA 模型吐出【核心决议】与【行动项看板】表格；</li>
+<li><b>快速检查</b>：核对 AI 有没有擅自脑补——“正式上线日期”必须写“待定”，责任人必须依原文明确填写！先留存该表格备用。</li>
+</ol>
+<div class="copy-block">
+      <pre id="lesson14-code-4"><code class="language-text">请分析以下我已人工核验校准的《校园报修小程序第一阶段评审会》会议速记，运用 FDA 模型提炼出结构化的【核心决议】与【行动项看板（Action Items）】表格。
+
+【会议速记文本】：
+[请在此处粘贴你在第2步中核验校准后的会议速记文本]
+
+要求：
+1. 提取【核心决议】：明确写出第一阶段确认的 3 个状态（待受理、处理中、已完成），以及明确剔除的功能（取消待评价、暂不开发在线评价与支付）；
+2. 提取【行动项看板表格】：字段包含：任务编号、核心事项、所属模块、责任人、截止时间、验收标准；
+3. 【高危陷阱防范铁律】：
+   - 原先提过的“9月25日上线”已被客户明确否定！9月25日仅为“需求清单确认日”；
+   - “正式上线日期”必须明确标注为“待定（测试通过后再定）”，严禁擅自捏造上线日期！
+   - 责任人必须依据会议复述明确填写（产品经理、客户后勤处、项目经理），严禁推测分配。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson14-code-4" type="button">复制代码</button>
+    </div><hr>
+<h3>第 4 步｜【战役二·文件篇】发【提示词 2】给 AI，生成 6 项资产的《文件索引目录》</h3>
+<p><b>为什么换提示词？</b>
+刚才第 3 步我们把会议内容搞定了，手里多了一份《会议纪要与看板》。
+现在桌面上散落着 6 份重要资产（4 个前期旧草稿 + 1 个音频原件 + 刚才第 3 步新出炉的会议看板）。
+我们需要让 AI 切换身份，从“行政记录员”变成**“数字资产管理专家”**，帮我们制定统一规范的重命名方案和目录树！</p>
+<p><b>怎么做？极简 2 步操作</b>：</p>
+<ol>
+<li><b>直接复制提示词</b>：点击下方代码框【复制】按钮（<b>提示词内已经帮你把这 6 个文件的信息全部写全了，你无需修改任何内容！</b>）；</li>
+<li><b>直接发给 AI</b>：在当前对话框（或新开对话）直接发送。AI 会自动根据 TPV 规则，输出一张结构规范的《文件索引目录》表格与目录树结构。</li>
+</ol>
+<div class="copy-block">
+      <pre id="lesson14-code-5"><code class="language-text">你是一名资深数字资产管理专家。请根据以下《校园报修小程序》项目的所有交付资产，制定一套符合“日期-项目-分类-版本”（TPV）规范的重命名方案与只读物理隔离目录树。
+
+待归档资产清单：
+1. 报修小程序需求草稿_改了又改最终版.docx（创建于 2026年9月20日）
+2. 宿舍楼栋分布表 (1).xlsx（创建于 2026年9月22日）
+3. 报修流程图修改3.png（创建于 2026年9月23日）
+4. 维修组人员联系方式.xlsx（创建于 2026年9月24日）
+5. 校园报修小程序_会议录音_20260924_自然语音版.mp3（2026年9月24日会议原件）
+6. 校园报修小程序_会议纪要与行动看板（2026年9月24日今日产出）
+
+要求：
+1. 统一采用 YYYYMMDD_项目名_具体模块_版本号.扩展名 标准格式；
+2. 彻底消除“最终版”、“修改3”、“(1)”等混乱字眼，版本号从 v1.0 开始规范递增；
+3. 设计归档目录树（必须设立“00_原件”目录存放录音原件，并赋予系统只读保护，杜绝覆盖风险）；
+4. 以表格形式输出《文件索引目录》：序号、原始文件名、TPV规范新文件名、所属模块、建议归档路径。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson14-code-5" type="button">复制代码</button>
+    </div><hr>
+<h3>第 5 步｜成果落盘：在 WPS/Excel 中建立“三表合一”工作簿</h3>
+<p>很多同学会问：“我最终要交的文件到底长什么样？”
+你最终只需要提交 <b>1 个 Excel 文件</b>，命名为 <code>14_校园报修小程序_资料归档与会议看板_姓名.xlsx</code>。
+在这个工作簿底部，建立 <b>3 个独立工作表（Sheet）</b>，分别承接前面的成果：</p>
+<div class="copy-block">
+      <pre id="lesson14-code-6"><code class="language-text">📁 最终交付文件：14_校园报修小程序_资料归档与会议看板_姓名.xlsx
+├── 📑 工作表 1【文件索引目录】  ➔ 粘贴来自第 4 步（提示词 2）的生成结果
+├── 📑 工作表 2【会议行动看板】  ➔ 粘贴来自第 3 步（提示词 1）的生成结果（将“正式上线日期”行整行涂成浅黄色！）
+└── 📑 工作表 3【AI过程记录】    ➔ 记录你在两轮对话中的核验纠偏事实（按下表格式填写）
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson14-code-6" type="button">复制代码</button>
+    </div><p><b>工作表 3【AI过程记录】填写范例</b>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">环节编号</th>
+<th style="text-align:left">使用的 AI 工具</th>
+<th style="text-align:left">发送的关键提示词（Prompt）摘录</th>
+<th style="text-align:left">AI 初始输出的潜在缺陷/高危陷阱</th>
+<th style="text-align:left">人工核验与纠偏操作说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><b>过程 01（会议提炼）</b></td>
+<td style="text-align:left">语音转写/WorkBuddy</td>
+<td style="text-align:left">提示词 1（防脑补会议提炼）</td>
+<td style="text-align:left">AI 初稿可能因听录混淆将 9月25日识别为“正式上线”</td>
+<td style="text-align:left">对照录音 01:00 客户原话，果断将上线日修正为“待定”，并将 9月25日纠偏为“需求清单确认日”，做浅黄色底纹警示</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>过程 02（文件归档）</b></td>
+<td style="text-align:left">WorkBuddy 资产规划</td>
+<td style="text-align:left">提示词 2（TPV资产规划）</td>
+<td style="text-align:left">初始资产名带有“改了又改最终版”、“修改3”等模糊字样</td>
+<td style="text-align:left">按照 TPV 规则消除随意字样，版本号从 v1.0 起步，并设立 <code>00_原件</code> 目录实施物理隔离</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>第 6 步｜动手实操：本地建立归档目录、实施只读保护与防误删验证</h3>
+<p>生成归档方案后，必须在操作系统中真正执行落盘与安全权限锁定：</p>
+<ol>
+<li><b>新建实训目录树</b>：
+在电脑本地实训工作区新建文件夹 <code>14_校园报修小程序_资料归档</code>，并在其下建立以下规范子目录：
+<ul>
+<li><code>00_原件/</code>（物理隔离区）</li>
+<li><code>01_需求与看板/</code></li>
+<li><code>02_基础数据/</code></li>
+<li><code>03_流程图解/</code></li>
+</ul>
+</li>
+<li><b>归档素材到原件区</b>：
+将从学习通下载的音频原件 <code>校园报修小程序_会议录音_20260924_自然语音版.mp3</code> 以及 4 个前期散乱文档复制归档进 <code>00_原件/</code> 文件夹；</li>
+<li><b>赋予系统级只读保护与锁定（双平台操作指引）</b>：
+<ul>
+<li><b>Windows 电脑</b>：
+<ul>
+<li>鼠标右键点击 <code>00_原件</code> 文件夹 ➔ 选择【属性】；</li>
+<li>在“常规”选项卡最下方勾选【只读】属性 ➔ 点击【确定】；</li>
+<li>在弹出的确认窗口中选择“将更改应用于此文件夹、子文件夹和文件” ➔ 点击【确定】。</li>
+</ul>
+</li>
+<li><b>macOS 电脑</b>：
+<ul>
+<li>鼠标右键点击 <code>00_原件</code> 文件夹 ➔ 选择【显示简介】（快捷键 <code>Cmd + I</code>）；</li>
+<li>在通用面板中勾选【已锁定】（Locked）；</li>
+<li>展开底部【共享与权限】面板，将 <code>everyone</code>（所有人）的特权修改为【只读】（Read only）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>防误删与只读拦截验证（动手检验）</b>：
+<ul>
+<li><b>动作一（防误写入）</b>：尝试往 <code>00_原件</code> 文件夹内直接新建一个空白文本文件，观察系统提示权限受阻或拒绝创建；</li>
+<li><b>动作二（防误删除）</b>：选中 <code>00_原件</code> 内的音频原件，按下 <code>Delete</code> 键尝试删除，操作系统将立即弹出“<b>项目已被锁定 / 权限不足，无法修改或移到废纸篓</b>”的安全拦截警示！</li>
+<li>看到系统成功拦截报错，证明只读物理隔离真正生效，有效防止了项目资产被覆盖或误删。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>第 7 步｜文件重开检查与自检验收</h3>
+<p>关闭 WPS，重新双击打开导出的 <code>14_校园报修小程序_资料归档与会议看板_姓名.xlsx</code>：</p>
+<ul>
+<li>确认 <code>文件索引目录</code>、<code>会议行动看板</code>、<code>AI过程记录</code> 三张工作表均完整存在；</li>
+<li>确认正式上线日期行已标浅黄色底纹；</li>
+<li>排版整洁无乱码截断，即可安心提交作业。</li>
+</ul>
+
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <h3>成果自查卡</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">检查项</th>
+<th style="text-align:left">我做到了吗？</th>
+<th style="text-align:left">自检标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><b>语音提取与校准</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">录音成功转写为文本，并对照音频排查纠偏了 9月25日上线等听录陷阱</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>FDA决议清晰</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">明确提炼 3 个确认状态，剔除待评价与在线支付等非本期功能</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>SMART行动项要素全</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">责任到人（无推测）、交付可验收（有具象物）、截止有时限（无模糊词）</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>关键待定留白与标黄</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">正式上线日期明确标注为“待定”，且表格中已完成浅黄色底纹警示</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>TPV规范方案</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">彻底消除“最终版”等字眼，版本规范递增，目录规划清晰</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>AI过程记录留痕</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">独立建立第 3 张工作表，完整记录提示词输入、AI输出缺陷与人工纠偏说明</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>只读保护与防误删验证</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">在本地创建目录树并对 <code>00_原件</code> 实施只读锁定，实际触发误删拦截验证通过</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>重开正常无误</b></td>
+<td style="text-align:left">[ ] 是</td>
+<td style="text-align:left">重新打开后格式规整、字体清晰，工作表切换顺畅无损</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p><b>下节预告</b>：
+下一节《<b>第15、16次课｜RAG知识库构建与WorkBuddy业务协同实战</b>》，我们将迈入全新境界：认识腾讯官方推出的**“会思考的知识库”ima.copilot**，通俗搞懂检索增强生成（RAG）原理并搭建专属规章知识库，进而使用 <b>WorkBuddy 挂载知识库</b>作为制度外脑，实现企业级业务审批与平账自动化！</p>
+</blockquote>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

@@ -1,0 +1,1513 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>第5次课｜RLHF与强化学习：DeepSeek R1深度解析</title>
+<meta content="true" name="xuexitong-standalone"/>
+
+
+<style>/* styles.css — 保留 lesson01-32 实际用到的兼容样式；未使用的旧导航/课例库组件已移除。*/
+:root {
+  --bg: #f5f7fb;
+  --ink: #172033;
+  --muted: #64748b;
+  --line: #dce3ee;
+  --brand: #3157d5;
+  --soft: #eaf0ff;
+  --card: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    16px/1.75 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.eyebrow {
+  margin: 0;
+  color: var(--brand);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.first-lesson-board .method-case {
+  margin: 0 0 17px;
+  border: 1px solid #bcd0fb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.method-case-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 15px 17px;
+  background: #edf3ff;
+}
+.method-case-head p {
+  margin: 0;
+  color: #1f55d5;
+  font-weight: 900;
+  font-size: 18px;
+}
+.method-case-head span {
+  color: #52647d;
+  font-size: 13px;
+}
+.method-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 15px;
+}
+.method-case-grid article {
+  padding: 13px;
+  border: 1px solid #e0e8f5;
+  border-radius: 9px;
+  background: #fbfcff;
+}
+.method-case-grid article:last-child {
+  grid-column: 1 / -1;
+}
+.case-focused .method-case-grid {
+  grid-template-columns: 1fr;
+}
+.case-focused .method-case-grid article:last-child {
+  grid-column: auto;
+}
+.feedback-demo {
+  margin: 0 15px 15px;
+  padding: 16px;
+  border: 1px solid #cddbf3;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.feedback-demo h3 {
+  margin: 0;
+  color: #1e3c91;
+  font-size: 17px;
+}
+.feedback-demo .demo-note {
+  margin: 7px 0 12px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.feedback-demo article {
+  margin-top: 9px;
+  padding: 12px 13px;
+  border-left: 4px solid #3157d5;
+  border-radius: 7px;
+  background: #fff;
+}
+.feedback-demo b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.feedback-demo p {
+  margin: 6px 0;
+  color: #334155;
+  line-height: 1.7;
+}
+.feedback-demo span {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.method-case-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 16px;
+}
+.method-case-grid p {
+  margin: 6px 0 0;
+  color: #46556d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.method-case-grid code,
+.method-case-output code {
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+.method-case-output {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 15px 15px;
+  padding: 12px 13px;
+  border-radius: 8px;
+  background: #fff8e8;
+  color: #684c14;
+}
+.method-case-output b {
+  flex: none;
+}
+.method-case-output span {
+  line-height: 1.6;
+}
+.model-case-figures {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 0 15px 15px;
+}
+.model-case-figures figure {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #d7e1f3;
+  border-radius: 10px;
+  background: #fbfcff;
+}
+.model-case-figures img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+.model-case-figures figcaption {
+  margin-top: 8px;
+  color: #52647d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.model-case-figures figcaption b {
+  color: #2855c4;
+}
+@media (max-width: 700px)  {
+
+  .method-case-head,
+  .method-case-output {
+    display: block;
+  }
+.method-case-head span {
+    display: block;
+    margin-top: 4px;
+  }
+.method-case-output span {
+    display: block;
+    margin-top: 4px;
+  }
+.method-case-grid {
+    grid-template-columns: 1fr;
+  }
+.model-case-figures {
+    grid-template-columns: 1fr;
+  }
+}
+.first-lesson-board .history-visual,
+.first-lesson-board .workflow-visual,
+.first-lesson-board .aigc-mindmap {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid #cddbf3;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f6f9ff, #fff);
+}
+.history-visual h3,
+.workflow-visual h3,
+.aigc-mindmap h3 {
+  margin: 0;
+  color: #1e3c91;
+  font-size: 19px;
+}
+.history-visual > p,
+.workflow-visual > p {
+  margin: 7px 0;
+  color: #52647d;
+  line-height: 1.65;
+}
+.history-stages {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.history-stages article {
+  position: relative;
+  padding: 12px 10px;
+  border: 1px solid #d5e0f4;
+  border-radius: 9px;
+  background: #fff;
+}
+.history-stages article:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  z-index: 1;
+  color: #3157d5;
+  font-size: 20px;
+  font-weight: 800;
+  transform: translateY(-50%);
+}
+.history-stages b {
+  display: block;
+  color: #2855c4;
+  font-size: 14px;
+}
+.history-stages span {
+  display: block;
+  margin-top: 5px;
+  color: #58677b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.history-visual figcaption {
+  margin-top: 11px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.workflow-visual > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
+}
+.workflow-visual span,
+.workflow-visual strong {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #fff;
+  color: #3157c4;
+  font-size: 14px;
+}
+.workflow-visual strong {
+  background: #3157d5;
+  color: #fff;
+}
+.workflow-visual i {
+  color: #3157d5;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 800;
+}
+.aigc-mindmap {
+  text-align: center;
+}
+.mindmap-center {
+  display: inline-block;
+  margin: 16px auto;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #3157d5;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 5px 15px rgba(49, 87, 213, 0.2);
+}
+.mindmap-branches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  position: relative;
+}
+.mindmap-branches article {
+  padding: 11px;
+  border: 1px solid #d5e0f4;
+  border-radius: 9px;
+  background: #fff;
+  text-align: left;
+}
+.mindmap-branches b {
+  display: block;
+  color: #2855c4;
+  font-size: 15px;
+}
+.mindmap-branches span {
+  display: block;
+  margin-top: 4px;
+  color: #58677b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.boundary-example {
+  margin: 14px 0;
+  padding: 15px;
+  border: 1px solid #bcd0fb;
+  border-radius: 11px;
+  background: #fff;
+}
+.boundary-example > b {
+  display: block;
+  color: #1e3c91;
+  font-size: 16px;
+}
+.boundary-example > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 10px;
+}
+.boundary-example article {
+  padding: 11px;
+  border-radius: 8px;
+  background: #f5f8ff;
+}
+.boundary-example article:nth-child(2) {
+  background: #fff8e8;
+}
+.boundary-example article:nth-child(3) {
+  background: #fff1f1;
+}
+.boundary-example strong {
+  display: block;
+  color: #244ebf;
+  font-size: 14px;
+}
+.boundary-example article:nth-child(2) strong {
+  color: #956b13;
+}
+.boundary-example article:nth-child(3) strong {
+  color: #b43e3e;
+}
+.boundary-example span,
+.boundary-example p {
+  display: block;
+  margin-top: 5px;
+  color: #52647d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.boundary-example p {
+  margin-bottom: 0;
+  padding-top: 10px;
+  border-top: 1px dashed #c5d3ed;
+}
+@media (max-width: 900px)  {
+
+  .history-stages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+.history-stages article:not(:last-child)::after {
+    display: none;
+  }
+}
+@media (max-width: 600px)  {
+
+  .history-stages,
+  .mindmap-branches,
+  .boundary-example > div {
+    grid-template-columns: 1fr;
+  }
+.workflow-visual > div {
+    justify-content: flex-start;
+  }
+.workflow-visual i {
+    transform: rotate(90deg);
+  }
+}
+.first-lesson-board .concept-subtitle {
+  margin: 22px 0 10px;
+  color: #172033;
+  font-size: 19px;
+}
+.first-lesson-board .core-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.first-lesson-board .core-concept-grid article {
+  padding: 14px;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  background: #fbfcff;
+}
+.first-lesson-board .core-concept-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 16px;
+}
+.first-lesson-board .core-concept-grid p {
+  margin: 6px 0 0;
+  color: #46556d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+@media (max-width: 800px)  {
+
+  .first-lesson-board .core-concept-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* 课程导航页：左右分栏与可折叠章节 */
+.index-page,
+.detail-page,
+.chapter-page {
+  background: #f5f7fb;
+  color: var(--ink);
+  overflow: hidden;
+}
+.sidebar-head .eyebrow {
+  color: var(--brand);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+@media (max-width: 800px)  {
+
+  .index-page,
+  .detail-page,
+  .chapter-page {
+    overflow: auto;
+  }
+}
+.extension-card p:not(.eyebrow),
+.extension-note p:not(.eyebrow) {
+  margin: 0 0 17px;
+  color: #52647d;
+}
+.chapter-outline b,
+.section-kicker {
+  color: var(--brand);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.section-kicker {
+  margin-bottom: 5px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.chapter-case-assignment > p:not(.section-kicker) {
+  margin: 0;
+  color: #52647d;
+  line-height: 1.65;
+}
+/* 布局精修：保留全部既有入口与功能，仅调整阅读层级、间距和对齐。 */
+:root {
+  --bg: #f7f9fc;
+  --ink: #172033;
+  --muted: #687588;
+  --line: #d9e1eb;
+  --brand: #2855c4;
+  --soft: #edf3ff;
+  --card: #fff;
+}
+body {
+  font-size: 16px;
+  line-height: 1.72;
+  text-rendering: optimizeLegibility;
+}
+.index-page,
+.detail-page,
+.chapter-page {
+  background: var(--bg);
+}
+:focus-visible {
+  outline: 3px solid rgba(40, 85, 196, 0.28);
+  outline-offset: 3px;
+}
+.visual-task {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 17px;
+  padding: 13px 15px;
+  border-radius: 9px;
+  background: #fff8e8;
+  border: 1px solid #f0d69d;
+  color: #684c14;
+}
+.visual-task b {
+  flex: 0 0 auto;
+}
+.visual-task span {
+  line-height: 1.65;
+}
+@media (max-width: 760px)  {
+
+  .visual-task {
+    display: block;
+  }
+.visual-task span {
+    display: block;
+    margin-top: 4px;
+  }
+}
+/* 导入与知识介绍按纵向阅读，避免导入卡产生空白区域。 */
+.lesson-page .lesson-grid {
+  grid-template-columns: 1fr;
+}
+.step-cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.step-cards article {
+  padding: 13px;
+  border: 1px solid #d7e1f3;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.step-cards b {
+  color: #3157d5;
+  font-size: 14px;
+}
+.step-cards p {
+  margin: 7px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.step-cards small {
+  color: #64748b;
+  font-size: 12px;
+}
+@media (max-width: 1000px)  {
+
+  .step-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px)  {
+.step-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.step-standard {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0;
+  padding: 14px 16px;
+  border: 1px dashed #9fb3df;
+  border-radius: 8px;
+  background: #f4f7ff;
+  color: #46556d;
+  line-height: 1.6;
+}
+.step-standard b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.step-standard small {
+  color: #64748b;
+  font-size: 12px;
+}
+.practice-brief {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.practice-brief article {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid #cfdbef;
+  border-radius: 9px;
+  background: #fff;
+}
+.practice-brief article:first-child,
+.practice-brief article:last-child {
+  grid-column: 1/-1;
+}
+.practice-brief b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.practice-brief span {
+  color: #46556d;
+  line-height: 1.6;
+}
+.student-task-card {
+  margin: 0 0 18px;
+  padding: 18px;
+  border: 1px solid #b9cdf5;
+  border-left: 5px solid #3157d5;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f4f8ff, #fff);
+}
+.student-task-card > b {
+  display: block;
+  margin-bottom: 5px;
+  color: #2855c4;
+  font-size: 18px;
+}
+.student-task-card > strong {
+  display: block;
+  margin-bottom: 11px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+.student-task-card p {
+  margin: 7px 0;
+  color: #46556d;
+}
+.student-task-card p b {
+  color: #2855c4;
+}
+.student-task-card code {
+  display: inline;
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+@media (max-width: 700px)  {
+
+  .practice-brief {
+    grid-template-columns: 1fr;
+  }
+.practice-brief article:first-child,
+  .practice-brief article:last-child {
+    grid-column: auto;
+  }
+}
+.practice-material {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 15px 16px;
+  border: 1px solid #e6c56f;
+  border-radius: 10px;
+  background: #fff9e9;
+}
+.practice-material b {
+  flex: 0 0 100%;
+  color: #795711;
+  font-size: 16px;
+}
+.practice-material span {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #5d6470;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.task-wide-standard {
+  align-self: start;
+  margin: 0;
+}
+.practice-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid #8da8e9;
+  border-radius: 7px;
+  background: #edf3ff;
+  color: #244ebf;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.practice-download:hover,
+.practice-download:focus-visible {
+  background: #dfe9ff;
+}
+.lesson-template-board .core-concept-grid {
+  grid-template-columns: 1fr;
+}
+.lesson-template-board .core-concept-grid article {
+  padding: 17px 18px;
+}
+.lesson-template-board .core-concept-grid b {
+  font-size: 17px;
+  line-height: 1.55;
+}
+.lesson-template-board .core-concept-grid p {
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.lesson-template-board .core-concept-grid span {
+  display: block;
+  margin-top: 8px;
+  color: #687588;
+  font-size: 13px;
+}
+.classroom-bridge {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 0 10px 10px 0;
+  background: #edf3ff;
+}
+.classroom-bridge b {
+  color: #1f55d5;
+  font-size: 16px;
+}
+.classroom-bridge p {
+  margin: 6px 0 0;
+  color: #46556d;
+  line-height: 1.7;
+}
+.knowledge-check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 15px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 8px;
+  background: #eef3ff;
+}
+.knowledge-check b {
+  flex: 0 0 auto;
+  color: #244ebf;
+}
+.knowledge-check span {
+  color: #46556d;
+  line-height: 1.7;
+}
+@media (max-width: 650px)  {
+
+  .knowledge-check {
+    display: block;
+  }
+.knowledge-check span {
+    display: block;
+    margin-top: 5px;
+  }
+}
+/* 跟练步骤逐项展示，放大操作参考图。 */
+.lesson-page .step-cards {
+  grid-template-columns: 1fr;
+}
+.lesson-page .step-shot img {
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+}
+/* 第 1 次课：按“导航—成果—导论—方法—实操—拓展”组织为完整课堂页面。 */
+.first-lesson-board {
+  max-width: 1120px;
+}
+.first-lesson-board .detail-header {
+  margin-bottom: 20px;
+}
+.first-block .section-kicker {
+  margin: 0;
+  color: #1f55d5;
+  font-weight: 900;
+  font-size: 21px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+.nav-summary,
+.outcome-grid,
+.compare-grid,
+.method-grid,
+.extension-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+.lesson-navigation .nav-summary {
+  grid-template-columns: 1fr;
+}
+.nav-summary > div,
+.outcome-grid article,
+.compare-grid article,
+.method-grid article,
+.extension-grid article {
+  padding: 17px;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.nav-summary b,
+.outcome-grid b,
+.compare-grid b,
+.method-grid b,
+.extension-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 17px;
+}
+.nav-summary span,
+.outcome-grid p,
+.compare-grid p,
+.method-grid li,
+.extension-grid p,
+.extension-grid li {
+  color: #46556d;
+  line-height: 1.65;
+}
+.nav-summary ol,
+.method-grid ol,
+.extension-grid ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+.route-map,
+.knowledge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #edf3ff;
+  color: #3157c4;
+}
+.route-map b,
+.knowledge-strip b {
+  margin-right: 4px;
+  color: #172f72;
+}
+.route-map span,
+.knowledge-strip span {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.route-map i,
+.knowledge-strip i {
+  font-style: normal;
+  font-weight: 800;
+}
+.file-example {
+  margin: 12px 0 0 !important;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #3157c4 !important;
+  font-size: 14px;
+}
+.file-example code,
+.practice-task code {
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.compare-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.term-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+.term-list b {
+  width: 100%;
+  color: #172033;
+}
+.term-list span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #edf3ff;
+  color: #3157c4;
+  font-size: 14px;
+}
+.mini-activity {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 7px;
+  background: #f1f5ff;
+}
+.mini-activity b {
+  color: #244ebf;
+}
+.mini-activity p {
+  margin: 5px 0 0;
+  color: #46556d;
+}
+.task-table {
+  margin: 0;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.task-table > div {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1.25fr;
+}
+.task-table > div > * {
+  padding: 11px 12px;
+  border-right: 1px solid #e3eaf6;
+  border-bottom: 1px solid #e3eaf6;
+  color: #46556d;
+  line-height: 1.55;
+}
+.task-table > div > *:last-child {
+  border-right: 0;
+}
+.task-table > div:last-child > * {
+  border-bottom: 0;
+}
+.task-table > div:first-child > * {
+  background: #edf3ff;
+  color: #244ebf;
+  font-weight: 800;
+}
+.method-grid {
+  margin-top: 15px;
+}
+.knowledge-strip {
+  margin-top: 15px;
+  background: #f7f9fc;
+}
+.task-label {
+  margin-top: 0 !important;
+  color: #2855c4 !important;
+  font-size: 18px;
+  font-weight: 800;
+}
+@media (max-width: 800px)  {
+.first-block .section-kicker {
+    font-size: 19px;
+  }
+.nav-summary,
+  .outcome-grid,
+  .compare-grid,
+  .method-grid,
+  .extension-grid,
+  .practice-task {
+    grid-template-columns: 1fr;
+  }
+.task-table {
+    overflow-x: auto;
+  }
+.task-table > div {
+    grid-template-columns: 120px 180px 180px;
+    min-width: 480px;
+  }
+}
+/* 32 次课页面不再显示课程侧栏，正文使用完整页面宽度。 */
+.lesson-page .course-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+.lesson-page .course-main-inner {
+  width: 100%;
+  max-width: 1400px;
+  padding-left: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+}
+
+      /* 仅第五课：图与步骤单列，不影响其他课次。 */
+      .lesson05-revision .core-concept-grid,.lesson05-revision .step-cards{grid-template-columns:minmax(0,1fr)}
+      .lesson05-revision pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:18px;background:#f1f5ff;border:1px solid #d5def6;border-radius:12px;font:inherit;line-height:1.8}
+      .lesson05-revision .step-shot{margin:20px 0;width:100%}
+      .lesson05-revision .step-shot img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
+      .lesson05-revision .flow-list{list-style:none;padding:0;display:grid;gap:12px}
+      .lesson05-revision .flow-list li{padding:16px;border:1px solid #cddaf7;border-radius:12px;background:#f6f8ff}
+      .lesson05-revision .flow-list li+li:before{content:"↓ ";color:#2454cc;font-weight:bold}
+      .lesson05-revision table{width:100%;border-collapse:collapse;table-layout:fixed}
+      .lesson05-revision th,.lesson05-revision td{border:1px solid #d5def6;padding:12px;vertical-align:top;overflow-wrap:anywhere}
+      .lesson05-revision th{background:#edf3ff}
+      .lesson05-revision details{margin:14px 0;padding:16px;border:1px solid #d5def6;border-radius:12px}
+      .lesson05-revision summary{cursor:pointer;color:#2454cc;font-weight:bold}
+    
+/* 全课共用的视觉样式。以用户确认的第十课样式为标准；在旧样式之后加载。 */
+:root{--blue:#2456c4;--blue-dark:#173a86;--ink:#142033;--muted:#55657c;--line:#d7e2f4;--soft:#f5f8ff;--warm:#fff7e8;--ok:#ecfdf5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef3fa;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+img,svg,figure,picture,video{max-width:100%;height:auto;box-sizing:border-box}
+.page-shell,body .course-main-inner{width:calc(100% - 188px);max-width:1440px;margin:28px 24px 80px 164px}.hero,.lesson-section{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07)}
+.hero{padding:42px 48px}.eyebrow,.section-kicker{margin:0 0 10px;color:var(--blue);font-weight:800;letter-spacing:.06em}.hero h1{margin:0;font-size:clamp(36px,5vw,62px);line-height:1.15}
+.jump-nav{position:fixed;left:0;top:clamp(90px,15vh,170px);z-index:99;width:152px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-left:none;border-radius:0 14px 14px 0;box-shadow:3px 6px 20px rgba(23,58,134,.08);padding:10px 8px;display:flex;flex-direction:column;gap:6px;margin:0;transition:transform .28s cubic-bezier(.4,0,.2,1),box-shadow .2s ease;user-select:none}
+.jump-nav-header{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.jump-nav-title{font-size:13px;font-weight:800;color:var(--blue-dark);letter-spacing:.02em;display:flex;align-items:center;gap:4px}
+.jump-nav-toggle{background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px;border-radius:6px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s ease,color .15s ease}
+.jump-nav-toggle:hover{background:var(--soft);color:var(--blue)}
+.jump-nav-body{display:flex;flex-direction:column;gap:5px}
+.jump-nav-list{display:flex;flex-direction:column;gap:5px}
+.jump-nav a,.jump-nav-link{display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:8px;background:transparent;border:1px solid transparent;color:#334155;text-decoration:none;font-size:13px;font-weight:700;line-height:1.3;transition:all .18s ease}
+.jump-nav a:hover,.jump-nav-link:hover{background:#f0f5ff;color:var(--blue);transform:translateX(3px);border-color:#dbeafe}
+.jump-nav .nav-idx{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;border-radius:5px;background:var(--soft);border:1px solid var(--line);color:var(--blue);font-size:11px;font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.jump-nav .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jump-nav a.active,.jump-nav-link.active{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff!important;box-shadow:0 4px 12px rgba(36,86,196,.22);transform:translateX(4px);border-color:transparent}
+.jump-nav a.active .nav-idx,.jump-nav-link.active .nav-idx{background:rgba(255,255,255,.22);color:#fff;border-color:rgba(255,255,255,.4)}
+.jump-nav-top{display:flex;align-items:center;justify-content:center;gap:6px;padding:5px 6px;margin-top:2px;border-top:1px dashed var(--line);color:var(--muted);font-size:12px;text-decoration:none;font-weight:700;border-radius:6px;transition:all .15s ease}
+.jump-nav-top:hover{color:var(--blue);background:var(--soft)}
+.jump-nav.is-collapsed{transform:translateX(-122px);box-shadow:2px 4px 14px rgba(23,58,134,.06)}
+.jump-nav.is-collapsed .jump-nav-header{border-bottom:none;padding-bottom:2px}
+.jump-nav.is-collapsed .jump-nav-title{display:none}
+.jump-nav.is-collapsed .jump-nav-toggle{margin-left:auto;transform:rotate(180deg)}
+.jump-nav.is-collapsed .jump-nav-body{opacity:0;pointer-events:none;max-height:0;overflow:hidden}
+.back-top{color:var(--blue-dark);text-decoration:none;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.lesson-section{padding:38px 42px;margin-top:22px}.lesson-section h2{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:0 0 24px}.lesson-section h3{font-size:25px;line-height:1.4;color:var(--blue-dark);margin:0 0 14px}
+.task-focus,.result-card,.case-summary,.teacher-demo,.material-card,.success-state{border-radius:18px;padding:20px 24px;margin:18px 0}.task-focus{background:linear-gradient(135deg,#e9f1ff,#f8fbff);border:2px solid #bfd2fa;font-size:27px}.result-card{background:var(--soft);border:1px solid var(--line)}.filename{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue-dark);font-weight:800;overflow-wrap:anywhere}
+.concept-list,.step-list{display:grid;gap:20px}.concept-card,.step-card{position:relative;border:1px solid var(--line);background:#fbfcff;border-radius:20px;padding:26px}.one-line{font-size:20px}.thinking-question{margin:26px 0 14px;padding:18px 22px;background:var(--warm);border-left:5px solid #f59e0b;border-radius:14px;font-size:18px;line-height:1.75}
+details{border:1px solid #b7caf0;background:#eef4ff;border-radius:14px;padding:14px 18px}summary{cursor:pointer;color:var(--blue-dark);font-weight:800}.answer-panel p{margin:12px 0 0}
+.thinking-card{margin:32px 0 28px;padding:24px 28px;background:linear-gradient(135deg,#fffdf8 0%,#fff9ec 100%);border:1px solid #fde68a;border-left:5px solid #f59e0b;border-radius:18px;box-shadow:0 6px 20px rgba(245,158,11,.06)}
+.thinking-header{margin-bottom:12px}
+.thinking-badge{display:inline-block;margin-bottom:10px;padding:4px 12px;background:#fef3c7;color:#b45309;font-size:14px;font-weight:800;border-radius:999px;border:1px solid #fde68a;letter-spacing:.04em}
+.thinking-card .thinking-question{margin:0 0 14px!important;font-size:19px;font-weight:700;line-height:1.75;color:#78350f;background:transparent;border:none;padding:0}
+.thinking-card details.answer-panel{margin-top:16px;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:14px 20px;box-shadow:0 2px 8px rgba(245,158,11,.04)}
+.thinking-card details summary{cursor:pointer;color:#b45309;font-weight:800;font-size:16px;outline:none;user-select:none;transition:color .15s ease}
+.thinking-card details summary:hover{color:#d97706}
+.thinking-card details[open] summary{margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed #fde68a}
+.thinking-card .answer-body,.thinking-card .answer-panel p{margin:10px 0 0;color:#451a03;font-size:17px;line-height:1.8}
+.lesson-figure,.route-figure{margin:28px 0;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 4px 18px rgba(36,86,196,.05)}
+.lesson-figure a,.route-figure a{display:block;width:100%;overflow:hidden;background:#fff;text-align:center}
+.lesson-figure img,.route-figure img{display:block;width:100%;max-width:100%;height:auto;margin:0 auto;border:none;border-radius:0;background:#fff;object-fit:contain}
+.lesson-figure figcaption,.route-figure figcaption{color:var(--muted);font-size:15px;line-height:1.65;padding:12px 20px;margin:0;border-top:1px solid var(--line);background:#fbfdff;text-align:left}
+.case-summary{background:var(--soft);border:1px solid var(--line)}.teacher-demo{background:var(--warm);border:1px solid #f6d58a}.teacher-demo li{margin:8px 0}
+.step-card{padding:30px}.step-number{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;font-size:26px;font-weight:900;margin-bottom:12px}.material-card{background:var(--soft);border:1px solid var(--line)}.success-state{background:var(--ok);border:1px solid #a7e8c3}
+.copy-block{position:relative;margin:18px 0}.copy-button{border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;padding:11px 17px;cursor:pointer;margin-bottom:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#f8fafc;border-radius:14px;padding:20px;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}th{background:#eaf1ff;color:var(--blue-dark)}
+.back-top{display:inline-block;margin-top:20px}@media(max-width:640px){.page-shell,body .course-main-inner{width:min(100% - 16px,1400px);margin:8px auto 48px}.hero,.lesson-section{border-radius:16px}.hero{padding:28px 22px}.lesson-section{padding:26px 18px}.task-focus{font-size:22px}.concept-card,.step-card{padding:20px 16px}th,td{font-size:14px;padding:9px}pre{font-size:14px;padding:15px}}
+@media print{body{background:#fff}.jump-nav,.copy-button,.back-top{display:none}.page-shell{width:100%;margin:0}.hero,.lesson-section{box-shadow:none}}
+.route-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}.route-step{min-height:92px;padding:16px 10px;border:1px solid var(--line);border-radius:16px;background:var(--soft);text-align:center;font-weight:800;color:var(--blue-dark)}.route-step span{display:block;color:var(--blue);font-size:14px}.notice{padding:16px 18px;border-left:5px solid var(--blue);border-radius:12px;background:#eef4ff}.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.comparison-grid>div{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}.shot-label{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;background:#eaf1ff;color:var(--blue-dark);font-size:14px;font-weight:800}.software-shot img{max-width:900px;margin-inline:auto}.compact-list li{margin:6px 0}
+@media(max-width:640px){.route-list{grid-template-columns:1fr}.route-step{min-height:auto;text-align:left}.comparison-grid{grid-template-columns:1fr}.software-shot img{max-width:100%}.lesson-figure figcaption{font-size:15px}.lesson-section h3{font-size:22px}.one-line{font-size:18px}}
+
+body{font-size:19px;line-height:1.8}
+.page-shell,body .course-main-inner{max-width:1400px}
+.hero h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;text-wrap:balance}
+.lesson-section{scroll-margin-top:100px}
+.lesson-section h2{font-size:clamp(28px,3vw,36px);line-height:1.35;padding-bottom:16px;border-bottom:2px solid var(--line);margin:0 0 26px}
+.lesson-section h3{font-size:25px;line-height:1.5;margin:0 0 18px;color:var(--blue-dark)}
+.lesson-section h4{font-size:21px;line-height:1.5;margin:28px 0 14px;color:var(--blue-dark)}
+.lesson-section h5{font-size:21px;line-height:1.5;margin:0 0 16px;color:var(--blue-dark)}
+.lesson-section p{margin:12px 0}
+.lesson-section ul{margin:12px 0;padding-left:1.4em}
+.lesson-section li+li{margin-top:10px}
+.concept-card+.concept-card{margin-top:24px}
+.concept-card,.step-card{min-width:0;padding:26px}
+.step-list{gap:24px;margin-top:18px}
+.task-focus{font-size:22px;line-height:1.7;padding:20px 24px;margin:20px 0 24px!important}
+#task>h4{font-size:18px;color:var(--muted);margin:24px 0 8px}
+.filename{margin-top:8px!important;padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+.lesson-figure{margin:28px 0;max-width:100%}
+.lesson-figure img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+.lesson-figure figcaption{font-size:15px;line-height:1.65;padding:12px 20px;border-top:1px solid var(--line);background:#fbfdff}
+.thinking-question{margin:28px 0 16px!important;padding:18px 22px}
+.answer-panel{margin-top:16px}
+.answer-panel p{margin:12px 0 0}
+.step-card>p:has(>b:first-child){background:var(--ok);border:1px solid #a7e8c3;border-radius:12px;padding:14px 18px;margin-top:20px}
+pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;font-size:16px;line-height:1.85;margin:18px 0}
+#practice .step-card:first-child>pre{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.copy-block{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:22px 0}
+.copy-block pre{margin:0}
+.copy-button{align-self:flex-start;margin:0;padding:12px 20px;line-height:1.5}
+.copy-button:hover{background:var(--blue-dark)}
+.copy-button:focus-visible,.jump-nav a:focus-visible,summary:focus-visible{outline:3px solid #f59e0b;outline-offset:4px}
+table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:17px;line-height:1.75;margin:20px 0}
+th,td{padding:14px 16px;overflow-wrap:anywhere;word-break:normal}
+#practice tr:has(>th:nth-child(2):last-child) th:first-child{width:78%}
+#practice tr:has(>th:nth-child(2):last-child) th:last-child{width:22%}
+#finish th:nth-child(1){width:23%}
+#finish th:nth-child(2){width:39%}
+#finish th:nth-child(3){width:38%}
+tbody tr:nth-child(even){background:#f5f8ff}
+code{overflow-wrap:anywhere}
+[hidden]{display:none!important}
+@media(max-width:640px){
+ body{font-size:17px;line-height:1.8}
+ .hero{padding:26px 20px}
+ .lesson-section{padding:24px 18px;scroll-margin-top:16px}
+ .lesson-section h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ .lesson-section h3{font-size:22px}
+ .lesson-section h4,.lesson-section h5{font-size:19px}
+ .concept-card,.step-card{padding:20px 14px;border-radius:16px}
+ .concept-card+.concept-card{margin-top:20px}
+ .task-focus{font-size:19px;padding:16px}
+ .filename{font-size:16px;padding:12px}
+ .step-card>p:has(>b:first-child){padding:12px}
+ pre{font-size:14px;padding:14px}
+ table{font-size:14px;line-height:1.7}
+ th,td{padding:10px 8px}
+ #finish th:nth-child(1){width:22%}
+ #finish th:nth-child(2),#finish th:nth-child(3){width:39%}
+}
+@media(min-width:1024px){
+ .page-shell,body .course-main-inner{
+  width:calc(100% - 188px)!important;
+  max-width:1440px!important;
+  margin-left:164px!important;
+  margin-right:24px!important;
+ }
+ body:has(.jump-nav.is-collapsed) .page-shell,body:has(.jump-nav.is-collapsed) .course-main-inner{
+  margin-left:48px!important;
+  width:calc(100% - 72px)!important;
+ }
+}
+@media(max-width:1023px){
+ .page-shell,body .course-main-inner{
+  width:min(100% - 32px,1400px)!important;
+  max-width:100%!important;
+  margin:20px auto 60px!important;
+ }
+ .jump-nav{position:sticky;top:0;left:0;width:100%;border-radius:0;border:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 12px;gap:8px;transform:none!important;box-shadow:0 2px 10px rgba(0,0,0,.04);background:rgba(255,255,255,.96)}
+ .jump-nav-header,.jump-nav-top{display:none!important}
+ .jump-nav-body{display:flex;flex-direction:row;opacity:1!important;pointer-events:auto!important;max-height:none!important;overflow:visible!important}
+ .jump-nav-list{display:flex;flex-direction:row;gap:8px;flex-wrap:nowrap;white-space:nowrap}
+ .jump-nav a,.jump-nav-link{padding:6px 12px;font-size:13px;border:1px solid var(--line);border-radius:999px;background:#fff;transform:none!important}
+ .jump-nav .nav-label{opacity:1!important;max-width:none!important}
+ .jump-nav a.active,.jump-nav-link.active{transform:none!important}
+}
+@media print{
+ body{font-size:12pt}
+ .lesson-section h2{font-size:22pt}
+ .lesson-section h3{font-size:17pt}
+ .lesson-section h4,.lesson-section h5{font-size:14pt}
+ .lesson-section,.step-card,.concept-card{box-shadow:none}
+ h2,h3,h4,h5{break-after:avoid}
+ .lesson-figure{break-inside:avoid}
+ pre{background:#f5f8ff;color:var(--ink);border:1px solid var(--line)}
+}
+
+
+/* 旧课次模板使用同一套视觉规则，保留其既有内容布局。 */
+body.lesson-page{background:#eef3fa;color:var(--ink);font-size:19px;line-height:1.8}
+body .course-main{height:auto;min-height:100vh;overflow:visible;background:transparent;padding:0}
+body .course-shell{display:block;max-width:none;margin:0}
+body .course-main-inner{width:calc(100% - 188px);max-width:1440px;padding:0;margin:28px 24px 80px 164px}
+body .detail-header{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:42px 48px;margin:0 0 22px}
+body .detail-header h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;margin:0;color:var(--ink)}
+body .detail-header .hero-mark{color:var(--blue);font-size:16px;font-weight:800;margin:0 0 10px}
+body .first-block,body .part{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:38px 42px;margin:22px 0;scroll-margin-top:100px}
+body .first-block h2,body .part h2{font-size:clamp(28px,3vw,36px);line-height:1.35;margin:0 0 26px;padding-bottom:16px;border-bottom:2px solid var(--line);color:var(--ink)}
+body .first-block h3,body .part h3{font-size:25px;line-height:1.5;color:var(--blue-dark);margin:20px 0 16px}
+body .first-block h4,body .part h4{font-size:21px;line-height:1.5;color:var(--blue-dark);margin:24px 0 14px}
+body .first-block p,body .part p,body .practice-task p,body .practice-task ol{font-size:19px;line-height:1.8}
+body .section-kicker{color:var(--blue);font-size:18px;line-height:1.5;margin:0 0 10px}
+body .practice-task,body .core-concept-grid article,body .step-cards article{background:#fbfcff;border:1px solid var(--line);border-radius:20px;padding:26px;margin:0;min-width:0}
+body .practice-task+.practice-task{margin-top:24px}
+body .task-shot img,body .step-shot img,body .concept-example-figure img{width:100%;height:auto;max-height:none;object-fit:contain}
+body .file-example{padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+body .core-concept-grid p{font-size:19px;line-height:1.8}
+@media(max-width:640px){
+ body.lesson-page{font-size:17px}
+ body .course-main-inner{width:calc(100% - 16px);margin:8px auto 48px;padding:0}
+ body .detail-header{padding:26px 20px;border-radius:16px}
+ body .first-block,body .part{padding:24px 18px;border-radius:16px;scroll-margin-top:16px}
+ body .first-block h2,body .part h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ body .first-block h3,body .part h3{font-size:22px}
+ body .first-block h4,body .part h4{font-size:19px}
+ body .first-block p,body .part p,body .practice-task p,body .practice-task ol,body .core-concept-grid p{font-size:17px}
+ body .practice-task,body .core-concept-grid article,body .step-cards article{padding:20px 14px;border-radius:16px}
+}
+@media print{
+ body .course-main-inner{width:100%;margin:0}
+ body .detail-header,body .first-block,body .part{box-shadow:none}
+ body .detail-header h1{font-size:26pt}
+ body .first-block h2,body .part h2{font-size:22pt}
+ body .first-block h3,body .part h3{font-size:17pt}
+ body .first-block p,body .part p{font-size:12pt}
+}
+
+/* 截图图注只展示描述；独立来源说明仅在显示层隐藏，不删除内容源。
+   不隐藏 source-card / source-content：它们可能包含截图或教学正文。
+   来源与描述混在普通文本中的情况，CSS无法按文字内容拆分。 */
+:is(.page-shell,.course-main) :is(.source,.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{
+ display:block;margin:10px 0 0;padding:0;border:0;background:transparent;
+ color:var(--muted);font-size:15px;font-weight:400;line-height:1.65;text-align:left;
+}
+body figure figcaption:empty{display:none}
+body figure figcaption :is(.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+@media(max-width:640px){
+ body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{font-size:14px;line-height:1.7;margin-top:8px}
+}
+
+/* ============================================================
+   PPT 幻灯片翻页演示模式 (Presentation Mode)
+   ============================================================ */
+body.is-ppt-mode{background:#0b1120!important;overflow:hidden!important;height:100vh!important;width:100vw!important;margin:0!important;padding:0!important}
+body.is-ppt-mode .page-shell,body.is-ppt-mode .course-main,body.is-ppt-mode .jump-nav,body.is-ppt-mode .back-top,body.is-ppt-mode .ppt-open-trigger{display:none!important}
+.ppt-stage{display:none;position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 20%,#1e293b 0%,#0b1120 100%);align-items:center;justify-content:center;overflow:hidden}
+body.is-ppt-mode .ppt-stage{display:flex!important}
+.ppt-cards-container{width:min(1420px,94vw);height:min(820px,88vh);position:relative;display:flex;align-items:center;justify-content:center}
+.ppt-slide-card{width:100%;height:100%;background:#ffffff;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.5);padding:36px 48px;overflow-y:auto;box-sizing:border-box;display:none;flex-direction:column;position:relative;animation:pptSlideIn .24s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes pptSlideIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ppt-slide-card.active{display:flex!important}
+.ppt-slide-card h1{font-size:clamp(30px,3vw,44px)!important;line-height:1.25!important;margin:0 0 16px!important;color:var(--ink)!important}
+.ppt-slide-card h2{font-size:clamp(25px,2.4vw,34px)!important;line-height:1.3!important;margin:0 0 18px!important;padding-bottom:12px!important;border-bottom:2px solid var(--line)!important;color:var(--blue-dark)!important}
+.ppt-slide-card h3{font-size:23px!important;color:var(--blue-dark)!important;margin:0 0 14px!important}
+.ppt-slide-card p,.ppt-slide-card li{font-size:19px!important;line-height:1.75!important}
+.ppt-slide-card pre{font-size:16px!important;line-height:1.7!important;padding:18px 22px!important;border-radius:14px!important}
+.ppt-slide-card .task-focus{font-size:23px!important;padding:20px 26px!important}
+.ppt-slide-card .lesson-figure img{max-height:360px!important;object-fit:contain!important;border-radius:12px!important}
+.ppt-slide-card table{font-size:17px!important}
+.ppt-slide-card th,.ppt-slide-card td{padding:12px 14px!important}
+.ppt-slide-badge{display:inline-flex;align-items:center;gap:6px;background:var(--soft);color:var(--blue);font-weight:800;font-size:14px;padding:4px 14px;border-radius:999px;border:1px solid var(--line);margin-bottom:14px;align-self:flex-start}
+.ppt-nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:32px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10001;transition:all .2s ease;user-select:none}
+.ppt-nav-btn:hover{background:rgba(36,86,196,.85);border-color:rgba(255,255,255,.6);transform:translateY(-50%) scale(1.1);box-shadow:0 8px 24px rgba(36,86,196,.4)}
+.ppt-nav-prev{left:20px}
+.ppt-nav-next{right:20px}
+.ppt-nav-btn:disabled{opacity:.12;cursor:not-allowed;pointer-events:none}
+.ppt-topbar{position:fixed;top:18px;right:28px;display:flex;align-items:center;gap:10px;z-index:10002}
+.ppt-top-btn{background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s ease}
+.ppt-top-btn:hover{background:rgba(255,255,255,.28);border-color:#fff;transform:translateY(-1px)}
+.ppt-top-btn.exit:hover{background:rgba(239,68,68,.85);border-color:transparent}
+.ppt-footer{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,23,42,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);padding:6px 18px;border-radius:999px;color:#e2e8f0;font-size:14px;font-weight:700;z-index:10002;box-shadow:0 10px 24px rgba(0,0,0,.35);user-select:none;white-space:nowrap}
+.ppt-footer .ppt-page-counter{color:#60a5fa;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ppt-footer .ppt-hint{color:#94a3b8;font-size:12px;font-weight:400;border-left:1px solid rgba(255,255,255,.18);padding-left:12px}
+.ppt-open-trigger{position:fixed;top:18px;right:24px;z-index:98;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(36,86,196,.3);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s cubic-bezier(.16,1,.3,1);user-select:none}
+.ppt-open-trigger:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 24px rgba(36,86,196,.45)}
+@media(max-width:640px){.ppt-open-trigger{display:none}}
+</style>
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body class="chapter-page lesson-page"><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第5次课 · 2学时 · RLHF与强化学习：DeepSeek R1深度解析</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson04.html" data-course-lesson="lesson04">← 上一课</a><a href="lesson06.html" data-course-lesson="lesson06">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><main class="page-shell" id="top"><header class="hero">
+<p class="eyebrow">第一章｜AIGC 理论基础</p>
+<h1>RLHF与强化学习：DeepSeek R1深度解析</h1>
+<p>从“我觉得不好”走向“我能说清哪里要改”：理解训练中的反馈，练习对 AI 回答提出可核验的修改要求。</p>
+</header><nav class="jump-nav" aria-label="本课导航"><a href="#review">知识回顾</a><a href="#task">任务预告</a><a href="#concepts">基础概念</a><a href="#case">核心案例</a><a href="#practice">实践任务</a><a href="#finish">本课总结</a></nav><section class="lesson-section" id="review"><h2>00 知识回顾</h2><p class="notice">上一课知识回顾待补。</p></section><section class="lesson-section" id="task"><h2>01 任务预告</h2>
+<h3>先知道本节课要完成什么</h3>
+<div class="nav-summary">
+<div>
+<b>学习目标</b>
+<ol>
+<li>区分模型训练与普通聊天改写，说出 RLHF 中人类偏好的作用</li>
+<li>按同一份材料和标准比较三份回答，并引用原句说明理由</li>
+<li>以答案和依据而非“思维过程”评价结果</li>
+</ol>
+</div>
+</div>
+<p><b>本课学习节奏：</b> 8 分钟看问题与成果 → 22 分钟概念与小判断 → 12 分钟分析示范 → 30 分钟动手改写 → 6 分钟同桌复核 → 2 分钟总结。共 80 分钟，实际进度可随课堂调整。</p>
+<div class="route-map">
+<b>本节路径图</b><span>导入</span><i>→</i><span>概念</span><i>→</i><span>方法</span><i>→</i><span>实操</span><i>→</i><span>拓展</span>
+</div>
+
+<p class="section-kicker">板块 ② 本节你将学会</p>
+<h3>本节课你将学会什么</h3>
+<div class="outcome-grid">
+<article>
+<b>本课实操交付物</b>
+<p>完成一份“AI 回答反馈记录卡”：保留任务材料、A/B/C 原回答、评分依据、反馈语、D 版和逐条复核结论。全课只交这一个文档，不另交海报或思维导图。</p>
+<p class="file-example">保存建议：05_AI回答反馈记录卡_姓名.docx</p>
+</article>
+<article>
+<b>统一完成标准</b>
+<ul>
+<li>完成“生成—评分—反馈—改写—比较”五个动作。</li>
+<li>能说明本次只是依据上下文改写回答，不是已完成 RLHF 或已更新模型参数。</li>
+<li>已按检查清单核对内容、事实和文件保存情况。</li>
+</ul>
+</article>
+</div>
+</section><section class="lesson-section" id="concepts"><h2>02 基础概念</h2>
+<h3>先把关键概念讲明白</h3>
+<p>先分清两个层面：开发者通过训练改变模型；使用者在对话里补充要求，让本次回答更合适。本课动手完成的是后者，同时理解前者为什么需要可靠的评价。</p>
+<div class="core-concept-grid">
+<article class="concept-card">
+<b>概念 1｜强化学习、奖励与反馈</b>
+<p><b>概念：</b> 强化学习是一类学习方法：系统尝试行动，得到奖励信号，再由训练算法调整策略，使以后获得较好结果的机会提高。在语言模型训练中，生成回答可看作行动；“奖励”是用来评价结果的数值信号，不一定来自人工，也可以来自答案校验或程序测试。</p>
+<p><b>例子：</b> 学习投篮时，不只是听到“不错”，还要知道是否进球，并据此调整动作。语言任务中，“只要字数多就给高分”会鼓励冗长；“事实有依据、内容完整”才更接近本课的目标。</p>
+<p><b>容易混淆：</b> 在聊天框里写“删掉这句话”属于补充输入。回答改变，不能证明模型参数已改变，也不能保证下一次新对话会记住。</p>
+<span>一句记住：奖励决定优化方向，但方向本身也可能设置错。</span>
+<p><b>再看一个反例：</b> 如果评通知只奖励“热闹”，带有“到场就送礼物”的版本可能得高分，但材料根本没有礼物。分数提高了，通知反而不能用了。因此，要先设事实底线，再比较表达。</p>
+<details><summary>试着判断：字数多、得分高，就一定好吗？</summary><p>不一定。得分取决于评价标准。若标准只看长度，就可能奖励无关内容。先问“有没有编造”，再问“有没有说清楚”。</p></details>
+</article>
+<article class="concept-card">
+<b>概念 2｜RLHF：从人类偏好到训练信号</b>
+<p><b>概念：</b> RLHF 是“基于人类反馈的强化学习”。一种经典流程是：先用示范做监督微调（SFT）；再收集人对同题回答的偏好，训练奖励模型预测这种偏好；最后用 PPO 等强化学习算法优化模型参数。不是每次生成都由人现场评分，也不是所有模型都只用这一条流程。</p>
+<p><b>例子：</b> 同样写活动通知，人通常更偏好信息准确、对象清楚的版本，而不是编造奖品的热闹文案。多份这样的比较可成为偏好数据。“多数人喜欢”仍不等于内容真实，需要先核对材料。</p>
+<p><b>本课对应：</b> 你负责比较、给理由，体验“如何提供有用偏好”。之后让 AI 改写，只是普通对话练习；本课没有训练奖励模型，也没有运行 PPO。</p>
+<span>一句记住：课堂学的是评价与反馈方法，不是现场训练一个大模型。</span>
+<p><b>把三个术语翻成日常话：</b> SFT 是“看合格示范学着答”；奖励模型是“学习预测哪份回答更受偏好的评分器”；PPO 是“利用奖励调整模型的一种训练算法”。评分器也可能判断错，所以不能用它的高分代替事实检查。</p>
+<details><summary>试着判断：人类偏好就是标准答案吗？</summary><p>不是。同一份准确通知，有人喜欢简短，有人喜欢亲切，这属于表达偏好；但通知中编造时间，是事实问题。允许偏好不同，不意味着允许事实错误。</p></details>
+</article>
+<article class="concept-card">
+<b>概念 3｜推理与可核验的说明</b>
+<p><b>概念：</b> 推理是根据条件与规则得出结论。思维链通常指分步推理的中间过程；它不是本课“生成—评分—改写”的操作流程。页面显示的一段解释，也不应被当作模型内部机制的完整、忠实记录。</p>
+<p><b>例子：</b> “每人 3 本，4 人共几本？”可用 3×4＝12 核验；但材料没说来了几个人，就不能根据一段流畅解释编出人数。对于通知，则逐句追问“这条信息在材料哪里？”</p>
+<p><b>怎么用：</b> 可以要求“给出答案和简短依据，列出待确认项”，不要求披露隐藏推理。先检查结论、证据和条件，再看表述是否清楚；文字长短不是正确性的证据。</p>
+<span>一句记住：看得懂解释，还要核得对答案。</span>
+<p><b>跟着核一次：</b> 材料说“每人最多带 3 本书，4 人参加”。只能推出“最多 12 本”，不能说“实际带了 12 本”。核验时依次找条件“最多”、算式“3×4”、结论“最多 12 本”；漏掉一个词，就可能把上限写成事实。</p>
+<details><summary>试着判断：“解释很长，所以答案可靠”对吗？</summary><p>不对。解释长短不能证明正确。这个例子只需核对“最多”是否保留、乘法是否正确、是否误称实际数量。</p></details>
+</article>
+<article class="concept-card">
+<b>概念 4｜DeepSeek R1、GRPO 与蒸馏</b>
+<p><b>概念：</b> 按 DeepSeek-R1 原始论文，R1-Zero 探索了不先做监督微调的强化学习；R1 则结合冷启动示例、多阶段监督微调与强化学习。因此，不能把 R1 简化为“人打分以后用 PPO 改写”。</p>
+<p><b>例子：</b> GRPO 会在训练时比较同题一组输出的相对奖励，形成更新信号。可类比“同一题的多份答卷相互比较”，但本课手工排 A/B/C 不是执行 GRPO。蒸馏则可类比用较强模型生成的优质示例帮助较小模型学习，并不保证学会全部能力。</p>
+<p><b>怎么判断：</b> 本课用豆包演示反馈，不把豆包的回答标成 R1 输出。没有可确认的 R1 入口也能完成练习；这不构成对 R1 性能的实测。</p>
+<span>一句记住：认识训练方法，不把一次聊天当作算法实验。</span>
+<p><b>先抓住区别：</b> RLHF 强调人类反馈的来源；GRPO 是一种利用同题多份输出的相对奖励进行优化的方法。两者不是两个聊天按钮，也不能简单理解为二选一。R1 的训练还涉及可核验任务的奖励，不只依靠“人更喜欢哪份回答”。</p>
+<details><summary>试着判断：把三份通知排个名，就是 GRPO 吗？</summary><p>不是。我们只做了人工比较，没有运行训练算法或更新参数。可以借这个活动理解“同题比较”，但不能把活动当作算法实现。</p></details>
+</article>
+</div>
+<section aria-label="模型训练与课堂对话的区别" class="workflow-visual">
+<h3>对照图｜训练流程和课堂操作不是一回事</h3>
+<p><b>经典 RLHF 示意（开发者训练）：</b></p>
+<ol class="flow-list"><li>合格示范 → 监督微调模型</li><li>同题回答的人类偏好 → 训练奖励模型</li><li>奖励信号 → 强化学习更新模型参数</li></ol>
+<p><b>本课操作示意（学生使用工具）：</b></p>
+<ol class="flow-list"><li>同一材料生成 A/B/C → 人工核对并比较</li><li>引用原句 → 写出保留、删除、补充要求</li><li>把原回答和反馈发给 AI → 得到 D → 逐条复核</li></ol>
+<p>下方流程没有奖励模型训练或参数更新步骤。图是教学示意，不是软件截图。</p>
+</section>
+<div class="knowledge-check"><b>停下来判断</b><span>“我说更简短，AI 就改短了，所以我完成了强化学习。”这句话对吗？</span></div>
+<details><summary>展开核对</summary><p>不对。只能确认 AI 根据新输入改写了本次回答，不能据此证明进行了模型训练。</p></details>
+</section><section class="lesson-section" id="case"><h2>03 核心案例</h2>
+<h3>用一个核心案例看懂方法</h3>
+<section class="method-case case-focused">
+<div class="method-case-head">
+<p>核心案例｜AI 如何根据人类反馈改进实习建议</p>
+<span>课堂模拟：学生先选出更好的回答，再把理由反馈给 AI，观察下一次回答会怎样变化。</span>
+</div>
+<div class="method-case-grid">
+<article><b>① 案例背景</b><p>AI 为“高职学生怎样准备实习”生成 A、B、C 三份建议。三份都通顺，但有的太空泛，有的包含无法确认的信息。</p></article>
+<article><b>② 案例分析</b><p>学生代表“人类反馈者”，按“真实、清楚、能做到”给三份回答评分，再把第一名的优点和需要修改处明确告诉 AI。</p></article>
+<article><b>③ 判断标准</b><p>反馈不能只写“写得不好”。要具体说清：保留什么、删掉什么、补充什么；再检查 D 版是否落实要求。未改进时如实指出问题，不能预先认定它一定更好。</p></article>
+<article><b>④ 案例结论</b><p>人类反馈不是给 AI 打分就结束，而是把“偏好理由”变成下一次生成的改进要求。这模拟了提供偏好的环节；后续对话改写不是 RLHF 训练。</p></article>
+</div>
+<div class="method-case-output"><b>带着问题看案例</b><span>本案例只训练一件事：把评分理由反馈给 AI，再比较改写版是否更好。完成后，你要能指出“哪条反馈让 D 版发生了变化”。</span></div>
+<section aria-label="课堂模拟示范" class="feedback-demo">
+<h3>课堂模拟示范｜从 A、B、C 到 D</h3>
+<p class="demo-note">以下是示范材料，不是实习单位的真实要求。重点看：评价时要说清理由，改写时要落实理由。</p>
+<article><b>A｜太空泛</b><p>“实习前要认真准备，听从安排，努力学习。”</p><span>问题：方向没错，但学生不知道今天先做什么。</span></article>
+<article><b>B｜包含待核验信息</b><p>“请在 6 月 1 日前把简历发给实习单位王老师，并携带三份纸质材料。”</p><span>问题：日期、联系人、材料数量没有来源，不能直接当事实采用。</span></article>
+<article><b>C｜较可执行</b><p>“先查看学校或实习单位发布的通知；按通知整理简历和所需材料；不确定的信息先向班主任或单位确认。”</p><span>优点：有顺序、有行动，并保留了核验环节。</span></article>
+<article><b>选 C 作底稿 → 具体反馈 → D 示例</b><p>反馈：保留“先看通知、再确认”的顺序；无需删除，C 没有编造具体信息；补充“把不确定事项列成清单”。<br>D：先查看学校或单位通知，把简历要求、所需材料和报到时间中尚不清楚的事项列成待确认清单；向班主任或单位核实后，再按确认后的要求准备。</p><span>看变化：D 示例增加了“待确认清单”；它是课堂编写的示范，不是本次软件运行截图。</span></article>
+<h3>一起分析｜不是选最顺口的一份</h3>
+<ol>
+<li><b>先找不能直接采用的内容：</b> B 的“6 月 1 日”“王老师”“三份”都没有来源。应标为待核验，而不是因细节多就认定更专业。</li>
+<li><b>再找能立即执行的动作：</b> A 的“认真准备”没有告诉你第一步；C 的“查看通知”有明确对象和动作，因此更适合作为底稿。</li>
+<li><b>反馈必须对准底稿：</b> 选 C 后，可以说“保留查看通知和核实信息；无需删除；补充一张待确认清单”。C 本来没有日期和联系人，不能说已从 C 中删掉了这些内容。</li>
+<li><b>最后逐句验收：</b> D 是否新增“清单”？是否还要求先核实？有没有重新编造日期？只根据实际变化下结论。</li>
+</ol>
+<p><b>这与导论有什么关系？</b> 比较 A/B/C 对应“提供偏好”；引用原句对应“评价有依据”；检查 D 对应“核验结果”。整个活动仍是对话使用，不是模型训练。</p>
+</section>
+</section>
+<section class="aigc-mindmap">
+<h3>本课思维导图</h3>
+<div class="mindmap-center">RLHF与强化学习：DeepSeek R1深度解析</div>
+<div class="mindmap-branches">
+<article><b>分支 1</b><span>奖励与反馈机制</span></article>
+<article><b>分支 2</b><span>SFT、奖励模型、PPO</span></article>
+<article><b>分支 3</b><span>推理与可核验的说明</span></article>
+<article>
+<b>分支 4</b><span>GRPO、蒸馏等概念性认识</span>
+</article>
+</div>
+<p class="visual-task"><b>概念回顾</b> <span>用这张图回顾四个概念即可；本节不要求另交思维导图，唯一必交成果是“AI 回答反馈记录卡”。</span></p>
+</section>
+</section><section class="lesson-section" id="practice"><h2>04 实践任务</h2>
+<h3>跟着五步，完成个人作品</h3>
+<div class="practice-brief">
+<article><b>一个任务</b><span>把一则校园旧书交换通知改得更准确、更清楚。与上方案例的“实习建议”不同。</span></article>
+<article><b>使用工具</b><span><a href="https://www.doubao.com/chat/">豆包网页版</a>＋ WPS 文字。也可使用已登录的千问，入口与截图可能不同。</span></article>
+<article><b>操作入口</b><span>打开豆包 → 新对话 → 点击底部输入框 → 粘贴提示词 → 发送。本任务不用工作流、插件或付费功能；若出现登录要求，先完成本人登录。</span></article>
+<article><b>完成标准</b><span>一份 DOCX：材料＋三份原回答＋三项评分与证据＋反馈＋D 版＋核对结论。没有改进也如实记录，不为交作业虚构“成功”。</span></article>
+</div>
+<section class="student-task-card">
+<b>固定材料｜课堂虚构，不发布通知</b>
+<p>活动：校园旧书交换。对象：本班同学。带什么：自己的闲置课外书。参加方式：自愿交换。时间、地点：尚未确定。材料没有提供收费、奖励或联系人，不得自行增加。</p>
+<p>你要交的是回答改进记录，不是真实活动通知。请在文档首页写“课堂模拟”。不用上传同学姓名、电话或其他个人信息。</p>
+</section>
+<div class="step-cards">
+<article class="step-card">
+<h3>步骤 1｜同一个问题，生成三个版本（5 分钟）</h3>
+<p>新建 WPS 空白文字文档，写上“课堂模拟”。打开豆包新对话，复制以下整段发送。不要让 A 只写时间、B 只写材料；三个版本必须面对相同任务。</p>
+<pre>课堂虚构练习，不发布通知。材料：校园旧书交换；参加对象为本班同学；带自己的闲置课外书，自愿交换；时间、地点尚未确定。
+请依据同一份材料写三份不同表达的通知，分别标为 A、B、C，每份 80 字以内。
+每份都需写明对象、带什么、如何参加；时间和地点用【待确认】，不新增收费、奖励、联系人或其他规定。</pre>
+<p>将真实生成的 A/B/C 原文复制到文档中，不先改字。少生成一个就追问补全；不要把下方截图抄成自己的运行结果。</p>
+<figure class="lesson-figure"><a href="assets/img/02b132328f9161d1.webp" rel="noopener" target="_blank"><img src="assets/img/02b132328f9161d1.webp" alt="豆包实际生成校园旧书交换通知 A、B、C，三个版本都保留时间地点待确认" data-image-id="lesson05-image-141"></a><figcaption>真实操作截图（2026-09-08）：同题三份回答。观察“本班同学、闲置课外书、自愿、待确认”是否齐全。点击图片可放大；你的回答措辞不必相同。</figcaption></figure>
+<small>✓ A/B/C 三份原文都已保留。</small>
+</article>
+<article class="step-card">
+<h3>步骤 2｜先按同一把尺子评分（7 分钟）</h3>
+<p>每项打 0、1 或 2 分，共 6 分。先自己评分，不让 AI 代替你决定。每份至少引用一句原文作依据。</p>
+<table><caption>本课评分量规</caption><thead><tr><th>项目</th><th>0 分</th><th>1 分</th><th>2 分</th></tr></thead><tbody>
+<tr><td>有依据</td><td>新增收费、奖励、具体日期等事实</td><td>没编造，但未说明时间或地点待确认</td><td>不新增事实，时间地点均标待确认</td></tr>
+<tr><td>信息全</td><td>对象、带什么、方式中缺两项以上</td><td>缺一项</td><td>三项齐全且对应材料</td></tr>
+<tr><td>表达清楚</td><td>表达矛盾或无法理解</td><td>可理解，但有重复或超出 80 字</td><td>无明显重复，80 字以内，能看懂怎么参加</td></tr>
+</tbody></table>
+<p><b>底线：</b> 有依据得 0 分，先标“不可直接采用”，不能让其他高分抵消编造事实。同分可以并列；再说明选择哪个作为修改底稿。不是必须评出三个不同名次。</p>
+<pre>A：有依据__/2，信息全__/2，表达清楚__/2；原句与理由：__
+B：有依据__/2，信息全__/2，表达清楚__/2；原句与理由：__
+C：有依据__/2，信息全__/2，表达清楚__/2；原句与理由：__
+我选择__版，因为__；仍需改进__。</pre>
+<details><summary>截图示例怎样分析？</summary><p>B 中“本班同学请注意”和“活动面向本班同学”重复。可保留完整信息，删除重复对象，再补充醒目的“课堂模拟”标识。三份都正确时，也可以改善结构；不要为了凑反馈假称内容错误。</p></details>
+<details><summary>评分还不会写？先照着这一项练</summary><p>截图 B 写了“具体时间与地点【待确认】”，也没有新增收费或奖励，所以“有依据”可记 2 分；“本班同学”“闲置课外书”“自愿参与交换”齐全，所以“信息全”可记 2 分；对象重复出现，所以“表达清楚”可记 1 分。合计 5 分。这个分数只针对截图 B，不可直接套在你自己生成的 B 上。</p></details>
+<p><b>字数怎么核：</b> 选中单份通知正文，在 WPS 的字数统计中查看。统一按可见字符计算，标点计入，空格、换行及 A/B/C 版本标签不计入；三份使用同一口径。</p>
+<small>✓ 三份都有评分和原句依据；选出底稿，而不是只写“B 最好”。</small>
+</article>
+<article class="step-card">
+<h3>步骤 3｜把意见写成能执行的反馈（5 分钟）</h3>
+<p>填写三个动作：保留哪句，删除哪句，补充什么。如果确实没有要删除的内容，可以写“无，保留现有信息”，说明理由，不强行制造错误。</p>
+<pre>原回答：【粘贴选中的完整原文】
+保留：【指出已有优点】
+删除：【引用具体原句；无需删除则写“无”并说明理由】
+补充：【写清缺少的标识、结构或材料内的信息】
+请据此生成 D 版通知，100 字以内。时间和地点分别写【待确认】，第一行注明“课堂模拟通知，非真实活动”。不增加材料以外的事实。</pre>
+<p>例如，针对截图 B：保留本班同学、闲置课外书、自愿交换；删除重复的“活动面向本班同学”；补充模拟标识，把时间和地点单独列出。</p>
+<small>✓ 反馈引用了自己的原回答；不是只写“更好一点”。</small>
+</article>
+<article class="step-card">
+<h3>步骤 4｜发送反馈，检查 D 是否真的落实（8 分钟）</h3>
+<p>在同一对话中发送“原回答＋反馈要求”，等待生成完毕。把 D 原文复制进文档。逐条检查保留、删除、补充是否落实，不用“看起来更好”代替证据。</p>
+<figure class="lesson-figure"><a href="assets/img/2cfe32506bdcb239.webp" rel="noopener" target="_blank"><img src="assets/img/2cfe32506bdcb239.webp" alt="豆包实际接收反馈并输出 D 版，但第一行仍多出通知二字，没有完全落实要求" data-image-id="lesson05-image-178"></a><figcaption>真实操作截图（2026-09-08）：D 已删除重复对象、分列时间地点，但最前面仍多出“通知”，没有把模拟标识放在第一行。应判定“部分落实”，不是全部通过。它证明对话改写，不证明进行了模型训练。</figcaption></figure>
+<pre>保留项：要求__；D 中对应原句__；落实/未落实。
+删除项：要求__；D 中是否仍出现__。
+补充项：要求__；D 中对应原句__；落实/未落实。
+事实检查：是否新增材料外内容__。
+结论：改进/未改进/部分改进，理由__。</pre>
+<p>没有落实就只补发一次具体纠正要求，保留失败版和修订版，不覆盖证据。若 A/B/C 或 D 未生成，写“未生成”，可先做纸面评价；不要标记整项实操已经完成。</p>
+<p><b>注意比较条件：</b> A/B/C 的长度要求是 80 字以内；D 增加了模拟标识，放宽到 100 字。因此不能仅凭 D 更长或总分变化说明效果更好。重点比较事实是否保留、重复是否去掉、指定修改是否落实。</p>
+<figure class="lesson-figure"><a href="assets/img/989c74e78d1e5fc6.webp" rel="noopener" target="_blank"><img src="assets/img/989c74e78d1e5fc6.webp" alt="指出首行错误后豆包重新生成通知，首行为课堂模拟通知，时间地点各自单列" data-image-id="lesson05-image-183"></a><figcaption>真实返工截图（2026-09-08）：具体指出首行错误后，修订版把“课堂模拟通知，非真实活动”放在第一行，并去掉地点行的附加套话。对照前图检查其他正文是否保持不变。</figcaption></figure>
+<small>✓ 至少有一组“反馈原句—D 版对应句”的证据。</small>
+</article>
+<article class="step-card">
+<h3>步骤 5｜保存并交给同桌复核（5 分钟）</h3>
+<p>按下方模板整理为一个 WPS 文字文档，文件 → 另存为 → DOCX，命名 <code>05_AI回答反馈记录卡_姓名.docx</code>。关闭后重新打开确认文字和插图仍在；未保存前不要关闭。</p>
+<pre>标题：AI 回答反馈记录卡（课堂模拟）
+1. 使用工具、练习日期、固定材料
+2. A/B/C 原文
+3. 三项评分、引用的原句和选择理由
+4. 我实际发送的反馈
+5. D 原文与逐条落实检查（有返工则保留）
+6. 一句结论：本次是对话改写，不是模型参数训练。</pre>
+<p>可将关键真实对话截图插入同一文档：Mac 用 Shift＋Command＋4；Windows 用 Win＋Shift＋S。截图只截本次任务，不包含账号或私人聊天。全文以可读文字为主，不把整份记录缩成一张小图。</p>
+<p>接下来的 6 分钟同桌复核：让对方指出一条反馈和对应变化，再问“有没有编造材料外事实？”有问题就修改记录，保留真实结论。全课只交这一个 DOCX。</p>
+<small>✓ 文档能重新打开；原文、评分、反馈、D、证据和结论齐全。</small>
+<details><summary>遇到问题，就按这里处理</summary><ul><li><b>三份一样好：</b> 允许并列，选择一份改善排版或去除重复，不编造错误。</li><li><b>AI 没按要求改：</b> 引用没改好的原句，再给一次具体要求；仍失败就如实记录，完整的核验记录也有价值。</li><li><b>工具打不开：</b> 可改用已登录的千问并记录工具名称；都打不开时先分析上方示范，待恢复后补做真实生成，不把示范当作本人结果。</li><li><b>来不及排版：</b> 先保留原文、评分理由、反馈和结果；不用封面、美化或另做图片。</li></ul></details>
+</article>
+</div>
+</section><section class="lesson-section" id="finish"><h2>05 本课总结</h2>
+<h3>把今天的方法带到下一次学习</h3>
+<div class="extension-grid">
+<article>
+<b>课后拓展</b>
+<p>不另交作品。口头回答：① D 更长就更好吗？② 评分相同能并列吗？③ 发出一次反馈就训练了模型吗？</p>
+</article>
+<article>
+<b>课堂提醒</b>
+<p>不要求披露内部推理；重点核查答案、步骤依据和适用条件。</p>
+</article>
+<article>
+<b>下节预告</b>
+<p>下一节《AI绘图原理：Stable Diffusion深度解析》会在今天的基础上继续练习新的方法和工具。</p>
+</article>
+</div>
+<details><summary>三问核对与概念来源</summary><p>① 不一定，要看事实与要求。② 可以，但要给理由。③ 不是；课堂对话没有执行参数训练。</p><p>概念参考：<a href="https://openai.com/index/learning-to-summarize-with-human-feedback/">人类反馈与奖励模型的经典流程</a>；<a href="https://arxiv.org/html/2501.12948v1">DeepSeek-R1 原始论文（2025 年版本）</a>。来源用于说明训练方法，不代表当前工具默认使用这些模型。</p></details>
+</section><a class="back-top" href="#top">返回顶部 ↑</a></main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

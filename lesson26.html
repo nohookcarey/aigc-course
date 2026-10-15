@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第20次课｜需求追问与流程草图：先问缺口再生成</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第20次课 · 2学时 · 需求追问与流程草图：先问缺口再生成</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson25.html" data-course-lesson="lesson25">← 上一课</a><a href="lesson27.html" data-course-lesson="lesson27">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第六章｜AIGC应用与实践 · 第20次课 · 2 学时</p>
+      <h1>需求追问与流程草图：先问缺口再生成</h1>
+      
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>上一课把材料放进固定栏目，保留未知信息。本课区分“可以先做”和“必须先问”的条件，让追问真正帮助完成任务。</p>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <p><b>本课成果：</b> 一份有用途和风格要求的短文，以及一张“先问什么、再怎么生成”的流程草图。追问最多聚焦两个会改变结果的问题，不盘问无关信息。</p>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜需求澄清：补的是影响成果的条件</h3>
+<p>需求澄清是把模糊愿望变成可执行要求。并非每个空白都要追问，只有会明显改变输出的信息才重要。写商品分享文时，用于介绍还是比较、想用什么语气，都会改变写法；人数和场地通常不相关。</p>
+<p><b>例子：</b> “帮我写个奶茶文案”先问用途与语气，比询问班级人数更能帮助生成。</p>
+<h3>2｜必选与可选：缺少时处理不同</h3>
+<p>必选条件不清楚时，先问清再生成；可选信息没有时，可以使用已经说明的默认方案。默认值要让使用者看得见，不能偷偷假设商品功效或用户体验。</p>
+<p><b>例子：</b> 用途必选；没有字数要求时按一段短文写。没有真实喝过，就只介绍外观，不写“我喝过后觉得”。</p>
+<h3>3｜条件分支：不同情况走不同路径</h3>
+<p>分支就是按条件选择下一步。“用途不清→追问”，“用途明确→生成”是两条路径。聊天中的追问可以验证设计思路，画布上的条件和连线则把这个选择固定下来。</p>
+<p><b>例子：</b> 介绍饮品时生成一段短文；想比较两款时生成对照表，不同时输出两种无关成果。</p>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>教师示范｜把“写个奶茶文案”问清楚</h3>
+<p><b>课堂模拟材料：</b> 图片描述：透明杯、浅紫奶茶、底部芋泥；已有文字：“芋泥奶茶，想发一段介绍”。没有饮用体验、价格或品牌。</p>
+<h3>操作①｜在新对话先设追问规则</h3>
+<p>在豆包或千问发送下面的要求。教师先故意不填用途，看AI是否只问相关问题。</p>
+<div class="copy-block">
+      <pre id="lesson26-code-1"><code class="language-text">请帮我写芋泥奶茶内容。先问用途和语气这两个问题，等我回答后再写。不要询问人数、地点或联系人。
+已有材料：透明杯、浅紫奶茶、底部芋泥；没有真实饮用体验、价格或品牌。只能据此描述外观，不写口味体验或功效。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson26-code-1" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/b814d267226946a8.webp" title="点击查看大图"><img src="assets/img/b814d267226946a8.webp" alt="先给饮品外观材料，要求收到用途和语气后再生成。" loading="lazy"></a><figcaption></p>
+<p>先给饮品外观材料，要求收到用途和语气后再生成。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/64921a1016acf41d.webp" title="点击查看大图"><img src="assets/img/64921a1016acf41d.webp" alt="AI先询问用途和语气，此时还没有生成介绍。" loading="lazy"></a><figcaption></p>
+<p>AI先询问用途和语气，此时还没有生成介绍。</figcaption></figure>
+<h3>操作②｜回答后让结果有变化</h3>
+<p>回复：“做一段日常图文介绍，语气自然，短一点。”观察结果是否变成简短的外观介绍。再换成“给朋友比较两款饮品”，AI应询问另一款的材料，而不是凭空补一个品牌。</p>
+<p><b>教学样例：</b> “透明杯里是浅紫色奶茶，底部芋泥层很明显。拍摄时让杯子靠近自然光，紫色层次更容易看清。”这段只说明已有画面，不假装喝过。</p>
+<figure class="lesson-figure"><a href="assets/img/7aa342f560091700.webp" title="点击查看大图"><img src="assets/img/7aa342f560091700.webp" alt="回答日常图文介绍、自然语气后，得到只描述杯型、颜色和芋泥层的短文。" loading="lazy"></a><figcaption></p>
+<p>回答日常图文介绍、自然语气后，得到只描述杯型、颜色和芋泥层的短文。</figcaption></figure>
+<h3>操作③｜把追问画成草图</h3>
+<p>在纸上或画图工具画四个框，用箭头连接：<b>输入材料→用途是否明确→不明确时问用途 / 明确时生成→查看成果</b>。补齐用途后回到生成步骤，不重新问已经回答的问题。</p>
+<figure class="lesson-figure"><a href="assets/img/3ddc0926e7a5e08d.webp" title="点击查看大图"><img src="assets/img/3ddc0926e7a5e08d.webp" alt="元器条件判断配置" loading="lazy"></a><figcaption></p>
+<p>每个条件选择要比较的值；不符合已设条件时走else路径。每条路径都要接到后续节点。</figcaption></figure>
+<p><b>参考：</b> <a href="https://yuanqi.tencent.com/guide/workflow-condition-judgment-node">元器条件判断节点</a>与<a href="https://yuanqi.tencent.com/guide/workflow-parameter-extraction-node">参数提取节点</a>。本例先用对话演示追问；真正的参数收集会在后续画布练习中配置。</p>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜为自己的照片或物品先问再写</h2>
+        <p><b>底料可选：</b> 台灯：白色、三档亮度、底座擦痕；饮品：透明杯、浅绿色茶汤、两片柠檬；日常照片：窗边桌面、一本书、一杯水。也可用自己的同类图片。</p>
+<h3>操作①｜不一次给完所有条件</h3>
+<p>在新对话选一份材料，发送：“我要为这份材料写内容，请先问用途和语气，等我回答再生成。”附上材料。不要让AI凭照片添加真实体验。</p>
+<h3>操作②｜自己选方向</h3>
+<p>回答用途与语气：比如“闲置商品介绍，坦诚自然”或“照片图文配文，平静简洁”。得到草稿后，修改一个不符合用途的句子，让AI按新要求再写。</p>
+<h3>操作③｜画出自己的分支</h3>
+<p>把本次真实问答画成流程：输入→需要问的条件→回答→生成。旁边写一句“若没有回答，先停在哪一步”。只保留与本次内容有关的问题。</p>
+<p><b>最后看：</b> 追问影响了写法；结果没有虚构体验；草图能对应刚才的问答。<b>成果：一段短文和一张流程草图。</b></p>
+
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <p>追问的价值是减少影响结果的歧义。问得多不等于设计好，能用少量问题改变输出才有用。</p>
+<p><b>下节预告：</b> 把聊天中的处理规则放进无代码工作流，认识变量绑定和回复节点。</p>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

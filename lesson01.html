@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>第1次课｜AI发展史全景与AIGC初体验</title>
+<meta content="true" name="xuexitong-standalone"/>
+
+<link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body class="chapter-page lesson-page"><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第1次课 · 2学时 · AI发展史全景与AIGC初体验</span><a href="index.html" data-course-lesson="index">课程目录</a><span class="site-disabled" aria-hidden="true">← 上一课</span><a href="lesson02.html" data-course-lesson="lesson02">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><main class="page-shell" id="top"><header class="hero">
+<p class="eyebrow">第一章｜AIGC 理论基础 · 第 1 次课 · 2 学时</p>
+<h1>AI发展史全景与AIGC初体验</h1>
+<p>从生活中的 AI 出发，学会判断什么任务适合交给 AI，什么地方必须由人负责。</p>
+</header><nav class="jump-nav" aria-label="本课导航"><a href="#review">知识回顾</a><a href="#task">任务预告</a><a href="#concepts">基础概念</a><a href="#case">核心案例</a><a href="#practice">实践任务</a><a href="#finish">本课总结</a></nav><section class="lesson-section" id="review"><h2>00 知识回顾</h2><p class="notice">课程首次课，暂无上一课知识回顾。</p></section><section class="lesson-section" id="task"><h2>01 任务预告</h2>
+<h3>先知道今天要完成什么</h3>
+<div class="nav-summary">
+<div>
+<b>学习目标</b>
+<ol>
+<li>说出生成式 AI 能做的 3 类事情。</li>
+<li>用“任务边界卡”判断 AI 与人的分工。</li>
+<li>完成一份可保存的 AI 小任务单。</li>
+</ol>
+</div>
+</div>
+<div class="route-map">
+<b>本章路径图</b><span>导论</span><i>→</i><span>方法</span><i>→</i><span>实操</span><i>→</i><span>拓展</span>
+</div>
+
+<p class="section-kicker">板块 ② 本节你将学会</p>
+<h3>本节课你将学会什么</h3>
+<div class="outcome-grid">
+<article>
+<b>作品一｜AI 任务边界卡</b>
+<p>把一个生活或学习任务拆成：AI 可以协助、人必须确认、不能交给 AI 的信息。</p>
+<ul>
+<li>示例：社团招新文案可由 AI 起草</li>
+<li>必须确认：时间、地点、报名链接</li>
+<li>不能上传：同学真实电话和身份证信息</li>
+</ul>
+</article>
+<article>
+<b>作品二｜可执行任务单</b>
+<p>围绕“校园活动通知”，写清背景、提示词、检查动作和交付文件。</p>
+<p class="file-example">文件示例：<code>01_校园活动通知_姓名.docx</code></p>
+</article>
+</div>
+</section><section class="lesson-section" id="concepts"><h2>02 基础概念</h2>
+<h3>生成式 AI：会生成，也有边界</h3>
+<div class="compare-grid">
+<article class="concept-card">
+<b>传统 AI</b>
+<p>更擅长识别、分类和预测，例如人脸解锁、垃圾邮件过滤。</p>
+</article>
+<article class="concept-card">
+<b>生成式 AI（AIGC）</b>
+<p>能根据要求生成文字、图片、音频和代码，例如写文案、画海报草图、整理提纲。</p>
+</article>
+<article class="concept-card">
+<b>人机协作</b>
+<p>AI 负责起草、整理、提供选项；人负责目标、事实核验、隐私与最终决定。</p>
+</article>
+</div>
+<section class="history-visual">
+<h3>AI 发展路线图</h3>
+<p>从“按规则办事”到“根据要求生成内容”，AI 的能力是在不断叠加的。</p>
+<div class="history-stages">
+<article class="concept-card">
+<b>规则系统</b><span>人先写好“如果……那么……”</span>
+</article>
+<article class="concept-card">
+<b>专家系统</b><span>把专业经验整理成规则库</span>
+</article>
+<article class="concept-card">
+<b>机器学习</b><span>从大量样例中寻找规律</span>
+</article>
+<article class="concept-card">
+<b>深度学习</b><span>用多层神经网络学习复杂特征</span>
+</article>
+<article class="concept-card">
+<b>Transformer</b><span>更擅长理解前后文关系</span>
+</article>
+<article class="concept-card">
+<b>大模型与 AIGC</b><span>能对话、创作并处理多种内容</span>
+</article>
+</div>
+<figcaption>看关系：后面的阶段不是完全替代前面，而是在更大数据和算力支持下扩展能力。</figcaption>
+</section>
+<section class="workflow-visual">
+<h3>生成式 AI 如何完成一次任务</h3>
+<div>
+<span>任务目标</span><i>→</i><span>提示词 / 素材</span><i>→</i><strong>模型生成</strong><i>→</i><span>人工核验</span><i>→</i><span>修改保存</span>
+</div>
+<p>其中“人工核验”不能省：检查事实、隐私、版权、格式和是否真正解决了任务。</p>
+</section>
+<h3 class="concept-subtitle">核心概念补充</h3>
+<div class="core-concept-grid">
+<article class="concept-card">
+<b>大语言模型（LLM）</b>
+<p>可以理解为读过大量文字材料的“语言学习助手”。它会根据上下文预测更合适的表达，但不等于真正理解或记住所有事实。</p>
+</article>
+<article class="concept-card">
+<b>训练与推理</b>
+<p>训练像长期学习大量样例；推理像上课时根据学到的规律回答新问题。我们平时使用工具，主要是在进行推理。</p>
+</article>
+<article class="concept-card">
+<b>多模态</b>
+<p>同一个 AI 能处理不只一种内容：文字、图片、语音、视频等。例如上传图片后让它写商品介绍，就是多模态任务。</p>
+</article>
+<article class="concept-card">
+<b>上下文</b>
+<p>就是 AI 当前能“看到”的前后材料。任务背景、对象、格式要求写得越清楚，回答通常越贴近你的需要。</p>
+</article>
+<article class="concept-card">
+<b>Token（文字片段）</b>
+<p>AI 处理文字时会把内容切成小片段，不完全按一个汉字或一个词计算。材料太长时，旧内容可能无法被完整参考。</p>
+</article>
+<article class="concept-card">
+<b>幻觉</b>
+<p>AI 可能说得很像真的，却给出错误、过时或没有出处的信息。这不是故意骗人，而是需要你查来源、做核验的原因。</p>
+</article>
+</div>
+<div class="term-list">
+<b>操作中会用到的 4 个词</b><span>提示词：给 AI 的任务说明</span><span>模型：完成任务的 AI 工具</span><span>生成：根据输入给出新内容</span><span>核验：检查结果是否真实、合适</span>
+</div>
+<div class="mini-activity">
+<b>课堂小活动｜30 秒判断</b>
+<p>“把班级同学的联系方式上传给 AI，让它自动发通知”——这件事可以直接做吗？和同桌说出你的理由。</p>
+</div>
+</section><section class="lesson-section" id="case"><h2>03 核心案例</h2>
+<h3>先判断任务，再选择工具</h3>
+<section class="method-case">
+<div class="method-case-head">
+<p>核心案例｜校园旧书交换通知</p>
+<span>从“想用 AI 写通知”到“得到可发布的初稿”</span>
+</div>
+<div class="method-case-grid">
+<article>
+<b>① 案例背景</b>
+<p>小芸要为班级旧书交换活动写通知，但只记得“下周、图书馆附近、每人带一本书”。她想让 AI 先写一版，自己再补齐真实信息。</p>
+</article>
+<article>
+<b>② 案例分析</b>
+<p>AI 能把已知信息整理成通知；对象、时间、地点和参与方式越清楚，初稿越能用。没给出的信息不能让 AI 猜。</p>
+</article>
+<article>
+<b>③ 容易误会</b>
+<p>“文字写得像通知”不等于“通知能发布”。AI 不知道活动是否真的举行、地点是否临时更换，也不能代替小芸确认。 &gt;</p>
+</article>
+<article>
+<b>④ 你将学会</b>
+<p>用 AI 起草一则通知，并用“时间、地点、参与方式、隐私”四项检查它能否使用。</p>
+</article>
+</div>
+<div class="method-case-output">
+<b>案例结论</b><span>通知初稿 + 四项检查记录 + 文件名 <code>01_旧书交换任务单_姓名.docx</code></span>
+</div>
+</section>
+<div class="task-table">
+<div><b>任务类型</b><b>适合的 AI 协助</b><b>你要做的确认</b></div>
+<div>
+<span>写作表达</span><span>提纲、通知、初稿</span><span>事实、语气、格式</span>
+</div>
+<div>
+<span>图像创作</span><span>海报草图、配图灵感</span><span>版权、文字、人物形象</span>
+</div>
+<div>
+<span>资料整理</span><span>分类、摘要、表格初稿</span><span>原始数据、遗漏与隐私</span>
+</div>
+<div>
+<span>问题学习</span><span>解释概念、出练习题</span><span>答案依据与适用范围</span>
+</div>
+</div>
+<div class="method-grid">
+<article>
+<b>四个限制</b>
+<ol>
+<li>不把敏感信息交给 AI。</li>
+<li>不把 AI 的回答当成唯一事实。</li>
+<li>不让 AI 替你做最终决定。</li>
+<li>不直接照搬生成内容。</li>
+</ol>
+</article>
+<article>
+<b>任务判断清单</b>
+<ol>
+<li>我的目标是什么？</li>
+<li>AI 可以帮我哪一步？</li>
+<li>哪里需要人工确认？</li>
+<li>最后交付什么文件？</li>
+</ol>
+</article>
+</div>
+<div class="knowledge-strip">
+<b>知识地图</b><span>任务目标</span><i>→</i><span>选择工具</span><i>→</i><span>写清提示词</span><i>→</i><span>核验结果</span><i>→</i><span>保存作品</span>
+</div>
+<section class="aigc-mindmap">
+<h3>本课思维导图｜判断一个 AI 任务</h3>
+<div class="mindmap-center">AIGC 任务判断</div>
+<div class="mindmap-branches">
+<article><b>目标</b><span>要完成什么成果？</span></article>
+<article>
+<b>输入</b><span>提示词、材料是否清楚？</span>
+</article>
+<article>
+<b>模型</b><span>选文字、图片还是多模态工具？</span>
+</article>
+<article><b>生成</b><span>结果是否符合要求？</span></article>
+<article><b>边界</b><span>哪些信息不能上传？</span></article>
+<article><b>核验</b><span>谁来检查并最终决定？</span></article>
+</div>
+</section>
+</section><section class="lesson-section" id="practice"><h2>04 实践任务</h2>
+<h3>完成两项小任务</h3>
+<div class="step-card">
+<div>
+<p class="task-label">任务一｜制作 AI 任务边界卡</p>
+<p><b>背景：</b> 你准备为班级活动写一则通知，希望借助 AI 提高效率。</p>
+<ol>
+<li>在纸上或文档画三栏：AI 可以协助 / 人必须确认 / 不能提交给 AI。</li>
+<li>分别写入至少 2 条内容。</li>
+<li>在卡片底部补一句：我会在 AI 生成后先检查……</li>
+</ol>
+<div class="boundary-example">
+<b>完成示例｜班级活动通知</b>
+<div>
+<article>
+<strong>AI 可以协助</strong><span>起草通知、整理活动流程、提供标题建议</span>
+</article>
+<article>
+<strong>人必须确认</strong><span>时间地点、报名方式、活动规则、最终发布内容</span>
+</article>
+<article>
+<strong>不能交给 AI</strong><span>同学电话、身份证号、未公开的个人信息</span>
+</article>
+</div>
+<p>我的检查句：发布前，我会核对活动信息是否准确，并删除不必要的个人信息。</p>
+</div>
+<p><b>交付物：</b> 一张任务边界卡照片或截图。</p>
+<p><b>命名：</b> <code>01_AI任务边界卡_姓名.png</code></p>
+</div>
+<div class="step-standard task-wide-standard">
+<b>任务一完成标准</b><span>三栏各有至少2条内容，底部有1句人工检查说明；页面中的完整示例可直接对照。</span><small>本任务主要是判断和记录，不需要工具操作截图。</small>
+</div>
+</div>
+<div class="step-card">
+<div>
+<p class="task-label">任务二｜完成可执行任务单</p>
+<p><b>背景：</b> 为“校园旧书交换”活动生成一则通知初稿。</p>
+<ol>
+<li>写清对象、时间、地点、活动要求。</li>
+<li>复制提示词：<code>请为高职学生写一则校园旧书交换通知，包含时间、地点、参与方式和温馨提醒，200
+字以内，语气友好。</code></li>
+<li>阅读结果，手动核对 4 个活动要素是否齐全。</li>
+<li>把修改后的通知和检查结果保存到同一文档。</li>
+</ol>
+<p><b>交付物：</b> 通知初稿 + 四项检查记录。</p>
+<p><b>命名：</b> <code>01_旧书交换任务单_姓名.docx</code></p>
+</div>
+<figure class="lesson-figure">
+<img src="assets/img/7dccab6fa56a1fb9.webp" alt="WorkBuddy 新建任务输入框中的旧书交换通知提示词" data-image-id="lesson01-image-173">
+<figcaption>操作参考：进入“新建任务—日常办公”，把页面给出的完整提示词复制到中央输入框。</figcaption>
+</figure>
+<div class="step-standard task-wide-standard">
+<b>任务二完成标准</b><span>提示词含对象、内容、长度、语气四项；通知中的时间、地点、参与方式和提醒均已人工核对。</span><small>看到通知初稿只是第一步，四项活动信息核验和保存记录不能省略。</small>
+</div>
+</div>
+</section><section class="lesson-section" id="finish"><h2>05 本课总结</h2>
+<h3>把今天的方法带到真实场景</h3>
+<div class="extension-grid">
+<article>
+<b>行业小案例</b>
+<p>电商用 AI 起草商品标题，客服用 AI 整理常见问题，设计师用 AI 生成配图灵感；发布前仍由人检查事实、品牌规范和版权风险。</p>
+</article>
+<article>
+<b>下章预告</b>
+<p>下一节课《AI 是怎么“想”的：从输入到输出》：学习如何把模糊想法写成清楚的提示词。</p>
+</article>
+<article>
+<b>章末自查</b>
+<ul>
+<li>我能区分传统 AI 与 AIGC。</li>
+<li>我知道 AI 不能替代人工核验。</li>
+<li>我完成了两份可保存的课堂作品。</li>
+</ul>
+</article>
+</div>
+</section><a class="back-top" href="#top">返回顶部 ↑</a></main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第16次课｜连接器与智能体接力：把材料变成可执行的下一步</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第16次课 · 2学时 · 连接器与智能体接力：把材料变成可执行的下一步</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson15.html" data-course-lesson="lesson15">← 上一课</a><a href="lesson20.html" data-course-lesson="lesson20">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第四章｜AIGC应用与实践 · 第16次课 · 2 学时</p>
+      <h1>连接器与智能体接力：把材料变成可执行的下一步</h1>
+      
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>第15次课用知识库检索材料并形成回答。本课用MCP调用软件工具，把“澄清需求后的计划”交给另一个模型执行，将活动材料变成可用成果。</p>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <p><b>本课成果：</b> 观看教师把本地活动材料变成准备清单；自己用WorkBuddy的腾讯文档MCP创建一份“奶茶口味偏好调查”收集表。</p>
+<p><b>合格标准：</b> Plan模式配合grilling确认问卷要求；高级模型形成计划，便宜模型按计划执行；六道题的题型与选项正确，填写链接可打开，两份模拟回答能保存。</p>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜MCP：让AI按统一方式调用工具</h3>
+<p>MCP是模型上下文协议（Model Context Protocol）。AI应用通过它发现工具、传入参数、取得结果。例如本课先调用“列文件”取得文件名，再调用“读文件”取得正文，最后调用“写文件”保存清单。AI负责理解与生成，文件系统MCP服务负责实际读写。</p>
+<table>
+<thead>
+<tr>
+<th>本课角色</th>
+<th>做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WorkBuddy</td>
+<td>接收任务、让模型选择工具、展示调用结果</td>
+</tr>
+<tr>
+<td>文件系统MCP服务</td>
+<td>提供指定文件夹内的读写工具</td>
+</tr>
+<tr>
+<td>课堂文件夹</td>
+<td>保存两份输入材料与最终清单</td>
+</tr>
+</tbody>
+</table>
+<p>连接器是软件中的接入入口；有的连接器使用MCP，有的使用其他方式。本课以明确的文件系统MCP工具记录为依据。</p>
+<h3>2｜MCP的意义：软件能力有了共同接口</h3>
+<p>过去，AI连接文档、地图或业务系统，常需要各写一套对接方式。MCP把“发现有哪些工具、怎样传入参数、怎样取得结果”统一起来：软件提供MCP服务，兼容的AI应用就能复用这套工具。可把它理解为AI接入软件能力的“通用插口”。</p>
+<table>
+<thead>
+<tr>
+<th>谁受益</th>
+<th>带来的变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件提供方</td>
+<td>将查询、创建、修改等功能开放为标准工具</td>
+</tr>
+<tr>
+<td>AI应用</td>
+<td>按共同协议接入不同服务，减少逐个适配</td>
+</tr>
+<tr>
+<td>普通使用者</td>
+<td>用自然语言组合多个软件的操作，减少来回切换</td>
+</tr>
+</tbody>
+</table>
+<p><b>瑞幸咖啡已经提供官方MCP服务：</b> AI可以调用查门店、搜商品、订单预览、创建订单等工具。例如“找一家附近的瑞幸，再看看有哪些冰美式”，背后是AI选择工具、瑞幸系统返回门店与商品结果；发起点单还要确认门店、规格和金额，支付由用户完成。本课只观察官方平台，不实际购买。</p>
+<figure class="lesson-figure"><a href="assets/img/2683674413d95557.webp" title="点击查看大图"><img src="assets/img/2683674413d95557.webp" alt="瑞幸咖啡官方MCP服务页面" loading="lazy"></a><figcaption></p>
+<p>页面展示瑞幸官方MCP服务与接入、工具文档入口。</figcaption></figure>
+<p>越来越多软件正在开放MCP、CLI或Skill能力，MCP正成为AI调用外部工具的通用标准之一。接入取决于软件是否提供服务、AI应用是否兼容以及账号权限；不是所有软件都已经支持MCP。</p>
+<p><b>依据：</b> <a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture">MCP官方架构</a>、<a href="https://open.lkcoffee.com/mcp">瑞幸官方MCP服务</a>、<a href="https://open.lkcoffee.com/docs">瑞幸工具文档</a>。</p>
+<h3>3｜grilling追问方法：使用WorkBuddy现有grill-me技能</h3>
+<p>WorkBuddy技能市场中可找到grill-me，说明为“深度追问式方案审查”。本课用它实施grilling追问方法：先区分已知事实与需要决定的事项，把当前能回答的问题集中提出，每题附建议；得到回答后继续补齐依赖条件，直到双方确认任务已经说清楚。本课用它问“多少人、设备缺口如何安排、清单要包含什么”。</p>
+<p>Skill指导AI怎么做；MCP给AI实际调用的工具。grilling不能替代读取材料，也不会自动连接文件夹。</p>
+<h3>4｜模型接力：高级模型规划，便宜模型执行</h3>
+<p>规划阶段要发现缺项、比较处理方式、确定步骤；执行阶段按已确认的字段与规则整理文件。因此本课先用Plan与较强模型完成规划，再在同一任务中切换低成本模型、退出Plan执行。</p>
+<p><b>交接要带齐：</b> 目标、材料、已确认决策、执行步骤、成果格式与验收标准。换模型后不要重新猜需求。若换到新任务，需要把这份交接内容完整粘贴过去。</p>
+<figure class="lesson-figure"><a href="assets/img/55278519ef7e22c7.webp" title="点击查看大图"><img src="assets/img/55278519ef7e22c7.webp" alt="WorkBuddy模型选择与消耗倍率" loading="lazy"></a><figcaption></p>
+<p>模型菜单显示可选档位及消耗倍率。</figcaption></figure>
+<p>具体模型、倍率和优惠随版本与账号变化，课堂以当前菜单为准；实际总消耗还取决于上下文长度和调用次数。</p>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>教师示范｜读书分享会：先问清楚，再让便宜模型干活</h3>
+<p>两份原创课堂模拟材料分别记录活动安排与设备存量。目标是一份内部准备清单；人数缺失、话筒不足时，先确定处理方式，再保存成果。</p>
+<p><b>演示状态：</b> 本页配图仅展示软件开始界面与示例输入；以下追问、计划、MCP执行与成果核验为课堂操作步骤，尚未完成全流程实测，待验收。</p>
+<h3>步骤1｜整理材料，连接文件系统MCP</h3>
+<p>在独立课堂文件夹准备两份TXT。WorkBuddy选择同一文件夹作为工作空间；通过“专家·技能·连接器→连接器→自定义连接器”配置文件系统MCP。</p>
+<div class="copy-block">
+      <pre id="lesson18-code-1"><code class="language-text">活动安排.txt【课堂模拟材料】
+活动：读书分享会
+时间：10月15日15:00—16:00
+地点：图书馆讨论室（拟用，未预约）
+人数：尚未统计
+每位参加者带一本书，分享一分钟。
+
+设备清单.txt【课堂模拟材料】
+计划需要：投影仪1台、话筒2支。
+现有可借：投影仪1台、话筒1支。
+设备尚未办理借用。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-1" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/d74fecd4f0d748be.webp" title="点击查看大图"><img src="assets/img/d74fecd4f0d748be.webp" alt="WorkBuddy自定义MCP管理入口" loading="lazy"></a><figcaption></p>
+<p>MCP服务管理中已添加classroom-files；此界面仅证明配置入口，不证明工具调用成功。</figcaption></figure>
+<p><b>Windows课堂配置参考：</b> 教师先在电脑创建 <code>C:/AIGC16</code>，安装可用的Node.js，再在MCP配置中添加下列服务；已有服务须保留。首次启动需联网下载官方包。</p>
+<div class="copy-block">
+      <pre id="lesson18-code-2"><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;classroom-files&quot;: {
+      &quot;command&quot;: &quot;cmd&quot;,
+      &quot;args&quot;: [&quot;/c&quot;, &quot;npx&quot;, &quot;-y&quot;, &quot;@modelcontextprotocol/server-filesystem&quot;, &quot;C:/AIGC16&quot;]
+    }
+  }
+}
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-2" type="button">复制代码</button>
+    </div><p>实际开始前调用 <code>list_allowed_directories</code>，核对范围指向课堂目录；客户端若提供Roots，最终范围可能改变，应以该工具结果为准。Windows配置依据官方用法整理，本机为macOS，Windows端尚待实测。</p>
+<p><b>技能准备：</b> 打开“专家·技能·连接器→技能”，搜索 <code>grill</code>，选择grill-me；尚未安装时在技能卡中安装，再到“我安装的”确认已启用。课堂直接调用现有技能，无需复制技能文件。</p>
+<figure class="lesson-figure"><a href="assets/img/9816f0113dc3e743.webp" title="点击查看大图"><img src="assets/img/9816f0113dc3e743.webp" alt="WorkBuddy现有grill-me技能" loading="lazy"></a><figcaption></p>
+<p>技能详情显示名称、追问用途和调用示例。</figcaption></figure>
+<p><b>开始条件：</b> 文件系统MCP已连接，grill-me技能已启用，账号可选择规划与执行两档模型。首次使用需要Node.js/npx环境和联网取得官方服务包；本课使用教师预先配置的课堂电脑，不要求学生编写程序。</p>
+<h3>步骤2｜Plan＋grilling＋高级模型，先追问</h3>
+<p>选择高级模型（开始界面示例使用“极致”），从“更多操作→模式”打开Plan，再输入：</p>
+<div class="copy-block">
+      <pre id="lesson18-code-3"><code class="language-text">使用WorkBuddy已启用的grill-me技能（grilling追问方法）澄清活动准备任务，当前只规划，暂不生成成果文件。
+先用classroom-files文件系统MCP检查允许目录、列出本文件夹，读取活动安排.txt和设备清单.txt。材料读取必须使用MCP工具。
+目标是一份简短活动准备清单，包含活动信息、设备缺口、三条待办。
+材料未提供的事实标出来；需要我决定的事项集中提问，每题给一个建议。
+得到我的回答并确认需求完整后，再形成计划，注明每步的工具、输入、输出与验收标准。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-3" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/d7ed5f930bfffad3.webp" title="点击查看大图"><img src="assets/img/d7ed5f930bfffad3.webp" alt="Plan与grilling规划输入" loading="lazy"></a><figcaption></p>
+<p>输入区显示“计划”和“极致”，任务要求先追问再形成计划。</figcaption></figure>
+<h3>步骤3｜审查计划，补齐决定</h3>
+<p>教师回答：“预计20人；缺的1支话筒列入待办，不写成已借到；清单用于内部筹备，不发通知。”如果AI继续问格式，回答“简短TXT，三条待办，姓名用岗位称呼”。需求对齐后明确确认，让高级模型输出最终计划。</p>
+<p><b>计划应包含：</b> 读取两份材料→整合活动字段→计算话筒缺口→生成三条待办→MCP写文件→MCP回读核验。先前的“拟用场地”和“可借设备”应保持待办理状态。</p>
+<h3>步骤4｜切换便宜模型，退出Plan执行</h3>
+<p>在同一个任务中切换低成本模型（开始界面示例使用“快速”），关闭Plan；把已确认的目标、人数与处理规则一起交接：</p>
+<div class="copy-block">
+      <pre id="lesson18-code-4"><code class="language-text">按上面已确认的计划执行。预计20人；话筒需要2支、现有可借1支，缺1支，列为待办理；场地和设备均未预约或借用完成。
+只使用classroom-files文件系统MCP重新读取两份材料，然后生成“16_读书分享会准备清单_教师示例.txt”。
+清单包含活动信息、材料依据、设备缺口、三条待办；末尾简记规划模型、执行模型和实际用到的MCP工具。
+使用write_file保存，再用read_text_file回读，核对时间、地点、20人和话筒缺1支。
+如果工具报错，报告实际错误；不要用命令行或内置文件工具替代MCP后声称MCP完成。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-4" type="button">复制代码</button>
+    </div><h3>步骤5｜回读成果，复盘两处错误</h3>
+<p>从文件夹打开清单，对照MCP回读正文：20人来自本轮补充；话筒缺口是2−1＝1；场地与设备仍未办理。再看模型记录，说明规划与执行由哪两个模型完成。</p>
+<table>
+<thead>
+<tr>
+<th>执行时可能出现的问题</th>
+<th>修正动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调用了内置“读取文件”，却称为MCP</td>
+<td>指定classroom-files并展开实际MCP调用卡</td>
+</tr>
+<tr>
+<td>执行模型把“现有可借”改成“已经借到”</td>
+<td>将办理状态写进交接说明，重新生成并回读</td>
+</tr>
+</tbody>
+</table>
+<p><b>参考：</b> <a href="https://workbuddy.homes/bluebook/%E7%AC%AC%E4%B8%80%E7%AF%87%20%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C%EF%BC%9A%E5%85%88%E6%8A%8A%20WorkBuddy%20%E7%94%A8%E8%B5%B7%E6%9D%A5/%E7%AC%AC%207%20%E7%AB%A0%20WorkBuddy%20%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%99%A8/">WorkBuddy蓝皮书·连接器</a>、<a href="https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Task-Bar">官方任务栏与Plan说明</a>、<a href="https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market">官方技能说明</a>、<a href="https://www.codebuddy.cn/docs/workbuddy/Credits">官方积分说明</a>、<a href="https://github.com/modelcontextprotocol/servers/blob/main/src/filesystem/README.md">文件系统MCP官方实现</a>。</p>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜用腾讯文档MCP创建奶茶口味调查问卷</h2>
+        <p><b>你的任务：</b> 2人合作，通过WorkBuddy的腾讯文档MCP创建“奶茶口味偏好调查”收集表。问卷用于了解口味、甜度、冰量和价格偏好；完成两份模拟试填，最终只交一个填写链接。本任务不需配置文件系统服务或安装Node.js。</p>
+<p><b>开始条件：</b> WorkBuddy已连接本人腾讯文档账号，grill-me已启用，网络可用。首次连接由本人在“连接器→腾讯文档”查看授权范围后完成登录；授权涉及账号中的文档读取与管理，不使用存有敏感资料的账号。基础任务用当前可用模型完成，不要求购买套餐。</p>
+<h3>第1步｜整理材料（5分钟）</h3>
+<p>打开“专家·技能·连接器→连接器”，搜索腾讯文档。连接后将以下原创任务材料粘贴到新任务；只收集偏好，不设置姓名、手机号或学号字段。</p>
+<div class="copy-block">
+      <pre id="lesson18-code-5"><code class="language-text">【课堂模拟任务：奶茶口味偏好调查】
+用途：练习用AI创建腾讯文档收集表，不代表真实店铺调研。
+对象：本组两人，分别提交一份模拟回答，不面向全班公开发放。
+标题：16_奶茶口味调查_组号（执行前替换组号）
+说明：匿名课堂练习，约1分钟；请选择自己的偏好，不收集个人身份信息。
+1. 你平均每周喝几次奶茶？【单选，必答】
+   0次 / 1—2次 / 3—4次 / 5次及以上
+2. 你喜欢哪些奶茶口味？【多选，必答】
+   原味 / 芋泥 / 抹茶 / 黑糖 / 水果 / 其他
+3. 你通常选择哪种甜度？【单选，必答】
+   无糖 / 三分糖 / 五分糖 / 七分糖 / 全糖
+4. 你通常选择哪种冰量或温度？【单选，必答】
+   正常冰 / 少冰 / 去冰 / 常温 / 热饮
+5. 一杯奶茶你通常接受的价格是多少？【单选，必答】
+   10元以下 / 10元至不足15元 / 15元至不足20元 / 20元及以上
+6. 还有什么想尝试的口味？【简答，选答】
+   可以填写一种新口味，也可以留空。
+成果：一份能填写、能保存回答的腾讯文档收集表及其填写链接。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-5" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/14af771aeb5f7a8d.webp" title="点击查看大图"><img src="assets/img/14af771aeb5f7a8d.webp" alt="WorkBuddy腾讯文档连接器入口" loading="lazy"></a><figcaption></p>
+<p>在连接器卡中找到腾讯文档；本图只展示开始入口，不展示已创建的问卷。</figcaption></figure>
+<p><b>检查点：</b> 六题围绕奶茶偏好；第2题是多选，第6题可留空；价格选项没有交叉区间。</p>
+<h3>第2步｜先出计划（7分钟）</h3>
+<p>选择较强模型，打开Plan，调用grill-me：</p>
+<div class="copy-block">
+      <pre id="lesson18-code-6"><code class="language-text">使用WorkBuddy已启用的grill-me技能，先澄清再规划。
+根据上面的课堂模拟任务，我要通过腾讯文档MCP创建“奶茶口味偏好调查”收集表。
+先问清组号、题型与必答设置、试填范围，每题给一个适合初学者的建议。
+我确认后再给执行计划：检查腾讯文档实际提供的工具、创建六题收集表、读取核对题目、取得填写链接、预览并提交两份模拟回答、检查记录数。
+当前只规划，不创建收集表，也不发送链接。确认工具能创建收集表，而不是仅创建普通文档。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-6" type="button">复制代码</button>
+    </div><p><b>检查点：</b> 计划明确收集表、单选/多选/简答和填写链接；只在聊天框列出六道题，还没有完成创建。</p>
+<h3>第3步｜审查计划（5分钟）</h3>
+<p>回答：“组号用自己的组号；按材料保留六题，第1—5题必答，第6题选答；只给本组两人试填，暂不公开发放。”继续回答必要追问，再确认计划。</p>
+<p><b>交接内容：</b> 标题、六题全文、题型与必答规则、两份模拟试填、一个填写链接。确认没有新增姓名等身份字段，问题不出现“最受欢迎”“一定更好喝”等诱导表述。两份测试回答只用于检查功能，不能据此得出市场结论。</p>
+<h3>第4步｜生成草稿（10分钟）</h3>
+<p>同一任务切换便宜模型、退出Plan，替换组号后执行：</p>
+<div class="copy-block">
+      <pre id="lesson18-code-7"><code class="language-text">执行刚才确认的计划，通过腾讯文档MCP创建收集表，标题为“16_奶茶口味调查_组号”。
+题目、选项和说明使用上面的任务材料：第1、3、4、5题单选，第2题多选，第6题简答；前五题必答，第六题选答。不要收集姓名、手机号、学号。
+先检查当前腾讯文档工具是否支持创建收集表及这些题型，再用实际提供的工具创建。记录真实工具名称，不编造工具名或链接。
+创建后用腾讯文档工具读取或核对题目与设置，返回收集表标识、管理入口和填写链接，并清楚标注用途；最终交付使用填写链接。
+不要代填回答，不发送给全班，不更改账号中其他文档。
+若题型或收集表创建不受支持，报告具体缺少的能力；不要拿普通在线文档或本地题目清单冒充问卷。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson18-code-7" type="button">复制代码</button>
+    </div><p><b>检查点：</b> 展开腾讯文档MCP实际调用记录；从管理入口看到六题收集表，从填写链接看到可选择的题目。标题、题型、选项和必答标记与材料一致。</p>
+<h3>第5步｜核对保存（8分钟）</h3>
+<p>先在预览中测试：第2题能同时选两种口味，第6题留空不影响提交，必答题漏答会提示补齐。再取得收集表的填写链接，仅交给本组同伴试填；不把编辑或管理链接当成填写链接。</p>
+<p><b>两份模拟试填：</b> 第一份选择“1—2次、原味＋芋泥、五分糖、少冰、10元至不足15元”，第6题留空；第二份选择“0次、抹茶＋水果、无糖、热饮、15元至不足20元”，第6题填写“桂花味”。在结果页查看两条记录，核对多选和简答保存正确；这两条均为测试数据。</p>
+<p><b>最终交付：</b> 一份标题为 <code>16_奶茶口味调查_组号</code> 的腾讯文档收集表填写链接。教师能打开题目，小组在管理端能看到两条模拟测试记录；无需另交TXT、Word或截图。</p>
+<p><b>遇到困难：</b> 问卷找不到时核对腾讯文档账号与返回的收集表标识；填写者权限不足时由所有者检查收集表的填写设置。连接失败可与已连接同学合作。若当前工具只能创建普通文档，保留题目草稿并请教师协助确认可用的收集表工具；手工建表要如实记录，不能算作MCP创建完成。本页仅采集开始截图，题型与设置核对、创建、填写与结果保存仍待课堂实测。</p>
+<p><b>任务参考：</b> 根据<a href="https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Practice-Cases/Practice-Eleven">WorkBuddy官方“实践十一：一句话，管理你的腾讯文档”</a>中的收集表创建案例做教学改编；<a href="https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Knowledge-Base/Tencent-Doc">腾讯文档连接说明</a>。本任务使用腾讯文档收集表，操作前以当前连接器实际开放的工具为准。</p>
+
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <table>
+<thead>
+<tr>
+<th>成果自查</th>
+<th>合格表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准接口</td>
+<td>能用文件系统与瑞幸例子解释MCP如何开放软件能力</td>
+</tr>
+<tr>
+<td>需求澄清</td>
+<td>用grill-me确认六题、题型、必答规则和试填范围</td>
+</tr>
+<tr>
+<td>模型接力</td>
+<td>高级模型规划，便宜模型按已确认计划执行</td>
+</tr>
+<tr>
+<td>MCP创建与核对</td>
+<td>有腾讯文档MCP调用记录，真实收集表与六题内容一致</td>
+</tr>
+<tr>
+<td>问卷可用</td>
+<td>多选可选多项，选答可留空，价格区间不重叠</td>
+</tr>
+<tr>
+<td>最终成果</td>
+<td>提交填写链接，管理端保存两条模拟试填记录</td>
+</tr>
+</tbody>
+</table>
+<p><b>下节预告：</b> 第17次课将同一事实底稿转成图文卡和30秒短视频分镜脚本。</p>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

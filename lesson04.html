@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>第4次课｜预训练与后训练：大模型的“教育”</title>
+<meta content="true" name="xuexitong-standalone"/>
+
+<link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body class="chapter-page lesson-page"><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第4次课 · 2学时 · 预训练与后训练：大模型的“教育”</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson03.html" data-course-lesson="lesson03">← 上一课</a><a href="lesson05.html" data-course-lesson="lesson05">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><main class="page-shell" id="top"><header class="hero">
+<p class="eyebrow">第一章｜AIGC 理论基础 · 第 4 次课 · 2 学时</p>
+<h1>预训练与后训练：大模型的“教育”</h1>
+<p>理解模型从“会续写”到“会协助”的训练过程。</p>
+</header><nav class="jump-nav" aria-label="本课导航"><a href="#review">知识回顾</a><a href="#task">任务预告</a><a href="#concepts">基础概念</a><a href="#case">核心案例</a><a href="#practice">实践任务</a><a href="#finish">本课总结</a></nav><section class="lesson-section" id="review"><h2>00 知识回顾</h2><p class="notice">上一课知识回顾待补。</p></section><section class="lesson-section" id="task"><h2>01 任务预告</h2>
+<h3>先知道本节课要完成什么</h3>
+<div class="nav-summary">
+<div>
+<b>学习目标</b>
+<ol>
+<li>区分预训练、自监督与SFT</li>
+<li>识别知识截止和幻觉风险</li>
+<li>为回答设置核验动作</li>
+</ol>
+</div>
+</div>
+<div class="route-map">
+<b>本节路径图</b><span>导入</span><i>→</i><span>概念</span><i>→</i><span>方法</span><i>→</i><span>实操</span><i>→</i><span>拓展</span>
+</div>
+
+<p class="section-kicker">板块 ② 本节你将学会</p>
+<h3>本节课你将学会什么</h3>
+<div class="outcome-grid">
+<article>
+<b>本课实操交付物</b>
+<p>保存 1 条正确回答、1 条待核验回答和核验结论。</p>
+<p class="file-example">保存建议：第4次_预训练与后训练：大模型的“教育”_姓名</p>
+</article>
+<article>
+<b>统一完成标准</b>
+<ul>
+<li>保存 1 条正确回答、1 条待核验回答和核验结论。</li>
+<li>能用自己的话解释本节至少一个概念，并举出任务中的例子。</li>
+<li>已按检查清单核对内容、事实和文件保存情况。</li>
+</ul>
+</article>
+</div>
+</section><section class="lesson-section" id="concepts"><h2>02 基础概念</h2>
+<h3>先把关键概念讲明白</h3>
+<p class="concept-subtitle">每个概念先记住“它是什么”，再用一个例子判断“它能做什么、不能替你确认什么”。</p>
+<div class="core-concept-grid">
+<article class="concept-card">
+<b>概念 1｜预训练</b>
+<p><b>概念：</b> 模型先阅读大量文字、图片等材料，学习语言规律、常见表达和基础知识。这一步让模型具备“通用底子”，但不保证内容都准确、最新。</p>
+<span><b>例子：</b> 像学生先学语文、数学等基础课，能看懂“校园活动通知”的大致结构，但还不会自动写出符合本班实际情况的通知。</span>
+</article>
+<article class="concept-card">
+<b>概念 2｜自监督</b>
+<p><b>概念：</b> 训练时不用老师给每句话标注答案，而是从原材料中遮住一部分，让模型预测缺失内容或下一个词，逐渐学会表达规律。</p>
+<span><b>例子：</b> 句子“下周一举行班会，请各组______准备”，模型会根据上下文猜“提前”或“认真”。它学到的是续写规律，不等于已核实班会是否真的举行。</span>
+</article>
+<article class="concept-card">
+<b>概念 3｜涌现能力</b>
+<p><b>概念：</b> 当训练数据、模型参数和训练量增加时，模型可能在概括、翻译、写作或简单推理上表现得更好，一些原来不明显的能力会出现。这不代表它每次回答都正确。</p>
+<span><b>例子：</b> 小模型可能只能续写一句活动通知；能力更强的模型还能按“对象、时间、地点、要求”整理成初稿。但日期、地点和政策仍要由人核对。</span>
+</article>
+<article class="concept-card">
+<b>概念 4｜知识截止</b>
+<p><b>概念：</b> 模型的训练材料有时间范围，超过这个范围的新政策、新活动、价格或新闻，模型可能不知道，也可能把旧信息当成新信息回答。</p>
+<span><b>例子：</b> 询问“本学期校历中期末考试日期”，模型给出的日期只能作线索；必须回到学校官网、教务通知或任课教师的正式信息确认。</span>
+</article>
+<article class="concept-card">
+<b>概念 5｜SFT 与数据质量</b>
+<p><b>概念：</b> SFT（监督微调）像岗前示范：用较高质量的问答或任务样例，教模型按要求回答。样例若有错误、偏见或格式混乱，输出也会受影响。</p>
+<span><b>例子：</b> 给模型多份规范的校园通知样例，它更容易生成“标题—时间—地点—要求”齐全的初稿；若样例中的联系方式是错的，生成结果也可能跟着出错。</span>
+</article>
+</div>
+<div class="classroom-bridge">
+<b>课堂讲解线索</b>
+<p>从“会续写”切入，再追问“会续写是否等于知道事实”：用近期信息与教材知识对照，引出预训练、SFT和人工核验的分工。</p>
+</div>
+<div class="knowledge-check">
+<b>知识自检</b><span>合上页面，用自己的话解释其中1个概念，再举出本课任务中的1个例子；能讲清“它是什么、有什么用、哪里要核验”才算理解。</span>
+</div>
+<div class="workflow-visual">
+<h3>本课学习闭环</h3>
+<div>
+<span>生活问题</span><i>→</i><span>理解概念</span><i>→</i><strong>完成任务</strong><i>→</i><span>人工检查</span><i>→</i><span>保存成果</span>
+</div>
+<p>以完形填空说明自监督，以岗前培训说明SFT，展示“回答—查证—修订”的闭环。</p>
+</div>
+</section><section class="lesson-section" id="case"><h2>03 核心案例</h2>
+<h3>用一个核心案例看懂方法</h3>
+<section class="method-case">
+<div class="method-case-head">
+<p>核心案例｜预训练与后训练：大模型的“教育”</p>
+<span>用一个“查娱乐新闻却查不到可靠答案”的小例子，理解模型为什么会说得像真的、却不一定是真的。</span>
+</div>
+<div class="method-case-grid">
+<article>
+<b>① 案例背景</b>
+<p>小明用 AI 查“最近娱乐圈明星 ABC 的大瓜”，AI 给出一段看似详细的回答，却没有可靠来源。这样的内容能直接当事实吗？</p>
+</article>
+<article>
+<b>② 案例分析</b>
+<p>先看模型为什么能写出流畅回答：它从大量材料中学习语言规律；再看它为什么不一定知道最新事实：训练资料可能有时间范围，也可能没有可靠来源。</p>
+</article>
+<article>
+<b>③ 容易误会</b>
+<p>模型能生成“像新闻的文字”，不等于它看到了新闻现场；近期信息、娱乐传闻和具体人物消息都要查可靠来源，不能把未查证回答写进作业结论。</p>
+</article>
+<article>
+<b>④ 你将学会</b>
+<p>能把回答分成“可参考”和“待核验”两类，并写清应去哪里核验，而不是只看它说得是否流畅。</p>
+</article>
+</div>
+<div class="method-case-output">
+<b>案例结论</b><span>AI 能帮小明整理已有信息、列出核验方向，却不能替代可靠来源。遇到近期娱乐新闻或具体人物消息，最稳妥的回答是“待核验”，再去看正规媒体或官方信息。</span>
+</div>
+</section>
+<section class="aigc-mindmap">
+<h3>本课思维导图</h3>
+<div class="mindmap-center">预训练与后训练：大模型的“教育”</div>
+<div class="mindmap-branches">
+<article><b>分支 1</b><span>预训练像基础教育</span></article>
+<article><b>分支 2</b><span>自监督预测下一个词</span></article>
+<article><b>分支 3</b><span>涌现能力与规模</span></article>
+<article>
+<b>分支 4</b><span>知识截止、SFT与数据质量</span>
+</article>
+</div>
+<p class="visual-task"><b>图像 / 思维导图任务</b> <span>围绕“预训练与后训练：大模型的“教育””完成一张四分支思维导图。</span></p>
+</section>
+</section><section class="lesson-section" id="practice"><h2>04 实践任务</h2>
+<h3>跟着五步，完成个人作品</h3>
+<div class="practice-brief">
+<article>
+<b>任务目标</b><span>用可核验问题测试模型的知识边界，完成一次“回答—核对—修订”。</span>
+</article>
+<article>
+<b>使用工具</b><span>WorkBuddy（本地应用）</span>
+</article>
+<article>
+<b>操作入口</b><span>打开 WorkBuddy → 新建任务 → 日常办公</span>
+</article>
+<article><b>难度与时间</b><span>简单 · 20—25 分钟</span></article>
+<article>
+<b>完成标准</b><span>保存 1 条正确回答、1 条待核验回答和核验结论。</span>
+</article>
+</div>
+<div class="step-cards">
+<article class="step-card">
+<h3>步骤 1｜体验续写预测</h3>
+<p>输入：今天下课后，我准备去图书馆……请续写20字。观察 AI 如何接着已有文字生成。</p>
+<figure class="lesson-figure">
+<img src="assets/img/e965f800477f5326.webp" alt="体验续写预测的本地课堂操作参考图" data-image-id="lesson04-image-101">
+<figcaption>体验续写预测的本地课堂操作参考图</figcaption>
+</figure>
+<small>✓ 完成后再进入下一步。</small>
+</article>
+<article class="step-card">
+<h3>步骤 2｜测试可核验问题</h3>
+<p>输入：水在标准大气压下多少摄氏度沸腾？记录回答，再用教材或教师资料核对。</p>
+<figure class="lesson-figure">
+<img src="assets/img/1c63a13acc2aa3d1.webp" alt="测试可核验问题的本地课堂操作参考图" data-image-id="lesson04-image-106">
+<figcaption>测试可核验问题的本地课堂操作参考图</figcaption>
+</figure>
+<small>✓ 完成后再进入下一步。</small>
+</article>
+<article class="step-card">
+<h3>步骤 3｜测试资料外问题</h3>
+<p>输入一个只有班级内部才知道的问题，例如“我们班下周活动地点在哪里？”，观察 AI 是否会猜测。</p>
+<figure class="lesson-figure">
+<img src="assets/img/a13f98275df52cdd.webp" alt="测试资料外问题的本地课堂操作参考图" data-image-id="lesson04-image-111">
+<figcaption>测试资料外问题的本地课堂操作参考图</figcaption>
+</figure>
+<small>✓ 完成后再进入下一步。</small>
+</article>
+<article class="step-card">
+<h3>步骤 4｜加入角色要求</h3>
+<p>输入：你是一位耐心的职业规划老师，请用三点建议帮助高职学生准备第一次实习。</p>
+<figure class="lesson-figure">
+<img src="assets/img/1750a19eb381a41e.webp" alt="加入角色要求的本地课堂操作参考图" data-image-id="lesson04-image-116">
+<figcaption>加入角色要求的本地课堂操作参考图</figcaption>
+</figure>
+<small>✓ 完成后再进入下一步。</small>
+</article>
+<article class="step-card">
+<h3>步骤 5｜完成核验表</h3>
+<p>在表格填写“问题—AI回答—核验来源—判断”，至少完成一条可靠回答和一条不能直接采用的回答。</p>
+<div class="step-standard">
+<b>本步完成标准</b><span>在表格填写“问题—AI回答—核验来源—判断”，至少完成一条可靠回答和一条不能直接采用的回答。</span><small>本步不需要额外截图；按上方动作完成后，再对照本课“完成标准”自查。</small>
+</div>
+<small>✓ 完成后再进入下一步。</small>
+</article>
+</div>
+<div class="boundary-example">
+<b>提交前自查</b>
+<div>
+<article>
+<strong>内容</strong><span>任务要求是否都完成？</span>
+</article>
+<article>
+<strong>核验</strong><span>事实、数据、来源是否确认？</span>
+</article>
+<article>
+<strong>保存</strong><span>文件是否按要求命名？</span>
+</article>
+</div>
+</div>
+</section><section class="lesson-section" id="finish"><h2>05 本课总结</h2>
+<h3>把今天的方法带到下一次学习</h3>
+<div class="extension-grid">
+<article>
+<b>课后拓展</b>
+<p>设计5个测试问题，分析常用模型的知识边界</p>
+</article>
+<article>
+<b>课堂提醒</b>
+<p>近期信息须查可靠来源，不能将未查证回答写入作业结论。</p>
+</article>
+<article>
+<b>下节预告</b>
+<p>下一节《RLHF与强化学习：DeepSeek R1深度解析》会在今天的基础上继续练习新的方法和工具。</p>
+</article>
+</div>
+</section><a class="back-top" href="#top">返回顶部 ↑</a></main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

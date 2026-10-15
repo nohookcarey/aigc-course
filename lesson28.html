@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第22次课｜多步骤协作与状态传递：让下一步拿到正确字段</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第22次课 · 2学时 · 多步骤协作与状态传递：让下一步拿到正确字段</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson27.html" data-course-lesson="lesson27">← 上一课</a><a href="lesson29.html" data-course-lesson="lesson29">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第六章｜AIGC应用与实践 · 第22次课 · 2 学时</p>
+      <h1>多步骤协作与状态传递：让下一步拿到正确字段</h1>
+      
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>上一课用一个模型节点生成介绍。本课把“提取事实”和“改写介绍”分开，让每一步只做一件事，并看清两步之间传了什么。</p>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <p><b>本课成果：</b> 一条两步AI协作流程：先整理商品事实，再据此生成介绍。能在调试里找到事实清单，也能解释最终文案来自哪个节点。</p>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜任务分工：按动作拆，不按名字拆</h3>
+<p>多步骤协作可以让不同节点分别提取、比较、改写。它不一定需要多个不同模型，关键是每一步的输入、规则和结果不同。给两个节点都写“请完成全部任务”不算有效分工。</p>
+<p><b>例子：</b> 第一个节点只整理商品状态，第二个节点只把事实变成自然介绍。它们可以使用同一款模型。</p>
+<h3>2｜中间结果：下一步真正需要的材料</h3>
+<p>中间结果不是最终作品，而是方便下一步处理的材料。本课用固定三行事实清单，避免第二个模型从一段长聊天里重新猜。</p>
+<p><b>例子：</b> 商品=音箱；状态=使用一年、声音正常；外观配件=边角磕碰、充电线。第二步只读这些事实。</p>
+<h3>3｜变量映射：选对来源字段</h3>
+<p>变量映射是把前一节点的某项输出接到当前输入。“整理.Content”是整理出来的事实文字，“整理.Thought”是思考过程；两者不能随便互换。</p>
+<p><b>例子：</b> 改写节点的facts引用“整理→Output→Content”，不是引用用户本轮问题。否则第二步会跳过整理结果。</p>
+<h3>4｜状态与内容：运行成功不等于内容正确</h3>
+<p>节点状态帮助定位成功、失败或等待；变量内容说明它实际收到和生成什么。看状态后还要定位内容，不能只因画布变绿就认为事实传对了。</p>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>教师示范｜音箱事实清单接力到商品介绍</h3>
+<p><b>课堂模拟材料：</b> 音箱用一年，播放正常，蓝色，边角有磕碰，配件充电线；没有电池续航测试。</p>
+<h3>操作①｜插入整理节点</h3>
+<p>在上一课工作流副本中，把原来的模型改名“整理”，新增一个大模型“改写”，连接开始→整理→改写→回复→结束。整理的material仍引用本轮对话。</p>
+<div class="copy-block">
+      <pre id="lesson28-code-1"><code class="language-text">只从商品材料提取事实，固定输出三行：商品、使用状态、外观与配件。没提供的项写未提供。保留缺点；不添加价格、续航或广告评价。
+商品材料：
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson28-code-1" type="button">复制代码</button>
+    </div><p>在末尾用“/”插入material变量。</p>
+<figure class="lesson-figure"><a href="assets/img/824b9ccff3cef1c7.webp" title="点击查看大图"><img src="assets/img/824b9ccff3cef1c7.webp" alt="输入变量的数据来源设置为引用，随后选上游节点；固定文字不会随新材料改变。" loading="lazy"></a><figcaption></p>
+<p>输入变量的数据来源设置为引用，随后选上游节点；固定文字不会随新材料改变。</figcaption></figure>
+<h3>操作②｜让改写读取整理结果</h3>
+<p>在“改写”输入变量添加facts，来源选择“引用→整理→Output→Content”。复制规则，在末尾插入facts变量。回复节点answer改为引用“改写→Output→Content”。</p>
+<div class="copy-block">
+      <pre id="lesson28-code-2"><code class="language-text">依据事实清单写自然语气的闲置介绍，分“标题”和“正文”。只使用清单已有内容，保留外观缺点，不写新品承诺或续航判断。标题简短，正文一段即可。
+事实清单：
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson28-code-2" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/a2a2e17e659d4223.webp" title="点击查看大图"><img src="assets/img/a2a2e17e659d4223.webp" alt="元器输入引用与提示词变量标签" loading="lazy"></a><figcaption></p>
+<p>数据来源选“引用”，再选择上游输出；提示词插入的是当前输入变量标签。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/7ba86c65230f23be.webp" title="点击查看大图"><img src="assets/img/7ba86c65230f23be.webp" alt="变量标签放在提示词需要读取材料的位置；本课改写节点在这里插入facts。" loading="lazy"></a><figcaption></p>
+<p>变量标签放在提示词需要读取材料的位置；本课改写节点在这里插入facts。</figcaption></figure>
+<h3>操作③｜沿输入输出看一次接力</h3>
+<p>发送音箱材料，依次点“整理”和“改写”的运行详情：先出现事实三行，再出现标题与正文。<b>教学样例：</b> “闲置蓝色音箱，播放正常；使用一年，边角有磕碰，附充电线，续航未测。”</p>
+<figure class="lesson-figure"><a href="assets/img/9c849c3cca2ef434.webp" title="点击查看大图"><img src="assets/img/9c849c3cca2ef434.webp" alt="元器调试路径与节点状态" loading="lazy"></a><figcaption></p>
+<p>调试区的一次回复对应画布上的运行路径；点击节点查看该次输入与输出。</figcaption></figure>
+<p>若改写仍收到原始材料，改正facts来源；若回复仍显示三行事实，改正answer来源。两种错误发生在不同位置。</p>
+<table>
+<thead>
+<tr>
+<th>当前输入</th>
+<th>应该取自哪里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>整理.material</td>
+<td>用户本轮对话内容</td>
+</tr>
+<tr>
+<td>改写.facts</td>
+<td>整理.Output.Content</td>
+</tr>
+<tr>
+<td>回复.answer</td>
+<td>改写.Output.Content</td>
+</tr>
+</tbody>
+</table>
+<p><b>参考：</b> <a href="https://yuanqi.tencent.com/guide/workflow-intro-overview">元器变量与连线说明</a>及<a href="https://yuanqi.tencent.com/guide/workflow-llm-node">大模型输出变量</a>。</p>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜让事实与语气各有分工</h2>
+        <p><b>课堂底料：</b> 运动背包：用了半年，拉链正常，左侧网袋有破口，附防雨罩。也可用自己的闲置物品材料。</p>
+<h3>操作①｜配置两步</h3>
+<p>复制或保留上一课流程副本，新增改写节点，按案例绑定三个输入。先让整理只生成事实三行，改写才负责自然介绍。</p>
+<h3>操作②｜改变语气而不改变事实</h3>
+<p>自己选“简洁直接”或“耐心说明”，只改改写节点的语气规则。试跑同一份材料，比较前后介绍；左侧网袋破口不能因为语气改变而消失。</p>
+<h3>操作③｜定位一条关键事实</h3>
+<p>在调试详情找到“网袋有破口”经过的两步：整理输出含它，改写输入也含它，最终介绍保留它。若丢失，只修对应节点。</p>
+<p><b>成果：一条两步协作流程和最终介绍。</b> 最后确认：每个模型职责不同；改写读的是事实清单；改变语气没有改变商品事实。</p>
+
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <p>拆节点是为了让动作和材料更清楚，不是节点越多越好。今天的关键是上一步Content成为下一步输入，回复读取最终改写结果。</p>
+<p><b>下节预告：</b> 用缺少信息、相互冲突和无关输入检查流程，学会让不合适的材料走另一条路径。</p>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

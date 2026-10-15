@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第25次课｜小流程改造项目制作工作台</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第25次课 · 10学时 · 小流程改造项目制作工作台</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson30.html" data-course-lesson="lesson30">← 上一课</a><a href="lesson32.html" data-course-lesson="lesson32">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第六章｜项目制作与答辩 · 第25次课 · 10学时（5次制作）</p>
+      <h1>小流程改造项目制作工作台</h1>
+      
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>前面几课练了任务识别、材料整理、追问、变量接力、测试和说明。现在用五次制作课，把这些方法用到同一个小组作品里。</p>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <p><b>大作业：改造一个校园或办公小流程。</b> 2—3人一组，制作期约2.5周。选择一个确实会用的需求，完成“材料输入→AI处理→可用结果”的流程。无代码工具或清楚可复现的分步AI操作均可；编程和自动化只作拓展。</p>
+<p><b>成果：</b> 一份项目包，包含流程图、提示词或操作步骤、样例输入输出、关键截图、测试记录和个人分工。完成主路径和一种实际相关的异常处理，准备现场演示。使用模拟或脱敏材料，不需要真实发布、发送通知或使用学生个人信息。</p>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜原流程与改造：说清改的是哪个动作</h3>
+<p>先说明原来怎样完成任务，再指出AI负责哪一段。没有时间测量就比较步骤和重复操作，不编造“效率提升百分比”。原流程可以是自己真实做过的资料整理或内容制作。</p>
+<p><b>例子：</b> 原来把五条商品咨询逐条归类再写回复；改造后先由AI分成规格、使用、售后三类，再根据给定规则生成回复草稿。</p>
+<h3>2｜最小可用作品：先让一条路径能用</h3>
+<p>最小可用作品能处理一份典型材料并产生用途明确的结果。先做到这一点，再增加异常分支或工具调用，不以接很多软件当作完成。</p>
+<p><b>例子：</b> 先让“商品咨询→分类→回复草稿”跑通，再加“问题不在资料范围内→提示补材料”。</p>
+<h3>3｜过程证据：留下能解释选择的材料</h3>
+<p>过程证据帮助说明成员做了什么、为什么修改。保留关键版本、一次测试差异和本人负责的步骤即可，不要求把每次点击都录下来。</p>
+<p><b>例子：</b> 展示原来把“发票问题”归错类的一次结果，再说明怎样改分类规则和重测。</p>
+<h3>4｜冻结与排练：稳定用来展示的版本</h3>
+<p>冻结是确定答辩使用的材料、规则与操作顺序。排练时按这个版本运行，确认每位成员都知道自己操作哪一步；临近展示不不断增加功能。</p>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>教师示范｜办公室商品咨询整理助手</h3>
+<p><b>课堂模拟底料：</b> 产品为桌面台灯，已知三档亮度、USB-C供电；规则只说明正常使用和配件，不提供保修条款或维修判断。</p>
+<div class="copy-block">
+      <pre id="lesson31-code-1"><code class="language-text">咨询1：这款有几档亮度？
+咨询2：接口是不是Type-C？
+咨询3：底座裂了还能继续用吗？
+咨询4：能开票吗？
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson31-code-1" type="button">复制代码</button>
+    </div><h3>操作①｜选清楚的输出</h3>
+<p>把“自动客服”缩为“咨询分类＋回复草稿”。分类使用“规格咨询、使用问题、资料不足”三种；回复只能使用给定资料。底座损坏不判断安全使用，发票问题缺规则就说明资料不足。</p>
+<figure class="lesson-figure"><a href="assets/img/e1f379b52fec5ba5.webp" title="点击查看大图"><img src="assets/img/e1f379b52fec5ba5.webp" alt="先输入四条台灯咨询和分类规则；已知规格与缺少的资料分开写。" loading="lazy"></a><figcaption></p>
+<p>先输入四条台灯咨询和分类规则；已知规格与缺少的资料分开写。</figcaption></figure>
+<h3>操作②｜用两步完成小作品</h3>
+<p>在元器沿用两模型接力，第一步整理问题类别，第二步根据资料写回复，最后由回复节点显示；也可以在豆包或千问分别执行两步，手动复制中间清单。下列提示词用于第一步，自己把给定问题粘贴进去。</p>
+<div class="copy-block">
+      <pre id="lesson31-code-2"><code class="language-text">将给定台灯咨询分类为规格咨询、使用问题、资料不足，输出“问题、类别、可用依据”。已知资料只有三档亮度、USB-C供电；没有发票、保修或维修判断资料。资料不足时不编造政策；损坏是否安全使用不从文字做结论。
+问题：【粘贴本页四条咨询】
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson31-code-2" type="button">复制代码</button>
+    </div><p>第二步读取这个清单，为每条写一句回复。<b>教学样例：</b> 亮度问题引用三档；接口问题统一为USB-C；损坏问题建议停止自行判断并联系正规售后；发票问题提示补充商家开票说明。</p>
+<figure class="lesson-figure"><a href="assets/img/44924aee0d592e14.webp" title="点击查看大图"><img src="assets/img/44924aee0d592e14.webp" alt="单节点调试面板先填入本次变量，再点击调试；这里的hospital是教程示例变量。" loading="lazy"></a><figcaption></p>
+<p>单节点调试面板先填入本次变量，再点击调试；这里的hospital是教程示例变量。</figcaption></figure>
+<h3>操作③｜展示项目包里最有用的三件东西</h3>
+<p>看流程图知道先分类后回复；看输入输出知道材料对应；看测试记录知道“资料不足”怎样处理。一次演示不用逐个翻完所有文件。</p>
+<figure class="lesson-figure"><a href="assets/img/1c71067761fd94d6.webp" title="点击查看大图"><img src="assets/img/1c71067761fd94d6.webp" alt="元器单节点调试结果" loading="lazy"></a><figcaption></p>
+<p>运行结果在节点详情里展开；演示时同时说明本次输入和该步骤输出。</figcaption></figure>
+<p><b>案例参考：</b> <a href="https://blog.csdn.net/xjszsd/article/details/143442209">快递100智能体原作者教程</a>与<a href="https://yuanqi.tencent.com/guide/workflow-llm-node">元器大模型节点</a>。本课取“小需求分工、材料决定回复”的方法，不复制业务接口与成绩数据。</p>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜五次制作课完成同一个作品</h2>
+        <h3>先选一个有用的小题目</h3>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>可做的题目</th>
+<th>主要结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>校园服务或活动</td>
+<td>实习常见问题整理；比赛通知转成报名要点；学习资料问答</td>
+<td>FAQ、要点卡或答复草稿</td>
+</tr>
+<tr>
+<td>办公室资料处理</td>
+<td>商品咨询归类；零散工作记录转周报；两版产品说明比较</td>
+<td>分类回复、周报或差异表</td>
+</tr>
+<tr>
+<td>社团内容运营</td>
+<td>自摄照片转图文草稿；一份素材转封面与分镜；旧内容改成另一平台表达</td>
+<td>图文或短视频内容草稿</td>
+</tr>
+</tbody>
+</table>
+<p>选题要有可取得的材料和能展示的结果。想不到题目时，可以做教师案例的另一种商品咨询，不必假装组织一场没人参与的活动。</p>
+<h3>制作①｜选题和分工</h3>
+<p>确定使用者、材料和主要结果。用一份材料做出原有手工版本，再写“哪一步准备交给AI”。每人负责一段实际操作，如材料整理、节点搭建、内容生成或测试与说明；两人组可合并职责。</p>
+<h3>制作②｜画流程，准备材料</h3>
+<p>画出输入→处理→结果，把每步用什么材料写在框旁。准备一条正常样例和一条与任务有关的异常样例：可能是缺关键输入、材料冲突或超出资料范围，不套人数地点检查。</p>
+<h3>制作③｜首次跑通</h3>
+<p>先完成主路径。用元器等国内无代码工具搭建，或按清楚的提示词分步操作。记录关键输入、输出和一两张能说明连线或操作状态的图，不把聊天接力说成自动化。</p>
+<h3>制作④｜测试并改一处有效问题</h3>
+<p>运行正常与异常样例。表格只保留输入、预期、实际与修改要点。有问题就修规则、材料或绑定，再跑正常路径；全部符合预期时，用一个不同写法的新材料看适用范围。</p>
+<h3>制作⑤｜固定作品，排练演示</h3>
+<p>固定项目材料与规则，整理一页使用说明。每位成员操作自己负责的一步，并能解释一次选择或修改。排练“展示用途→正常运行→异常处理→本人贡献”，不临时增加新系统。</p>
+<h3>项目包里保留什么</h3>
+<table>
+<thead>
+<tr>
+<th>材料</th>
+<th>要说明的事情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流程图与提示词/步骤</td>
+<td>每步怎么做、材料怎么传过去</td>
+</tr>
+<tr>
+<td>样例输入输出与关键截图</td>
+<td>正常路径实际产生什么、软件处于什么状态</td>
+</tr>
+<tr>
+<td>测试记录</td>
+<td>异常输入怎样处理、修过什么问题</td>
+</tr>
+<tr>
+<td>分工和使用说明</td>
+<td>每人负责什么、别人如何照此使用</td>
+</tr>
+</tbody>
+</table>
+<p><b>可复制的项目启动要求：</b></p>
+<div class="copy-block">
+      <pre id="lesson31-code-3"><code class="language-text">我们有2—3人，准备用约2.5周改造一条校园或办公小流程。
+选题：【写具体题目】
+使用者：【谁需要这个结果】
+现有材料：【粘贴一份模拟或脱敏材料】
+想要结果：【写清成果类型】
+请把项目缩到一条能现场演示的主路径，说明每步材料和动作，再给一个与本任务相关的异常样例。我们自己选择工具和分工；不要设计真实发送、付费或公开发布功能，不编造效率数据。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson31-code-3" type="button">复制代码</button>
+    </div>
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <p>完成一个小而可用的项目，比列很多未实现功能更重要。最终看主路径、异常处理和每位成员的实际贡献，五次制作围绕同一个作品持续完善。</p>
+<p><b>下节预告：</b> 两次答辩课展示正常与异常路径，并回答关于材料、操作和分工的问题。</p>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第19次课｜AI整理实习招聘信息：提取要求，筛选岗位</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第19次课 · 2学时 · AI整理实习招聘信息：提取要求，筛选岗位</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson24.html" data-course-lesson="lesson24">← 上一课</a><a href="lesson26.html" data-course-lesson="lesson26">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#task"><span class="nav-idx">01</span><span class="nav-label">任务预告</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#case"><span class="nav-idx">03</span><span class="nav-label">核心案例</span></a>
+        <a class="jump-nav-link" href="#practice"><span class="nav-idx">04</span><span class="nav-label">实践任务</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">第六章｜AIGC应用与实践 · 第19次课 · 2 学时</p>
+      <h1>AI整理实习招聘信息：提取要求，筛选岗位</h1>
+      
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>上一课把具体要求交给AI，制作了图片压缩工具。本课继续把要求说具体：让AI从招聘材料提取岗位条件，再结合自己的时间和技能筛选。</p>
+
+      </section>
+<section class="lesson-section" id="task">
+        <h2>01 任务预告</h2>
+        <p><b>本课成果：</b> 一份实习岗位候选清单，包含岗位条件、筛选结果和对应理由。</p>
+<p><b>完成标准：</b> 岗位信息与材料对应；必须要求和优先条件分开；筛选理由引用自己的条件与岗位原文，不用一个不明来源的匹配分数代替解释。</p>
+<p><b>使用场景：</b> 同时看到几条实习招聘，工作地点、到岗天数和技能要求各不相同。先让AI整理成表，再看哪些值得进一步了解，避免只盯岗位名称和薪酬。</p>
+
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜信息提取：把招聘长文变成固定栏目</h3>
+<p>信息提取是从原材料找出指定内容，例如岗位、城市、到岗天数和技能要求。AI不需要重新写招聘广告，而是把不同写法放到相同栏目，方便比较。截图与文字都可以作为输入，缺少的信息保留“未提供”。</p>
+<p><b>本课例子：</b> “每周至少三天，连续三个月”整理成“每周至少3天、至少3个月”；材料没写是否接受远程，就不能把它填成可远程。</p>
+<p>薪酬的计价方式也要保留。“120元/天”和“3000—4000元/月”不能在未知出勤天数时直接换算排名；“本科及以上”也不能改写成专科可投。</p>
+<h3>2｜必须要求与优先条件：对筛选的作用不同</h3>
+<p>必须要求是材料明确要求具备的条件，如学历、到岗时间和必需技能。优先条件是加分项，未具备时不能直接判定为不符合。AI需要保留“必须、至少、优先”等词的区别。</p>
+<p><b>本课例子：</b> “熟悉Excel；会剪映优先”，意味着Excel是岗位要求，剪映是加分项。不会剪映不等于这一岗位不能考虑。材料只写“掌握办公软件”时，也不能自动扩成必须会编程。</p>
+<h3>3｜条件匹配：用自己的情况与岗位逐项对应</h3>
+<p>条件匹配是把自己的可工作地点、每周空闲天数、实习时长和已有技能，与岗位要求对应起来。先处理明确不符合的条件，再看技能和优先项；存在关键缺项时保留“信息不足”，不让AI补一个假设替你决定。</p>
+<p><b>本课例子：</b> 只能在成都、每周可到岗4天，就不符合杭州线下每周5天的岗位。一个成都岗位没写到岗天数，还不能判断时间是否匹配。</p>
+<p>筛选清单只帮助决定下一步了解哪些岗位，不代表招聘仍有效、能通过面试或一定被录用。</p>
+
+      </section>
+<section class="lesson-section" id="case">
+        <h2>03 核心案例</h2>
+        <h3>教师示范｜先看条件，再筛选实习岗位</h3>
+<p><b>软件与材料：</b> <a href="https://www.doubao.com/chat/">豆包网页版</a>，三条课堂模拟招聘和一份模拟个人条件。示范不投递、不联系招聘方；材料没有真实企业与联系人。</p>
+<h3>操作①｜给出材料，提取两张短表</h3>
+<p>打开豆包进入新对话，粘贴下方内容并发送。第一张表看时间、地点和薪酬，第二张表看要求与工作；不把所有内容挤进一张很宽的表。</p>
+<div class="copy-block">
+      <pre id="lesson25-code-1"><code class="language-text">以下都是课堂模拟岗位，不是真实招聘。请提取为两张短表：表1为岗位、城市、每周到岗天数、最少实习时长、薪酬；表2为岗位、必须要求、优先条件、工作内容。
+保留元/天与元/月，不换算。没有写明的填未提供，不把优先条件改为必须要求，不联网补信息。
+A 电商运营实习：成都，每周至少3天，至少3个月，120元/天。专科及以上，熟悉Excel基础操作；会剪映优先。工作：整理商品资料、更新图文。
+B 短视频剪辑实习：杭州，每周5天，至少2个月，3000—4000元/月。本科及以上，能独立完成剪映剪辑；有作品优先。工作：剪辑短视频、制作封面。
+C 客服实习：成都，每周4天，至少3个月，薪酬未写。大专及以上，文字表达清楚；有客服经历优先。工作：整理咨询问题、回复常见问题。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson25-code-1" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/8cf4d8dcf8e1fa3a.webp" title="点击查看大图"><img src="assets/img/8cf4d8dcf8e1fa3a.webp" alt="招聘材料与固定栏目一起输入，要求把必须条件和优先项分开。" loading="lazy"></a><figcaption></p>
+<p>招聘材料与固定栏目一起输入，要求把必须条件和优先项分开。</figcaption></figure>
+<h3>操作②｜观察哪些信息被保留</h3>
+<figure class="lesson-figure"><a href="assets/img/54c7b02189725f9a.webp" title="点击查看大图"><img src="assets/img/54c7b02189725f9a.webp" alt="到岗天数与时长分列，按天和按月的薪酬保留原计价方式。" loading="lazy"></a><figcaption></p>
+<p>到岗天数与时长分列，按天和按月的薪酬保留原计价方式。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/1e78912e5989c092.webp" title="点击查看大图"><img src="assets/img/1e78912e5989c092.webp" alt="要求表把Excel基础与剪映优先分开，客服经历仍是优先项。" loading="lazy"></a><figcaption></p>
+<p>要求表把Excel基础与剪映优先分开，客服经历仍是优先项。</figcaption></figure>
+<p>在要求表里看A的“会剪映优先”，它应出现在优先条件中。B的“本科及以上”和独立剪辑能力仍是必须要求；C没写薪酬，保留未提供。这些差别会影响下一步筛选。</p>
+<h3>操作③｜补自己的条件，让AI给出有依据的筛选</h3>
+<p>留在原对话，继续发送模拟个人条件。不需要姓名、电话、身份证号或完整简历。</p>
+<div class="copy-block">
+      <pre id="lesson25-code-2"><code class="language-text">按刚才的招聘材料筛选。我的条件：高职电子商务专业在读，只考虑成都；每周能到岗4天，能连续实习3个月；会Excel基础操作，能用剪映做简单剪辑，文字表达清楚；没有客服实习经历。
+输出岗位、筛选结果、具体依据三列。结果只用“值得进一步了解”“已知条件不符”“信息不足”。
+城市、学历、到岗天数和时长明确不符时指出对应条件；优先条件没满足不要直接淘汰；没有写明的条件不替招聘方补齐。
+只依据已给材料，不给录用概率或匹配百分比，不代我投递。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson25-code-2" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/60b2094a489bc880.webp" title="点击查看大图"><img src="assets/img/60b2094a489bc880.webp" alt="筛选表将杭州岗位列为已知条件不符，理由指出它在杭州，与只考虑成都不符。" loading="lazy"></a><figcaption></p>
+<p>筛选表将杭州岗位列为已知条件不符，理由指出它在杭州，与只考虑成都不符。</figcaption></figure>
+<p>A和C可以进一步了解，不意味着已经获得实习机会。C没有客服经历仍可考虑，因为原文写的是优先；薪酬未写就继续保留未知。</p>
+<p>如果AI把“有客服经历优先”改成必须，指出这一处：“C的客服经历是优先项，请保留这个区别，重新给出筛选理由。”结果正确就继续使用，不额外制造一轮纠错。</p>
+<p><b>方法参考：</b> <a href="https://yuanqi.tencent.com/guide/workflow-parameter-extraction-node">腾讯元器参数提取说明</a>强调先定义要提取的信息及其含义。本课把这个方法用于招聘材料，不在本课配置节点或自动投递。</p>
+
+      </section>
+<section class="lesson-section" id="practice">
+        <h2>04 实践任务｜筛出值得进一步了解的实习岗位</h2>
+        <p><b>软件与材料：</b> 豆包。选3条与自己专业有关的实习招聘，保留岗位名称、地点、工作内容及要求；可以用招聘页面截图或复制文字，也可以选用下方真实JD截图。截图裁掉账号、聊天记录和个人联系方式；只做材料分析，不在课堂投递。</p>
+<h3>真实JD素材｜从招聘原文提取条件</h3>
+<p>JD就是岗位说明，通常包含工作内容和任职要求。每组图中，上图看地点、学历、薪酬与到岗条件，下图看技能要求；上传时把同一岗位的两张图一起添加，标为岗位1、2或3。也可以打开来源页，复制工作内容与要求。</p>
+<p><b>岗位1｜杭州智昇人工智能 · 内容运营实习生</b><br>
+<a href="https://www.shixiseng.com/intern/inn_pw5k62aglzns">打开实习僧原始JD</a>。页面列出大专、杭州、每周5天、实习6个月；观察“文字表达、基础设计能力”与“内容创作经验优先”的区别。</p>
+<figure class="lesson-figure"><a href="assets/img/5b2b33bd3abf0cba.webp" title="点击查看大图"><img src="assets/img/5b2b33bd3abf0cba.webp" alt="内容运营岗位的学历、地点、到岗天数和实习时长分列显示。" loading="lazy"></a><figcaption></p>
+<p>内容运营岗位的学历、地点、到岗天数和实习时长分列显示。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/322e522c452694f7.webp" title="点击查看大图"><img src="assets/img/322e522c452694f7.webp" alt="任职要求列出文字表达和设计能力，内容创作经验标为优先，AI辅助内容生产列为加分项。" loading="lazy"></a><figcaption></p>
+<p>任职要求列出文字表达和设计能力，内容创作经验标为优先，AI辅助内容生产列为加分项。</figcaption></figure>
+<p><b>岗位2｜NIO蔚来 · 社交媒体剪辑实习生</b><br>
+<a href="https://www.shixiseng.com/intern/inn_aeurb7f1cz9c">打开实习僧原始JD</a>。这是已下线的历史招聘材料。注意“本科及以上”是学历门槛；剪辑软件列举了多种，要求会其中至少一款，并不是每款都要会。</p>
+<figure class="lesson-figure"><a href="assets/img/42676e321ecc6708.webp" title="点击查看大图"><img src="assets/img/42676e321ecc6708.webp" alt="剪辑岗位标明上海、本科、每周4天和实习3个月，页面显示职位已下线。" loading="lazy"></a><figcaption></p>
+<p>剪辑岗位标明上海、本科、每周4天和实习3个月，页面显示职位已下线。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/157c0889802e54d1.webp" title="点击查看大图"><img src="assets/img/157c0889802e54d1.webp" alt="剪辑软件至少会一款，作品集或自己的社媒账号是优先条件。" loading="lazy"></a><figcaption></p>
+<p>剪辑软件至少会一款，作品集或自己的社媒账号是优先条件。</figcaption></figure>
+<p><b>岗位3｜合肥美的电冰箱有限公司 · 电商客服专员（2026届实习生）</b><br>
+<a href="https://www.ncss.cn/student/jobs/8rCg1oeKjXX48A6QzFx7At/detail.html">打开国家大学生就业服务平台原始JD</a>。这是已下线的历史招聘材料。页面写明先实习、毕业后可正式聘用；标题有“实习生”，岗位类型仍标为全职，不能自动理解为课余兼职。</p>
+<figure class="lesson-figure"><a href="assets/img/d9ad34cc0a387748.webp" title="点击查看大图"><img src="assets/img/d9ad34cc0a387748.webp" alt="客服岗位显示专科及以上、合肥、全职和职位已下线，右侧为招聘企业名称。" loading="lazy"></a><figcaption></p>
+<p>客服岗位显示专科及以上、合肥、全职和职位已下线，右侧为招聘企业名称。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/img/5c72a864cdc86ad1.webp" title="点击查看大图"><img src="assets/img/5c72a864cdc86ad1.webp" alt="客服原文列出打字速度要求、客服经验优先、班次安排，以及底薪和补贴的不同组成。" loading="lazy"></a><figcaption></p>
+<p>客服原文列出打字速度要求、客服经验优先、班次安排，以及底薪和补贴的不同组成。</figcaption></figure>
+<p>三组图是2026年10月11日读取的招聘页面，不表示岗位现在仍能投递。图片没有写每周天数或最少时长时，保留“未提供”；工资区间与底薪不是同一栏目，不合并成一个固定收入。</p>
+<p>没有自己的招聘材料时，也可用下方课堂模拟岗位。它们不是在招职位。</p>
+<div class="copy-block">
+      <pre id="lesson25-code-3"><code class="language-text">P 软件测试实习：西安，每周至少3天，至少2个月，100元/天。大专及以上，能写清操作步骤、会使用Excel；会Python优先。工作：按测试步骤操作网页、记录问题。
+Q 前端开发实习：西安，每周5天，至少3个月，150元/天。本科及以上，掌握JavaScript、能独立制作网页；有项目作品优先。工作：修改页面功能与布局。
+R IT支持实习：西安，到岗天数和最少时长未写，薪酬面议。大专及以上，能安装常用软件并清楚描述电脑问题；有相关实习经历优先。工作：整理故障记录、协助处理常见问题。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson25-code-3" type="button">复制代码</button>
+    </div><h3>操作①｜带入材料，先提取岗位信息</h3>
+<p>在豆包新建对话。文字直接粘贴；图片点击输入区的添加按钮选择图片，出现缩略图后再发送要求。图片上传不可用时，复制招聘页面的岗位文字完成同样任务。</p>
+<div class="copy-block">
+      <pre id="lesson25-code-4"><code class="language-text">整理我提供的实习招聘，只提取原材料信息，不联网补充。
+输出两张短表：
+1. 岗位、城市、每周到岗天数、最少实习时长、薪酬。
+2. 岗位、必须要求、优先条件、工作内容。
+保留“至少”“优先”等限定词；按天与按月的薪酬不换算；缺项写未提供，图片看不清的写看不清。
+材料：【粘贴自己的招聘文字、本页模拟底料，或写使用刚上传的图片】
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson25-code-4" type="button">复制代码</button>
+    </div><p>图片某处看不清时，补一张该处局部图或一句原文，不必重传全部材料。截图包含多个岗位时，给每条编号，避免不同岗位的信息串行。</p>
+<h3>操作②｜用自己的条件筛选</h3>
+<p>把下方四处换成自己的情况；只写已有能力，不把“想学”写成“已经熟练”。使用模拟底料时，可采用“高职软件技术专业、西安、每周4天/2个月、会Excel和安装常用软件、暂不会Python和独立网页开发”作为模拟个人条件。</p>
+<div class="copy-block">
+      <pre id="lesson25-code-5"><code class="language-text">基于刚才的岗位表筛选。
+我的学历与专业：【填写】；可工作城市：【填写】；每周可到岗天数与连续时长：【填写】；已有技能与经验：【填写】。
+输出岗位、筛选结果、具体依据三列。只用值得进一步了解、已知条件不符、信息不足三类；每条理由引用岗位要求与我的条件。
+必须条件明确不符就指出；优先条件没满足不直接淘汰；缺少关键时间或技能条件时说明无法判断哪项。不编造个人经历，不给录用概率或匹配百分比，不自动投递。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson25-code-5" type="button">复制代码</button>
+    </div><h3>操作③｜自己改一个条件，观察筛选怎样变化</h3>
+<p>选一个确实影响自己的条件调整，例如每周从4天改为5天、只考虑本地改为接受另一城市，或补充自己已经掌握的一项技能。条件暂时不变也可补一条新的招聘材料。</p>
+<div class="copy-block">
+      <pre id="lesson25-code-6"><code class="language-text">更新条件：【写清变化，或补充一条新招聘】。
+沿用原招聘材料和三类结果，重新筛选；只列变化的岗位、原结果、新结果、改变依据。
+若结果没有改变，说明仍是哪一条必须要求或缺项影响判断。不要为了表现变化而把岗位改成符合。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson25-code-6" type="button">复制代码</button>
+    </div><p>如果每周天数增加了，但本科要求仍不符合，结果可以不变；这正说明AI需要同时考虑条件，而不是只看最近一句话。</p>
+<p><b>最后集中看三项：</b> 信息对应各自岗位；必须与优先没有混淆；结果及变化有材料依据。最终成果是一份岗位候选清单，包含筛选结果、理由和一次条件调整后的变化。</p>
+
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <p>先提取岗位条件，再与自己的时间、地点和技能对应。AI帮助整理与解释，材料未知的内容仍保持未知。</p>
+<table>
+<thead>
+<tr>
+<th>成果自查</th>
+<th>看哪里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信息提取正确</td>
+<td>城市、到岗、要求属于同一岗位，计价方式保留</td>
+</tr>
+<tr>
+<td>条件作用正确</td>
+<td>必须与优先分开，缺项不被当作满足</td>
+</tr>
+<tr>
+<td>筛选能解释</td>
+<td>理由引用材料，调整后能说明为何变或不变</td>
+</tr>
+</tbody>
+</table>
+<p><b>下节预告：</b> 当用途没有说清时，让AI只问真正影响结果的问题，再画出处理流程。</p>
+
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
+</script></body></html>
