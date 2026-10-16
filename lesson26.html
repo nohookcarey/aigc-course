@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第20次课｜需求追问与流程草图：先问缺口再生成</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第20次课｜AI制作简历：针对岗位定制简历</title><link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
 <style id="site-presentation-style">
 .site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
 .site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
@@ -12,7 +12,7 @@
 @media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
 @media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
 @media print{.site-course-bar{display:none!important}}
-</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第20次课 · 2学时 · 需求追问与流程草图：先问缺口再生成</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson25.html" data-course-lesson="lesson25">← 上一课</a><a href="lesson27.html" data-course-lesson="lesson27">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第20次课 · 2学时 · AI制作简历：针对岗位定制简历</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson25.html" data-course-lesson="lesson25">← 上一课</a><a href="lesson27.html" data-course-lesson="lesson27">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
     <div class="jump-nav-header">
       <span class="jump-nav-title">📑 本课导读</span>
       <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
@@ -37,79 +37,190 @@
   <main class="page-shell" id="top">
     <header class="hero">
       <p class="eyebrow">第六章｜AIGC应用与实践 · 第20次课 · 2 学时</p>
-      <h1>需求追问与流程草图：先问缺口再生成</h1>
+      <h1>AI制作简历：针对岗位定制简历</h1>
       
     </header>
     <section class="lesson-section" id="review">
         <h2>00 知识回顾</h2>
-        <p>上一课把材料放进固定栏目，保留未知信息。本课区分“可以先做”和“必须先问”的条件，让追问真正帮助完成任务。</p>
+        <p>上一课我们学习了用 AI 从招聘长文中提取岗位要素表，并用个人条件完成了岗位匹配初筛。本课继续深化：筛选出心仪的目标岗位后，切忌用同一份粗糙的通用简历海投所有单位。本课学习如何让 AI 针对目标岗位的具体要求表，量身定制出重点突出、逻辑严密的专属求职简历。</p>
 
       </section>
 <section class="lesson-section" id="task">
         <h2>01 任务预告</h2>
-        <p><b>本课成果：</b> 一份有用途和风格要求的短文，以及一张“先问什么、再怎么生成”的流程草图。追问最多聚焦两个会改变结果的问题，不盘问无关信息。</p>
+        <p><b>本课成果：</b> 针对两个不同目标岗位分别定制的 2 份差异化实习简历草案（如：一份面向电商运营，一份面向视频剪辑或电商客服）。</p>
+<p><b>完成标准：</b></p>
+<ol>
+<li>个人基本经历真实客观，零虚构、零失真；</li>
+<li>依据目标岗位的能力要求表，调整技能排布顺序与经历描述侧重；</li>
+<li>运用 STAR 原则（情境-任务-行动-结果）重塑校园与实训经历，量化具体动作；</li>
+<li>识别并剔除 AI 常见的浮夸用词（如“全面操盘”“精通全栈”等），语言务实克制。</li>
+</ol>
+<p><b>使用场景：</b> 高职毕业生在求职或寻找顶岗实习时，往往在校经历有限。面对不同岗位的招聘偏好（有的看重 Excel 严谨，有的看重视频创作），通过 AI 快速提炼同一经历的不同侧重点，成倍提高 HR 的简历初筛通过率。</p>
 
       </section>
 <section class="lesson-section" id="concepts">
         <h2>02 基础概念</h2>
-        <h3>1｜需求澄清：补的是影响成果的条件</h3>
-<p>需求澄清是把模糊愿望变成可执行要求。并非每个空白都要追问，只有会明显改变输出的信息才重要。写商品分享文时，用于介绍还是比较、想用什么语气，都会改变写法；人数和场地通常不相关。</p>
-<p><b>例子：</b> “帮我写个奶茶文案”先问用途与语气，比询问班级人数更能帮助生成。</p>
-<h3>2｜必选与可选：缺少时处理不同</h3>
-<p>必选条件不清楚时，先问清再生成；可选信息没有时，可以使用已经说明的默认方案。默认值要让使用者看得见，不能偷偷假设商品功效或用户体验。</p>
-<p><b>例子：</b> 用途必选；没有字数要求时按一段短文写。没有真实喝过，就只介绍外观，不写“我喝过后觉得”。</p>
-<h3>3｜条件分支：不同情况走不同路径</h3>
-<p>分支就是按条件选择下一步。“用途不清→追问”，“用途明确→生成”是两条路径。聊天中的追问可以验证设计思路，画布上的条件和连线则把这个选择固定下来。</p>
-<p><b>例子：</b> 介绍饮品时生成一段短文；想比较两款时生成对照表，不同时输出两种无关成果。</p>
+        <h3>1｜通用简历 vs 岗位定制简历：从经历台账到岗位答卷</h3>
+<p>通用简历是“个人经历台账”，习惯把所有在校课程、社团活动平铺直叙地列出，导致 HR 无法在 10 秒内找到匹配点。
+岗位定制简历是“拿着岗位要素表答题”：</p>
+<ul>
+<li>将目标岗位最看重的必须技能与优先加分项，优先排在技能栏最显眼位置；</li>
+<li>把与目标岗位直接相关的实训经历详细展开，弱化无关琐事。</li>
+</ul>
+<h3>2｜经历重塑与真实性底线：从不同业务视角展现同一事实</h3>
+<ul>
+<li><b>不可逾越的底线：</b> 没考过的证书、没学过的软件、没做过的实习，坚决不捏造。虚构履历在面试提问时极易被识破，属于严重的求职失信。</li>
+<li><b>正当合理的重塑：</b> 同一段在校经历可以从不同的业务视角展现价值。例如完成过一次“校园短视频带货实训”：
+<ul>
+<li><b>投递【电商运营岗】时</b>：重点强调“整理 20 款商品资料表、撰写卖点文案、统计互动数据”；</li>
+<li><b>投递【视频剪辑岗】时</b>：重点强调“使用剪映完成 3 条 15 秒成片剪辑、设计分镜与字幕特效”。</li>
+</ul>
+</li>
+</ul>
+<h3>3｜STAR 法则：让实训经历由空洞口号变为可量化事实</h3>
+<p>避免使用“工作认真负责”“具备良好沟通能力”等主观套话，采用 STAR 四要素量化事实：</p>
+<ul>
+<li><b>S（情境 Situation）</b>：明确背景（如：大二课程实训、班级志愿活动）；</li>
+<li><b>T（任务 Task）</b>：你具体负责哪一部分工作；</li>
+<li><b>A（行动 Action）</b>：使用了什么工具或方法，执行了哪些动作；</li>
+<li><b>R（结果 Result）</b>：最终产出成果是什么（如：交付 5 份规范表格、剪辑 3 条成片，无差错）。</li>
+</ul>
 
       </section>
 <section class="lesson-section" id="case">
         <h2>03 核心案例</h2>
-        <h3>教师示范｜把“写个奶茶文案”问清楚</h3>
-<p><b>课堂模拟材料：</b> 图片描述：透明杯、浅紫奶茶、底部芋泥；已有文字：“芋泥奶茶，想发一段介绍”。没有饮用体验、价格或品牌。</p>
-<h3>操作①｜在新对话先设追问规则</h3>
-<p>在豆包或千问发送下面的要求。教师先故意不填用途，看AI是否只问相关问题。</p>
+        <h3>教师示范｜针对目标岗位定制一份高质量实习简历</h3>
+<p><b>软件与材料：</b> <a href="https://www.doubao.com/chat/">豆包网页版</a>。</p>
+<ul>
+<li><b>目标岗位</b>：采用第 19 课提取好的【岗位A：电商运营实习生】（成都，专科及以上，熟悉 Excel 基础操作，会剪映优先；负责商品资料与图文更新）。</li>
+<li><b>个人原始底料</b>：大专在读学生一段真实但零散的原始材料（李华，电子商务大专在读，做过生活委员，参加过校园创客集市摆摊记账，会用 Excel 做基础表格，用剪映剪过手机生活视频）。</li>
+</ul>
+<h3>操作①｜输入岗位要求与个人原始底料</h3>
+<p>在新对话中输入定制提示词，明确约束真实性底线与输出结构：</p>
 <div class="copy-block">
-      <pre id="lesson26-code-1"><code class="language-text">请帮我写芋泥奶茶内容。先问用途和语气这两个问题，等我回答后再写。不要询问人数、地点或联系人。
-已有材料：透明杯、浅紫奶茶、底部芋泥；没有真实饮用体验、价格或品牌。只能据此描述外观，不写口味体验或功效。
+      <pre id="lesson26-code-1"><code class="language-text">请为我定制一份面向【电商运营实习生】的求职简历。
+【目标岗位要求】：
+- 岗位名称：电商运营实习生（成都）
+- 必须要求：专科及以上学历，熟悉 Excel 基础操作，负责商品资料与图文更新；
+- 优先条件：会使用剪映进行视频图文剪辑优先。
+【我的真实在校经历】：
+李华，电子商务大专在读；考过计算机一级，会用 Excel 做表格，会用剪映剪手机视频；在大二参加过校园创客集市活动，协助摆摊和记账；担任过班级生活委员。没有任何全职经验。
+【定制要求】：
+1. 严格以李华的真实事实为限，禁止凭空添加大厂经历或编造几万元销售额；
+2. 针对目标岗位的必须项（Excel/资料整理）与优先项（剪映），按 STAR 原则重构在校实训经历；
+3. 输出标准单页简历格式：基本信息、求职意向、核心技能、实训项目经历、在校职务。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson26-code-1" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/img/b814d267226946a8.webp" title="点击查看大图"><img src="assets/img/b814d267226946a8.webp" alt="先给饮品外观材料，要求收到用途和语气后再生成。" loading="lazy"></a><figcaption></p>
-<p>先给饮品外观材料，要求收到用途和语气后再生成。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/img/64921a1016acf41d.webp" title="点击查看大图"><img src="assets/img/64921a1016acf41d.webp" alt="AI先询问用途和语气，此时还没有生成介绍。" loading="lazy"></a><figcaption></p>
-<p>AI先询问用途和语气，此时还没有生成介绍。</figcaption></figure>
-<h3>操作②｜回答后让结果有变化</h3>
-<p>回复：“做一段日常图文介绍，语气自然，短一点。”观察结果是否变成简短的外观介绍。再换成“给朋友比较两款饮品”，AI应询问另一款的材料，而不是凭空补一个品牌。</p>
-<p><b>教学样例：</b> “透明杯里是浅紫色奶茶，底部芋泥层很明显。拍摄时让杯子靠近自然光，紫色层次更容易看清。”这段只说明已有画面，不假装喝过。</p>
-<figure class="lesson-figure"><a href="assets/img/7aa342f560091700.webp" title="点击查看大图"><img src="assets/img/7aa342f560091700.webp" alt="回答日常图文介绍、自然语气后，得到只描述杯型、颜色和芋泥层的短文。" loading="lazy"></a><figcaption></p>
-<p>回答日常图文介绍、自然语气后，得到只描述杯型、颜色和芋泥层的短文。</figcaption></figure>
-<h3>操作③｜把追问画成草图</h3>
-<p>在纸上或画图工具画四个框，用箭头连接：<b>输入材料→用途是否明确→不明确时问用途 / 明确时生成→查看成果</b>。补齐用途后回到生成步骤，不重新问已经回答的问题。</p>
-<figure class="lesson-figure"><a href="assets/img/3ddc0926e7a5e08d.webp" title="点击查看大图"><img src="assets/img/3ddc0926e7a5e08d.webp" alt="元器条件判断配置" loading="lazy"></a><figcaption></p>
-<p>每个条件选择要比较的值；不符合已设条件时走else路径。每条路径都要接到后续节点。</figcaption></figure>
-<p><b>参考：</b> <a href="https://yuanqi.tencent.com/guide/workflow-condition-judgment-node">元器条件判断节点</a>与<a href="https://yuanqi.tencent.com/guide/workflow-parameter-extraction-node">参数提取节点</a>。本例先用对话演示追问；真正的参数收集会在后续画布练习中配置。</p>
+    </div><figure class="lesson-figure"><a href="assets/img/83daa35c52e06ecc.webp" title="点击查看大图"><img src="assets/img/83daa35c52e06ecc.webp" alt="输入目标岗位要素与个人原始在校底料，明确真实性底线。" loading="lazy"></a><figcaption></p>
+<p>输入目标岗位要素与个人原始在校底料，明确真实性底线。</figcaption></figure>
+<h3>操作②｜观察针对性重组效果</h3>
+<p>观察 AI 输出的初稿，重点查看是否完成针对性匹配：</p>
+<figure class="lesson-figure"><a href="assets/img/7b0f2ac5c8828c16.webp" title="点击查看大图"><img src="assets/img/7b0f2ac5c8828c16.webp" alt="生成的初稿中技能前置排序，实训项目按STAR原则展开。" loading="lazy"></a><figcaption></p>
+<p>生成的初稿中技能前置排序，实训项目按STAR原则展开。</figcaption></figure>
+<ul>
+<li><b>技能前置排序</b>：将“Excel 数据录入与汇总”列在技能第一位，将“剪映短视频剪辑”列在第二位，完全对应岗位的必须项与加分项。</li>
+<li><b>经历规范重塑</b>：将松散的摆摊经历包装为“校园创客集市商品运营模拟实训”，并用 STAR 法则量化（“使用 Excel 制作全品类商品台账表，实现库存一表通查；结合商品卖点，使用剪映制作 2 条 15 秒展示视频”）。</li>
+</ul>
+<h3>操作③｜识别 AI 虚构夸大并实施精准去油腻</h3>
+<p>AI 往往习惯过度美化经历，将学生摆摊擅自写成“独立主导全盘营销，实现销售额数万元”，这必须予以纠正：</p>
+<div class="copy-block">
+      <pre id="lesson26-code-2"><code class="language-text">刚才生成的初稿中，把校园集市活动写成了“独立主导全盘营销，实现销售额数万元”，这属于典型 AI 虚构夸大，面试极易翻车。
+请做以下精准修正：
+1. 将“主导全盘营销”改为“担任小组成员，负责 40 款商品信息录入与每日账目核对”；
+2. 删除虚构的“数万元营业额”，用“账实相符零差错、准时完成商品建档”等真实可验证动作代替；
+3. 全文语气保持务实、诚恳、求知。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson26-code-2" type="button">复制代码</button>
+    </div><figure class="lesson-figure"><a href="assets/img/406a5da146208bb9.webp" title="点击查看大图"><img src="assets/img/406a5da146208bb9.webp" alt="针对AI虚构的数万元销售额等夸大词句，发送精准指令去油腻。" loading="lazy"></a><figcaption></p>
+<p>针对AI虚构的数万元销售额等夸大词句，发送精准指令去油腻。</figcaption></figure>
+<p>修正后的简历去除了所有浮夸造假词汇，强化了“踏实细致、熟练掌握基础工具、按时交付任务”的高职实用能力。</p>
 
       </section>
 <section class="lesson-section" id="practice">
-        <h2>04 实践任务｜为自己的照片或物品先问再写</h2>
-        <p><b>底料可选：</b> 台灯：白色、三档亮度、底座擦痕；饮品：透明杯、浅绿色茶汤、两片柠檬；日常照片：窗边桌面、一本书、一杯水。也可用自己的同类图片。</p>
-<h3>操作①｜不一次给完所有条件</h3>
-<p>在新对话选一份材料，发送：“我要为这份材料写内容，请先问用途和语气，等我回答再生成。”附上材料。不要让AI凭照片添加真实体验。</p>
-<h3>操作②｜自己选方向</h3>
-<p>回答用途与语气：比如“闲置商品介绍，坦诚自然”或“照片图文配文，平静简洁”。得到草稿后，修改一个不符合用途的句子，让AI按新要求再写。</p>
-<h3>操作③｜画出自己的分支</h3>
-<p>把本次真实问答画成流程：输入→需要问的条件→回答→生成。旁边写一句“若没有回答，先停在哪一步”。只保留与本次内容有关的问题。</p>
-<p><b>最后看：</b> 追问影响了写法；结果没有虚构体验；草图能对应刚才的问答。<b>成果：一段短文和一张流程草图。</b></p>
+        <h2>04 实践任务｜根据不同岗位表创建多份简历</h2>
+        <p><b>软件与材料：</b> 豆包。从下方 3 组真实岗位要素表中<b>任选 2 组</b>，使用同一份个人经历底料，创建 2 份侧重点截然不同的定制简历。</p>
+<h3>目标岗位要素库（任选其二）</h3>
+<ul>
+<li><b>岗位 1【内容运营实习生】</b>：大专及以上，文字表达清晰，具备基础图文设计能力；有内容创作经验、会使用 AI 工具辅助创作者优先。</li>
+<li><b>岗位 2【社交媒体剪辑实习生】</b>：熟练掌握剪映等至少一款剪辑软件，掌握字幕特效与节奏感；有作品集或自媒体运营账号者优先。</li>
+<li><b>岗位 3【电商客服专员】</b>：大专及以上，打字速度稳定（≥50字/分），文字沟通耐心清晰；有客服经历或班级协调沟通经历者优先。</li>
+</ul>
+<p>没有准备个人底料的同学，可直接选用下方标准个人底料：</p>
+<div class="copy-block">
+      <pre id="lesson26-code-3"><code class="language-text">【在校生标准底料】：
+专业：高职大专在读（软件技术 / 数字媒体 / 电子商务 / 运营管理专业均可套用）。
+课程实训：完成过《AIGC应用与实践》课程大作业（含图片批量压缩工具制作、岗位信息提取与筛选）；完成过一次综合实操大作业。
+在校职务：担任过班干部（或社团干事），负责过活动签到、通知发布与物资登记。
+日常技能：熟练使用 Word/Excel 处理文档与表格；会用剪映剪辑手机视频；能用 AI 辅助文字润色。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson26-code-3" type="button">复制代码</button>
+    </div><h3>操作①｜面向岗位 1（如内容运营）生成简历 A</h3>
+<p>在豆包输入下方指令，带入选定的第 1 个岗位要素，重点突出文案、排版、图文整理的经历：</p>
+<div class="copy-block">
+      <pre id="lesson26-code-4"><code class="language-text">请根据我的在校底料，为我定制一份面向【内容运营实习生】的针对性简历：
+【目标岗位】：内容运营实习生（要求大专学历、文字表达好、基础设计；有内容创作经验与AI工具使用经验优先）。
+【我的真实底料】：【粘贴个人实际底料，或使用本页在校生标准底料】
+【要求】：
+1. 坚守真实底线，不得无中生有；
+2. 技能栏优先置顶“文字表达”“图文排版”与“AI辅助工具使用”；
+3. 实训经历中重点突出课件制作实训与文档发布经验，运用 STAR 法则展开。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson26-code-4" type="button">复制代码</button>
+    </div><h3>操作②｜面向岗位 2 或 3（如剪辑/客服）生成简历 B</h3>
+<p>在同一对话中，要求 AI 基于完全相同的底料，转向第 2 个岗位重新组织：</p>
+<div class="copy-block">
+      <pre id="lesson26-code-5"><code class="language-text">现在我要改投【社交媒体剪辑实习生】（或电商客服专员）。
+请基于完全相同的个人底料，为我定制一份专属简历 B：
+【目标岗位】：社交媒体剪辑实习生（要求熟练操作剪映，掌握分镜与字幕特效；有视频作品集优先）。
+【要求】：
+1. 技能栏置顶“剪映剪辑能力”“镜头节奏”，弱化纯文字编辑；
+2. 实训经历中重点突出短视频剪辑作业、分镜构思与成片播放数据；
+3. 输出与简历 A 格式一致的单页简历。
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson26-code-5" type="button">复制代码</button>
+    </div><h3>操作③｜双份简历横向对比与核验</h3>
+<p>对比生成的简历 A 与简历 B，检查两者是否展现出鲜明的业务差异：</p>
+<figure class="lesson-figure"><a href="assets/img/e97535b55d9da483.webp" title="点击查看大图"><img src="assets/img/e97535b55d9da483.webp" alt="同一份个人底料分别面向运营与剪辑岗位，经历侧重点截然不同。" loading="lazy"></a><figcaption></p>
+<p>同一份个人底料分别面向运营与剪辑岗位，经历侧重点截然不同。</figcaption></figure>
+<p><b>最终集中查看三项：</b></p>
+<ol>
+<li><b>区分度明显</b>：两份简历的核心技能第一项和项目经历重心截然不同，完全对应各岗位的必须要求；</li>
+<li><b>真实无编造</b>：没有出现未经求证的“全盘操盘”、“带队研发”等离谱履历；</li>
+<li><b>语言去油腻</b>：全篇使用“负责编制表格”“剪辑完成成片”等具体动作词，杜绝空洞口号。</li>
+</ol>
 
       </section>
 <section class="lesson-section" id="finish">
         <h2>05 本课总结</h2>
-        <p>追问的价值是减少影响结果的歧义。问得多不等于设计好，能用少量问题改变输出才有用。</p>
-<p><b>下节预告：</b> 把聊天中的处理规则放进无代码工作流，认识变量绑定和回复节点。</p>
+        <p>一份简历不能通吃所有岗位。AI 制作简历的核心不是“凭空美化”，而是**“精准对应”**——用目标岗位的要素表作为滤镜，帮助高职学生从有限的在校经历中提炼出最匹配的动作与成果。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">成果自查维度</th>
+<th style="text-align:left">观察核验要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><b>岗位对应度</b></td>
+<td style="text-align:left">核心技能排序严格对齐岗位的“必须项”与“优先项”，一目了然</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>经历量化度</b></td>
+<td style="text-align:left">运用 STAR 法则重塑经历，包含具体的数字、软件名与产出结果</td>
+</tr>
+<tr>
+<td style="text-align:left"><b>真实合规度</b></td>
+<td style="text-align:left">剔除所有 AI 虚构夸张词，表述与高职在读学生的身份能力完全相符</td>
+</tr>
+</tbody>
+</table>
+<p><b>下节预告：</b> 第21次课我们将学习《国内无代码工作流：搭建第一条可运行路径》，把对话中的处理逻辑转化为自动化运行的工作流应用。</p>
 
       </section>
     <a class="back-top" href="#top">返回顶部 ↑</a>
-  </main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
+  </main>
+  <script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
 const courseBar=document.querySelector('.site-course-bar');
 const presentationButton=document.querySelector('.ppt-open-trigger');
 if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
