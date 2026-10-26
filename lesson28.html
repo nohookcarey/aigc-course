@@ -1234,7 +1234,19 @@ body.is-ppt-mode .ppt-stage{display:flex!important}
 .ppt-open-trigger{position:fixed;top:18px;right:24px;z-index:98;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(36,86,196,.3);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s cubic-bezier(.16,1,.3,1);user-select:none}
 .ppt-open-trigger:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 24px rgba(36,86,196,.45)}
 @media(max-width:640px){.ppt-open-trigger{display:none}}
-</style></head><body><nav class="jump-nav" aria-label="本课导航">
+</style><style id="site-presentation-style">
+.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
+.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
+.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
+.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
+.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
+.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
+@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
+@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
+@media print{.site-course-bar{display:none!important}}
+</style></head><body><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第22次课 · 2学时 · AI工作流：让模型理解，让规则执行</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson27.html" data-course-lesson="lesson27">← 上一课</a><a href="lesson29.html" data-course-lesson="lesson29">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><nav class="jump-nav" aria-label="本课导航">
     <div class="jump-nav-header">
       <span class="jump-nav-title">📑 本课导读</span>
       <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
@@ -2288,4 +2300,12 @@ document.addEventListener('click',event=>{
     openPPT(0);
   }
 })();
+</script><script id="site-embedded-navigation">
+const courseBar=document.querySelector('.site-course-bar');
+const presentationButton=document.querySelector('.ppt-open-trigger');
+if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
+if(window.parent!==window){document.addEventListener('click',function(event){
+  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
+  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
+});}
 </script></body></html>
