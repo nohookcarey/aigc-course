@@ -5,24 +5,1270 @@
 <title>第3次课｜神经网络与Transformer：AI的大脑结构</title>
 <meta content="true" name="xuexitong-standalone"/>
 
-<link rel="stylesheet" href="assets/shared/style-b4398d9b6fc4.css">
-<style id="site-presentation-style">
-.site-course-bar{position:relative;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 20px;background:#17345f;color:#fff;font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
-.site-course-bar a{display:inline-block;padding:7px 12px;border-radius:8px;background:#3157d5;color:#fff!important;text-decoration:none!important}
-.site-course-bar a:hover,.site-course-bar a:focus-visible{background:#7049b3;outline:2px solid #fff;outline-offset:2px}
-.site-course-bar .ppt-open-trigger{position:static;z-index:auto;margin:0;border-radius:8px;padding:7px 12px;box-shadow:none;font:inherit;transform:none}
-.site-course-bar .ppt-open-trigger:hover,.site-course-bar .ppt-open-trigger:focus-visible{transform:none;box-shadow:none;outline:2px solid #fff;outline-offset:2px}
-.site-course-bar .site-lesson-name{font-weight:800;margin-right:auto}
-.site-course-bar .site-course-note{width:100%;font-size:13px;font-weight:400;color:#dce8ff}
-.site-course-bar .site-disabled{opacity:.55;padding:7px 12px}
-@media(min-width:1200px){body:has(.site-course-bar) .page-shell{max-width:1320px}body:has(.site-course-bar) .lesson-section{font-size:1.075rem;line-height:1.72}}
-@media(max-width:640px){.site-course-bar{padding:8px 12px;gap:6px;font-size:14px}.site-course-bar .site-lesson-name{width:100%}.site-course-bar a{padding:6px 9px}.site-course-bar .site-course-note{font-size:12px}}
-@media print{.site-course-bar{display:none!important}}
-</style></head><body class="chapter-page lesson-page"><div class="site-course-bar" aria-label="课程导航"><span class="site-lesson-name">第3次课 · 2学时 · 神经网络与Transformer：AI的大脑结构</span><a href="index.html" data-course-lesson="index">课程目录</a><a href="lesson02.html" data-course-lesson="lesson02">← 上一课</a><a href="lesson04.html" data-course-lesson="lesson04">下一课 →</a><span class="site-course-note">外部链接需联网；实训附件请课前从学习通下载。</span></div><main class="page-shell" id="top"><header class="hero">
+<style>/* styles.css — 保留 lesson01-32 实际用到的兼容样式；未使用的旧导航/课例库组件已移除。*/
+:root {
+  --bg: #f5f7fb;
+  --ink: #172033;
+  --muted: #64748b;
+  --line: #dce3ee;
+  --brand: #3157d5;
+  --soft: #eaf0ff;
+  --card: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    16px/1.75 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.eyebrow {
+  margin: 0;
+  color: var(--brand);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.first-lesson-board .method-case {
+  margin: 0 0 17px;
+  border: 1px solid #bcd0fb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.method-case-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 15px 17px;
+  background: #edf3ff;
+}
+.method-case-head p {
+  margin: 0;
+  color: #1f55d5;
+  font-weight: 900;
+  font-size: 18px;
+}
+.method-case-head span {
+  color: #52647d;
+  font-size: 13px;
+}
+.method-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 15px;
+}
+.method-case-grid article {
+  padding: 13px;
+  border: 1px solid #e0e8f5;
+  border-radius: 9px;
+  background: #fbfcff;
+}
+.method-case-grid article:last-child {
+  grid-column: 1 / -1;
+}
+.case-focused .method-case-grid {
+  grid-template-columns: 1fr;
+}
+.case-focused .method-case-grid article:last-child {
+  grid-column: auto;
+}
+.feedback-demo {
+  margin: 0 15px 15px;
+  padding: 16px;
+  border: 1px solid #cddbf3;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.feedback-demo h3 {
+  margin: 0;
+  color: #1e3c91;
+  font-size: 17px;
+}
+.feedback-demo .demo-note {
+  margin: 7px 0 12px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.feedback-demo article {
+  margin-top: 9px;
+  padding: 12px 13px;
+  border-left: 4px solid #3157d5;
+  border-radius: 7px;
+  background: #fff;
+}
+.feedback-demo b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.feedback-demo p {
+  margin: 6px 0;
+  color: #334155;
+  line-height: 1.7;
+}
+.feedback-demo span {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.method-case-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 16px;
+}
+.method-case-grid p {
+  margin: 6px 0 0;
+  color: #46556d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.method-case-grid code,
+.method-case-output code {
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+.method-case-output {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 15px 15px;
+  padding: 12px 13px;
+  border-radius: 8px;
+  background: #fff8e8;
+  color: #684c14;
+}
+.method-case-output b {
+  flex: none;
+}
+.method-case-output span {
+  line-height: 1.6;
+}
+.model-case-figures {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 0 15px 15px;
+}
+.model-case-figures figure {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #d7e1f3;
+  border-radius: 10px;
+  background: #fbfcff;
+}
+.model-case-figures img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+.model-case-figures figcaption {
+  margin-top: 8px;
+  color: #52647d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.model-case-figures figcaption b {
+  color: #2855c4;
+}
+@media (max-width: 700px)  {
+
+  .method-case-head,
+  .method-case-output {
+    display: block;
+  }
+.method-case-head span {
+    display: block;
+    margin-top: 4px;
+  }
+.method-case-output span {
+    display: block;
+    margin-top: 4px;
+  }
+.method-case-grid {
+    grid-template-columns: 1fr;
+  }
+.model-case-figures {
+    grid-template-columns: 1fr;
+  }
+}
+.first-lesson-board .history-visual,
+.first-lesson-board .workflow-visual,
+.first-lesson-board .aigc-mindmap {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid #cddbf3;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f6f9ff, #fff);
+}
+.history-visual h3,
+.workflow-visual h3,
+.aigc-mindmap h3 {
+  margin: 0;
+  color: #1e3c91;
+  font-size: 19px;
+}
+.history-visual > p,
+.workflow-visual > p {
+  margin: 7px 0;
+  color: #52647d;
+  line-height: 1.65;
+}
+.history-stages {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.history-stages article {
+  position: relative;
+  padding: 12px 10px;
+  border: 1px solid #d5e0f4;
+  border-radius: 9px;
+  background: #fff;
+}
+.history-stages article:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  z-index: 1;
+  color: #3157d5;
+  font-size: 20px;
+  font-weight: 800;
+  transform: translateY(-50%);
+}
+.history-stages b {
+  display: block;
+  color: #2855c4;
+  font-size: 14px;
+}
+.history-stages span {
+  display: block;
+  margin-top: 5px;
+  color: #58677b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.history-visual figcaption {
+  margin-top: 11px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.workflow-visual > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
+}
+.workflow-visual span,
+.workflow-visual strong {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #fff;
+  color: #3157c4;
+  font-size: 14px;
+}
+.workflow-visual strong {
+  background: #3157d5;
+  color: #fff;
+}
+.workflow-visual i {
+  color: #3157d5;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 800;
+}
+.aigc-mindmap {
+  text-align: center;
+}
+.mindmap-center {
+  display: inline-block;
+  margin: 16px auto;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #3157d5;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 5px 15px rgba(49, 87, 213, 0.2);
+}
+.mindmap-branches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  position: relative;
+}
+.mindmap-branches article {
+  padding: 11px;
+  border: 1px solid #d5e0f4;
+  border-radius: 9px;
+  background: #fff;
+  text-align: left;
+}
+.mindmap-branches b {
+  display: block;
+  color: #2855c4;
+  font-size: 15px;
+}
+.mindmap-branches span {
+  display: block;
+  margin-top: 4px;
+  color: #58677b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.boundary-example {
+  margin: 14px 0;
+  padding: 15px;
+  border: 1px solid #bcd0fb;
+  border-radius: 11px;
+  background: #fff;
+}
+.boundary-example > b {
+  display: block;
+  color: #1e3c91;
+  font-size: 16px;
+}
+.boundary-example > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 10px;
+}
+.boundary-example article {
+  padding: 11px;
+  border-radius: 8px;
+  background: #f5f8ff;
+}
+.boundary-example article:nth-child(2) {
+  background: #fff8e8;
+}
+.boundary-example article:nth-child(3) {
+  background: #fff1f1;
+}
+.boundary-example strong {
+  display: block;
+  color: #244ebf;
+  font-size: 14px;
+}
+.boundary-example article:nth-child(2) strong {
+  color: #956b13;
+}
+.boundary-example article:nth-child(3) strong {
+  color: #b43e3e;
+}
+.boundary-example span,
+.boundary-example p {
+  display: block;
+  margin-top: 5px;
+  color: #52647d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.boundary-example p {
+  margin-bottom: 0;
+  padding-top: 10px;
+  border-top: 1px dashed #c5d3ed;
+}
+@media (max-width: 900px)  {
+
+  .history-stages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+.history-stages article:not(:last-child)::after {
+    display: none;
+  }
+}
+@media (max-width: 600px)  {
+
+  .history-stages,
+  .mindmap-branches,
+  .boundary-example > div {
+    grid-template-columns: 1fr;
+  }
+.workflow-visual > div {
+    justify-content: flex-start;
+  }
+.workflow-visual i {
+    transform: rotate(90deg);
+  }
+}
+.first-lesson-board .concept-subtitle {
+  margin: 22px 0 10px;
+  color: #172033;
+  font-size: 19px;
+}
+.first-lesson-board .core-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.first-lesson-board .core-concept-grid article {
+  padding: 14px;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  background: #fbfcff;
+}
+.first-lesson-board .core-concept-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 16px;
+}
+.first-lesson-board .core-concept-grid p {
+  margin: 6px 0 0;
+  color: #46556d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+@media (max-width: 800px)  {
+
+  .first-lesson-board .core-concept-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* 课程导航页：左右分栏与可折叠章节 */
+.index-page,
+.detail-page,
+.chapter-page {
+  background: #f5f7fb;
+  color: var(--ink);
+  overflow: hidden;
+}
+.sidebar-head .eyebrow {
+  color: var(--brand);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+@media (max-width: 800px)  {
+
+  .index-page,
+  .detail-page,
+  .chapter-page {
+    overflow: auto;
+  }
+}
+.extension-card p:not(.eyebrow),
+.extension-note p:not(.eyebrow) {
+  margin: 0 0 17px;
+  color: #52647d;
+}
+.chapter-outline b,
+.section-kicker {
+  color: var(--brand);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.section-kicker {
+  margin-bottom: 5px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.chapter-case-assignment > p:not(.section-kicker) {
+  margin: 0;
+  color: #52647d;
+  line-height: 1.65;
+}
+/* 布局精修：保留全部既有入口与功能，仅调整阅读层级、间距和对齐。 */
+:root {
+  --bg: #f7f9fc;
+  --ink: #172033;
+  --muted: #687588;
+  --line: #d9e1eb;
+  --brand: #2855c4;
+  --soft: #edf3ff;
+  --card: #fff;
+}
+body {
+  font-size: 16px;
+  line-height: 1.72;
+  text-rendering: optimizeLegibility;
+}
+.index-page,
+.detail-page,
+.chapter-page {
+  background: var(--bg);
+}
+:focus-visible {
+  outline: 3px solid rgba(40, 85, 196, 0.28);
+  outline-offset: 3px;
+}
+.visual-task {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 17px;
+  padding: 13px 15px;
+  border-radius: 9px;
+  background: #fff8e8;
+  border: 1px solid #f0d69d;
+  color: #684c14;
+}
+.visual-task b {
+  flex: 0 0 auto;
+}
+.visual-task span {
+  line-height: 1.65;
+}
+@media (max-width: 760px)  {
+
+  .visual-task {
+    display: block;
+  }
+.visual-task span {
+    display: block;
+    margin-top: 4px;
+  }
+}
+/* 导入与知识介绍按纵向阅读，避免导入卡产生空白区域。 */
+.lesson-page .lesson-grid {
+  grid-template-columns: 1fr;
+}
+.step-cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.step-cards article {
+  padding: 13px;
+  border: 1px solid #d7e1f3;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.step-cards b {
+  color: #3157d5;
+  font-size: 14px;
+}
+.step-cards p {
+  margin: 7px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.step-cards small {
+  color: #64748b;
+  font-size: 12px;
+}
+@media (max-width: 1000px)  {
+
+  .step-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px)  {
+.step-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.step-standard {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0;
+  padding: 14px 16px;
+  border: 1px dashed #9fb3df;
+  border-radius: 8px;
+  background: #f4f7ff;
+  color: #46556d;
+  line-height: 1.6;
+}
+.step-standard b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.step-standard small {
+  color: #64748b;
+  font-size: 12px;
+}
+.practice-brief {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.practice-brief article {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid #cfdbef;
+  border-radius: 9px;
+  background: #fff;
+}
+.practice-brief article:first-child,
+.practice-brief article:last-child {
+  grid-column: 1/-1;
+}
+.practice-brief b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.practice-brief span {
+  color: #46556d;
+  line-height: 1.6;
+}
+.student-task-card {
+  margin: 0 0 18px;
+  padding: 18px;
+  border: 1px solid #b9cdf5;
+  border-left: 5px solid #3157d5;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f4f8ff, #fff);
+}
+.student-task-card > b {
+  display: block;
+  margin-bottom: 5px;
+  color: #2855c4;
+  font-size: 18px;
+}
+.student-task-card > strong {
+  display: block;
+  margin-bottom: 11px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+.student-task-card p {
+  margin: 7px 0;
+  color: #46556d;
+}
+.student-task-card p b {
+  color: #2855c4;
+}
+.student-task-card code {
+  display: inline;
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+@media (max-width: 700px)  {
+
+  .practice-brief {
+    grid-template-columns: 1fr;
+  }
+.practice-brief article:first-child,
+  .practice-brief article:last-child {
+    grid-column: auto;
+  }
+}
+.practice-material {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 15px 16px;
+  border: 1px solid #e6c56f;
+  border-radius: 10px;
+  background: #fff9e9;
+}
+.practice-material b {
+  flex: 0 0 100%;
+  color: #795711;
+  font-size: 16px;
+}
+.practice-material span {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #5d6470;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.task-wide-standard {
+  align-self: start;
+  margin: 0;
+}
+.practice-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid #8da8e9;
+  border-radius: 7px;
+  background: #edf3ff;
+  color: #244ebf;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.practice-download:hover,
+.practice-download:focus-visible {
+  background: #dfe9ff;
+}
+.lesson-template-board .core-concept-grid {
+  grid-template-columns: 1fr;
+}
+.lesson-template-board .core-concept-grid article {
+  padding: 17px 18px;
+}
+.lesson-template-board .core-concept-grid b {
+  font-size: 17px;
+  line-height: 1.55;
+}
+.lesson-template-board .core-concept-grid p {
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.lesson-template-board .core-concept-grid span {
+  display: block;
+  margin-top: 8px;
+  color: #687588;
+  font-size: 13px;
+}
+.classroom-bridge {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 0 10px 10px 0;
+  background: #edf3ff;
+}
+.classroom-bridge b {
+  color: #1f55d5;
+  font-size: 16px;
+}
+.classroom-bridge p {
+  margin: 6px 0 0;
+  color: #46556d;
+  line-height: 1.7;
+}
+.knowledge-check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 15px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 8px;
+  background: #eef3ff;
+}
+.knowledge-check b {
+  flex: 0 0 auto;
+  color: #244ebf;
+}
+.knowledge-check span {
+  color: #46556d;
+  line-height: 1.7;
+}
+@media (max-width: 650px)  {
+
+  .knowledge-check {
+    display: block;
+  }
+.knowledge-check span {
+    display: block;
+    margin-top: 5px;
+  }
+}
+/* 跟练步骤逐项展示，放大操作参考图。 */
+.lesson-page .step-cards {
+  grid-template-columns: 1fr;
+}
+.lesson-page .step-shot img {
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+}
+/* 第 1 次课：按“导航—成果—导论—方法—实操—拓展”组织为完整课堂页面。 */
+.first-lesson-board {
+  max-width: 1120px;
+}
+.first-lesson-board .detail-header {
+  margin-bottom: 20px;
+}
+.first-block .section-kicker {
+  margin: 0;
+  color: #1f55d5;
+  font-weight: 900;
+  font-size: 21px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+.nav-summary,
+.outcome-grid,
+.compare-grid,
+.method-grid,
+.extension-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+.lesson-navigation .nav-summary {
+  grid-template-columns: 1fr;
+}
+.nav-summary > div,
+.outcome-grid article,
+.compare-grid article,
+.method-grid article,
+.extension-grid article {
+  padding: 17px;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.nav-summary b,
+.outcome-grid b,
+.compare-grid b,
+.method-grid b,
+.extension-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 17px;
+}
+.nav-summary span,
+.outcome-grid p,
+.compare-grid p,
+.method-grid li,
+.extension-grid p,
+.extension-grid li {
+  color: #46556d;
+  line-height: 1.65;
+}
+.nav-summary ol,
+.method-grid ol,
+.extension-grid ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+.route-map,
+.knowledge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #edf3ff;
+  color: #3157c4;
+}
+.route-map b,
+.knowledge-strip b {
+  margin-right: 4px;
+  color: #172f72;
+}
+.route-map span,
+.knowledge-strip span {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.route-map i,
+.knowledge-strip i {
+  font-style: normal;
+  font-weight: 800;
+}
+.file-example {
+  margin: 12px 0 0 !important;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #3157c4 !important;
+  font-size: 14px;
+}
+.file-example code,
+.practice-task code {
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.compare-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.term-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+.term-list b {
+  width: 100%;
+  color: #172033;
+}
+.term-list span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #edf3ff;
+  color: #3157c4;
+  font-size: 14px;
+}
+.mini-activity {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 7px;
+  background: #f1f5ff;
+}
+.mini-activity b {
+  color: #244ebf;
+}
+.mini-activity p {
+  margin: 5px 0 0;
+  color: #46556d;
+}
+.task-table {
+  margin: 0;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.task-table > div {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1.25fr;
+}
+.task-table > div > * {
+  padding: 11px 12px;
+  border-right: 1px solid #e3eaf6;
+  border-bottom: 1px solid #e3eaf6;
+  color: #46556d;
+  line-height: 1.55;
+}
+.task-table > div > *:last-child {
+  border-right: 0;
+}
+.task-table > div:last-child > * {
+  border-bottom: 0;
+}
+.task-table > div:first-child > * {
+  background: #edf3ff;
+  color: #244ebf;
+  font-weight: 800;
+}
+.method-grid {
+  margin-top: 15px;
+}
+.knowledge-strip {
+  margin-top: 15px;
+  background: #f7f9fc;
+}
+.task-label {
+  margin-top: 0 !important;
+  color: #2855c4 !important;
+  font-size: 18px;
+  font-weight: 800;
+}
+@media (max-width: 800px)  {
+.first-block .section-kicker {
+    font-size: 19px;
+  }
+.nav-summary,
+  .outcome-grid,
+  .compare-grid,
+  .method-grid,
+  .extension-grid,
+  .practice-task {
+    grid-template-columns: 1fr;
+  }
+.task-table {
+    overflow-x: auto;
+  }
+.task-table > div {
+    grid-template-columns: 120px 180px 180px;
+    min-width: 480px;
+  }
+}
+/* 32 次课页面不再显示课程侧栏，正文使用完整页面宽度。 */
+.lesson-page .course-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+.lesson-page .course-main-inner {
+  width: 100%;
+  max-width: 1400px;
+  padding-left: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+}
+/* 全课共用的视觉样式。以用户确认的第十课样式为标准；在旧样式之后加载。 */
+:root{--blue:#2456c4;--blue-dark:#173a86;--ink:#142033;--muted:#55657c;--line:#d7e2f4;--soft:#f5f8ff;--warm:#fff7e8;--ok:#ecfdf5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef3fa;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+img,svg,figure,picture,video{max-width:100%;height:auto;box-sizing:border-box}
+.page-shell,body .course-main-inner{width:calc(100% - 188px);max-width:1440px;margin:28px 24px 80px 164px}.hero,.lesson-section{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07)}
+.hero{padding:42px 48px}.eyebrow,.section-kicker{margin:0 0 10px;color:var(--blue);font-weight:800;letter-spacing:.06em}.hero h1{margin:0;font-size:clamp(36px,5vw,62px);line-height:1.15}
+.jump-nav{position:fixed;left:0;top:clamp(90px,15vh,170px);z-index:99;width:152px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-left:none;border-radius:0 14px 14px 0;box-shadow:3px 6px 20px rgba(23,58,134,.08);padding:10px 8px;display:flex;flex-direction:column;gap:6px;margin:0;transition:transform .28s cubic-bezier(.4,0,.2,1),box-shadow .2s ease;user-select:none}
+.jump-nav-header{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.jump-nav-title{font-size:13px;font-weight:800;color:var(--blue-dark);letter-spacing:.02em;display:flex;align-items:center;gap:4px}
+.jump-nav-toggle{background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px;border-radius:6px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s ease,color .15s ease}
+.jump-nav-toggle:hover{background:var(--soft);color:var(--blue)}
+.jump-nav-body{display:flex;flex-direction:column;gap:5px}
+.jump-nav-list{display:flex;flex-direction:column;gap:5px}
+.jump-nav a,.jump-nav-link{display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:8px;background:transparent;border:1px solid transparent;color:#334155;text-decoration:none;font-size:13px;font-weight:700;line-height:1.3;transition:all .18s ease}
+.jump-nav a:hover,.jump-nav-link:hover{background:#f0f5ff;color:var(--blue);transform:translateX(3px);border-color:#dbeafe}
+.jump-nav .nav-idx{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;border-radius:5px;background:var(--soft);border:1px solid var(--line);color:var(--blue);font-size:11px;font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.jump-nav .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jump-nav a.active,.jump-nav-link.active{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff!important;box-shadow:0 4px 12px rgba(36,86,196,.22);transform:translateX(4px);border-color:transparent}
+.jump-nav a.active .nav-idx,.jump-nav-link.active .nav-idx{background:rgba(255,255,255,.22);color:#fff;border-color:rgba(255,255,255,.4)}
+.jump-nav-top{display:flex;align-items:center;justify-content:center;gap:6px;padding:5px 6px;margin-top:2px;border-top:1px dashed var(--line);color:var(--muted);font-size:12px;text-decoration:none;font-weight:700;border-radius:6px;transition:all .15s ease}
+.jump-nav-top:hover{color:var(--blue);background:var(--soft)}
+.jump-nav.is-collapsed{transform:translateX(-122px);box-shadow:2px 4px 14px rgba(23,58,134,.06)}
+.jump-nav.is-collapsed .jump-nav-header{border-bottom:none;padding-bottom:2px}
+.jump-nav.is-collapsed .jump-nav-title{display:none}
+.jump-nav.is-collapsed .jump-nav-toggle{margin-left:auto;transform:rotate(180deg)}
+.jump-nav.is-collapsed .jump-nav-body{opacity:0;pointer-events:none;max-height:0;overflow:hidden}
+.back-top{color:var(--blue-dark);text-decoration:none;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.lesson-section{padding:38px 42px;margin-top:22px}.lesson-section h2{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:0 0 24px}.lesson-section h3{font-size:25px;line-height:1.4;color:var(--blue-dark);margin:0 0 14px}
+.task-focus,.result-card,.case-summary,.teacher-demo,.material-card,.success-state{border-radius:18px;padding:20px 24px;margin:18px 0}.task-focus{background:linear-gradient(135deg,#e9f1ff,#f8fbff);border:2px solid #bfd2fa;font-size:27px}.result-card{background:var(--soft);border:1px solid var(--line)}.filename{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue-dark);font-weight:800;overflow-wrap:anywhere}
+.concept-list,.step-list{display:grid;gap:20px}.concept-card,.step-card{position:relative;border:1px solid var(--line);background:#fbfcff;border-radius:20px;padding:26px}.one-line{font-size:20px}.thinking-question{margin:26px 0 14px;padding:18px 22px;background:var(--warm);border-left:5px solid #f59e0b;border-radius:14px;font-size:18px;line-height:1.75}
+details{border:1px solid #b7caf0;background:#eef4ff;border-radius:14px;padding:14px 18px}summary{cursor:pointer;color:var(--blue-dark);font-weight:800}.answer-panel p{margin:12px 0 0}
+.thinking-card{margin:32px 0 28px;padding:24px 28px;background:linear-gradient(135deg,#fffdf8 0%,#fff9ec 100%);border:1px solid #fde68a;border-left:5px solid #f59e0b;border-radius:18px;box-shadow:0 6px 20px rgba(245,158,11,.06)}
+.thinking-header{margin-bottom:12px}
+.thinking-badge{display:inline-block;margin-bottom:10px;padding:4px 12px;background:#fef3c7;color:#b45309;font-size:14px;font-weight:800;border-radius:999px;border:1px solid #fde68a;letter-spacing:.04em}
+.thinking-card .thinking-question{margin:0 0 14px!important;font-size:19px;font-weight:700;line-height:1.75;color:#78350f;background:transparent;border:none;padding:0}
+.thinking-card details.answer-panel{margin-top:16px;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:14px 20px;box-shadow:0 2px 8px rgba(245,158,11,.04)}
+.thinking-card details summary{cursor:pointer;color:#b45309;font-weight:800;font-size:16px;outline:none;user-select:none;transition:color .15s ease}
+.thinking-card details summary:hover{color:#d97706}
+.thinking-card details[open] summary{margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed #fde68a}
+.thinking-card .answer-body,.thinking-card .answer-panel p{margin:10px 0 0;color:#451a03;font-size:17px;line-height:1.8}
+.lesson-figure,.route-figure{margin:28px 0;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 4px 18px rgba(36,86,196,.05)}
+.lesson-figure a,.route-figure a{display:block;width:100%;overflow:hidden;background:#fff;text-align:center}
+.lesson-figure img,.route-figure img{display:block;width:100%;max-width:100%;height:auto;margin:0 auto;border:none;border-radius:0;background:#fff;object-fit:contain}
+.lesson-figure figcaption,.route-figure figcaption{color:var(--muted);font-size:15px;line-height:1.65;padding:12px 20px;margin:0;border-top:1px solid var(--line);background:#fbfdff;text-align:left}
+.case-summary{background:var(--soft);border:1px solid var(--line)}.teacher-demo{background:var(--warm);border:1px solid #f6d58a}.teacher-demo li{margin:8px 0}
+.step-card{padding:30px}.step-number{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;font-size:26px;font-weight:900;margin-bottom:12px}.material-card{background:var(--soft);border:1px solid var(--line)}.success-state{background:var(--ok);border:1px solid #a7e8c3}
+.copy-block{position:relative;margin:18px 0}.copy-button{border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;padding:11px 17px;cursor:pointer;margin-bottom:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#f8fafc;border-radius:14px;padding:20px;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}th{background:#eaf1ff;color:var(--blue-dark)}
+.back-top{display:inline-block;margin-top:20px}@media(max-width:640px){.page-shell,body .course-main-inner{width:min(100% - 16px,1400px);margin:8px auto 48px}.hero,.lesson-section{border-radius:16px}.hero{padding:28px 22px}.lesson-section{padding:26px 18px}.task-focus{font-size:22px}.concept-card,.step-card{padding:20px 16px}th,td{font-size:14px;padding:9px}pre{font-size:14px;padding:15px}}
+@media print{body{background:#fff}.jump-nav,.copy-button,.back-top{display:none}.page-shell{width:100%;margin:0}.hero,.lesson-section{box-shadow:none}}
+.route-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}.route-step{min-height:92px;padding:16px 10px;border:1px solid var(--line);border-radius:16px;background:var(--soft);text-align:center;font-weight:800;color:var(--blue-dark)}.route-step span{display:block;color:var(--blue);font-size:14px}.notice{padding:16px 18px;border-left:5px solid var(--blue);border-radius:12px;background:#eef4ff}.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.comparison-grid>div{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}.shot-label{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;background:#eaf1ff;color:var(--blue-dark);font-size:14px;font-weight:800}.software-shot img{max-width:900px;margin-inline:auto}.compact-list li{margin:6px 0}
+@media(max-width:640px){.route-list{grid-template-columns:1fr}.route-step{min-height:auto;text-align:left}.comparison-grid{grid-template-columns:1fr}.software-shot img{max-width:100%}.lesson-figure figcaption{font-size:15px}.lesson-section h3{font-size:22px}.one-line{font-size:18px}}
+
+body{font-size:19px;line-height:1.8}
+.page-shell,body .course-main-inner{max-width:1400px}
+.hero h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;text-wrap:balance}
+.lesson-section{scroll-margin-top:100px}
+.lesson-section h2{font-size:clamp(28px,3vw,36px);line-height:1.35;padding-bottom:16px;border-bottom:2px solid var(--line);margin:0 0 26px}
+.lesson-section h3{font-size:25px;line-height:1.5;margin:0 0 18px;color:var(--blue-dark)}
+.lesson-section h4{font-size:21px;line-height:1.5;margin:28px 0 14px;color:var(--blue-dark)}
+.lesson-section h5{font-size:21px;line-height:1.5;margin:0 0 16px;color:var(--blue-dark)}
+.lesson-section p{margin:12px 0}
+.lesson-section ul{margin:12px 0;padding-left:1.4em}
+.lesson-section li+li{margin-top:10px}
+.concept-card+.concept-card{margin-top:24px}
+.concept-card,.step-card{min-width:0;padding:26px}
+.step-list{gap:24px;margin-top:18px}
+.task-focus{font-size:22px;line-height:1.7;padding:20px 24px;margin:20px 0 24px!important}
+#task>h4{font-size:18px;color:var(--muted);margin:24px 0 8px}
+.filename{margin-top:8px!important;padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+.lesson-figure{margin:28px 0;max-width:100%}
+.lesson-figure img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+.lesson-figure figcaption{font-size:15px;line-height:1.65;padding:12px 20px;border-top:1px solid var(--line);background:#fbfdff}
+.thinking-question{margin:28px 0 16px!important;padding:18px 22px}
+.answer-panel{margin-top:16px}
+.answer-panel p{margin:12px 0 0}
+.step-card>p:has(>b:first-child){background:var(--ok);border:1px solid #a7e8c3;border-radius:12px;padding:14px 18px;margin-top:20px}
+pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;font-size:16px;line-height:1.85;margin:18px 0}
+#practice .step-card:first-child>pre{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.copy-block{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:22px 0}
+.copy-block pre{margin:0}
+.copy-button{align-self:flex-start;margin:0;padding:12px 20px;line-height:1.5}
+.copy-button:hover{background:var(--blue-dark)}
+.copy-button:focus-visible,.jump-nav a:focus-visible,summary:focus-visible{outline:3px solid #f59e0b;outline-offset:4px}
+table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:17px;line-height:1.75;margin:20px 0}
+th,td{padding:14px 16px;overflow-wrap:anywhere;word-break:normal}
+#practice tr:has(>th:nth-child(2):last-child) th:first-child{width:78%}
+#practice tr:has(>th:nth-child(2):last-child) th:last-child{width:22%}
+#finish th:nth-child(1){width:23%}
+#finish th:nth-child(2){width:39%}
+#finish th:nth-child(3){width:38%}
+tbody tr:nth-child(even){background:#f5f8ff}
+code{overflow-wrap:anywhere}
+[hidden]{display:none!important}
+@media(max-width:640px){
+ body{font-size:17px;line-height:1.8}
+ .hero{padding:26px 20px}
+ .lesson-section{padding:24px 18px;scroll-margin-top:16px}
+ .lesson-section h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ .lesson-section h3{font-size:22px}
+ .lesson-section h4,.lesson-section h5{font-size:19px}
+ .concept-card,.step-card{padding:20px 14px;border-radius:16px}
+ .concept-card+.concept-card{margin-top:20px}
+ .task-focus{font-size:19px;padding:16px}
+ .filename{font-size:16px;padding:12px}
+ .step-card>p:has(>b:first-child){padding:12px}
+ pre{font-size:14px;padding:14px}
+ table{font-size:14px;line-height:1.7}
+ th,td{padding:10px 8px}
+ #finish th:nth-child(1){width:22%}
+ #finish th:nth-child(2),#finish th:nth-child(3){width:39%}
+}
+@media(min-width:1024px){
+ .page-shell,body .course-main-inner{
+  width:calc(100% - 188px)!important;
+  max-width:1440px!important;
+  margin-left:164px!important;
+  margin-right:24px!important;
+ }
+ body:has(.jump-nav.is-collapsed) .page-shell,body:has(.jump-nav.is-collapsed) .course-main-inner{
+  margin-left:48px!important;
+  width:calc(100% - 72px)!important;
+ }
+}
+@media(max-width:1023px){
+ .page-shell,body .course-main-inner{
+  width:min(100% - 32px,1400px)!important;
+  max-width:100%!important;
+  margin:20px auto 60px!important;
+ }
+ .jump-nav{position:sticky;top:0;left:0;width:100%;border-radius:0;border:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 12px;gap:8px;transform:none!important;box-shadow:0 2px 10px rgba(0,0,0,.04);background:rgba(255,255,255,.96)}
+ .jump-nav-header,.jump-nav-top{display:none!important}
+ .jump-nav-body{display:flex;flex-direction:row;opacity:1!important;pointer-events:auto!important;max-height:none!important;overflow:visible!important}
+ .jump-nav-list{display:flex;flex-direction:row;gap:8px;flex-wrap:nowrap;white-space:nowrap}
+ .jump-nav a,.jump-nav-link{padding:6px 12px;font-size:13px;border:1px solid var(--line);border-radius:999px;background:#fff;transform:none!important}
+ .jump-nav .nav-label{opacity:1!important;max-width:none!important}
+ .jump-nav a.active,.jump-nav-link.active{transform:none!important}
+}
+@media print{
+ body{font-size:12pt}
+ .lesson-section h2{font-size:22pt}
+ .lesson-section h3{font-size:17pt}
+ .lesson-section h4,.lesson-section h5{font-size:14pt}
+ .lesson-section,.step-card,.concept-card{box-shadow:none}
+ h2,h3,h4,h5{break-after:avoid}
+ .lesson-figure{break-inside:avoid}
+ pre{background:#f5f8ff;color:var(--ink);border:1px solid var(--line)}
+}
+
+
+/* 旧课次模板使用同一套视觉规则，保留其既有内容布局。 */
+body.lesson-page{background:#eef3fa;color:var(--ink);font-size:19px;line-height:1.8}
+body .course-main{height:auto;min-height:100vh;overflow:visible;background:transparent;padding:0}
+body .course-shell{display:block;max-width:none;margin:0}
+body .course-main-inner{width:calc(100% - 188px);max-width:1440px;padding:0;margin:28px 24px 80px 164px}
+body .detail-header{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:42px 48px;margin:0 0 22px}
+body .detail-header h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;margin:0;color:var(--ink)}
+body .detail-header .hero-mark{color:var(--blue);font-size:16px;font-weight:800;margin:0 0 10px}
+body .first-block,body .part{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:38px 42px;margin:22px 0;scroll-margin-top:100px}
+body .first-block h2,body .part h2{font-size:clamp(28px,3vw,36px);line-height:1.35;margin:0 0 26px;padding-bottom:16px;border-bottom:2px solid var(--line);color:var(--ink)}
+body .first-block h3,body .part h3{font-size:25px;line-height:1.5;color:var(--blue-dark);margin:20px 0 16px}
+body .first-block h4,body .part h4{font-size:21px;line-height:1.5;color:var(--blue-dark);margin:24px 0 14px}
+body .first-block p,body .part p,body .practice-task p,body .practice-task ol{font-size:19px;line-height:1.8}
+body .section-kicker{color:var(--blue);font-size:18px;line-height:1.5;margin:0 0 10px}
+body .practice-task,body .core-concept-grid article,body .step-cards article{background:#fbfcff;border:1px solid var(--line);border-radius:20px;padding:26px;margin:0;min-width:0}
+body .practice-task+.practice-task{margin-top:24px}
+body .task-shot img,body .step-shot img,body .concept-example-figure img{width:100%;height:auto;max-height:none;object-fit:contain}
+body .file-example{padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+body .core-concept-grid p{font-size:19px;line-height:1.8}
+@media(max-width:640px){
+ body.lesson-page{font-size:17px}
+ body .course-main-inner{width:calc(100% - 16px);margin:8px auto 48px;padding:0}
+ body .detail-header{padding:26px 20px;border-radius:16px}
+ body .first-block,body .part{padding:24px 18px;border-radius:16px;scroll-margin-top:16px}
+ body .first-block h2,body .part h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ body .first-block h3,body .part h3{font-size:22px}
+ body .first-block h4,body .part h4{font-size:19px}
+ body .first-block p,body .part p,body .practice-task p,body .practice-task ol,body .core-concept-grid p{font-size:17px}
+ body .practice-task,body .core-concept-grid article,body .step-cards article{padding:20px 14px;border-radius:16px}
+}
+@media print{
+ body .course-main-inner{width:100%;margin:0}
+ body .detail-header,body .first-block,body .part{box-shadow:none}
+ body .detail-header h1{font-size:26pt}
+ body .first-block h2,body .part h2{font-size:22pt}
+ body .first-block h3,body .part h3{font-size:17pt}
+ body .first-block p,body .part p{font-size:12pt}
+}
+
+/* 截图图注只展示描述；独立来源说明仅在显示层隐藏，不删除内容源。
+   不隐藏 source-card / source-content：它们可能包含截图或教学正文。
+   来源与描述混在普通文本中的情况，CSS无法按文字内容拆分。 */
+:is(.page-shell,.course-main) :is(.source,.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{
+ display:block;margin:10px 0 0;padding:0;border:0;background:transparent;
+ color:var(--muted);font-size:15px;font-weight:400;line-height:1.65;text-align:left;
+}
+body figure figcaption:empty{display:none}
+body figure figcaption :is(.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+@media(max-width:640px){
+ body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{font-size:14px;line-height:1.7;margin-top:8px}
+}
+
+/* ============================================================
+   PPT 幻灯片翻页演示模式 (Presentation Mode)
+   ============================================================ */
+body.is-ppt-mode{background:#0b1120!important;overflow:hidden!important;height:100vh!important;width:100vw!important;margin:0!important;padding:0!important}
+body.is-ppt-mode .page-shell,body.is-ppt-mode .course-main,body.is-ppt-mode .jump-nav,body.is-ppt-mode .back-top,body.is-ppt-mode .ppt-open-trigger{display:none!important}
+.ppt-stage{display:none;position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 20%,#1e293b 0%,#0b1120 100%);align-items:center;justify-content:center;overflow:hidden}
+body.is-ppt-mode .ppt-stage{display:flex!important}
+.ppt-cards-container{width:min(1420px,94vw);height:min(820px,88vh);position:relative;display:flex;align-items:center;justify-content:center}
+.ppt-slide-card{width:100%;height:100%;background:#ffffff;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.5);padding:36px 48px;overflow-y:auto;box-sizing:border-box;display:none;flex-direction:column;position:relative;animation:pptSlideIn .24s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes pptSlideIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ppt-slide-card.active{display:flex!important}
+.ppt-slide-card h1{font-size:clamp(30px,3vw,44px)!important;line-height:1.25!important;margin:0 0 16px!important;color:var(--ink)!important}
+.ppt-slide-card h2{font-size:clamp(25px,2.4vw,34px)!important;line-height:1.3!important;margin:0 0 18px!important;padding-bottom:12px!important;border-bottom:2px solid var(--line)!important;color:var(--blue-dark)!important}
+.ppt-slide-card h3{font-size:23px!important;color:var(--blue-dark)!important;margin:0 0 14px!important}
+.ppt-slide-card p,.ppt-slide-card li{font-size:19px!important;line-height:1.75!important}
+.ppt-slide-card pre{font-size:16px!important;line-height:1.7!important;padding:18px 22px!important;border-radius:14px!important}
+.ppt-slide-card .task-focus{font-size:23px!important;padding:20px 26px!important}
+.ppt-slide-card .lesson-figure img{max-height:360px!important;object-fit:contain!important;border-radius:12px!important}
+.ppt-slide-card table{font-size:17px!important}
+.ppt-slide-card th,.ppt-slide-card td{padding:12px 14px!important}
+.ppt-slide-badge{display:inline-flex;align-items:center;gap:6px;background:var(--soft);color:var(--blue);font-weight:800;font-size:14px;padding:4px 14px;border-radius:999px;border:1px solid var(--line);margin-bottom:14px;align-self:flex-start}
+.ppt-nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:32px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10001;transition:all .2s ease;user-select:none}
+.ppt-nav-btn:hover{background:rgba(36,86,196,.85);border-color:rgba(255,255,255,.6);transform:translateY(-50%) scale(1.1);box-shadow:0 8px 24px rgba(36,86,196,.4)}
+.ppt-nav-prev{left:20px}
+.ppt-nav-next{right:20px}
+.ppt-nav-btn:disabled{opacity:.12;cursor:not-allowed;pointer-events:none}
+.ppt-topbar{position:fixed;top:18px;right:28px;display:flex;align-items:center;gap:10px;z-index:10002}
+.ppt-top-btn{background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s ease}
+.ppt-top-btn:hover{background:rgba(255,255,255,.28);border-color:#fff;transform:translateY(-1px)}
+.ppt-top-btn.exit:hover{background:rgba(239,68,68,.85);border-color:transparent}
+.ppt-footer{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,23,42,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);padding:6px 18px;border-radius:999px;color:#e2e8f0;font-size:14px;font-weight:700;z-index:10002;box-shadow:0 10px 24px rgba(0,0,0,.35);user-select:none;white-space:nowrap}
+.ppt-footer .ppt-page-counter{color:#60a5fa;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ppt-footer .ppt-hint{color:#94a3b8;font-size:12px;font-weight:400;border-left:1px solid rgba(255,255,255,.18);padding-left:12px}
+.ppt-open-trigger{position:fixed;top:18px;right:24px;z-index:98;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(36,86,196,.3);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s cubic-bezier(.16,1,.3,1);user-select:none}
+.ppt-open-trigger:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 24px rgba(36,86,196,.45)}
+@media(max-width:640px){.ppt-open-trigger{display:none}}
+
+/* 2026-10-28 全课程缺陷修复：保持原视觉体系。 */
+.course-index-link{position:fixed;top:18px;left:14px;z-index:98;display:inline-flex;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--blue-dark);font-size:14px;font-weight:800;text-decoration:none}
+.course-index-link:focus-visible,.ppt-top-btn:focus-visible,.ppt-nav-btn:focus-visible,.ppt-open-trigger:focus-visible{outline:3px solid #f59e0b;outline-offset:4px}
+body.is-ppt-mode .course-index-link{display:none!important}
+@media(max-width:1023px){
+ .course-index-link{position:static;margin:10px 16px 8px}
+}
+@media(max-width:640px){
+ .lesson-section,body .first-block,body .part{scroll-margin-top:76px}
+}
+@media(min-width:641px) and (max-width:1023px){.ppt-open-trigger{top:64px}}
+.ppt-slide-card{scrollbar-gutter:stable}
+.ppt-slide-card th,.ppt-slide-card td{padding:8px 14px!important}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ .ppt-slide-card{animation:none}
+}
+@media print{
+ body,body.is-ppt-mode{overflow:visible!important;height:auto!important;width:auto!important;background:#fff!important;margin:0!important;padding:0!important}
+ body.is-ppt-mode .page-shell,body.is-ppt-mode .course-main{display:block!important}
+ .page-shell,body .course-main-inner{width:auto!important;max-width:none!important;margin:0!important}
+ .course-index-link,.jump-nav,.ppt-stage,.ppt-open-trigger,.back-top{display:none!important}
+}
+</style></head><body class="chapter-page lesson-page"><a class="course-index-link" href="index.html">← 课程目录</a><main class="page-shell" id="top"><header class="hero">
 <p class="eyebrow">第一章｜AIGC 理论基础 · 第 3 次课 · 2 学时</p>
 <h1>神经网络与Transformer：AI的大脑结构</h1>
 <p>用比喻和活动理解“分层处理”与“全局注意”。</p>
-</header><nav class="jump-nav" aria-label="本课导航"><a href="#review">知识回顾</a><a href="#task">任务预告</a><a href="#concepts">基础概念</a><a href="#case">核心案例</a><a href="#practice">实践任务</a><a href="#finish">本课总结</a></nav><section class="lesson-section" id="review"><h2>00 知识回顾</h2><p>上节课我们学习了大模型“从输入到输出”的思考机制，掌握了通过提供清晰上下文与设定明确约束，把模糊想法转化为高质量提示词的方法。</p></section><section class="lesson-section" id="task"><h2>01 任务预告</h2>
+</header><nav class="jump-nav" aria-label="本课导航"><a href="#review">知识回顾</a><a href="#task">任务预告</a><a href="#concepts">基础概念</a><a href="#case">核心案例</a><a href="#practice">实践任务</a><a href="#finish">本课总结</a></nav><section class="lesson-section" id="review"><h2>00 知识回顾</h2><p class="notice">上节课我们学习了大模型“从输入到输出”的思考机制，掌握了通过提供清晰上下文与设定明确约束，把模糊想法转化为高质量提示词的方法。</p></section><section class="lesson-section" id="task"><h2>01 任务预告</h2>
 <h3>先知道本节课要完成什么</h3>
 <div class="nav-summary">
 <div>
@@ -44,7 +1290,7 @@
 <article>
 <b>本课实操交付物</b>
 <p>完成 1 张“云词义判断”中文流程图。</p>
-<p class="file-example">文件命名：03_云词义判断流程图_姓名.png</p>
+<p class="file-example">文件命名：03_云词义判断流程图_姓名.png；导出PDF时使用.pdf后缀</p>
 </article>
 <article>
 <b>统一完成标准</b>
@@ -57,7 +1303,7 @@
 </article>
 </div>
 <figure class="lesson-figure">
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDEyMDAgNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+5LiK5LiL5paH5oCO5qC35biu5YqpQUnnkIbop6PkupE8L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj7lpKnnqbrkuK3nmoTkupHlkozkupHnm5jkuK3nmoTkupHpgJrov4fkuI3lkIzkuIrkuIvmlofnur/ntKLov57mjqXliLDkuI3lkIzlkKvkuYnvvIzlubbpmYTmnIlSTk7lkoxUcmFuc2Zvcm1lcueahOWMuuWIq+OAgjwvZGVzYz4KICA8ZGVmcz4KICAgIDxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCBMMTAgNSBMMCAxMCBaIiBmaWxsPSIjMmQ2M2Q3Ii8+PC9tYXJrZXI+CiAgICA8c3R5bGU+CiAgICAgIC50aXRsZXtmb250OjcwMCAzNHB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMxNzIzM2R9LmxhYmVse2ZvbnQ6NzAwIDI0cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzIwNTdjNn0udGV4dHtmb250OjUwMCAyMnB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMyNTM1NTJ9LnNtYWxse2ZvbnQ6NTAwIDE5cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzUzNjQ4MH0uYm94e2ZpbGw6I2Y3ZjlmZjtzdHJva2U6I2I5Y2RmODtzdHJva2Utd2lkdGg6MjtyeDoxOH0ubWVhbmluZ3tmaWxsOiNlYWYyZmY7c3Ryb2tlOiM4OGFjZWY7c3Ryb2tlLXdpZHRoOjI7cng6MTh9LmxpbmV7c3Ryb2tlOiMyZDYzZDc7c3Ryb2tlLXdpZHRoOjQ7ZmlsbDpub25lO21hcmtlci1lbmQ6dXJsKCNhcnJvdyl9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiLz4KICA8dGV4dCB4PSI2MDAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGl0bGUiPuS4iuS4i+aWh+aAjuagt+W4ruWKqSBBSSDnkIbop6PigJzkupHigJ08L3RleHQ+CiAgPHJlY3QgeD0iNDg1IiB5PSI5NSIgd2lkdGg9IjIzMCIgaGVpZ2h0PSI4MiIgY2xhc3M9Im1lYW5pbmciLz48dGV4dCB4PSI2MDAiIHk9IjE0NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7nm67moIfor43vvJrkupE8L3RleHQ+CgogIDxyZWN0IHg9IjU1IiB5PSIyMjUiIHdpZHRoPSIzNDAiIGhlaWdodD0iOTIiIGNsYXNzPSJib3giLz48dGV4dCB4PSIyMjUiIHk9IjI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuS7iuWkqeeahOS6keW+iOWOmjwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuWPr+iDveimgeS4i+mbqDwvdGV4dD4KICA8cmVjdCB4PSI0MzAiIHk9IjIyNSIgd2lkdGg9IjI1MCIgaGVpZ2h0PSI5MiIgY2xhc3M9Im1lYW5pbmciLz48dGV4dCB4PSI1NTUiIHk9IjI2MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7nur/ntKI8L3RleHQ+PHRleHQgeD0iNTU1IiB5PSIyOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7kuIvpm6g8L3RleHQ+CiAgPHJlY3QgeD0iNzY1IiB5PSIyMjUiIHdpZHRoPSIzODAiIGhlaWdodD0iOTIiIGNsYXNzPSJib3giLz48dGV4dCB4PSI5NTUiIHk9IjI2NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7lkKvkuYkgMTwvdGV4dD48dGV4dCB4PSI5NTUiIHk9IjI5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuWkqeepuuS4reeahOS6kTwvdGV4dD4KICA8cGF0aCBkPSJNMzk1IDI3MSBINDMwIiBjbGFzcz0ibGluZSIvPjxwYXRoIGQ9Ik02ODAgMjcxIEg3NjUiIGNsYXNzPSJsaW5lIi8+CgogIDxyZWN0IHg9IjU1IiB5PSIzNzAiIHdpZHRoPSIzNDAiIGhlaWdodD0iOTIiIGNsYXNzPSJib3giLz48dGV4dCB4PSIyMjUiIHk9IjQxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuivt+aKiuS9nOS4muS4iuS8oOWIsOS6keebmDwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjQ0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj7or77lkI7lj6/mn6XnnIvlkozkuIvovb08L3RleHQ+CiAgPHJlY3QgeD0iNDMwIiB5PSIzNzAiIHdpZHRoPSIyNTAiIGhlaWdodD0iOTIiIGNsYXNzPSJtZWFuaW5nIi8+PHRleHQgeD0iNTU1IiB5PSI0MDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+57q/57SiPC90ZXh0Pjx0ZXh0IHg9IjU1NSIgeT0iNDM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGV4dCI+5LiK5Lyg44CB5LqR55uYPC90ZXh0PgogIDxyZWN0IHg9Ijc2NSIgeT0iMzcwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjkyIiBjbGFzcz0iYm94Ii8+PHRleHQgeD0iOTU1IiB5PSI0MDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+5ZCr5LmJIDI8L3RleHQ+PHRleHQgeD0iOTU1IiB5PSI0NDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7nvZHnu5zkuK3nmoTmlbDmja7lrZjlgqjmnI3liqE8L3RleHQ+CiAgPHBhdGggZD0iTTM5NSA0MTYgSDQzMCIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNNjgwIDQxNiBINzY1IiBjbGFzcz0ibGluZSIvPgoKICA8cmVjdCB4PSI1NSIgeT0iNTEwIiB3aWR0aD0iMTA5MCIgaGVpZ2h0PSI3MCIgY2xhc3M9Im1lYW5pbmciLz48dGV4dCB4PSI2MDAiIHk9IjU1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPue7k+iuuu+8muWQjOS4gOS4quivjeWcqOS4jeWQjOWPpeWtkOS4re+8jOS8muagueaNruS4iuS4i+aWh+e6v+e0ouehruWumuWQq+S5ieOAgjwvdGV4dD4KICA8cmVjdCB4PSI1NSIgeT0iNjEwIiB3aWR0aD0iMTA5MCIgaGVpZ2h0PSI2MiIgY2xhc3M9ImJveCIvPjx0ZXh0IHg9IjYwMCIgeT0iNjQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPlJOTu+8muS/oeaBr+aMiemhuuW6j+S8oOmAkuOAgO+9nOOAgFRyYW5zZm9ybWVy77ya55uu5qCH6K+N5Y+v55u05o6l5YWz6IGU5LiK5LiL5paH5Lit55qE55u45YWz57q/57SiPC90ZXh0Pgo8L3N2Zz4K" alt="云词义判断流程图成果示例" data-image-id="lesson03-image-30">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDEyMDAgNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+5LiK5LiL5paH5oCO5qC35biu5YqpQUnnkIbop6PkupE8L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj7lpKnnqbrkuK3nmoTkupHlkozkupHnm5jkuK3nmoTkupHpgJrov4fkuI3lkIzkuIrkuIvmlofnur/ntKLov57mjqXliLDkuI3lkIzlkKvkuYnvvIzlubbpmYTmnIlSTk7lkoxUcmFuc2Zvcm1lcueahOWMuuWIq+OAgjwvZGVzYz4KICA8ZGVmcz4KICAgIDxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCBMMTAgNSBMMCAxMCBaIiBmaWxsPSIjMmQ2M2Q3Ii8+PC9tYXJrZXI+CiAgICA8c3R5bGU+CiAgICAgIC50aXRsZXtmb250OjcwMCAzNHB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMxNzIzM2R9LmxhYmVse2ZvbnQ6NzAwIDI0cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzIwNTdjNn0udGV4dHtmb250OjUwMCAyMnB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMyNTM1NTJ9LnNtYWxse2ZvbnQ6NTAwIDE5cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzUzNjQ4MH0uYm94e2ZpbGw6I2Y3ZjlmZjtzdHJva2U6I2I5Y2RmODtzdHJva2Utd2lkdGg6MjtyeDoxOH0ubWVhbmluZ3tmaWxsOiNlYWYyZmY7c3Ryb2tlOiM4OGFjZWY7c3Ryb2tlLXdpZHRoOjI7cng6MTh9LmxpbmV7c3Ryb2tlOiMyZDYzZDc7c3Ryb2tlLXdpZHRoOjQ7ZmlsbDpub25lO21hcmtlci1lbmQ6dXJsKCNhcnJvdyl9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiLz4KICA8dGV4dCB4PSI2MDAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGl0bGUiPuS4iuS4i+aWh+aAjuagt+W4ruWKqSBBSSDnkIbop6PigJzkupHigJ08L3RleHQ+CiAgPHJlY3QgeD0iNDg1IiB5PSI5NSIgd2lkdGg9IjIzMCIgaGVpZ2h0PSI4MiIgY2xhc3M9Im1lYW5pbmciLz48dGV4dCB4PSI2MDAiIHk9IjE0NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7nm67moIfor43vvJrkupE8L3RleHQ+CgogIDxyZWN0IHg9IjU1IiB5PSIyMjUiIHdpZHRoPSIzNDAiIGhlaWdodD0iOTIiIGNsYXNzPSJib3giLz48dGV4dCB4PSIyMjUiIHk9IjI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuS7iuWkqeeahOS6keW+iOWOmjwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuWPr+iDveimgeS4i+mbqDwvdGV4dD4KICA8cmVjdCB4PSI0MzAiIHk9IjIyNSIgd2lkdGg9IjI1MCIgaGVpZ2h0PSI5MiIgY2xhc3M9Im1lYW5pbmciLz48dGV4dCB4PSI1NTUiIHk9IjI2MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7nur/ntKI8L3RleHQ+PHRleHQgeD0iNTU1IiB5PSIyOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7kuIvpm6g8L3RleHQ+CiAgPHJlY3QgeD0iNzY1IiB5PSIyMjUiIHdpZHRoPSIzODAiIGhlaWdodD0iOTIiIGNsYXNzPSJib3giLz48dGV4dCB4PSI5NTUiIHk9IjI2NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7lkKvkuYkgMTwvdGV4dD48dGV4dCB4PSI5NTUiIHk9IjI5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuWkqeepuuS4reeahOS6kTwvdGV4dD4KICA8cGF0aCBkPSJNMzk1IDI3MSBINDMwIiBjbGFzcz0ibGluZSIvPjxwYXRoIGQ9Ik02ODAgMjcxIEg3NjUiIGNsYXNzPSJsaW5lIi8+CgogIDxyZWN0IHg9IjU1IiB5PSIzNzAiIHdpZHRoPSIzNDAiIGhlaWdodD0iOTIiIGNsYXNzPSJib3giLz48dGV4dCB4PSIyMjUiIHk9IjQxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuivt+aKiuS9nOS4muS4iuS8oOWIsOS6keebmDwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjQ0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj7or77lkI7lj6/mn6XnnIvlkozkuIvovb08L3RleHQ+CiAgPHJlY3QgeD0iNDMwIiB5PSIzNzAiIHdpZHRoPSIyNTAiIGhlaWdodD0iOTIiIGNsYXNzPSJtZWFuaW5nIi8+PHRleHQgeD0iNTU1IiB5PSI0MDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+57q/57SiPC90ZXh0Pjx0ZXh0IHg9IjU1NSIgeT0iNDM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGV4dCI+5LiK5Lyg44CB5LqR55uYPC90ZXh0PgogIDxyZWN0IHg9Ijc2NSIgeT0iMzcwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjkyIiBjbGFzcz0iYm94Ii8+PHRleHQgeD0iOTU1IiB5PSI0MDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+5ZCr5LmJIDI8L3RleHQ+PHRleHQgeD0iOTU1IiB5PSI0NDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7nvZHnu5zkuK3nmoTmlbDmja7lrZjlgqjmnI3liqE8L3RleHQ+CiAgPHBhdGggZD0iTTM5NSA0MTYgSDQzMCIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNNjgwIDQxNiBINzY1IiBjbGFzcz0ibGluZSIvPgoKICA8cmVjdCB4PSI1NSIgeT0iNTEwIiB3aWR0aD0iMTA5MCIgaGVpZ2h0PSI3MCIgY2xhc3M9Im1lYW5pbmciLz48dGV4dCB4PSI2MDAiIHk9IjU1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPue7k+iuuu+8muWQjOS4gOS4quivjeWcqOS4jeWQjOWPpeWtkOS4re+8jOS8muagueaNruS4iuS4i+aWh+e6v+e0ouehruWumuWQq+S5ieOAgjwvdGV4dD4KICA8cmVjdCB4PSI1NSIgeT0iNjEwIiB3aWR0aD0iMTA5MCIgaGVpZ2h0PSI2MiIgY2xhc3M9ImJveCIvPjx0ZXh0IHg9IjYwMCIgeT0iNjQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPlJOTu+8muS/oeaBr+aMiemhuuW6j+S8oOmAkuOAgO+9nOOAgFRyYW5zZm9ybWVy77ya55uu5qCH6K+N5Y+v55u05o6l5YWz6IGU5LiK5LiL5paH5Lit55qE55u45YWz57q/57SiPC90ZXh0Pgo8L3N2Zz4K" alt="云词义判断流程图成果示例" data-image-id="lesson03-image-30" width="1200" height="700">
 <figcaption>成果结构示例：学生可以更换配色，但中心词、两组句子、线索、含义和结构对比必须保留。</figcaption>
 </figure>
 </section><section class="lesson-section" id="concepts"><h2>02 基础概念</h2>
@@ -138,11 +1384,11 @@
 </div>
 <div class="model-case-figures">
 <figure class="lesson-figure">
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDEyMDAgNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+Uk5OIOaMiemhuuW6j+eQhuino+acjeWKoeeql+WPo+eahOi/h+eoizwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPuWPpeWtkOS4reeahOivjeivreaMieS7juW3puWIsOWPs+mhuuW6j+S8oOmAku+8jOacjeWKoee6v+e0oumAmui/h+makOiXj+eKtuaAgeS8oOWIsOeql+WPo++8jOWGjeW+l+WIsOWKnuS6i+WcsOeCueeahOWIpOaWreOAgjwvZGVzYz4KICA8ZGVmcz4KICAgIDxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCBMMTAgNSBMMCAxMCBaIiBmaWxsPSIjMmQ2M2Q3Ii8+PC9tYXJrZXI+CiAgICA8c3R5bGU+CiAgICAgIC50aXRsZXtmb250OjcwMCAzNHB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMxNzIzM2R9LmxhYmVse2ZvbnQ6NzAwIDIzcHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzIyNThjYX0udGV4dHtmb250OjUwMCAyMnB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMyYjNkNWR9LnNtYWxse2ZvbnQ6NTAwIDE4cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzUzNjQ4MH0ubm9kZXtmaWxsOiNmN2Y5ZmY7c3Ryb2tlOiNhOWMyZjY7c3Ryb2tlLXdpZHRoOjI7cng6MTZ9LmZvY3Vze2ZpbGw6I2U1ZWZmZjtzdHJva2U6IzJkNjNkNztzdHJva2Utd2lkdGg6MztyeDoxNn0uc3RhdGV7ZmlsbDojZmZmN2U4O3N0cm9rZTojZThiYjYxO3N0cm9rZS13aWR0aDoyO3J4OjEzfS5saW5le3N0cm9rZTojMmQ2M2Q3O3N0cm9rZS13aWR0aDo0O2ZpbGw6bm9uZTttYXJrZXItZW5kOnVybCgjYXJyb3cpfS5ub3Rle2ZpbGw6I2Y0ZjdmZjtzdHJva2U6I2QyZGZmODtzdHJva2Utd2lkdGg6MjtyeDoxNn0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+Uk5O77ya5L+h5oGv5oyJ6aG65bqP5Lyg6YCSPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+5qGI5L6L5Y+l5a2Q77ya6K+35Yiw5pyN5Yqh56qX5Y+j5Yqe55CG5Lia5YqhPC90ZXh0PgoKICA8cmVjdCB4PSI3MCIgeT0iMTcwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjcyIiBjbGFzcz0ibm9kZSIvPjx0ZXh0IHg9IjE0NSIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGV4dCI+6K+35YiwPC90ZXh0PgogIDxyZWN0IHg9IjI4NSIgeT0iMTcwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjcyIiBjbGFzcz0iZm9jdXMiLz48dGV4dCB4PSIzNjAiIHk9IjIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7mnI3liqE8L3RleHQ+CiAgPHJlY3QgeD0iNTAwIiB5PSIxNzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNzIiIGNsYXNzPSJmb2N1cyIvPjx0ZXh0IHg9IjU3NSIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPueql+WPozwvdGV4dD4KICA8cmVjdCB4PSI3MTUiIHk9IjE3MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI3MiIgY2xhc3M9Im5vZGUiLz48dGV4dCB4PSI3OTAiIHk9IjIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuWKnueQhjwvdGV4dD4KICA8cmVjdCB4PSI5MzAiIHk9IjE3MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI3MiIgY2xhc3M9Im5vZGUiLz48dGV4dCB4PSIxMDA1IiB5PSIyMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7kuJrliqE8L3RleHQ+CiAgPHBhdGggZD0iTTIyMCAyMDYgSDI4NSIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNNDM1IDIwNiBINTAwIiBjbGFzcz0ibGluZSIvPjxwYXRoIGQ9Ik02NTAgMjA2IEg3MTUiIGNsYXNzPSJsaW5lIi8+PHBhdGggZD0iTTg2NSAyMDYgSDkzMCIgY2xhc3M9ImxpbmUiLz4KCiAgPHRleHQgeD0iNjAwIiB5PSIyOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+5q+P6K+75Yiw5LiA5Liq6K+N77yM5bCx5oqK5YmN6Z2i55qE5L+h5oGv5Y6L57yp5ZCO57un57ut5b6A5ZCO5LygPC90ZXh0PgogIDxyZWN0IHg9Ijc1IiB5PSIzNDAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODYiIGNsYXNzPSJzdGF0ZSIvPjx0ZXh0IHg9IjE4NSIgeT0iMzc2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPumakOiXj+eKtuaAgSAxPC90ZXh0Pjx0ZXh0IHg9IjE4NSIgeT0iNDA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuaUtuWIsOKAnOivt+WIsOKAnTwvdGV4dD4KICA8cmVjdCB4PSIzNzAiIHk9IjM0MCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSI4NiIgY2xhc3M9InN0YXRlIi8+PHRleHQgeD0iNDgwIiB5PSIzNzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+6ZqQ6JeP54q25oCBIDI8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+5bim552A4oCc5pyN5Yqh4oCd57q/57SiPC90ZXh0PgogIDxyZWN0IHg9IjY2NSIgeT0iMzQwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9Ijg2IiBjbGFzcz0ic3RhdGUiLz48dGV4dCB4PSI3NzUiIHk9IjM3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7pmpDol4/nirbmgIEgMzwvdGV4dD48dGV4dCB4PSI3NzUiIHk9IjQwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj7kvKDliLDigJznqpflj6PigJ3pmYTov5E8L3RleHQ+CiAgPHBhdGggZD0iTTI5NSAzODMgSDM3MCIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNNTkwIDM4MyBINjY1IiBjbGFzcz0ibGluZSIvPgoKICA8cmVjdCB4PSIyMzUiIHk9IjUwMCIgd2lkdGg9IjczMCIgaGVpZ2h0PSI4MCIgY2xhc3M9Im5vdGUiLz48dGV4dCB4PSI2MDAiIHk9IjUzNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7liKTmlq3nu5PmnpzvvJrov5nph4znmoTigJznqpflj6PigJ3mm7TmjqXov5HigJzmj5DkvpvmnI3liqHnmoTlip7kuovlnLDngrnigJ08L3RleHQ+PHRleHQgeD0iNjAwIiB5PSI1NjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+54m554K577ya57q/57Si5b+F6aG76YCQ5q2l5Lyg6YCS77yb5Y+l5a2Q5b6I6ZW/5pe277yM6L6D5pep55qE5L+h5oGv5Y+v6IO95Y+Y5byx44CCPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iNjQ2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuivvuWgguinguWvn++8mueUqOeureWktOi/vei4quKAnOacjeWKoeKAnei/meS4que6v+e0ouaAjuagt+S4gOatpeatpeS8oOWIsOKAnOeql+WPo+KAneOAgjwvdGV4dD4KPC9zdmc+Cg==" alt="RNN按顺序传递服务窗口线索的过程图" data-image-id="lesson03-image-80">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDEyMDAgNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+Uk5OIOaMiemhuuW6j+eQhuino+acjeWKoeeql+WPo+eahOi/h+eoizwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPuWPpeWtkOS4reeahOivjeivreaMieS7juW3puWIsOWPs+mhuuW6j+S8oOmAku+8jOacjeWKoee6v+e0oumAmui/h+makOiXj+eKtuaAgeS8oOWIsOeql+WPo++8jOWGjeW+l+WIsOWKnuS6i+WcsOeCueeahOWIpOaWreOAgjwvZGVzYz4KICA8ZGVmcz4KICAgIDxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCBMMTAgNSBMMCAxMCBaIiBmaWxsPSIjMmQ2M2Q3Ii8+PC9tYXJrZXI+CiAgICA8c3R5bGU+CiAgICAgIC50aXRsZXtmb250OjcwMCAzNHB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMxNzIzM2R9LmxhYmVse2ZvbnQ6NzAwIDIzcHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzIyNThjYX0udGV4dHtmb250OjUwMCAyMnB4IC1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJQaW5nRmFuZyBTQyIsIk1pY3Jvc29mdCBZYUhlaSIsc2Fucy1zZXJpZjtmaWxsOiMyYjNkNWR9LnNtYWxse2ZvbnQ6NTAwIDE4cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzUzNjQ4MH0ubm9kZXtmaWxsOiNmN2Y5ZmY7c3Ryb2tlOiNhOWMyZjY7c3Ryb2tlLXdpZHRoOjI7cng6MTZ9LmZvY3Vze2ZpbGw6I2U1ZWZmZjtzdHJva2U6IzJkNjNkNztzdHJva2Utd2lkdGg6MztyeDoxNn0uc3RhdGV7ZmlsbDojZmZmN2U4O3N0cm9rZTojZThiYjYxO3N0cm9rZS13aWR0aDoyO3J4OjEzfS5saW5le3N0cm9rZTojMmQ2M2Q3O3N0cm9rZS13aWR0aDo0O2ZpbGw6bm9uZTttYXJrZXItZW5kOnVybCgjYXJyb3cpfS5ub3Rle2ZpbGw6I2Y0ZjdmZjtzdHJva2U6I2QyZGZmODtzdHJva2Utd2lkdGg6MjtyeDoxNn0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+Uk5O77ya5L+h5oGv5oyJ6aG65bqP5Lyg6YCSPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+5qGI5L6L5Y+l5a2Q77ya6K+35Yiw5pyN5Yqh56qX5Y+j5Yqe55CG5Lia5YqhPC90ZXh0PgoKICA8cmVjdCB4PSI3MCIgeT0iMTcwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjcyIiBjbGFzcz0ibm9kZSIvPjx0ZXh0IHg9IjE0NSIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGV4dCI+6K+35YiwPC90ZXh0PgogIDxyZWN0IHg9IjI4NSIgeT0iMTcwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjcyIiBjbGFzcz0iZm9jdXMiLz48dGV4dCB4PSIzNjAiIHk9IjIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7mnI3liqE8L3RleHQ+CiAgPHJlY3QgeD0iNTAwIiB5PSIxNzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNzIiIGNsYXNzPSJmb2N1cyIvPjx0ZXh0IHg9IjU3NSIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPueql+WPozwvdGV4dD4KICA8cmVjdCB4PSI3MTUiIHk9IjE3MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI3MiIgY2xhc3M9Im5vZGUiLz48dGV4dCB4PSI3OTAiIHk9IjIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuWKnueQhjwvdGV4dD4KICA8cmVjdCB4PSI5MzAiIHk9IjE3MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI3MiIgY2xhc3M9Im5vZGUiLz48dGV4dCB4PSIxMDA1IiB5PSIyMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7kuJrliqE8L3RleHQ+CiAgPHBhdGggZD0iTTIyMCAyMDYgSDI4NSIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNNDM1IDIwNiBINTAwIiBjbGFzcz0ibGluZSIvPjxwYXRoIGQ9Ik02NTAgMjA2IEg3MTUiIGNsYXNzPSJsaW5lIi8+PHBhdGggZD0iTTg2NSAyMDYgSDkzMCIgY2xhc3M9ImxpbmUiLz4KCiAgPHRleHQgeD0iNjAwIiB5PSIyOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+5q+P6K+75Yiw5LiA5Liq6K+N77yM5bCx5oqK5YmN6Z2i55qE5L+h5oGv5Y6L57yp5ZCO57un57ut5b6A5ZCO5LygPC90ZXh0PgogIDxyZWN0IHg9Ijc1IiB5PSIzNDAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODYiIGNsYXNzPSJzdGF0ZSIvPjx0ZXh0IHg9IjE4NSIgeT0iMzc2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPumakOiXj+eKtuaAgSAxPC90ZXh0Pjx0ZXh0IHg9IjE4NSIgeT0iNDA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuaUtuWIsOKAnOivt+WIsOKAnTwvdGV4dD4KICA8cmVjdCB4PSIzNzAiIHk9IjM0MCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSI4NiIgY2xhc3M9InN0YXRlIi8+PHRleHQgeD0iNDgwIiB5PSIzNzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+6ZqQ6JeP54q25oCBIDI8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+5bim552A4oCc5pyN5Yqh4oCd57q/57SiPC90ZXh0PgogIDxyZWN0IHg9IjY2NSIgeT0iMzQwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9Ijg2IiBjbGFzcz0ic3RhdGUiLz48dGV4dCB4PSI3NzUiIHk9IjM3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7pmpDol4/nirbmgIEgMzwvdGV4dD48dGV4dCB4PSI3NzUiIHk9IjQwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj7kvKDliLDigJznqpflj6PigJ3pmYTov5E8L3RleHQ+CiAgPHBhdGggZD0iTTI5NSAzODMgSDM3MCIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNNTkwIDM4MyBINjY1IiBjbGFzcz0ibGluZSIvPgoKICA8cmVjdCB4PSIyMzUiIHk9IjUwMCIgd2lkdGg9IjczMCIgaGVpZ2h0PSI4MCIgY2xhc3M9Im5vdGUiLz48dGV4dCB4PSI2MDAiIHk9IjUzNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7liKTmlq3nu5PmnpzvvJrov5nph4znmoTigJznqpflj6PigJ3mm7TmjqXov5HigJzmj5DkvpvmnI3liqHnmoTlip7kuovlnLDngrnigJ08L3RleHQ+PHRleHQgeD0iNjAwIiB5PSI1NjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+54m554K577ya57q/57Si5b+F6aG76YCQ5q2l5Lyg6YCS77yb5Y+l5a2Q5b6I6ZW/5pe277yM6L6D5pep55qE5L+h5oGv5Y+v6IO95Y+Y5byx44CCPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iNjQ2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuivvuWgguinguWvn++8mueUqOeureWktOi/vei4quKAnOacjeWKoeKAnei/meS4que6v+e0ouaAjuagt+S4gOatpeatpeS8oOWIsOKAnOeql+WPo+KAneOAgjwvdGV4dD4KPC9zdmc+Cg==" alt="RNN按顺序传递服务窗口线索的过程图" data-image-id="lesson03-image-80" width="1200" height="700">
 <figcaption><b>图 1｜RNN 的案例过程</b> ：线索要从前往后逐步传递；句子变长时，较早的信息可能变弱。</figcaption>
 </figure>
 <figure class="lesson-figure">
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDEyMDAgNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+VHJhbnNmb3JtZXIg5YWz6IGU5LiK5LiL5paH55CG6Kej5pyN5Yqh56qX5Y+j55qE6L+H56iLPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+55uu5qCH6K+N56qX5Y+j55u05o6l5YWz6IGU5pyN5Yqh44CB5Yqe55CG5ZKM5Lia5Yqh562J5LiK5LiL5paH57q/57Si77yM5LuO6ICM5Yik5pat56qX5Y+j5oyH5o+Q5L6b5pyN5Yqh55qE5Yqe5LqL5Zyw54K544CCPC9kZXNjPgogIDxkZWZzPgogICAgPG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwIEwxMCA1IEwwIDEwIFoiIGZpbGw9IiMyZDYzZDciLz48L21hcmtlcj4KICAgIDxzdHlsZT4KICAgICAgLnRpdGxle2ZvbnQ6NzAwIDM0cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzE3MjMzZH0ubGFiZWx7Zm9udDo3MDAgMjNweCAtYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwiUGluZ0ZhbmcgU0MiLCJNaWNyb3NvZnQgWWFIZWkiLHNhbnMtc2VyaWY7ZmlsbDojMjI1OGNhfS50ZXh0e2ZvbnQ6NTAwIDIycHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzJiM2Q1ZH0uc21hbGx7Zm9udDo1MDAgMThweCAtYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwiUGluZ0ZhbmcgU0MiLCJNaWNyb3NvZnQgWWFIZWkiLHNhbnMtc2VyaWY7ZmlsbDojNTM2NDgwfS5ub2Rle2ZpbGw6I2Y3ZjlmZjtzdHJva2U6I2E5YzJmNjtzdHJva2Utd2lkdGg6MjtyeDoxNn0uZm9jdXN7ZmlsbDojZTVlZmZmO3N0cm9rZTojMmQ2M2Q3O3N0cm9rZS13aWR0aDozO3J4OjE2fS5jbHVle2ZpbGw6I2ZmZjdlODtzdHJva2U6I2U4YmI2MTtzdHJva2Utd2lkdGg6MjtyeDoxNn0ubGluZXtzdHJva2U6IzJkNjNkNztzdHJva2Utd2lkdGg6NDtmaWxsOm5vbmU7bWFya2VyLWVuZDp1cmwoI2Fycm93KX0ubGlnaHR7c3Ryb2tlOiM4NGE2ZWY7c3Ryb2tlLXdpZHRoOjM7ZmlsbDpub25lO21hcmtlci1lbmQ6dXJsKCNhcnJvdyl9Lm5vdGV7ZmlsbDojZjRmN2ZmO3N0cm9rZTojZDJkZmY4O3N0cm9rZS13aWR0aDoyO3J4OjE2fQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjZmZmIi8+CiAgPHRleHQgeD0iNjAwIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRpdGxlIj5UcmFuc2Zvcm1lcu+8muebtOaOpeWFs+iBlOebuOWFs+e6v+e0ojwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9Ijk0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuahiOS+i+WPpeWtkO+8muivt+WIsOacjeWKoeeql+WPo+WKnueQhuS4muWKoTwvdGV4dD4KCiAgPHJlY3QgeD0iODUiIHk9IjE4MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI3MiIgY2xhc3M9Im5vZGUiLz48dGV4dCB4PSIxNjUiIHk9IjIyNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuivt+WIsDwvdGV4dD4KICA8cmVjdCB4PSIzMTUiIHk9IjE4MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI3MiIgY2xhc3M9ImNsdWUiLz48dGV4dCB4PSIzOTUiIHk9IjIyNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7mnI3liqE8L3RleHQ+CiAgPHJlY3QgeD0iNTIwIiB5PSIxNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTMyIiBjbGFzcz0iZm9jdXMiLz48dGV4dCB4PSI2MDAiIHk9IjIwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7nm67moIfor408L3RleHQ+PHRleHQgeD0iNjAwIiB5PSIyNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+56qX5Y+jPC90ZXh0PgogIDxyZWN0IHg9IjcyNSIgeT0iMTgwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjcyIiBjbGFzcz0iY2x1ZSIvPjx0ZXh0IHg9IjgwNSIgeT0iMjI2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPuWKnueQhjwvdGV4dD4KICA8cmVjdCB4PSI5NTUiIHk9IjE4MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI3MiIgY2xhc3M9ImNsdWUiLz48dGV4dCB4PSIxMDM1IiB5PSIyMjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+5Lia5YqhPC90ZXh0PgogIDxwYXRoIGQ9Ik00NzUgMjE0IEg1MjAiIGNsYXNzPSJsaW5lIi8+PHBhdGggZD0iTTcyNSAyMTQgSDY4MCIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNOTU1IDIxNSBDODUwIDMyMCA3NDAgMzMwIDY1MCAyODIiIGNsYXNzPSJsaWdodCIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iMzMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuKAnOeql+WPo+KAneWPr+S7peebtOaOpeafpeeci+S4juiHquW3seacgOebuOWFs+eahOS4iuS4i+aWh++8jOiAjOS4jeWPquS+nei1luWJjeS4gOatpeS8oOadpeeahOS/oeaBrzwvdGV4dD4KCiAgPHJlY3QgeD0iMTM1IiB5PSIzOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iOTAiIGNsYXNzPSJjbHVlIi8+PHRleHQgeD0iMjY1IiB5PSI0MjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+55u45YWz57q/57SiIDE8L3RleHQ+PHRleHQgeD0iMjY1IiB5PSI0NTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7mnI3liqE8L3RleHQ+CiAgPHJlY3QgeD0iNDcwIiB5PSIzOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iOTAiIGNsYXNzPSJjbHVlIi8+PHRleHQgeD0iNjAwIiB5PSI0MjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+55u45YWz57q/57SiIDI8L3RleHQ+PHRleHQgeD0iNjAwIiB5PSI0NTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7lip7nkIY8L3RleHQ+CiAgPHJlY3QgeD0iODA1IiB5PSIzOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iOTAiIGNsYXNzPSJjbHVlIi8+PHRleHQgeD0iOTM1IiB5PSI0MjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+55u45YWz57q/57SiIDM8L3RleHQ+PHRleHQgeD0iOTM1IiB5PSI0NTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7kuJrliqE8L3RleHQ+CiAgPHBhdGggZD0iTTYwMCAyODIgQzUyMCAzMzAgMzU1IDM0NyAzMDAgMzkwIiBjbGFzcz0ibGlnaHQiLz48cGF0aCBkPSJNNjAwIDI4MiBWMzkwIiBjbGFzcz0ibGluZSIvPjxwYXRoIGQ9Ik02MDAgMjgyIEM2ODAgMzMwIDg0NSAzNDcgOTAwIDM5MCIgY2xhc3M9ImxpZ2h0Ii8+CgogIDxyZWN0IHg9IjE5MCIgeT0iNTQwIiB3aWR0aD0iODIwIiBoZWlnaHQ9Ijc4IiBjbGFzcz0ibm90ZSIvPjx0ZXh0IHg9IjYwMCIgeT0iNTczIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPuWIpOaWree7k+aenO+8mui/memHjOeahOKAnOeql+WPo+KAneabtOaOpei/keKAnOaPkOS+m+acjeWKoeeahOWKnuS6i+WcsOeCueKAnTwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjYwMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj7nibnngrnvvJrnm67moIfor43lj6/nm7TmjqXlhbPogZTlpJrkuKrph43opoHnur/ntKLvvIzlho3nu7zlkIjlgZrlh7rliKTmlq3jgII8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSI2NjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+6K++5aCC6KeC5a+f77ya55yL4oCc56qX5Y+j4oCd6L+e5ZCR5ZOq5Lqb6K+N77yb6L+e57q/6LaK6YeN6KaB77yM6K+05piO6K+l57q/57Si6LaK5YC85b6X5Y+C6ICD44CCPC90ZXh0Pgo8L3N2Zz4K" alt="Transformer直接关联服务窗口上下文线索的过程图" data-image-id="lesson03-image-82">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDEyMDAgNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+VHJhbnNmb3JtZXIg5YWz6IGU5LiK5LiL5paH55CG6Kej5pyN5Yqh56qX5Y+j55qE6L+H56iLPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+55uu5qCH6K+N56qX5Y+j55u05o6l5YWz6IGU5pyN5Yqh44CB5Yqe55CG5ZKM5Lia5Yqh562J5LiK5LiL5paH57q/57Si77yM5LuO6ICM5Yik5pat56qX5Y+j5oyH5o+Q5L6b5pyN5Yqh55qE5Yqe5LqL5Zyw54K544CCPC9kZXNjPgogIDxkZWZzPgogICAgPG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwIEwxMCA1IEwwIDEwIFoiIGZpbGw9IiMyZDYzZDciLz48L21hcmtlcj4KICAgIDxzdHlsZT4KICAgICAgLnRpdGxle2ZvbnQ6NzAwIDM0cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzE3MjMzZH0ubGFiZWx7Zm9udDo3MDAgMjNweCAtYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwiUGluZ0ZhbmcgU0MiLCJNaWNyb3NvZnQgWWFIZWkiLHNhbnMtc2VyaWY7ZmlsbDojMjI1OGNhfS50ZXh0e2ZvbnQ6NTAwIDIycHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzJiM2Q1ZH0uc21hbGx7Zm9udDo1MDAgMThweCAtYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwiUGluZ0ZhbmcgU0MiLCJNaWNyb3NvZnQgWWFIZWkiLHNhbnMtc2VyaWY7ZmlsbDojNTM2NDgwfS5ub2Rle2ZpbGw6I2Y3ZjlmZjtzdHJva2U6I2E5YzJmNjtzdHJva2Utd2lkdGg6MjtyeDoxNn0uZm9jdXN7ZmlsbDojZTVlZmZmO3N0cm9rZTojMmQ2M2Q3O3N0cm9rZS13aWR0aDozO3J4OjE2fS5jbHVle2ZpbGw6I2ZmZjdlODtzdHJva2U6I2U4YmI2MTtzdHJva2Utd2lkdGg6MjtyeDoxNn0ubGluZXtzdHJva2U6IzJkNjNkNztzdHJva2Utd2lkdGg6NDtmaWxsOm5vbmU7bWFya2VyLWVuZDp1cmwoI2Fycm93KX0ubGlnaHR7c3Ryb2tlOiM4NGE2ZWY7c3Ryb2tlLXdpZHRoOjM7ZmlsbDpub25lO21hcmtlci1lbmQ6dXJsKCNhcnJvdyl9Lm5vdGV7ZmlsbDojZjRmN2ZmO3N0cm9rZTojZDJkZmY4O3N0cm9rZS13aWR0aDoyO3J4OjE2fQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjZmZmIi8+CiAgPHRleHQgeD0iNjAwIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRpdGxlIj5UcmFuc2Zvcm1lcu+8muebtOaOpeWFs+iBlOebuOWFs+e6v+e0ojwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9Ijk0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuahiOS+i+WPpeWtkO+8muivt+WIsOacjeWKoeeql+WPo+WKnueQhuS4muWKoTwvdGV4dD4KCiAgPHJlY3QgeD0iODUiIHk9IjE4MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI3MiIgY2xhc3M9Im5vZGUiLz48dGV4dCB4PSIxNjUiIHk9IjIyNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRleHQiPuivt+WIsDwvdGV4dD4KICA8cmVjdCB4PSIzMTUiIHk9IjE4MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI3MiIgY2xhc3M9ImNsdWUiLz48dGV4dCB4PSIzOTUiIHk9IjIyNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7mnI3liqE8L3RleHQ+CiAgPHJlY3QgeD0iNTIwIiB5PSIxNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTMyIiBjbGFzcz0iZm9jdXMiLz48dGV4dCB4PSI2MDAiIHk9IjIwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj7nm67moIfor408L3RleHQ+PHRleHQgeD0iNjAwIiB5PSIyNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+56qX5Y+jPC90ZXh0PgogIDxyZWN0IHg9IjcyNSIgeT0iMTgwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjcyIiBjbGFzcz0iY2x1ZSIvPjx0ZXh0IHg9IjgwNSIgeT0iMjI2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPuWKnueQhjwvdGV4dD4KICA8cmVjdCB4PSI5NTUiIHk9IjE4MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI3MiIgY2xhc3M9ImNsdWUiLz48dGV4dCB4PSIxMDM1IiB5PSIyMjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+5Lia5YqhPC90ZXh0PgogIDxwYXRoIGQ9Ik00NzUgMjE0IEg1MjAiIGNsYXNzPSJsaW5lIi8+PHBhdGggZD0iTTcyNSAyMTQgSDY4MCIgY2xhc3M9ImxpbmUiLz48cGF0aCBkPSJNOTU1IDIxNSBDODUwIDMyMCA3NDAgMzMwIDY1MCAyODIiIGNsYXNzPSJsaWdodCIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iMzMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPuKAnOeql+WPo+KAneWPr+S7peebtOaOpeafpeeci+S4juiHquW3seacgOebuOWFs+eahOS4iuS4i+aWh++8jOiAjOS4jeWPquS+nei1luWJjeS4gOatpeS8oOadpeeahOS/oeaBrzwvdGV4dD4KCiAgPHJlY3QgeD0iMTM1IiB5PSIzOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iOTAiIGNsYXNzPSJjbHVlIi8+PHRleHQgeD0iMjY1IiB5PSI0MjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+55u45YWz57q/57SiIDE8L3RleHQ+PHRleHQgeD0iMjY1IiB5PSI0NTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7mnI3liqE8L3RleHQ+CiAgPHJlY3QgeD0iNDcwIiB5PSIzOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iOTAiIGNsYXNzPSJjbHVlIi8+PHRleHQgeD0iNjAwIiB5PSI0MjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+55u45YWz57q/57SiIDI8L3RleHQ+PHRleHQgeD0iNjAwIiB5PSI0NTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7lip7nkIY8L3RleHQ+CiAgPHJlY3QgeD0iODA1IiB5PSIzOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iOTAiIGNsYXNzPSJjbHVlIi8+PHRleHQgeD0iOTM1IiB5PSI0MjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+55u45YWz57q/57SiIDM8L3RleHQ+PHRleHQgeD0iOTM1IiB5PSI0NTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0ZXh0Ij7kuJrliqE8L3RleHQ+CiAgPHBhdGggZD0iTTYwMCAyODIgQzUyMCAzMzAgMzU1IDM0NyAzMDAgMzkwIiBjbGFzcz0ibGlnaHQiLz48cGF0aCBkPSJNNjAwIDI4MiBWMzkwIiBjbGFzcz0ibGluZSIvPjxwYXRoIGQ9Ik02MDAgMjgyIEM2ODAgMzMwIDg0NSAzNDcgOTAwIDM5MCIgY2xhc3M9ImxpZ2h0Ii8+CgogIDxyZWN0IHg9IjE5MCIgeT0iNTQwIiB3aWR0aD0iODIwIiBoZWlnaHQ9Ijc4IiBjbGFzcz0ibm90ZSIvPjx0ZXh0IHg9IjYwMCIgeT0iNTczIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPuWIpOaWree7k+aenO+8mui/memHjOeahOKAnOeql+WPo+KAneabtOaOpei/keKAnOaPkOS+m+acjeWKoeeahOWKnuS6i+WcsOeCueKAnTwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjYwMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj7nibnngrnvvJrnm67moIfor43lj6/nm7TmjqXlhbPogZTlpJrkuKrph43opoHnur/ntKLvvIzlho3nu7zlkIjlgZrlh7rliKTmlq3jgII8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSI2NjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+6K++5aCC6KeC5a+f77ya55yL4oCc56qX5Y+j4oCd6L+e5ZCR5ZOq5Lqb6K+N77yb6L+e57q/6LaK6YeN6KaB77yM6K+05piO6K+l57q/57Si6LaK5YC85b6X5Y+C6ICD44CCPC90ZXh0Pgo8L3N2Zz4K" alt="Transformer直接关联服务窗口上下文线索的过程图" data-image-id="lesson03-image-82" width="1200" height="700">
 <figcaption><b>图 2｜Transformer 的案例过程</b> ：目标词“窗口”直接关联“服务、办理、业务”等关键线索。</figcaption>
 </figure>
 </div>
@@ -181,7 +1427,7 @@
 <div class="step-cards">
 <article class="step-card">
 <h3>步骤 1｜先看成果示例（约 3 分钟）</h3>
-<p>从上到下找到标题、中心词、两组句子、关键线索、对应含义和底部结构对比，确认最终只需提交这一张图。注意：这是“云”的新案例，不是板块④中的“窗口”案例。</p>
+<p>从上到下找到标题、中心词、两组句子、关键线索、对应含义和底部结构对比，确认最终只需提交这一张图。注意：这是“云”的新案例，不是“03 核心案例”中的“窗口”案例。</p>
 <div class="step-standard">
 <b>观察重点</b><span>两条路径都采用“句子 → 线索 → 含义”，不要把线索和含义直接混在一个框里。</span>
 </div>
@@ -218,7 +1464,7 @@
 <h3>步骤 5｜导出并提交（约 5 分钟）</h3>
 <p>导出为 PNG 或 PDF，重新打开检查是否完整、清晰、没有裁切。</p>
 <div class="step-standard">
-<b>最终交付物</b><span>1 张“云词义判断”中文流程图，命名为“03_云词义判断流程图_姓名.png”。</span>
+<b>最终交付物</b><span>1 张“云词义判断”中文流程图，命名为“03_云词义判断流程图_姓名.png”或同名“.pdf”，后缀与实际导出格式一致。</span>
 <small>只提交最终版本，不提交生成失败或文字错误的中间图。</small>
 </div>
 <small>✓ 文件能够正常打开后提交。</small>
@@ -245,8 +1491,8 @@
 <h3>把今天的方法带到下一次学习</h3>
 <div class="extension-grid">
 <article>
-<b>课后拓展</b>
-<p>向家人用自己的话解释注意力机制</p>
+<b>成果核对</b>
+<p>核对概念图中的概念、箭头关系及实际导出格式，重新打开确认可读。</p>
 </article>
 <article>
 <b>课堂提醒</b>
@@ -257,12 +1503,226 @@
 <p>下一节《预训练与后训练：大模型的“教育”》会在今天的基础上继续练习新的方法和工具。</p>
 </article>
 </div>
-</section><a class="back-top" href="#top">返回顶部 ↑</a></main><script src="assets/shared/script-081eb8ee9acf.js" defer></script><script id="site-embedded-navigation">
-const courseBar=document.querySelector('.site-course-bar');
-const presentationButton=document.querySelector('.ppt-open-trigger');
-if(courseBar&&presentationButton)courseBar.insertBefore(presentationButton,courseBar.querySelector('.site-course-note'));
-if(window.parent!==window){document.addEventListener('click',function(event){
-  const link=event.target.closest('a[data-course-lesson]');if(!link)return;
-  event.preventDefault();window.parent.postMessage({type:'aigc-open-lesson',id:link.dataset.courseLesson},'*');
-});}
+</section><a class="back-top" href="#top">返回顶部 ↑</a></main><script>async function copyLessonText(text){
+ try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);return;}}catch(_){}
+ const previous=document.activeElement;
+ const area=document.createElement('textarea');area.value=text;area.readOnly=true;area.style.position='fixed';area.style.opacity='0';(lessonDialogs[lessonDialogs.length-1]?.element||document.body).appendChild(area);area.select();
+ try{if(!document.execCommand('copy'))throw Error('复制被浏览器拒绝');}
+ finally{area.remove();if(previous instanceof HTMLElement)previous.focus({preventScroll:true});}
+}
+function selectLessonText(target){
+ target.scrollIntoView({block:'nearest',behavior:'instant'});
+ if(!target.hasAttribute('tabindex'))target.tabIndex=-1;
+ target.focus({preventScroll:true});
+ const range=document.createRange();range.selectNodeContents(target);
+ const selection=getSelection();selection.removeAllRanges();selection.addRange(range);
+}
+document.addEventListener('click',async event=>{
+ const button=event.target.closest?.('.copy-button[data-copy-target]');if(!button)return;
+ const scope=button.closest('.ppt-slide-card')||document;
+ const target=scope.querySelector('#'+CSS.escape(button.dataset.copyTarget));
+ const label=button.textContent.trim();
+ try{if(!target)throw Error('复制目标不存在');await copyLessonText(target.textContent.trim());button.textContent='已复制';}
+ catch(_){button.textContent='复制失败，请手动复制已选文本';if(target)selectLessonText(target);}
+ setTimeout(()=>button.textContent=label,2000);
+});
+
+// 对话框按打开顺序处理，图片预览位于放映舞台之上。
+const lessonDialogs=[];
+function lessonVisible(element){
+ return element instanceof HTMLElement&&element.isConnected&&element.getClientRects().length>0&&
+  getComputedStyle(element).visibility!=='hidden'&&!element.closest('[inert]')&&!element.matches(':disabled');
+}
+function lessonFocusables(root){
+ return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),summary,[tabindex]:not([tabindex="-1"])')).filter(lessonVisible);
+}
+function lessonRestoreFocus(previous){
+ const navLinks=Array.from(document.querySelectorAll('.jump-nav a')).filter(link=>{
+  const box=link.getBoundingClientRect();return box.right>0&&box.left<innerWidth;
+ });
+ const target=[previous,document.querySelector('.ppt-open-trigger'),...navLinks].find(element=>lessonVisible(element)&&!element.matches('body,html'));
+ target?.focus({preventScroll:true});
+}
+function openLessonDialog(element,close,previous=document.activeElement){
+ const background=Array.from(document.body.children).filter(node=>node!==element&&!['SCRIPT','STYLE'].includes(node.tagName)).map(node=>({node,inert:node.inert}));
+ const entry={element,close,previous,background,overflow:document.body.style.overflow};
+ element.setAttribute('role','dialog');element.setAttribute('aria-modal','true');element.tabIndex=-1;
+ lessonDialogs.push(entry);background.forEach(({node})=>{node.inert=true;});document.body.style.overflow='hidden';
+ return entry;
+}
+function closeLessonDialog(element){
+ const top=lessonDialogs[lessonDialogs.length-1];if(!top||top.element!==element)return false;
+ lessonDialogs.pop();top.background.forEach(({node,inert})=>{node.inert=inert;});
+ document.body.style.overflow=top.overflow;lessonRestoreFocus(top.previous);return true;
+}
+document.addEventListener('keydown',event=>{
+ const top=lessonDialogs[lessonDialogs.length-1];if(!top||event.ctrlKey||event.metaKey||event.altKey)return;
+ if(event.key==='Escape'){
+  event.preventDefault();event.stopImmediatePropagation();top.close();return;
+ }
+ if(event.key!=='Tab')return;
+ const items=lessonFocusables(top.element),first=items[0]||top.element,last=items[items.length-1]||top.element;
+ if(!items.length||!items.includes(document.activeElement)||(!event.shiftKey&&document.activeElement===last)||(event.shiftKey&&document.activeElement===first)){
+  event.preventDefault();(event.shiftKey?last:first).focus({preventScroll:true});
+ }
+},true);
+document.addEventListener('focusin',event=>{
+ const top=lessonDialogs[lessonDialogs.length-1];if(top&&!top.element.contains(event.target)){
+  (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
+ }
+});
+document.addEventListener('click',event=>{
+ const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
+ overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
+ const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';
+ const close=document.createElement('button');close.type='button';close.textContent='关闭原图';close.style.cssText='position:absolute;top:12px;right:16px;padding:10px 16px;font-size:16px;cursor:pointer;';
+ const remove=()=>{if(closeLessonDialog(overlay))overlay.remove();};
+ close.addEventListener('click',remove);overlay.addEventListener('click',e=>{if(e.target===overlay)remove();});
+ overlay.append(image,close);document.body.append(overlay);openLessonDialog(overlay,remove,link);close.focus({preventScroll:true});
+});
+
+// 侧边栏导航：保持原结构、折叠偏好与滚动高亮。
+(function initJumpNav(){
+ const nav=document.querySelector('.jump-nav');if(!nav)return;
+ if(!nav.querySelector('.jump-nav-header')){
+  const oldLinks=Array.from(nav.querySelectorAll('a'));
+  nav.innerHTML='<div class="jump-nav-header"><span class="jump-nav-title">📑 本课导读</span><button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航"><span class="toggle-icon">‹</span></button></div><div class="jump-nav-body"><div class="jump-nav-list"></div><a class="jump-nav-top" href="#top" title="返回顶部"><span class="top-icon">↑</span><span class="top-label">回顶部</span></a></div>';
+  const list=nav.querySelector('.jump-nav-list');
+  oldLinks.forEach((a,idx)=>{
+   a.className='jump-nav-link';const text=a.textContent.trim(),m=text.match(/^(\d{1,2})\s*(.*)$/);
+   const index=document.createElement('span');index.className='nav-idx';index.textContent=m?m[1]:String(idx).padStart(2,'0');
+   const label=document.createElement('span');label.className='nav-label';label.textContent=m?(m[2]||m[1]):text;
+   a.replaceChildren(index,label);list.appendChild(a);
+  });
+ }
+ const toggle=nav.querySelector('.jump-nav-toggle'),body=nav.querySelector('.jump-nav-body'),narrow=matchMedia('(max-width:1023px)'),storageKey='jumpNavCollapsed';
+ try{if(sessionStorage.getItem(storageKey)==='true')nav.classList.add('is-collapsed');}catch(_){}
+ function syncNavState(){
+  const collapsed=!narrow.matches&&nav.classList.contains('is-collapsed');if(body)body.inert=collapsed;
+  if(toggle){toggle.setAttribute('aria-expanded',String(!collapsed));toggle.setAttribute('aria-label',collapsed?'展开导航':'收起导航');toggle.title=collapsed?'展开导航':'收起导航';}
+ }
+ function toggleNav(collapsed){
+  const value=typeof collapsed==='boolean'?collapsed:!nav.classList.contains('is-collapsed');nav.classList.toggle('is-collapsed',value);
+  try{sessionStorage.setItem(storageKey,String(value));}catch(_){}syncNavState();
+ }
+ toggle?.addEventListener('click',event=>{event.stopPropagation();toggleNav();});
+ nav.addEventListener('click',event=>{if(nav.classList.contains('is-collapsed')&&!event.target.closest('a'))toggleNav(false);});
+ const links=Array.from(nav.querySelectorAll('a[href^="#"]')).filter(a=>!a.classList.contains('jump-nav-top')&&a.getAttribute('href')!=='#top');
+ const targets=links.map(link=>({link,target:document.getElementById(link.getAttribute('href').slice(1))})).filter(item=>item.target);
+ let active=null,ticking=false;
+ function updateActiveLink(){
+  let current=null;const position=scrollY+(narrow.matches?90:180);
+  for(const item of targets){if(position>=item.target.getBoundingClientRect().top+scrollY)current=item;else break;}
+  if(!current&&scrollY<250)current=targets[0];
+  if(targets.length&&scrollY+innerHeight>=document.documentElement.scrollHeight-2)current=targets[targets.length-1];
+  links.forEach(link=>{const selected=link===current?.link;link.classList.toggle('active',selected);if(selected)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+  if(current?.link!==active){
+   active=current?.link;
+   if(narrow.matches&&active){const box=active.getBoundingClientRect(),bounds=nav.getBoundingClientRect();if(box.left<bounds.left+12)nav.scrollLeft+=box.left-bounds.left-12;else if(box.right>bounds.right-12)nav.scrollLeft+=box.right-bounds.right+12;}
+  }
+ }
+ function schedule(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateActiveLink();ticking=false;});}
+ window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',()=>{syncNavState();schedule();});
+ narrow.addEventListener('change',()=>{syncNavState();schedule();});syncNavState();updateActiveLink();
+})();
+
+// 每个源节点只进入一个切片；嵌套标题和比较网格保持完整结构。
+function lessonSlideFragments(section){
+ const fragments=[];let buffer=[];
+ const meaningful=nodes=>nodes.some(node=>node.nodeType!==3||node.textContent.trim());
+ function add(nodes){if(meaningful(nodes))fragments.push(nodes);}
+ function flush(){add(buffer);buffer=[];}
+ function atomic(node){return node.nodeType===1&&node.matches('.step-card,.practice-task,.concept-card');}
+ function splitWrapper(wrapper){
+  let pending=[];
+  function commit(){if(meaningful(pending)){const clone=wrapper.cloneNode(false);pending.forEach(node=>clone.appendChild(node.cloneNode(true)));add([clone]);}pending=[];}
+  for(const node of wrapper.childNodes){
+   if(atomic(node)){commit();const clone=wrapper.cloneNode(false);clone.appendChild(node.cloneNode(true));add([clone]);}
+   else pending.push(node);
+  }
+  commit();
+ }
+ for(const node of section.childNodes){
+  if(node.nodeType===1&&node.tagName==='H2')continue;
+  if(node.nodeType===1&&node.tagName==='H3')flush();
+  if(atomic(node)){flush();add([node.cloneNode(true)]);}
+  else if(node.nodeType===1&&node.matches('.step-list,.step-cards,.concept-list')&&Array.from(node.children).some(atomic)){
+   flush();splitWrapper(node);
+  }else buffer.push(node.cloneNode(true));
+ }
+ flush();return fragments;
+}
+
+// 原生双模课件：保留现有控件与样式，安全分片并按来源定位。
+(function initPPTMode(){
+ if(!document.querySelector('.ppt-open-trigger')){
+  const trigger=document.createElement('button');trigger.type='button';trigger.className='ppt-open-trigger';trigger.innerHTML='<span>🖥️</span><span>幻灯片演示</span>';trigger.title='进入全屏翻页 PPT 演示模式（快捷键：P）';document.body.appendChild(trigger);
+ }
+ let pptSlides=[],currentSlideIndex=0,returnScroll={x:0,y:0};
+ function createPPTStage(){
+  let stage=document.querySelector('.ppt-stage');if(stage)return stage;
+  stage=document.createElement('div');stage.className='ppt-stage';stage.setAttribute('aria-label','PPT幻灯片放映区');
+  stage.innerHTML='<div class="ppt-topbar"><button type="button" class="ppt-top-btn" id="ppt-fullscreen-btn" title="全屏放映"><span>⛶</span><span>全屏</span></button><button type="button" class="ppt-top-btn exit" id="ppt-exit-btn" title="退出 PPT 模式（Esc）"><span>✕</span><span>返回文档</span></button></div><button type="button" class="ppt-nav-btn ppt-nav-prev" title="上一页（← / ↑ / PageUp）">‹</button><button type="button" class="ppt-nav-btn ppt-nav-next" title="下一页（→ / ↓ / Space / PageDown）">›</button><div class="ppt-footer"><span class="ppt-slide-title" id="ppt-current-title">封面导引</span><span class="ppt-page-counter" id="ppt-counter">1 / 1</span><span class="ppt-hint">按 ← → 翻页 · Tab 切换控件 · Esc 退出</span></div><div class="ppt-cards-container"></div>';
+  document.body.appendChild(stage);return stage;
+ }
+ function buildSlides(){
+  const stage=createPPTStage(),container=stage.querySelector('.ppt-cards-container');container.replaceChildren();pptSlides=[];
+  const hero=document.querySelector('.hero,.detail-header');
+  function addCard(nodes,source,title,badge,fragment){
+   const card=document.createElement('div');card.className='ppt-slide-card';card.dataset.sourceId=source.id||'top';card.dataset.sourceFragment=String(fragment);
+   const mark=document.createElement('span');mark.className='ppt-slide-badge';mark.textContent=badge;card.appendChild(mark);nodes.forEach(node=>card.appendChild(node));container.appendChild(card);pptSlides.push({card,title,source});
+  }
+  if(hero)addCard(Array.from(hero.childNodes,node=>node.cloneNode(true)),hero,'课程导引','🎯 本课主题',0);
+  document.querySelectorAll('.lesson-section,body.lesson-page .part').forEach((section,index)=>{
+   const heading=section.querySelector('h2'),badge=heading?.textContent.trim()||`板块 ${index+1}`,base=badge.replace(/^[0-9\s·|｜-]+/,'').trim();
+   lessonSlideFragments(section).forEach((nodes,fragment)=>{
+    const headingNode=nodes.map(node=>node.nodeType===1?(node.matches('h3,h4,h5')?node:node.querySelector('h3,h4,h5')):null).find(Boolean);
+    addCard(nodes,section,headingNode?.textContent.trim()||base,`📘 ${badge}`,fragment+1);
+   });
+  });
+ }
+ function readingTarget(){
+  const sections=Array.from(document.querySelectorAll('.hero,.detail-header,.lesson-section,body.lesson-page .part'));let target=sections[0];
+  for(const section of sections){if(section.getBoundingClientRect().top<=200)target=section;else break;}return target;
+ }
+ function showSlide(index){
+  if(!pptSlides.length)return;currentSlideIndex=Math.max(0,Math.min(index,pptSlides.length-1));
+  pptSlides.forEach((slide,i)=>{slide.card.classList.toggle('active',i===currentSlideIndex);if(i===currentSlideIndex)slide.card.scrollTop=0;});
+  const stage=document.querySelector('.ppt-stage');stage.querySelector('#ppt-counter').textContent=`${currentSlideIndex+1} / ${pptSlides.length}`;stage.querySelector('#ppt-current-title').textContent=pptSlides[currentSlideIndex].title;
+  stage.querySelector('.ppt-nav-prev').disabled=currentSlideIndex===0;stage.querySelector('.ppt-nav-next').disabled=currentSlideIndex===pptSlides.length-1;
+  const active=document.activeElement;if(document.body.classList.contains('is-ppt-mode')&&(!stage.contains(active)||active?.closest('.ppt-slide-card:not(.active)')||active?.disabled))stage.querySelector('#ppt-exit-btn').focus({preventScroll:true});
+ }
+ function closePPT(){
+  const stage=document.querySelector('.ppt-stage');if(lessonDialogs[lessonDialogs.length-1]?.element!==stage)return;
+  document.body.classList.remove('is-ppt-mode');closeLessonDialog(stage);window.scrollTo({left:returnScroll.x,top:returnScroll.y,behavior:'instant'});
+  if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{});
+ }
+ function openPPT(initialTarget=null){
+  if(document.body.classList.contains('is-ppt-mode')||lessonDialogs.length)return;
+  const previous=document.activeElement,source=initialTarget===null?readingTarget():initialTarget;returnScroll={x:scrollX,y:scrollY};
+  buildSlides();const stage=document.querySelector('.ppt-stage'),index=typeof source==='number'?source:Math.max(0,pptSlides.findIndex(slide=>slide.source===source));
+  document.body.classList.add('is-ppt-mode');openLessonDialog(stage,closePPT,previous);showSlide(index);stage.querySelector('#ppt-exit-btn').focus({preventScroll:true});
+ }
+ document.addEventListener('click',event=>{
+  if(event.target.closest('.ppt-open-trigger'))openPPT();
+  else if(event.target.closest('#ppt-exit-btn'))closePPT();
+  else if(event.target.closest('.ppt-nav-prev'))showSlide(currentSlideIndex-1);
+  else if(event.target.closest('.ppt-nav-next'))showSlide(currentSlideIndex+1);
+  else if(event.target.closest('#ppt-fullscreen-btn')){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.().catch(()=>{});}
+ });
+ window.addEventListener('keydown',event=>{
+  if(event.ctrlKey||event.metaKey||event.altKey)return;
+  const active=document.activeElement;if(active?.isContentEditable||active?.closest('input,textarea,select,[role="textbox"]'))return;
+  if(document.body.classList.contains('is-ppt-mode')){
+   if(lessonDialogs[lessonDialogs.length-1]?.element!==document.querySelector('.ppt-stage'))return;
+   if((event.code==='Space'||event.key===' ')&&active?.closest('button,summary,a[href]'))return;
+   if(['ArrowRight','ArrowDown','Space','PageDown'].includes(event.code)||event.key===' '){event.preventDefault();showSlide(currentSlideIndex+1);}
+   else if(['ArrowLeft','ArrowUp','PageUp'].includes(event.code)){event.preventDefault();showSlide(currentSlideIndex-1);}
+   else if(event.code==='Home'){event.preventDefault();showSlide(0);}
+   else if(event.code==='End'){event.preventDefault();showSlide(pptSlides.length-1);}
+  }else if(!lessonDialogs.length&&(event.key==='p'||event.key==='P')){event.preventDefault();openPPT();}
+ });
+ if(new URLSearchParams(location.search).get('mode')==='ppt')openPPT(0);
+})();
 </script></body></html>
