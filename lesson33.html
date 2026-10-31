@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第27次独立拓展课｜Pi Agent：让智能体读材料、做网页、再修改</title>
+<style>
+:root{--ink:#203047;--muted:#596b7d;--blue:#245fc5;--line:#dce4ee;--bg:#f5f7fb;--soft:#edf3ff;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--blue);text-underline-offset:4px}
+button,input,select,textarea{font:inherit}
+button,.download{border:1px solid #bdcde3;background:white;color:var(--blue);padding:7px 14px;border-radius:8px;cursor:pointer}
+button:hover{background:var(--soft)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8cb5fb;outline-offset:3px}
+.layout{max-width:1360px;margin:auto;display:grid;grid-template-columns:235px minmax(0,1fr);gap:40px;padding:32px}
+aside{align-self:start;position:sticky;top:28px}
+.brand{font-weight:750;margin:18px 0 10px}
+nav{display:grid;gap:7px}
+nav a{display:block;padding:9px 12px;border-radius:8px;color:var(--muted);text-decoration:none}
+nav a:hover{background:#e6eefb;color:var(--blue)}
+main{min-width:0;max-width:990px}
+header{padding:25px 0 30px}
+.eyebrow{color:var(--blue);font-size:14px;font-weight:700;letter-spacing:.05em}
+h1{font-size:clamp(28px,3vw,43px);line-height:1.3;margin:12px 0 18px;letter-spacing:-.03em}
+h2{font-size:26px;line-height:1.45;margin:0 0 22px}
+h2 small{display:block;color:var(--blue);font-size:14px;margin-bottom:7px}
+h3{font-size:20px;line-height:1.5;margin:28px 0 12px}
+h4{font-size:17px;margin:22px 0 8px}
+p{margin:10px 0 16px}
+section{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:32px;margin-bottom:26px}
+.lead{font-size:19px;color:var(--muted)}
+.note{background:var(--soft);border-left:4px solid #789fe4;padding:14px 18px;border-radius:0 8px 8px 0;margin:18px 0}
+.warning{background:#fff7e7;border-left-color:#d7a449}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.card h3,.card h4{margin-top:0}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
+:not(pre)>code{background:#edf1f7;padding:2px 5px;border-radius:4px}
+.copybox{border:1px solid var(--line);border-radius:10px;margin:14px 0 22px;overflow:hidden;background:#f8fafc}
+.copyhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+pre{font:14px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:18px}
+textarea.prompt{display:block;width:100%;border:0;padding:18px;background:transparent;color:var(--ink);font:14px/1.85 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical;min-height:280px}
+.status{display:block;font-size:14px;color:var(--muted);padding:0 14px 8px;min-height:1.7em}
+.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:580px}
+th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f0f4fa;font-weight:650}
+tr:last-child td{border-bottom:0}
+.steps{padding-left:24px}
+.steps>li{padding-left:4px;margin:0 0 20px}
+.steps p{margin:7px 0}
+details{border-top:1px solid var(--line);padding:12px 0}
+summary{color:var(--blue);cursor:pointer;font-weight:600}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:18px;background:#f0f4fa;border-radius:10px}
+.flow span{background:white;border:1px solid var(--line);padding:7px 12px;border-radius:7px}
+.caption,.small{font-size:14px;color:var(--muted)}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:18px;margin:16px 0}
+legend{font-weight:700;padding:0 7px}
+label{display:block;margin:8px 0 14px}
+select{display:block;width:100%;padding:9px;margin-top:5px;border:1px solid #b9c9dc;border-radius:7px;background:white;color:var(--ink)}
+ul,ol{padding-left:24px}
+li{margin-bottom:7px}
+.sources{font-size:14px}
+.sources a{overflow-wrap:anywhere}
+footer{padding:12px 0 35px;color:var(--muted)}
+@media(min-width:1250px){section{padding:38px 42px}}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:15px;padding:20px}aside{position:static}.brand{margin:10px 0}nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}nav a{font-size:14px;padding:8px}header{padding-top:10px}}
+@media(max-width:560px){.layout{padding:14px}.grid{grid-template-columns:1fr}section{padding:23px 18px;border-radius:12px}nav{grid-template-columns:1fr 1fr}h2{font-size:23px}.lead{font-size:17px}pre,textarea.prompt{padding:14px}button{min-height:42px}.flow{gap:7px;padding:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{aside,.copyhead button,.download,form{display:none}.layout{display:block;padding:0}section{break-inside:auto;border:0;padding:15px 0}body{background:white}textarea.prompt{height:auto}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside aria-label="课程导航">
+<a href="index.html">← 返回课程目录</a>
+<p class="brand">第27次 · 独立拓展课</p>
+<nav aria-label="本课章节">
+<a href="#s00">00 知识回顾</a>
+<a href="#s01">01 任务预告</a>
+<a href="#s02">02 基础概念</a>
+<a href="#s03">03 核心案例</a>
+<a href="#s04">04 实践任务</a>
+<a href="#s05">05 本课总结</a>
+</nav>
+<p class="small">教学版本：Pi CLI 1.4.0<br>原正式课程：26课 · 64学时<br>本页为独立拓展，不计增正式学时。</p>
+</aside>
+
+<main>
+<header>
+<div class="eyebrow">从聊天中的答案，走向本地可修改的文件</div>
+<h1>Pi Agent：<br>让智能体读材料、做网页、再修改</h1>
+<p class="lead">把模拟商品资料放进练习文件夹，让 Pi 读取依据、写出 HTML；你在浏览器中看结果，再改变条件，让它更新同一份文件。</p>
+<p>适合已经会用聊天工具、认识基础 HTML 的同学。本课不比谁记住更多命令，而是看清：<strong>模型说了什么，工具实际做了什么，磁盘文件最后变成了什么。</strong></p>
+</header>
+
+<section id="s00">
+<h2><small>00 · 知识回顾</small>从“给材料、说要求”继续向前</h2>
+<p>使用聊天工具时，我们已经会给材料、说明要求、查看结果并继续追问。今天仍用这套方法，但材料不只粘贴在聊天框里，结果也不只停留在回答里：我们要让 Pi 读取本地文件，把网页写到磁盘，再按新条件修改。</p>
+<p><strong>想一想：</strong>聊天里出现了一整段 HTML，能否说明你的练习文件夹里已经有一个网页？</p>
+<details>
+<summary>展开参考答案</summary>
+<p>不能。文字回答和磁盘文件是两件事。要有实际的写入操作，并在文件夹里找到目标 HTML；用浏览器打开后，才能看到这份文件的网页效果。</p>
+</details>
+</section>
+
+<section id="s01">
+<h2><small>01 · 任务预告</small>只完成一个主要成果</h2>
+<p>你将根据自己选择的预算与偏好，制作一份<strong>运动耳机比较网页</strong>。网页来自本地的课堂模拟材料，展示 A/B/C 的差异，说明筛选依据；随后你改变一次条件，让 Pi 更新同一份 HTML。</p>
+<div class="grid">
+<div class="card">
+<h3>教师示范：台灯</h3>
+<p>从台灯底料出发，先按预算与桌面占用比较，再改变预算和优先项。示范如何引用文件、写网页、打开结果及回读修改后的文件。</p>
+</div>
+<div class="card">
+<h3>你的实践：运动耳机</h3>
+<p>你亲自选择预算和优先项，再修改一次。页面不会替你预定推荐哪一款；结论要由你的条件和材料共同决定。</p>
+</div>
+</div>
+<div class="flow" aria-label="本课工作流程文字示意">
+<span>本地 Markdown</span>→<span>Pi 读取</span>→<span>写出 HTML</span>→<span>浏览器打开</span>→<span>改变条件</span>→<span>回读并刷新</span>
+</div>
+<p class="caption">文字流程示意：观察材料、工具记录和磁盘文件之间的关系，不是软件截图，也不执行 Pi 或在线模型调用。</p>
+<p>完成后集中看三件事：<strong>有材料依据、文件能打开、修改确实落在文件里。</strong>具体标准在本课总结中统一查看。</p>
+</section>
+
+<section id="s02">
+<h2><small>02 · 基础概念</small>把“会回答”与“会操作文件”分开理解</h2>
+
+<h3>1. 模型负责判断，Pi 让判断接上工具</h3>
+<p>模型接收要求与材料，决定接下来回答文字，还是请求某个工具执行动作。Pi 是智能体运行框架，不是一个固定的大模型：它接收模型的工具请求、执行工具、记录结果，再把结果交回模型继续处理。因此，一次“做网页”可能包含多轮读取、写入和修改，而不只是一次回复。</p>
+<p><strong>对应本课：</strong>模型可以提出“先读取运动耳机资料，再写比较页”。真正读取文件、写入 HTML 的是 Pi 中启用的工具。只看到“已完成”的一句话，不足以证明文件存在。</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>默认工具</th><th>具体作用</th><th>本课对应动作</th></tr></thead>
+<tbody>
+<tr><td><code>read</code></td><td>读取文件内容</td><td>读 Markdown；生成后回读 HTML</td></tr>
+<tr><td><code>write</code></td><td>写入文件，可覆盖已有内容</td><td>首次写出比较页</td></tr>
+<tr><td><code>edit</code></td><td>修改已有文字</td><td>更新条件、解释或页面代码</td></tr>
+<tr><td><code>bash</code></td><td>执行命令</td><td>可能用于文件相关操作；不要允许无关扫描或发布</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small">以上为默认启用工具，设置可以改变它们。实际是否发生读取、写入或编辑，要看本次工具记录，而不是只看工具名称。</p>
+
+<h3>2. 工作文件夹是材料所在位置，不是安全沙箱</h3>
+<p>从哪个文件夹启动 Pi，会影响它理解相对路径和组织任务的位置。把材料和目标网页放在同一独立练习文件夹，能减少读错文件、写错位置的机会。但这个文件夹<strong>不会自动限制工具的系统权限</strong>：工具按运行进程的权限工作，不能理解为“它绝对碰不到外面的文件”。</p>
+<p><strong>对应本课：</strong>只放课堂模拟资料，不放账号密钥、个人文档或真实订单。提示词要求只处理本练习文件夹，能表达任务边界，但不等于操作系统隔离。若出现扫描个人目录、安装无关软件或外发内容的请求，不要继续执行。</p>
+
+<h3>3. 上下文是当前判断所依据的信息，不是整个电脑</h3>
+<p>模型生成回答时，会依赖当前会话中的要求、已读取材料和工具返回的结果，这些信息共同构成当前上下文。文件放在磁盘上，不代表模型已经看过；只写一个文件名，也不代表读取成功。长对话中还可能遗漏早先约定，所以修改时要重新指出目标文件、保留项和新条件。</p>
+<p><strong>对应本课：</strong>先让文件真实存在，再在 Pi 输入区输入 <code>@</code> 查找并插入引用，例如 <code>@运动耳机模拟材料.md</code>。发送后观察读取记录，看到的内容应与本页底料一致。新一轮修改时再引用材料和目标 HTML，避免只说“改得更好一点”。</p>
+
+<h3>4. 修改有两条线：会话历史与磁盘文件</h3>
+<p>会话保存“你问过什么、模型做过什么”；磁盘文件保存“作品现在是什么”。改变条件后，Pi 必须再次读取当前作品，再编辑或重写文件。回读文件能帮助确认新条件确实进入了代码，但浏览器效果仍需你打开查看。</p>
+<p><strong>对应本课：</strong>把预算改了以后，页面上的预算、入选状态和说明都要同步变化；只在聊天中解释新预算不算完成修改。浏览器仍显示旧内容时，先刷新正确的本地 HTML，而不是刷新这张课程页。</p>
+<div class="note">
+<p><code>/tree</code> 可在当前会话树中回到其他位置，编辑旧提问可形成分支；<code>/resume</code> 切换已有会话；终端中的 <code>pi --continue</code> 接续当前工作文件夹最近会话。</p>
+<p><strong>这些操作都不是磁盘版本控制，不会自动恢复已写过的文件。</strong>若想保留旧作品，可在文件管理器中先复制一份 HTML，再继续修改。</p>
+</div>
+
+<h3>5. 三个操作位置，不要混着输入</h3>
+<div class="grid">
+<div class="card">
+<h4>终端</h4>
+<p>运行 <code>node --version</code>、安装命令、<code>cd</code> 和 <code>pi</code>。进入 Pi 前，这里是系统命令行。</p>
+</div>
+<div class="card">
+<h4>Pi 输入区</h4>
+<p>启动 Pi 后，在这里输入 <code>/login</code>、<code>/model</code>、<code>@</code> 文件引用和自然语言提示词。</p>
+</div>
+</div>
+<p><strong>浏览器：</strong>通过文件管理器打开生成的 <code>.html</code>，查看实际页面；它不是输入 Pi 命令的地方。</p>
+<p><code>/export</code> 导出的是会话记录（HTML 或 JSONL），<strong>不是生成商品比较作品的命令</strong>。作品要在提示词中明确要求写入目标 HTML 文件。</p>
+
+<h3>开始前：环境和账号要具备哪些条件？</h3>
+<ul>
+<li>npm 安装路径需要 <strong>Node.js 22.19 或更高版本</strong>，安装过程需要网络及相应安装权限。</li>
+<li>原生 Windows 的默认 Bash 依赖 <strong>Git Bash</strong>，通常随 Git for Windows 安装。PowerShell 是可另行启用的工具，不是安装 Pi 后必然替代 Bash。</li>
+<li>准备可授权的模型账号、可用模型和额度。不同账号实际支持的服务不同，不保证某个订阅必然可用、免费或不限额。</li>
+<li>准备终端、文件管理器和浏览器；本课使用独立练习文件夹，不依赖 GZCCC Mac 安装包。</li>
+</ul>
+<div class="copybox">
+<div class="copyhead"><span>终端 · 环境检查与固定主包版本安装</span><button type="button" data-copy="install">复制命令</button></div>
+<pre id="install">node --version
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.4.0
+pi --version</pre>
+<span class="status" aria-live="polite"></span>
+</div>
+<p>先确认 Node 版本符合要求，再执行安装；最后查看 <code>pi --version</code> 是否显示 1.4.0。固定主包版本<strong>不等于锁定所有传递依赖</strong>。如果安装或账号授权受阻，先完成底料下载与条件选择；不要把后面的静态文本当作已经调用 Pi 的结果。可在具备环境的课堂设备上亲自完成一次读写与修改。</p>
+<div class="note warning">
+<strong>Pi CLI 与 GZCCC GPT 不是同一个入口。</strong>本课命令在终端中的 Pi CLI 使用；GZCCC GPT 只开放应用明确提供的受控工具，不能据此推断它也能任意运行 shell 或读写本地文件。
+</div>
+
+<p><strong>思考题：</strong>在 <code>/tree</code> 中回到旧提问，为什么浏览器里的网页不一定恢复到旧版？</p>
+<details>
+<summary>展开参考答案</summary>
+<p>会话树改变的是消息路径，已写入磁盘的 HTML 不会随之回滚。浏览器读的是当前磁盘文件。要恢复文件，需要已有副本、版本管理或再次明确修改，不能只靠切换分支。</p>
+</details>
+</section>
+
+<section id="s03">
+<h2><small>03 · 核心案例</small>教师示范：按条件制作台灯比较页</h2>
+<p>情境：为一张小桌挑选台灯。先用<strong>预算不超过180元、优先底座占用小</strong>的条件比较，再改成<strong>预算不超过230元、优先调光更细</strong>。观察的是条件如何进入文件、怎样改变页面，而不是寻找真实商品购买建议。</p>
+
+<article id="lampMaterial" data-title="台灯模拟材料" data-filename="台灯模拟材料.md">
+<h3>教师底料 · 台灯模拟材料.md</h3>
+<p data-md>课堂模拟：以下为原创无品牌 A/B/C 数据，不对应真实在售商品；价格仅用于课堂预算运算，不是市场报价。</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>型号</th><th>模拟价格（元）</th><th>底座占用（平方厘米）</th><th>调光方式</th><th>调光细致度课堂值</th><th>供电方式</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>129</td><td>160</td><td>固定亮度</td><td>1</td><td>插电</td></tr>
+<tr><td>B</td><td>179</td><td>100</td><td>三档调光</td><td>2</td><td>插电</td></tr>
+<tr><td>C</td><td>219</td><td>120</td><td>连续调光</td><td>3</td><td>插电</td></tr>
+</tbody>
+</table>
+</div>
+<p data-md>比较规则：先保留模拟价格不超过预算的型号。优先“底座占用小”时按占用数值从小到大比较；优先“调光更细”时按调光细致度课堂值从大到小比较。若并列，说明并列依据；若没有符合预算的型号，明确说明无符合项，不擅自加预算。</p>
+<p data-md>边界：调光细致度课堂值只用于本练习排序，不是行业等级。材料未提供照度、显色、频闪、认证或护眼效果，不得补造相关结论。页面应保留 A/B/C 全部数据，并区分符合预算与超预算型号。</p>
+<button class="download" type="button" data-download="lampMaterial">下载 台灯模拟材料.md</button>
+<span class="status" aria-live="polite"></span>
+</article>
+<p class="small">下载的是本页所列静态 Markdown 底料，不是模型生成的作品。下载后将文件放入实际练习文件夹，保持文件名不变。</p>
+
+<h3>第一段：建立位置，引用真实文件</h3>
+<ol class="steps">
+<li><strong>终端：</strong>在一个用于课堂练习的父文件夹中，逐行执行下面两条命令，建立并进入专用目录。如果目录已经存在，用 <code>cd pi-lamp</code> 进入，不必重新创建。
+<div class="copybox">
+<div class="copyhead"><span>终端 · 台灯练习目录</span><button type="button" data-copy="lampdir">复制命令</button></div>
+<pre id="lampdir">mkdir pi-lamp
+cd pi-lamp</pre>
+<span class="status" aria-live="polite"></span>
+</div>
+</li>
+<li><strong>文件管理器：</strong>把下载的 <code>台灯模拟材料.md</code> 移入这个 <code>pi-lamp</code> 文件夹。文件若被浏览器改成带编号的名称，先改回这里的名称。</li>
+<li><strong>终端：</strong>在该目录输入 <code>pi</code> 启动 CLI。随后在 <strong>Pi 输入区</strong>输入 <code>/login</code>，按界面选择可用服务并授权，再输入 <code>/model</code> 选择账号实际可用的模型。已有可用授权时无需重复登录。</li>
+<li><strong>Pi 输入区：</strong>输入 <code>@</code> 查找并插入 <code>台灯模拟材料.md</code>。下方提示词中的引用也要对应这份实际存在的文件。找不到时，先检查文件是否放在启动目录，而不是反复发送不存在的引用。</li>
+</ol>
+
+<h3>第二段：让 Pi 读取材料并写文件</h3>
+<div class="copybox">
+<div class="copyhead"><span>Pi 输入区 · 教师首次生成提示词</span><button type="button" data-copy="lampFirst">复制提示词</button></div>
+<pre id="lampFirst">@台灯模拟材料.md
+请实际读取这份本地材料，仅在当前台灯练习文件夹内操作，不联网补充商品信息，不安装无关软件，不向外发布。
+我的条件：预算不超过180元，优先“底座占用小”。严格按材料中的比较规则处理，不凭空补充功能或效果。
+请用文件工具写出“台灯比较.html”，不是只在聊天里贴代码。做成一个完整自包含的浅色HTML，包含移动端viewport、内嵌CSS，不使用外部库、字体或图片。
+页面保留“课堂模拟”标识，展示全部A/B/C数据、当前预算和优先项，区分符合预算与超预算型号。说明当前条件下的比较依据和取舍；没有符合项就说明无符合项，不擅自加预算。
+代码用清晰的小节组织，便于继续修改。
+写入后请再次读取“台灯比较.html”，确认当前条件及对应说明已进入文件；在回复中说明实际写入的文件路径和读取到的条件。不要声称已经替我打开浏览器或完成视觉检查。</pre>
+<span class="status" aria-live="polite"></span>
+</div>
+<p><strong>观察 Pi：</strong>关注材料读取、目标文件写入和写入后回读的记录；工具名称可能是 <code>read</code>、<code>write</code> 或 <code>edit</code>。如果只有文字回答、文件夹里没有 HTML，继续明确要求写入目标文件，不使用 <code>/export</code> 代替。</p>
+<p><strong>浏览器：</strong>从文件管理器打开 <code>台灯比较.html</code>，必要时选择“用浏览器打开”。看页面上的预算、优先项、完整数据与筛选说明；地址应指向这份本地 HTML，而不是课程页。</p>
+
+<h3>第三段：改变条件，更新同一个文件</h3>
+<div class="copybox">
+<div class="copyhead"><span>Pi 输入区 · 教师修改提示词</span><button type="button" data-copy="lampChange">复制提示词</button></div>
+<pre id="lampChange">@台灯模拟材料.md @台灯比较.html
+请先实际读取以上材料和当前HTML。
+把原来的“预算不超过180元、优先底座占用小”，改为“预算不超过230元、优先调光更细”。
+按材料中的比较规则重新比较，更新同一个“台灯比较.html”中的条件、符合预算状态、比较依据及结论，不只修改标题，不残留与旧条件冲突的文字。
+保留全部A/B/C原始数据、“课堂模拟”标识和自包含页面结构；只在当前练习文件夹内操作，不联网、不发布。
+写入后再次读取“台灯比较.html”，指出文件中的新预算和新优先项，并简述相对旧条件改变了哪些内容。若结论未变化，也要按材料解释，不强行制造变化。不要声称已替我刷新浏览器。</pre>
+<span class="status" aria-live="polite"></span>
+</div>
+<p><strong>观察回读与浏览器：</strong>先看 Pi 回读文件时是否包含新条件，再回到原来的本地网页刷新。预算扩大后，原来超预算的项目可能进入比较；优先项改变后，排序依据也要改变。若页面仍显示旧条件，先确认打开的是同一路径，再刷新；若文件本身仍是旧条件，把具体残留文字告诉 Pi，请它修改该位置。</p>
+
+<p><strong>思考题：</strong>把标题中的“180元”改成“230元”，但表格状态与比较理由没变，为什么不能算完成这次修改？</p>
+<details>
+<summary>展开参考答案</summary>
+<p>预算是筛选条件，不是装饰文字。新预算应重新影响符合预算状态；新优先项应影响比较依据。需要读取当前 HTML，改掉所有与新条件冲突的内容，再回读并刷新查看。</p>
+</details>
+</section>
+
+<section id="s04">
+<h2><small>04 · 实践任务</small>用 Pi 制作运动耳机比较页</h2>
+<p>把教师的台灯方法迁移到运动耳机：仍然是读材料、写文件、浏览器打开、改条件、回读文件，但这次预算和优先项由你选择。<strong>不要求与教师得到相同结论，也不要先指定 A/B/C 中的赢家。</strong></p>
+
+<article id="earMaterial" data-title="运动耳机模拟材料" data-filename="运动耳机模拟材料.md">
+<h3>学生底料 · 运动耳机模拟材料.md</h3>
+<p data-md>课堂模拟：以下为原创无品牌 A/B/C 数据，不对应真实在售商品；价格仅用于课堂预算运算，不是市场报价。续航与重量也是练习给定值，不是产品实测或性能承诺。</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>型号</th><th>模拟价格（元）</th><th>单次续航（小时）</th><th>整套佩戴重量（克）</th><th>佩戴形式</th><th>操作方式</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>149</td><td>6</td><td>24</td><td>耳挂式</td><td>实体按键</td></tr>
+<tr><td>B</td><td>229</td><td>9</td><td>36</td><td>颈挂式</td><td>实体按键</td></tr>
+<tr><td>C</td><td>299</td><td>7</td><td>18</td><td>入耳式</td><td>触控</td></tr>
+</tbody>
+</table>
+</div>
+<p data-md>比较规则：先保留模拟价格不超过预算的型号。优先“单次续航更长”时按小时数从大到小比较；优先“佩戴重量更轻”时按整套佩戴重量从小到大比较。若并列，说明并列依据；若没有符合预算的型号，明确说明无符合项，不擅自加预算。</p>
+<p data-md>边界：只比较给定字段，不推断音质、防水等级、运动安全、舒适度、降噪、认证或健康效果。佩戴形式和操作方式作为差异展示，不据此编造优劣。页面应保留 A/B/C 全部数据，并区分符合预算与超预算型号。</p>
+<button class="download" type="button" data-download="earMaterial">下载 运动耳机模拟材料.md</button>
+<span class="status" aria-live="polite"></span>
+</article>
+
+<h3>1. 先把材料放对，再启动 Pi</h3>
+<p><strong>终端：</strong>回到用于课堂练习的父文件夹，建立学生目录。如果你还在 Pi 中，不要把下面的系统命令当作自然语言要求发送；可另开一个终端操作。</p>
+<div class="copybox">
+<div class="copyhead"><span>终端 · 运动耳机练习目录</span><button type="button" data-copy="eardir">复制命令</button></div>
+<pre id="eardir">mkdir pi-earbuds
+cd pi-earbuds</pre>
+<span class="status" aria-live="polite"></span>
+</div>
+<p><strong>文件管理器：</strong>把 <code>运动耳机模拟材料.md</code> 放进实际的 <code>pi-earbuds</code> 目录。<strong>终端：</strong>在这个目录运行 <code>pi</code>；在 Pi 输入区用 <code>/login</code> 和 <code>/model</code> 完成必要的授权和模型选择。输入 <code>@</code>，确认能找到刚放入的底料。</p>
+
+<h3>2. 亲自选择一组会影响比较的条件</h3>
+<p>预算决定哪些型号能进入比较；优先项决定符合预算后先比较什么。下方只把你的选择填入提示词，<strong>不调用 Pi、不计算或展示最终推荐</strong>。</p>
+
+<form id="conditions">
+<div class="grid">
+<fieldset>
+<legend>第一次条件</legend>
+<label for="budget1">预算上限
+<select id="budget1" required>
+<option value="">请选择</option>
+<option value="180">180元</option>
+<option value="240">240元</option>
+<option value="320">320元</option>
+</select>
+</label>
+<label for="pref1">优先考虑
+<select id="pref1" required>
+<option value="">请选择</option>
+<option value="单次续航更长">单次续航更长</option>
+<option value="佩戴重量更轻">佩戴重量更轻</option>
+</select>
+</label>
+</fieldset>
+<fieldset>
+<legend>第二次条件</legend>
+<label for="budget2">修改后的预算上限
+<select id="budget2" required>
+<option value="">请选择</option>
+<option value="180">180元</option>
+<option value="240">240元</option>
+<option value="320">320元</option>
+</select>
+</label>
+<label for="pref2">修改后的优先项
+<select id="pref2" required>
+<option value="">请选择</option>
+<option value="单次续航更长">单次续航更长</option>
+<option value="佩戴重量更轻">佩戴重量更轻</option>
+</select>
+</label>
+</fieldset>
+</div>
+<p class="small">第二次至少改变预算或优先项中的一项。你可以现在准备两轮条件，但实际修改要等第一次网页已经写出并打开之后再进行。</p>
+<button type="submit">按我的选择生成两轮提示词</button>
+<p id="conditionStatus" class="small" role="status" aria-live="polite">尚未选择条件。以下文本需要先替换方括号中的内容，或使用上方选择器填入。</p>
+</form>
+
+<h3>3. 在 Pi 中生成首次网页，再用浏览器打开</h3>
+<p>把下面第一轮提示词复制到 <strong>Pi 输入区</strong>；用 <code>@</code> 查找插入实际底料。观察实际读取、写入与回读记录，随后在文件管理器中打开 <code>运动耳机比较.html</code>。</p>
+<div class="copybox">
+<div class="copyhead"><span>Pi 输入区 · 第一轮提示词</span><button type="button" data-copy="earFirst">复制提示词</button></div>
+<textarea id="earFirst" class="prompt" rows="15" readonly aria-label="运动耳机首次生成提示词">@运动耳机模拟材料.md
+请实际读取这份本地材料，仅在当前运动耳机练习文件夹内操作，不联网补充商品信息，不安装无关软件，不向外发布。
+我的条件：预算不超过【选择预算】元，优先“【选择优先项】”。请先确认这两个条件已经填写；若还有占位符，先问我，不自行假定。
+严格按材料的比较规则处理，不提前指定A/B/C中的赢家。
+请用文件工具写出“运动耳机比较.html”，不是只在聊天里贴代码。制作完整自包含的浅色HTML，包含移动端viewport与内嵌CSS，不依赖外部库、字体或图片。
+页面保留“课堂模拟”标识和A/B/C全部原始数据，显示当前预算、优先项、符合预算与超预算状态；按材料解释比较依据、取舍和局限。无符合项就明确说明，不擅自加预算。不补造音质、防水、舒适度、认证或健康效果。
+用清楚的小节组织代码，方便继续修改。
+写入后再次读取“运动耳机比较.html”，说明实际文件路径及读到的预算和优先项；不要声称已替我打开浏览器或完成视觉检查。</textarea>
+<span class="status" aria-live="polite"></span>
+</div>
+<p><strong>看到什么：</strong>练习文件夹中出现目标 HTML；浏览器能看到 A/B/C 数据、你选定的条件和有依据的比较说明。不要把这张课件或下载的 Markdown 当作最终作品。</p>
+
+<h3>4. 改条件，让 Pi 更新文件并回读</h3>
+<p>第一轮网页已打开后，在 <strong>同一 Pi 会话</strong>发送第二轮提示词。如果你在选择器里换了条件，先重新生成提示词，并确认“原条件”与第一次实际发送的内容一致。需要保留旧版时，可先在文件管理器中复制 HTML。</p>
+<div class="copybox">
+<div class="copyhead"><span>Pi 输入区 · 第二轮修改提示词</span><button type="button" data-copy="earChange">复制提示词</button></div>
+<textarea id="earChange" class="prompt" rows="13" readonly aria-label="运动耳机条件修改提示词">@运动耳机模拟材料.md @运动耳机比较.html
+请先实际读取材料与当前HTML，只在当前运动耳机练习文件夹内操作。
+原条件：预算不超过【原预算】元，优先“【原优先项】”。
+新条件：预算不超过【新预算】元，优先“【新优先项】”。
+若条件仍有占位符，先问我，不自行假定。
+请按材料规则更新同一个“运动耳机比较.html”，同步修改当前条件、符合预算状态、比较说明及结论；不能只改标题，也不能残留与新条件冲突的旧说明。
+保留全部A/B/C原始数据、“课堂模拟”标识和自包含结构，不补造功能，不联网、不发布。
+写入后再次读取目标HTML，指出文件中的新条件，说明相对旧条件改变了哪些部分。推荐若未改变，就按材料解释原因，不为体现修改而强行换型号。不要声称已替我刷新浏览器。</textarea>
+<span class="status" aria-live="polite"></span>
+</div>
+<p><strong>回读之后：</strong>回到浏览器中已打开的 <code>运动耳机比较.html</code>，刷新页面。看新条件、符合预算状态和说明是否一起更新。最终推荐没有改变也可能合理，关键是比较依据确实按新条件重新处理。</p>
+
+<h3>遇到具体问题，就指出具体位置</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>现象</th><th>处理动作</th></tr></thead>
+<tbody>
+<tr><td><code>@</code> 找不到底料</td><td>检查实际启动文件夹、下载文件位置及名称；处理浏览器自动添加的文件名编号后再引用。</td></tr>
+<tr><td>只有代码回答，没有 HTML 文件</td><td>继续要求用文件工具写入“运动耳机比较.html”，并实际回读；不要改用 <code>/export</code>。</td></tr>
+<tr><td>Pi 说改好了，但浏览器没变</td><td>核对目标文件路径并刷新。若回读内容仍旧，要求修改具体残留字段；不要只重复“再试一次”。</td></tr>
+<tr><td>出现底料没有的功能</td><td>指出具体句子，如“防水等级”；要求删除无依据结论，并保留材料边界说明。</td></tr>
+<tr><td>授权失败或额度不可用</td><td>查看账号实际可用服务与模型，或改用已具备授权环境的课堂设备；未完成调用时不把静态提示词算作作品。</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>思考题：</strong>第二次已经改变预算，最终推荐却没有变化，是不是一定改错了？</p>
+<details>
+<summary>展开参考答案</summary>
+<p>不一定。预算变化可能没有新增符合项，也可能新增的型号在当前优先项下并不占优。要看新预算是否进入文件、状态是否重算、说明是否引用正确数据，不能只看推荐型号有没有变化。</p>
+</details>
+</section>
+
+<section id="s05">
+<h2><small>05 · 本课总结</small>让修改落在真实文件里</h2>
+<p>今天的关键不是让模型多写一段解释，而是让 Pi 把本地材料转成可打开的网页，并根据你的新条件更新同一份文件。<strong>材料读取记录、实际 HTML、浏览器效果</strong>分别回答“依据是什么”“写到了哪里”“最终看到什么”。</p>
+<h3>集中查看这三项成果标准</h3>
+<ol>
+<li><strong>依据一致：</strong>A/B/C 数据与底料相符，保留课堂模拟标识；预算和优先项清楚，不补造功能与效果。</li>
+<li><strong>文件可用：</strong>目标 HTML 实际存在，能在浏览器打开；页面层次清楚，窄屏文字可读，表格可横向查看。</li>
+<li><strong>修改有效：</strong>至少一项条件由你改变过；回读文件和浏览器刷新后，新条件、筛选状态与解释相符。结论是否变化都能用材料说明。</li>
+</ol>
+<p>记住两个边界：<strong>工作文件夹不是自动安全沙箱；会话分支不会回滚磁盘文件。</strong></p>
+
+<h3>真实来源与版本依据</h3>
+<p class="small">本课技术路径按 Pi CLI 1.4.0。以下链接用于查阅官方命令、工具与权限说明；商品底料是本页原创课堂模拟数据，不是官方商品示例。查看在线文档、安装和模型调用需要网络；本页阅读、条件填词及底料下载不依赖外部资源。</p>
+<ul class="sources">
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/README.md" target="_blank" rel="noopener noreferrer">Pi 1.4.0 README：安装与入门</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/quickstart.md" target="_blank" rel="noopener noreferrer">1.4.0 快速开始：交互与文件引用</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/how-pi-works.md" target="_blank" rel="noopener noreferrer">工作机制与权限：模型、工具和执行过程</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/cli.md" target="_blank" rel="noopener noreferrer">CLI：工具与命令行选项</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/windows.md" target="_blank" rel="noopener noreferrer">Windows：Git Bash 等运行条件</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/providers.md" target="_blank" rel="noopener noreferrer">服务商与授权</a> · <a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/models.md" target="_blank" rel="noopener noreferrer">模型选择</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/sessions.md" target="_blank" rel="noopener noreferrer">会话、分支与继续会话</a> · <a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/slash-commands.md" target="_blank" rel="noopener noreferrer">斜杠命令：包括 /export</a></li>
+</ul>
+</section>
+
+<footer>
+<a href="index.html">← 返回课程目录</a>
+<p class="small">第27次独立拓展课 · Pi Agent：让智能体读材料、做网页、再修改</p>
+</footer>
+<noscript>
+<p class="note warning">当前浏览器未启用 JavaScript。课程正文和提示词仍可阅读并手动复制；下载按钮与条件填词不可用。可复制表格和边界说明，手动保存为正文标明的 Markdown 文件名，再替换提示词中的方括号条件。</p>
+</noscript>
+</main>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+
+function selectText(el){
+  if(el.tagName==="TEXTAREA"){
+    el.focus();
+    el.select();
+  }else{
+    const selection=window.getSelection();
+    const range=document.createRange();
+    range.selectNodeContents(el);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    el.setAttribute("tabindex","-1");
+    el.focus();
+  }
+}
+
+document.querySelectorAll("[data-copy]").forEach(button=>{
+  button.addEventListener("click",async()=>{
+    const el=$(button.dataset.copy);
+    const status=button.closest(".copybox").querySelector(".status");
+    const text=el.tagName==="TEXTAREA"?el.value:el.textContent;
+    try{
+      if(!navigator.clipboard||!window.isSecureContext) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(text.trim());
+      status.textContent="已复制。请粘贴到标明的终端或 Pi 输入区。";
+    }catch(error){
+      selectText(el);
+      status.textContent="自动复制失败，文本已选中。请按 Ctrl+C / ⌘C，或在手机上长按文本复制。";
+    }
+  });
+});
+
+function materialMarkdown(article){
+  const lines=["# "+article.dataset.title,""];
+  article.querySelectorAll("[data-md],table").forEach(el=>{
+    if(el.tagName==="TABLE"){
+      const rows=Array.from(el.rows).map(row=>
+        Array.from(row.cells).map(cell=>
+          cell.textContent.trim().replace(/\|/g,"\\|")
+        )
+      );
+      lines.push("| "+rows[0].join(" | ")+" |");
+      lines.push("| "+rows[0].map(()=>"---").join(" | ")+" |");
+      rows.slice(1).forEach(row=>lines.push("| "+row.join(" | ")+" |"));
+      lines.push("");
+    }else{
+      lines.push(el.textContent.trim(),"");
+    }
+  });
+  return lines.join("\n");
+}
+
+document.querySelectorAll("[data-download]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const article=$(button.dataset.download);
+    const status=article.querySelector(".status");
+    let url;
+    try{
+      const blob=new Blob(["\uFEFF"+materialMarkdown(article)],{type:"text/markdown;charset=utf-8"});
+      url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;
+      a.download=article.dataset.filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      status.textContent="已发起下载："+article.dataset.filename+"。请确认浏览器下载位置，并移入练习文件夹。";
+      setTimeout(()=>URL.revokeObjectURL(url),30000);
+    }catch(error){
+      if(url) URL.revokeObjectURL(url);
+      status.textContent="下载未能发起。可复制本表及说明，手动保存为 "+article.dataset.filename+"。";
+    }
+  });
+});
+
+const firstTemplate=$("earFirst").value;
+const changeTemplate=$("earChange").value;
+const form=$("conditions");
+let generated=false;
+
+form.addEventListener("submit",event=>{
+  event.preventDefault();
+  if(!form.reportValidity()) return;
+  const b1=$("budget1").value,p1=$("pref1").value;
+  const b2=$("budget2").value,p2=$("pref2").value;
+  if(b1===b2&&p1===p2){
+    $("conditionStatus").textContent="两轮条件相同。请至少改变一次预算或优先项，再生成提示词。";
+    return;
+  }
+  $("earFirst").value=firstTemplate
+    .replace("【选择预算】",b1)
+    .replace("【选择优先项】",p1);
+  $("earChange").value=changeTemplate
+    .replace("【原预算】",b1)
+    .replace("【原优先项】",p1)
+    .replace("【新预算】",b2)
+    .replace("【新优先项】",p2);
+  generated=true;
+  $("conditionStatus").textContent=
+    "提示词已填入：第一次 "+b1+"元 / "+p1+
+    "；第二次 "+b2+"元 / "+p2+
+    "。这里只生成提示词文本，尚未调用 Pi，也未生成比较作品。";
+});
+
+form.addEventListener("change",()=>{
+  if(generated){
+    $("conditionStatus").textContent="选择已改变。请重新点击“按我的选择生成两轮提示词”，下方提示词才会更新。若已完成第一次生成，请保持原条件与实际发送内容一致。";
+  }
+});
+})();
+</script>
+</body>
+</html>
