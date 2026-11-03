@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第27次课｜Hermes Agent 桌面端导览与优势</title><style>/* styles.css — 保留 lesson01-32 实际用到的兼容样式；未使用的旧导航/课例库组件已移除。*/
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第27次课｜Hermes Agent 的核心优势与界面</title><style>/* styles.css — 保留 lesson01-32 实际用到的兼容样式；未使用的旧导航/课例库组件已移除。*/
 :root {
   --bg: #f5f7fb;
   --ink: #172033;
@@ -1271,7 +1271,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <a class="jump-nav-link" href="#sec-2"><span class="nav-idx">01</span><span class="nav-label">本课目标</span></a>
         <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
         <a class="jump-nav-link" href="#sec-4"><span class="nav-idx">03</span><span class="nav-label">桌面端导览</span></a>
-        <a class="jump-nav-link" href="#sec-5"><span class="nav-idx">04</span><span class="nav-label">优势与边界</span></a>
+        <a class="jump-nav-link" href="#sec-5"><span class="nav-idx">04</span><span class="nav-label">对比与边界</span></a>
         <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
       </div>
       <a class="jump-nav-top" href="#top" title="返回顶部">
@@ -1283,8 +1283,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
   <main class="page-shell" id="top">
     <header class="hero">
       <p class="eyebrow">AIGC应用与实践 · 第27次课 · 扩展课</p>
-      <h1>Hermes Agent 桌面端：把智能体的工作摆到界面上</h1>
-      <div style="margin-top:14px;color:var(--muted);font-size:18px;line-height:1.6;"><p>第8次课做过 Skill，第25次课用终端装了 Ollama，第26次课交了综合作品。三件事背后是同一批东西：用哪个模型、开了哪些工具、记住了什么。它们平时散在不同软件和文件里，看不见。这一课打开 Nous Research 的 Hermes Agent 桌面端，把这些配置在界面上的位置逐个看过去，再和用熟的 WorkBuddy 比一比。</p>
+      <h1>Hermes Agent：核心优势、两种界面与它能做什么</h1>
+      <div style="margin-top:14px;color:var(--muted);font-size:18px;line-height:1.6;"><p>第8次课做过 Skill，第25次课用终端装了 Ollama，第26次课交了综合作品。三件事背后是同一批东西：用哪个模型、开了哪些工具、记住了什么。它们平时散在不同软件和文件里，看不见。这一课看 Nous Research 的 Hermes Agent：它凭什么值得单独讲、命令行和桌面端两种长相差在哪、多出来的功能能干什么，最后把桌面端一页页看过去。</p>
 </div>
     </header>
     <section class="lesson-section" id="review">
@@ -1340,7 +1340,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 <tr>
 <td>讲清差别</td>
-<td>说出桌面端比纯命令行多解决了什么，又多了哪些维护工作</td>
+<td>说出桌面端比命令行多解决了什么，又多了哪些维护工作</td>
 </tr>
 <tr>
 <td>做判断</td>
@@ -1392,44 +1392,70 @@ body.is-ppt-mode .course-index-link{display:none!important}
       </section>
 <section class="lesson-section" id="concepts">
         <h2>02 基础概念</h2>
-        <h3>1｜Hermes 是软件，模型是另一件事</h3>
-<p>Hermes Agent 是 Nous Research 开源的智能体软件：把你的要求交给模型，再按模型的工具调用去读文件、运行命令、保存结果。</p>
-<p><b>软件负责&quot;能不能执行&quot;，模型负责&quot;想得对不对&quot;。</b> 输入框右下角写着模型名（截图里是 <code>Opus 4.6</code>）和推理档位（<code>Med</code>）。换模型只是换&quot;想的人&quot;，读写文件仍由软件完成。</p>
-<h3>2｜四个入口，各管一段</h3>
+        <h3>1｜核心优势：它和网页版 AI 差在哪</h3>
+<p>Hermes Agent 是 Nous Research 开源的智能体软件，装在自己的电脑上。和网页版 AI 比，差别是三条：</p>
+<p><b>能动手。</b> 给它一个目标，它调用工具去读文件、跑命令、写结果，不停在&quot;给你一段建议&quot;。</p>
+<p><b>经验存成本机文件。</b> 记忆是 <code>MEMORY.md</code>（做法与事实）和 <code>USER.md</code>（偏好），技能是 <code>SKILL.md</code>；都是纯文本，能打开、能改、能放进 Git 留版本。</p>
+<p><b>四个入口共用一套配置。</b> 命令行、桌面端、浏览器管理面板、消息网关读同一份记忆和技能，换入口不用重建方法。</p>
+<figure class="lesson-figure"><a href="assets/lesson33/memory-skill.png" title="点击查看大图"><img src="assets/lesson33/memory-skill.png" alt="当前会话、跨会话记忆与技能的分工" loading="lazy" width="1400" height="660"></a><figcaption></p>
+<p>图解：会话保留这一次的材料，记忆保留值得沿用的信息，技能保留可再次执行的方法。三者都不修改模型参数。</figcaption></figure>
+<p><b>软件负责执行，模型负责想。</b> 换模型只换&quot;想的人&quot;，读写文件仍由软件做。模型可能跑在云端，发出去的文字仍会离开本机——这条算代价，04 节展开。</p>
+<h3>2｜CLI 与桌面端：两种长相，一套配置</h3>
+<p><b>命令行长这样。</b> 终端输入 <code>hermes</code> 就进去，界面是纯文字，一条命令一个动作。下面是本机执行 <code>hermes status</code> 的实际输出：</p>
+<div class="copy-block">
+      <pre id="lesson33-code-1"><code class="language-text">┌─────────────────────────────────────────────────────────┐
+│                 ☤ Hermes Agent Status                  │
+└─────────────────────────────────────────────────────────┘
+
+  Model:        anthropic/claude-opus-4.6
+  Provider:     Auto
+  Gateway:      ✓ running
+  Platforms:    none configured
+  Jobs:         0
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
+    </div><p>版本行：<code>Hermes Agent v0.22.6 (2026.9.24) · stable · local f0d94882e89a</code>。这四行就把&quot;接的谁、网关活没活、有没有在跑的任务&quot;说完了——命令行不摆界面，只报状态。</p>
+<p><b>桌面端长这样。</b> 同一个软件打开后：</p>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-desktop-home.png" title="点击查看大图"><img src="assets/lesson33/hermes-desktop-home.png" alt="Hermes 桌面端简体中文主界面" loading="lazy" width="1760" height="1105"></a><figcaption></p>
+<p>图解：整窗全貌（v0.22.6，简体中文、深色主题）。左上两个分组标签「会话」「机器人」，下面是导航项、搜索框、历史会话；右侧会话区；左下角后端状态；右下角版本号。</figcaption></figure>
+<p><b>同一个东西，两种摆法：</b></p>
 <table>
 <thead>
 <tr>
-<th>入口</th>
-<th>怎么打开</th>
-<th>适合用来做什么</th>
+<th></th>
+<th>命令行 CLI</th>
+<th>桌面端 GUI</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>命令行（CLI）</td>
-<td>系统终端输入 <code>hermes</code></td>
-<td>连续对话、斜杠命令、逐行看工具调用；排查环境问题</td>
+<td>界面</td>
+<td>纯文字，靠记命令和参数</td>
+<td>图形界面，靠点击和表单</td>
 </tr>
 <tr>
-<td>桌面端（Desktop）</td>
-<td>打开 Hermes 应用</td>
-<td>会话列表、技能与工具、产物、定时任务、全部设置</td>
+<td>怎么进</td>
+<td>终端输入 <code>hermes</code></td>
+<td>打开应用图标</td>
 </tr>
 <tr>
-<td>管理面板（Dashboard）</td>
-<td>终端运行 <code>hermes dashboard</code>，按提示打开本机地址</td>
-<td>在浏览器里改配置、浏览技能库</td>
+<td>看状态</td>
+<td><code>hermes status</code>、<code>hermes doctor</code></td>
+<td>左下角「后端 就绪」</td>
 </tr>
 <tr>
-<td>消息网关（Gateway）</td>
-<td>终端配置后启动后台进程</td>
-<td>从消息平台派发任务、把结果投回去</td>
+<td>改配置</td>
+<td><code>hermes config set ...</code></td>
+<td>设置 › 19 类</td>
+</tr>
+<tr>
+<td>强项</td>
+<td>能写进脚本、能看每一行工具返回</td>
+<td>一眼看全貌、找得到入口、方便讲给别人听</td>
 </tr>
 </tbody>
 </table>
-<p>四个入口读同一份配置：界面语言改成简体中文，终端里也是同一设置；终端保存的技能，桌面端也能找到。换入口不等于重建一套方法。本课只看桌面端；要看每一行工具返回时，终端更直接。</p>
-<h3>3｜同一个动作，两种输入位置</h3>
-<p>混了会出现&quot;输了没反应&quot;：</p>
+<p><b>两种输入位置，混了会&quot;输了没反应&quot;：</b></p>
 <table>
 <thead>
 <tr>
@@ -1442,29 +1468,99 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>系统终端</td>
 <td><code>hermes</code>、<code>hermes doctor</code>、<code>hermes model</code></td>
-<td>启动、检查环境、改配置</td>
+<td>启动、查环境、改配置</td>
 </tr>
 <tr>
 <td>桌面端输入框</td>
-<td>用中文说明材料、条件、要保存的文件</td>
+<td>中文说明材料、条件、要保存的文件</td>
 <td>让 Agent 执行任务</td>
 </tr>
 <tr>
 <td>桌面端输入框</td>
-<td><code>/help</code>、<code>/tools</code>、<code>/new</code> 等斜杠命令</td>
-<td>查看帮助、工具、新建会话</td>
+<td><code>/help</code>、<code>/tools</code>、<code>/new</code></td>
+<td>查帮助、看工具、新建会话</td>
 </tr>
 </tbody>
 </table>
-<h3>4｜记忆在桌面端变成了开关和数字</h3>
-<p>记忆保存值得沿用的简短信息。核心记忆是两个文件：<code>MEMORY.md</code> 记做法与事实，<code>USER.md</code> 记偏好，有容量上限，新会话开始时载入快照。桌面端把它做成两行开关加两个数字：持久记忆、用户画像各一个开关，两个预算决定&quot;还能留多少字&quot;。</p>
-<p><b>关掉开关不等于删除</b>，只是新会话不再载入；文件仍在本机，能打开、能编辑。判断&quot;记没记住&quot;要看文件里写了什么，不能只看这次对话还记不记得上一句。</p>
-<h3>5｜技能是文件，不是自动训练</h3>
-<p>技能是一份按需读取的操作说明，核心文件 <code>SKILL.md</code>：写清接收什么材料、按什么步骤处理、输出到哪。第8次课的操作手册就是同一个东西，只换了文件名。存成技能后，新材料仍要由本次任务提供条件和参数，技能里不该写死旧商品名、旧答案。</p>
-<p>这些机制把经验保存在软件能读的文件里，<b>不等于模型自动训练了参数，也不保证以后不犯错</b>。</p>
-<h3>6｜装上桌面端，不等于内容都在本机算</h3>
-<p>桌面端装在电脑上，文件工具在这台电脑操作；接的是云端模型时，发过去的文字、文件片段、工具返回仍会经过相应服务。只有另接本地模型（第25次课那样），推理才也在本机。开源软件本体、模型调用、联网工具、服务器是四笔不同的成本。</p>
-<h3>几个会说到的词</h3>
+<p>另外两个入口一句话带过：<code>hermes dashboard</code> 在本机开一个浏览器管理面板，<code>hermes gateway</code> 起消息网关让手机也能派任务，读的都是同一份配置。</p>
+<h3>3｜新功能与它擅长的任务</h3>
+<p>v0.22.6 在&quot;能对话&quot;之外，有一批&quot;能长期跑&quot;的功能：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令行</th>
+<th>桌面端</th>
+<th>解决什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定时任务</td>
+<td><code>hermes cron</code></td>
+<td>左栏「定时任务」</td>
+<td>到点自动跑，不用守着</td>
+</tr>
+<tr>
+<td>消息网关</td>
+<td><code>hermes gateway</code></td>
+<td>左栏「消息平台」</td>
+<td>从消息应用派任务、把结果投回去</td>
+</tr>
+<tr>
+<td>产物</td>
+<td>会话中写入文件</td>
+<td>左栏「产物」</td>
+<td>集中看生成的文件</td>
+</tr>
+<tr>
+<td>多模型分工</td>
+<td><code>hermes moa</code></td>
+<td>设置 › 模型 › 多智能体协作</td>
+<td>几个模型分工做一件事</td>
+</tr>
+<tr>
+<td>备用模型</td>
+<td><code>hermes fallback</code></td>
+<td>设置 › 模型 › 备用模型</td>
+<td>主模型失败时自动接上</td>
+</tr>
+<tr>
+<td>项目工作区</td>
+<td><code>hermes project</code></td>
+<td>设置 › 工作区</td>
+<td>多个文件夹当一个项目用</td>
+</tr>
+<tr>
+<td>钩子</td>
+<td><code>hermes hooks</code></td>
+<td>设置 › 高级</td>
+<td>命令前后自动执行脚本</td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td><code>hermes security</code></td>
+<td>命令行</td>
+<td>查依赖和插件的已知漏洞</td>
+</tr>
+<tr>
+<td>审批白名单</td>
+<td><code>hermes approvals</code></td>
+<td>设置 › 安全</td>
+<td>常用授权记一次，少点确认</td>
+</tr>
+</tbody>
+</table>
+<p><b>它擅长的四类任务：</b></p>
+<ol>
+<li><b>多文件整理</b>：批量改名、按内容归类、汇总成表——要读写本机文件。</li>
+<li><b>定时活</b>：每天巡检、每周汇总、到点发消息——定时任务加消息网关。</li>
+<li><b>换模型对比、接本地模型</b>：同一个任务换模型跑，或接第25次课那种本机模型。</li>
+<li><b>要留痕的流程</b>：用了哪个技能、改了哪个文件、跑过什么命令——记忆和技能是文件，钩子能记日志。</li>
+</ol>
+<p><b>不必用它的</b>：问一句就答、写一段文案、做一张图——网页版或专用工具更快。</p>
+<p>下面把桌面端一页页看过去。</p>
+<h3>附｜几个会说到的词</h3>
 <table>
 <thead>
 <tr>
@@ -1503,18 +1599,12 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<h3>图解｜本次材料、长期信息与通用方法</h3>
-<figure class="lesson-figure"><a href="assets/lesson33/memory-skill.png" title="点击查看大图"><img src="assets/lesson33/memory-skill.png" alt="当前会话、跨会话记忆与技能的分工" loading="lazy" width="1400" height="660"></a><figcaption></p>
-<p>图解：会话保留这一次的材料，记忆保留值得沿用的信息，技能保留可再次执行的方法。三者都不修改模型参数。</figcaption></figure>
 
       </section>
 <section class="lesson-section" id="sec-4">
         <h2>03 桌面端导览</h2>
         <p>只需记住三个位置——<b>模型、记忆、工具在哪</b>；其余十六项知道大概在哪、会用搜索框找到就够。</p>
-<h3>主界面｜左边导航，右边会话</h3>
-<figure class="lesson-figure"><a href="assets/lesson33/hermes-desktop-home.png" title="点击查看大图"><img src="assets/lesson33/hermes-desktop-home.png" alt="Hermes 桌面端简体中文主界面" loading="lazy" width="1760" height="1105"></a><figcaption></p>
-<p>图解：整窗全貌（v0.22.6，简体中文、深色主题），先用来看清有几块区域，细节看后面的放大图。左上两个分组标签「会话」「机器人」，下面导航项、搜索框、历史会话；右侧会话区；左下角后端状态和账号；右下角版本号。</figcaption></figure>
-<h3>左栏放大｜东西放在哪</h3>
+<h3>左栏｜东西放在哪</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-home-leftnav.png" title="点击查看大图"><img src="assets/lesson33/hermes-home-leftnav.png" alt="左栏导航放大" loading="lazy" width="900" height="963"></a><figcaption></p>
 <p>图解：标签「会话」下依次是新建会话（⌘N）、技能与工具、消息平台、产物、定时任务，再往下是「搜索会话…」。技能、消息、文件、时间各归一处。</figcaption></figure>
 <h3>输入条放大｜模型和档位就在手边</h3>
@@ -1634,9 +1724,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <h3>语言与外观｜界面中文来自语言包</h3>
 <p>界面中文是官方语言包翻译的静态文字，模型回答、工具输出和日志不会因此全变中文。设置 › 外观 可改界面语言，命令行等价做法：</p>
 <div class="copy-block">
-      <pre id="lesson33-code-1"><code class="language-text">hermes config set display.language zh
+      <pre id="lesson33-code-2"><code class="language-text">hermes config set display.language zh
 </code></pre>
-      <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
+      <button class="copy-button" data-copy-target="lesson33-code-2" type="button">复制代码</button>
     </div><p>要让助手用中文回答，还要在提示里明确&quot;默认使用简体中文回答&quot;。</p>
 <h3>工具与密钥｜在哪开，在哪关</h3>
 <p>「工具与密钥」管工具集和密钥，「安全」管权限边界，常一起看：工具开了但权限被卡，表现为&quot;命令跑了但读不到文件&quot;。命令行对应 <code>hermes tools</code>。任务里出现&quot;没有这个工具&quot;时，先回这里确认开关，不要反复重装。</p>
@@ -1652,7 +1742,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 
       </section>
 <section class="lesson-section" id="sec-5">
-        <h2>04 优势与边界</h2>
+        <h2>04 对比与边界</h2>
         <h3>先回头看一眼自己的综合作品</h3>
 <p>第26次课的综合作品里已经用过这四样东西，只是当时藏在别处：</p>
 <table>
@@ -1725,10 +1815,6 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tbody>
 </table>
 <p>两边定位不同，不是谁替代谁：一个把控制权交出来，一个把维护工作接过去。</p>
-<h3>三条优势</h3>
-<p><b>运行环境在自己手里。</b> 软件装在自己机器上，配置目录、日志、进程都能查；模型接哪个服务自己定，需要时也能接本地模型。</p>
-<p><b>经验是文件，不是黑箱。</b> 记忆是 <code>MEMORY.md</code> 和 <code>USER.md</code>，技能是 <code>SKILL.md</code>，都在本机、都是纯文本。可以打开改一句、删掉过期条目、放进 Git 留版本；桌面端把开关和预算摆在设置里，看得见&quot;留了多少、还剩多少&quot;。</p>
-<p><b>入口多，但共用一套配置。</b> 桌面端、终端、浏览器面板、消息网关读同一份记忆和技能：桌面端看清结构，终端精确执行，手机通过消息平台派任务，不必各建一套方法。</p>
 <h3>三个代价</h3>
 <p><b>模型要自己接。</b> 网页聊天账号不等于 API 账号，装好软件不会自动获得免费模型。要准备 API Key、额度和 Base URL，否则界面能打开，任务发不出去。</p>
 <p><b>维护要自己来。</b> 版本更新、依赖、权限、后台进程、定时任务是否还在跑，都得自己盯。左下角的状态只是让问题更容易被发现。</p>
@@ -1872,11 +1958,11 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 <tr>
 <td>讲清优势</td>
-<td>能说出&quot;环境自己管、经验是文件、入口共用配置&quot;三条，并各配一个代价</td>
+<td>能说出&quot;能动手、经验是文件、入口共用配置&quot;三条，并说出各自代价</td>
 </tr>
 <tr>
-<td>看边界</td>
-<td>能说明装上桌面端不等于内容都在本机算，也能说出界面版本差异怎么处理</td>
+<td>分清界面</td>
+<td>能说出 CLI 与桌面端各适合什么场景，知道两者读同一份配置</td>
 </tr>
 <tr>
 <td>会判断</td>
