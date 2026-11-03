@@ -1397,8 +1397,33 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <p><b>能动手。</b> 给它一个目标，它调用工具去读文件、跑命令、写结果，不停在&quot;给你一段建议&quot;。</p>
 <p><b>经验存成本机文件。</b> 记忆是 <code>MEMORY.md</code>（做法与事实）和 <code>USER.md</code>（偏好），技能是 <code>SKILL.md</code>；都是纯文本，能打开、能改、能放进 Git 留版本。</p>
 <p><b>四个入口共用一套配置。</b> 命令行、桌面端、浏览器管理面板、消息网关读同一份记忆和技能，换入口不用重建方法。</p>
-<figure class="lesson-figure"><a href="assets/lesson33/memory-skill.png" title="点击查看大图"><img src="assets/lesson33/memory-skill.png" alt="当前会话、跨会话记忆与技能的分工" loading="lazy" width="1400" height="660"></a><figcaption></p>
-<p>图解：会话保留这一次的材料，记忆保留值得沿用的信息，技能保留可再次执行的方法。三者都不修改模型参数。</figcaption></figure>
+<p>三样东西各管一段，都不修改模型参数：</p>
+<table>
+<thead>
+<tr>
+<th>东西</th>
+<th>保留什么</th>
+<th>什么时候用上</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前会话</td>
+<td>这一次说过的话、给过的材料</td>
+<td>只在这次对话里</td>
+</tr>
+<tr>
+<td>记忆 <code>MEMORY.md</code>／<code>USER.md</code></td>
+<td>值得沿用的做法与偏好</td>
+<td>下次开新会话时自动带进来</td>
+</tr>
+<tr>
+<td>技能 <code>SKILL.md</code></td>
+<td>可以重复执行的方法</td>
+<td>需要重做同一件事时调用</td>
+</tr>
+</tbody>
+</table>
 <p><b>软件负责执行，模型负责想。</b> 换模型只换&quot;想的人&quot;，读写文件仍由软件做。模型可能跑在云端，发出去的文字仍会离开本机——这条算代价，04 节展开。</p>
 <h3>2｜CLI 与桌面端：两种长相，一套配置</h3>
 <p><b>命令行长这样。</b> 终端输入 <code>hermes</code>，先出这张启动页：界面是纯文字，一条命令一个动作。</p>
@@ -1581,8 +1606,6 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <p><b>cron 表达式是五段：分 时 日 月 周。</b> <code>0 8 * * 1-5</code> 是周一到周五早上 8 点；<code>30 18 * * 5</code> 是每周五 18:30。写错段数是最常见的失败原因——五段、空格分隔、周段 1 是周一。</p>
 <p>定时和&quot;连人&quot;要配合才完整：只开定时，结果出在电脑屏幕上；再把消息平台接上，&quot;结果发送到目的地&quot;那一栏才有东西可选。</p>
 <h3>4｜自动：钩子</h3>
-<figure class="lesson-figure"><a href="assets/lesson33/hooks-gate.png" title="点击查看大图"><img src="assets/lesson33/hooks-gate.png" alt="钩子示意：流水线中段的闸门与传感器" loading="lazy" width="1000" height="631"></a><figcaption></p>
-<p>图解：概念示意，不是实机截图。钩子像流水线上的闸门与传感器——货物（一次工具调用）经过时，闸门可以放行、拦下或改装，传感器负责记录。</figcaption></figure>
 <p><b>钩子＝在固定节点上，自动跑一段你自己写的脚本。</b> 节点由 Hermes 定，脚本内容由你写。前 26 次课一次没出现过这东西，它是&quot;从会对话的工具&quot;变成&quot;能嵌进流程的工具&quot;的关键一步。</p>
 <table>
 <thead>
@@ -1700,8 +1723,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-memory-panel.png" title="点击查看大图"><img src="assets/lesson33/hermes-memory-panel.png" alt="设置 › 记忆与上下文 › 持久记忆" loading="lazy" width="1800" height="946"></a><figcaption></p>
 <p>图解：面包屑是「设置 › 记忆与上下文 › 持久记忆」。顶部&quot;已选记忆提供方：无一 — 仅内置记忆&quot;；内置层说明 <code>MEMORY.md</code> 和 <code>USER.md</code> 是 Hermes 自己的记忆，独立于外部提供方，默认都载入会话，可用开关分别关闭。往下是持久记忆和用户画像两个开关（图中都开着），记忆预算 2200、画像预算 1375。</figcaption></figure>
 <p>预算决定&quot;能留多少字&quot;，不是&quot;记得多准&quot;。预算小只能留最要紧的偏好；写满后新内容挤掉旧内容。<b>记忆管跨会话留什么，上下文管这一次留多长。</b></p>
-<figure class="lesson-figure"><a href="assets/lesson33/nav-map.png" title="点击查看大图"><img src="assets/lesson33/nav-map.png" alt="左侧导航与设置面板的结构示意" loading="lazy" width="1375" height="1000"></a><figcaption></p>
-<p>图解：概念示意，不是实机画面。左列是&quot;东西放在哪&quot;，右列是&quot;规则改成什么&quot;，下方三张卡片是最终落点：记忆落到 <code>MEMORY.md</code>／<code>USER.md</code>，技能落到 <code>SKILL.md</code>，钩子落到 <code>config.yaml</code>。</figcaption></figure>
+<p>界面上点开的每一项，最后都落到一个文件：记忆落到 <code>MEMORY.md</code>／<code>USER.md</code>，技能落到 <code>SKILL.md</code>，钩子落到 <code>config.yaml</code>。<b>界面是入口，文件才是本体</b>——这也是它能被 Git 管起来、能被别人接手的原因。</p>
 <h3>7｜它擅长什么，不必用什么</h3>
 <p>六件事组装起来，擅长的任务集中在四类：</p>
 <table>
