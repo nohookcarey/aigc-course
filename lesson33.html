@@ -1284,13 +1284,12 @@ body.is-ppt-mode .course-index-link{display:none!important}
     <header class="hero">
       <p class="eyebrow">AIGC应用与实践 · 第27次课 · 扩展课</p>
       <h1>Hermes Agent 桌面端：把智能体的工作摆到界面上</h1>
-      <div style="margin-top:14px;color:var(--muted);font-size:18px;line-height:1.6;"><p>第8次课做过 Skill，第25次课在自己电脑上用终端命令装过 Ollama，第26次课交了期末综合作品。三件事里都有一批同样的东西：用哪个模型、开了哪些工具、记住了什么、按什么规则执行。它们分散在不同软件和不同文件里，平时看不见。这一课打开 Nous Research 的 Hermes Agent 桌面端，把这些东西在界面上的位置逐个看过去，再看它和我们已经用熟的 WorkBuddy 差在哪、适合谁用。</p>
+      <div style="margin-top:14px;color:var(--muted);font-size:18px;line-height:1.6;"><p>第8次课做过 Skill，第25次课用终端装了 Ollama，第26次课交了综合作品。三件事背后是同一批东西：用哪个模型、开了哪些工具、记住了什么。它们平时散在不同软件和文件里，看不见。这一课打开 Nous Research 的 Hermes Agent 桌面端，把这些配置在界面上的位置逐个看过去，再和用熟的 WorkBuddy 比一比。</p>
 </div>
     </header>
     <section class="lesson-section" id="review">
         <h2>00 知识回顾</h2>
-        <p>先把做过的事排一排，看看当时的&quot;配置&quot;藏在哪儿：</p>
-<table>
+        <table>
 <thead>
 <tr>
 <th>做过的事</th>
@@ -1316,20 +1315,18 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>三件事的共同麻烦是：<b>要做完一件事，得同时记住四五个地方。</b> 模型换没换、工具开没开、上次的经验还在不在、文件到底存哪了——每一项都要单独去确认。命令行不是不好用，它是把&quot;改什么&quot;写得很清楚，但&quot;现在是什么状态&quot;要一项一项查。</p>
-<p>桌面端换了个摆法：同一批配置被放进左栏和设置列表，能一屏看到全貌。本课就是把这套摆法看清楚。</p>
-<p><b>本课的边界，先说明白：</b></p>
+<p>共同麻烦是：做完一件事要同时记住四五个地方，模型换没换、工具开没开、经验还在不在、文件存哪了，每项都得单独确认。桌面端把同一批配置放进左栏和设置列表，一屏能看到全貌。</p>
+<p><b>本课边界：</b></p>
 <ul>
-<li><b>不装新软件</b>，也不再配置一次环境——装和配在第25次课已经做过一轮。</li>
-<li><b>不发任务、不对话</b>。上课的机器不一定都接通了模型，也可能额度受限；看界面结构不需要模型回话，点开设置就能看完。</li>
-<li><b>不要求做出作品</b>。本课的产出是一张半页纸的判断卡（见 01 节），不是文件成品。</li>
+<li><b>不装新软件</b>，不再配环境——第25次课已经做过一轮。</li>
+<li><b>不发任务、不对话</b>。机器不一定接通模型；看界面结构不需要模型回话，点开设置就能看完。</li>
+<li><b>不要求做出作品</b>，产出是一张半页纸的判断卡（见 01 节）。</li>
 </ul>
 
       </section>
 <section class="lesson-section" id="sec-2">
         <h2>01 本课目标</h2>
-        <p>学完这一课，应该能做到三件事：</p>
-<table>
+        <table>
 <thead>
 <tr>
 <th>要带走的能力</th>
@@ -1352,7 +1349,6 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tbody>
 </table>
 <h3>当堂产出｜《Agent 产品选型对照卡》（半页）</h3>
-<p>一页纸，写四问、一条证据、一句推荐：</p>
 <table>
 <thead>
 <tr>
@@ -1381,8 +1377,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </table>
 <p>再加两行：</p>
 <ul>
-<li><b>一条证据</b>：写一条你在界面上真实看到的具体项，别人照着能核对。例：<code>设置 › 记忆与上下文 › 持久记忆</code>，记忆预算写着 2200，画像预算 1375。</li>
-<li><b>一句推荐</b>：说清&quot;推荐给谁、不推荐给谁&quot;。例：推荐给要在自己电脑上跑模型、愿意查日志的同学；只想快点做完文档的不推荐。</li>
+<li><b>一条证据</b>：写一条界面上真实看到的具体项，别人照着能核对。例：<code>设置 › 记忆与上下文 › 持久记忆</code>，记忆预算 2200，画像预算 1375。</li>
+<li><b>一句推荐</b>：说清推荐给谁、不推荐给谁。例：推荐给要在自己电脑上跑模型、愿意查日志的同学；只想快点做完文档的不推荐。</li>
 </ul>
 <h3>怎么评分（10 分）</h3>
 <table>
@@ -1402,7 +1398,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>证据可核对</td>
 <td>3</td>
-<td>指到具体页面、具体文字或数字，不是&quot;界面很清晰&quot;</td>
+<td>指到具体页面、文字或数字，不是&quot;界面很清晰&quot;</td>
 </tr>
 <tr>
 <td>推荐有对象</td>
@@ -1416,7 +1412,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p><b>没有装成、没有接通、额度用不了，都不扣分。</b> 这类情况用课件里的截图和示意图完成，证据写成&quot;第几张图里看到什么&quot;即可，四问照样要答。</p>
+<p><b>没装成、没接通、额度用不了，都不扣分。</b> 用课件截图完成，证据写成&quot;第几张图里看到什么&quot;，四问照样要答。</p>
 <h3>80 分钟怎么走</h3>
 <table>
 <thead>
@@ -1430,22 +1426,22 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>0–8</td>
 <td>8</td>
-<td>回顾三条旧经验，说明本课只看界面、不发任务</td>
+<td>回顾三条旧经验，说明本课只看界面</td>
 </tr>
 <tr>
 <td>8–20</td>
 <td>12</td>
-<td>基础概念：软件与模型两件事、四个入口、两种输入位置</td>
+<td>软件与模型、四个入口、两种输入位置</td>
 </tr>
 <tr>
 <td>20–46</td>
 <td>26</td>
-<td>桌面端导览：主界面、左栏、输入条、设置列表、模型页、记忆页</td>
+<td>主界面、左栏、输入条、设置列表、模型页、记忆页</td>
 </tr>
 <tr>
 <td>46–56</td>
 <td>10</td>
-<td>优势与代价，示范填一格四问卡</td>
+<td>优势与代价，示范填一格</td>
 </tr>
 <tr>
 <td>56–72</td>
@@ -1455,7 +1451,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>72–80</td>
 <td>8</td>
-<td>抽 2–3 人读自己的推荐句，收束</td>
+<td>抽 2–3 人读推荐句，收束</td>
 </tr>
 </tbody>
 </table>
@@ -1464,8 +1460,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <section class="lesson-section" id="concepts">
         <h2>02 基础概念</h2>
         <h3>1｜Hermes 是软件，模型是另一件事</h3>
-<p>Hermes Agent 是 Nous Research 开源的智能体软件。它把你的要求交给模型，再按模型的工具调用去读文件、运行命令、保存结果。桌面端是这个软件的图形界面版本，命令行、桌面端、浏览器管理面板是它的不同入口。</p>
-<p>两件事要分开：<b>软件负责&quot;能不能执行&quot;，模型负责&quot;想得对不对&quot;。</b> 主界面输入框右下角写着模型名（截图里是 <code>Opus 4.6</code>）和推理档位（<code>Med</code>），那是&quot;现在接的是谁、让它想多久&quot;。换模型只是换想的人，读文件、写文件这些动作仍由软件完成。</p>
+<p>Hermes Agent 是 Nous Research 开源的智能体软件：把你的要求交给模型，再按模型的工具调用去读文件、运行命令、保存结果。</p>
+<p><b>软件负责&quot;能不能执行&quot;，模型负责&quot;想得对不对&quot;。</b> 输入框右下角写着模型名（截图里是 <code>Opus 4.6</code>）和推理档位（<code>Med</code>）。换模型只是换&quot;想的人&quot;，读写文件仍由软件完成。</p>
 <h3>2｜四个入口，各管一段</h3>
 <table>
 <thead>
@@ -1498,10 +1494,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>四个入口读同一份配置：桌面端把界面语言改成简体中文，终端里也是同一设置；终端保存的技能，桌面端「技能与工具」里也能找到。所以&quot;换入口&quot;不等于&quot;重建一套方法&quot;。</p>
-<p>本课只看桌面端。命令行不是要被淘汰的东西——需要看清每一行工具返回、要把过程写进文档时，终端反而更直接。</p>
+<p>四个入口读同一份配置：界面语言改成简体中文，终端里也是同一设置；终端保存的技能，桌面端也能找到。换入口不等于重建一套方法。本课只看桌面端；要看每一行工具返回时，终端更直接。</p>
 <h3>3｜同一个动作，两种输入位置</h3>
-<p>桌面端把斜杠命令变成可点的项，但输入位置的差别仍然存在。混了会出现&quot;输了没反应&quot;：</p>
+<p>混了会出现&quot;输了没反应&quot;：</p>
 <table>
 <thead>
 <tr>
@@ -1529,16 +1524,13 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tbody>
 </table>
 <h3>4｜记忆在桌面端变成了开关和数字</h3>
-<p>记忆保存值得以后沿用的简短信息。Hermes 的核心记忆是两个文件：<code>MEMORY.md</code> 记做法与事实，<code>USER.md</code> 记用户偏好。两者有容量限制，新会话开始时载入一份快照。</p>
-<p>桌面端把它做成两行开关加两个数字：持久记忆、用户画像各一个开关，记忆预算和画像预算决定&quot;还能留多少字&quot;。</p>
-<p><b>关掉开关不等于内容被删除</b>，只是新会话不再载入；文件仍在本机，能打开看、能编辑。判断&quot;记没记住&quot;要看文件里实际写了什么，不能只看这次对话里它还记得上一句。</p>
+<p>记忆保存值得沿用的简短信息。核心记忆是两个文件：<code>MEMORY.md</code> 记做法与事实，<code>USER.md</code> 记偏好，有容量上限，新会话开始时载入快照。桌面端把它做成两行开关加两个数字：持久记忆、用户画像各一个开关，两个预算决定&quot;还能留多少字&quot;。</p>
+<p><b>关掉开关不等于删除</b>，只是新会话不再载入；文件仍在本机，能打开、能编辑。判断&quot;记没记住&quot;要看文件里写了什么，不能只看这次对话还记不记得上一句。</p>
 <h3>5｜技能是文件，不是自动训练</h3>
-<p>技能是一份按需读取的操作说明，核心文件叫 <code>SKILL.md</code>：写清接收什么材料、按什么步骤处理、输出到哪里。做过第8次课的操作手册，在这里是同一个东西，只是换了个文件名。</p>
-<p>保存成技能以后，下一份材料仍要由本次任务提供条件和参数。技能里不该写死旧商品名、旧答案。</p>
-<p>这些机制把经验保存在软件能读的文件里，<b>不等于模型自动训练了参数，也不保证以后不犯错</b>。输入换了，仍要看这次任务有没有用对方法、有没有用对条件。</p>
+<p>技能是一份按需读取的操作说明，核心文件 <code>SKILL.md</code>：写清接收什么材料、按什么步骤处理、输出到哪。第8次课的操作手册就是同一个东西，只换了文件名。存成技能后，新材料仍要由本次任务提供条件和参数，技能里不该写死旧商品名、旧答案。</p>
+<p>这些机制把经验保存在软件能读的文件里，<b>不等于模型自动训练了参数，也不保证以后不犯错</b>。</p>
 <h3>6｜装上桌面端，不等于内容都在本机算</h3>
-<p>桌面端装在电脑上，文件工具在这台电脑操作；如果接的是云端模型，发给模型的文字、文件片段、工具返回内容仍会经过相应服务。只有另外接本地模型（像第25次课那样），模型推理才也在本机；联网搜索和外部连接器各有自己的数据去向。</p>
-<p>开源软件本体、模型调用、联网工具、服务器是四笔不同的成本。桌面端只是把入口做得更好找，没有改变这个分工。</p>
+<p>桌面端装在电脑上，文件工具在这台电脑操作；接的是云端模型时，发过去的文字、文件片段、工具返回仍会经过相应服务。只有另接本地模型（第25次课那样），推理才也在本机。开源软件本体、模型调用、联网工具、服务器是四笔不同的成本。</p>
 <h3>几个会说到的词</h3>
 <table>
 <thead>
@@ -1580,23 +1572,23 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </table>
 <h3>图解｜本次材料、长期信息与通用方法</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/memory-skill.png" title="点击查看大图"><img src="assets/lesson33/memory-skill.png" alt="当前会话、跨会话记忆与技能的分工" loading="lazy" width="1400" height="660"></a><figcaption></p>
-<p>图解：会话保留这一次的材料；记忆保留值得沿用的信息；技能保留可再次执行的方法。三者都不修改模型参数：会话结束就散，记忆受预算限制，技能要自己写清适用条件。</figcaption></figure>
+<p>图解：会话保留这一次的材料，记忆保留值得沿用的信息，技能保留可再次执行的方法。三者都不修改模型参数。</figcaption></figure>
 
       </section>
 <section class="lesson-section" id="sec-4">
         <h2>03 桌面端导览</h2>
-        <p>这一节按&quot;先看整体，再记三处&quot;的顺序走。全篇只需要记住三个位置——<b>模型在哪、记忆在哪、工具在哪</b>；其余十六项知道大概在哪、会用搜索框找到就够了。</p>
+        <p>只需记住三个位置——<b>模型、记忆、工具在哪</b>；其余十六项知道大概在哪、会用搜索框找到就够。</p>
 <h3>主界面｜左边导航，右边会话</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-desktop-home.png" title="点击查看大图"><img src="assets/lesson33/hermes-desktop-home.png" alt="Hermes 桌面端简体中文主界面" loading="lazy" width="1760" height="1105"></a><figcaption></p>
-<p>图解：整窗是 v0.22.6 的样子（简体中文、深色主题）。这张是缩小的全貌图，看的是&quot;有几块区域、各自在哪&quot;；细节在后面几张放大图里。左上两个分组标签「会话」「机器人」，下面是导航项，再往下是搜索框和历史会话列表；右侧是会话区；左下角显示后端状态和账号；右下角显示版本号。</figcaption></figure>
-<h3>左栏放大｜五件事放在哪</h3>
+<p>图解：v0.22.6 的全貌图（简体中文、深色主题），看的是有几块区域。左上两个分组标签「会话」「机器人」，下面导航项、搜索框、历史会话；右侧会话区；左下角后端状态和账号；右下角版本号。</figcaption></figure>
+<h3>左栏放大｜东西放在哪</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-home-leftnav.png" title="点击查看大图"><img src="assets/lesson33/hermes-home-leftnav.png" alt="左栏导航放大" loading="lazy" width="900" height="963"></a><figcaption></p>
-<p>图解：标签「会话」下有新建会话（右侧标着 ⌘N）、技能与工具、消息平台、产物、定时任务，再往下是「搜索会话…」。这一列回答的是&quot;<b>东西放在哪</b>&quot;：技能、消息、文件、时间分别归到一处。</figcaption></figure>
+<p>图解：标签「会话」下依次是新建会话（⌘N）、技能与工具、消息平台、产物、定时任务，再往下是「搜索会话…」。技能、消息、文件、时间各归一处。</figcaption></figure>
 <h3>输入条放大｜模型和档位就在手边</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-home-composer.png" title="点击查看大图"><img src="assets/lesson33/hermes-home-composer.png" alt="输入条上的模型与推理档位" loading="lazy" width="1500" height="140"></a><figcaption></p>
-<p>图解：输入框占位文字是「＋ 从一个目标开始」；右侧依次是模型名 <code>Opus 4.6</code>、推理档位 <code>Med</code>、麦克风按钮、语音按钮。<b>换模型不必进设置</b>，点开这个下拉就能临时切换，但它只影响当前对话，不改&quot;主模型&quot;的默认值。</figcaption></figure>
+<p>图解：占位文字「＋ 从一个目标开始」；右侧模型名 <code>Opus 4.6</code>、推理档位 <code>Med</code>、麦克风、语音。<b>换模型不必进设置</b>，点开下拉即可临时切换，但只影响当前对话，不改主模型默认值。</figcaption></figure>
 <h3>五个功能区分别管什么</h3>
-<p>左栏四个条目，加上右上角齿轮打开的设置，一共五处：</p>
+<p>左栏四个条目，加右上角齿轮打开的设置，共五处：</p>
 <table>
 <thead>
 <tr>
@@ -1633,11 +1625,11 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>&quot;新建会话 ⌘N&quot;和&quot;搜索会话&quot;是操作，不是存放东西的地方，所以不数进来。左栏那四个条目加右上角的设置，正好五处。</p>
+<p>&quot;新建会话 ⌘N&quot;和&quot;搜索会话&quot;是操作，不是存放东西的地方，不数进来。</p>
 <h3>设置的 19 类｜一屏看到全部配置</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-settings-list.png" title="点击查看大图"><img src="assets/lesson33/hermes-settings-list.png" alt="设置面板的分类列表" loading="lazy" width="940" height="870"></a><figcaption></p>
-<p>图解：这是同一份列表分上下两段并排显示（上段停到「密码与登录」，下段从「记忆与上下文」接下去）。顶部有搜索框 <code>⌘K</code>，可按名称直接跳到某一项。逐项数下来共 19 类：模型、对话、外观、工作区、安全、Browser、密码与登录、记忆与上下文、语音、高级、通知、账单、提供方、网关、网页访问、键盘快捷键、工具与密钥、会话、插件。</figcaption></figure>
-<p>这张图本身就是本课的重点：命令行里要靠记忆和文档去找的配置，在这里是一条条能点开的目录。<b>找不到某项时不要一层层翻，先在 ⌘K 里打字搜</b>，例如&quot;记忆&quot;&quot;语言&quot;&quot;密钥&quot;。</p>
+<p>图解：同一份列表分上下两段并排（上段停到「密码与登录」，下段从「记忆与上下文」接起）。顶部搜索框 <code>⌘K</code> 可按名称直达。19 类：模型、对话、外观、工作区、安全、Browser、密码与登录、记忆与上下文、语音、高级、通知、账单、提供方、网关、网页访问、键盘快捷键、工具与密钥、会话、插件。</figcaption></figure>
+<p><b>找不到某项时不要一层层翻，先在 ⌘K 里搜</b>，例如&quot;记忆&quot;&quot;语言&quot;&quot;密钥&quot;。</p>
 <p><b>必须记住的 3 处，其余 16 项知道在哪就行：</b></p>
 <table>
 <thead>
@@ -1665,10 +1657,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>其余项（通知、账单、键盘快捷键、插件等）属于用到了再找，不必背位置。</p>
 <h3>模型页｜四个字段与四个替身</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-model-primary.png" title="点击查看大图"><img src="assets/lesson33/hermes-model-primary.png" alt="设置 › 模型 › 主模型" loading="lazy" width="1500" height="704"></a><figcaption></p>
-<p>图解：页面顶部写着&quot;应用于新会话。可在输入框的模型选择器中临时切换当前对话&quot;。下面是提供方 <code>auto</code>、模型（按钮「设置 提供方」）、推理 <code>中</code>、上下文窗口 <code>0</code>，以及一行说明：&quot;仅覆盖主聊天模型检测到的上下文窗口（以 token 计）。保持为 0 则使用所选模型检测到的值。不影响辅助模型/MoA 模型。&quot;</figcaption></figure>
+<p>图解：顶部说明&quot;应用于新会话，可在输入框的模型选择器中临时切换当前对话&quot;。字段是提供方 <code>auto</code>、模型（按钮「设置 提供方」）、推理 <code>中</code>、上下文窗口 <code>0</code>，附一行说明：&quot;仅覆盖主聊天模型检测到的上下文窗口（以 token 计）。保持为 0 则使用所选模型检测到的值。不影响辅助模型/MoA 模型。&quot;</figcaption></figure>
 <table>
 <thead>
 <tr>
@@ -1691,46 +1682,46 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>推理</td>
 <td><code>中</code></td>
-<td>想得多还是想得快。档位越高，同样任务越慢、消耗越多</td>
+<td>想得多还是想得快。档位越高越慢、消耗越多</td>
 </tr>
 <tr>
 <td>上下文窗口</td>
 <td><code>0</code></td>
-<td>保持为 0 就用模型自己检测的值，只在需要覆盖时才填</td>
+<td>为 0 就用模型自己检测的值，只在需要覆盖时才填</td>
 </tr>
 </tbody>
 </table>
-<p>同一分组里还有四项替身，分工不同：<b>备用模型</b>在主模型调用失败时接上；<b>辅助模型</b>处理起标题、写摘要这类小任务；<b>子智能体</b>决定并行小任务用哪个模型；<b>多智能体协作</b>决定多个模型怎么分活。它们不改主对话的回答风格，改的是&quot;出错时断不断&quot;和&quot;小任务花谁的钱&quot;。</p>
-<p><b>图中的数字是教师机上的配置</b>（<code>Opus 4.6</code>、推理 <code>中</code>、记忆预算 2200）。你机器上看到的服务商、模型名和数字都会不一样，<b>要看的是字段位置和含义，不是照抄这些值</b>。</p>
+<p>同组还有四项替身：<b>备用模型</b>在主模型失败时接上；<b>辅助模型</b>处理起标题、写摘要这类小任务；<b>子智能体</b>决定并行小任务用哪个模型；<b>多智能体协作</b>决定多个模型怎么分活。它们不改回答风格，改的是&quot;出错时断不断&quot;和&quot;小任务花谁的钱&quot;。</p>
+<p><b>图中的数字是教师机配置</b>（<code>Opus 4.6</code>、推理 <code>中</code>、记忆预算 2200）。你机器上的服务商和数字都会不同，要看的是字段位置和含义，不是照抄。</p>
 <h3>记忆页｜开关、预算与内置层</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-memory-panel.png" title="点击查看大图"><img src="assets/lesson33/hermes-memory-panel.png" alt="设置 › 记忆与上下文 › 持久记忆" loading="lazy" width="1800" height="946"></a><figcaption></p>
-<p>图解：面包屑是「设置 › 记忆与上下文 › 持久记忆」。最上面一行&quot;已选记忆提供方：无一 — 仅内置记忆&quot;。内置层写着 <code>MEMORY.md</code> 和 <code>USER.md</code> 是 Hermes 自己的记忆，独立于任何外部提供方，两者默认都载入会话，可以用下面的开关分别关闭，右侧固定显示&quot;开启&quot;。再往下两行开关是持久记忆和用户画像（图中都开着）；两个数字是记忆预算 2200、画像预算 1375；最后一行记忆提供方是&quot;仅内置&quot;。</figcaption></figure>
-<p>怎么读这几个数字：预算决定&quot;能留多少字&quot;，不是&quot;记得多准&quot;。预算小，只能留最要紧的偏好；写满以后新内容会挤掉旧内容，重要的条目不主动清理就会丢。要更长的记忆可以接外部记忆提供方，但那是另一种服务，涉及数据去向和费用，本课不展开。</p>
-<p>同一分组下还有&quot;上下文与压缩&quot;，管的是单次对话太长时怎么压缩前文。<b>记忆管跨会话留什么，上下文管这一次留多长</b>，两者不要混。</p>
+<p>图解：面包屑是「设置 › 记忆与上下文 › 持久记忆」。顶部&quot;已选记忆提供方：无一 — 仅内置记忆&quot;；内置层说明 <code>MEMORY.md</code> 和 <code>USER.md</code> 是 Hermes 自己的记忆，独立于外部提供方，默认都载入会话，可用开关分别关闭。往下是持久记忆和用户画像两个开关（图中都开着），记忆预算 2200、画像预算 1375。</figcaption></figure>
+<p>预算决定&quot;能留多少字&quot;，不是&quot;记得多准&quot;。预算小只能留最要紧的偏好；写满后新内容挤掉旧内容，重要的条目不主动清理就会丢。要更长的记忆可以接外部记忆提供方，涉及数据去向和费用，本课不展开。</p>
+<p>同组还有&quot;上下文与压缩&quot;，管单次对话太长时怎么压缩前文。<b>记忆管跨会话留什么，上下文管这一次留多长。</b></p>
 <h3>语言与外观｜界面中文来自语言包</h3>
-<p>界面里的中文是官方语言包翻译的静态文字，模型回答、工具输出和日志不会因此全部变成中文。设置 › 外观 里可以改界面语言；命令行等价做法是先设语言再重启界面：</p>
+<p>界面中文是官方语言包翻译的静态文字，模型回答、工具输出和日志不会因此全变中文。设置 › 外观 可改界面语言，命令行等价做法：</p>
 <div class="copy-block">
       <pre id="lesson33-code-1"><code class="language-text">hermes config set display.language zh
 </code></pre>
       <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
-    </div><p>要让助手用中文回答，还要在提示里明确&quot;默认使用简体中文回答&quot;。只有模型接通、拿到实际中文回答，才说明这条对话路线可用；模型没接通时，仍能分别检查程序版本和静态中文界面。</p>
+    </div><p>要让助手用中文回答，还要在提示里明确&quot;默认使用简体中文回答&quot;。</p>
 <h3>工具与密钥｜在哪开，在哪关</h3>
-<p>「工具与密钥」管工具集和密钥，「安全」管权限边界，两者经常一起看：工具开了但权限被卡住，表现为&quot;命令跑了但读不到文件&quot;。命令行对应 <code>hermes tools</code>，按菜单选择入口并启用文件、Memory、Skills 相关项。默认配置可能关掉部分工具，任务里出现&quot;没有这个工具&quot;时，先回这里确认开关，而不是反复重装。</p>
-<p>密钥只在本机设置窗口里输入，<b>不写进提示词、不投屏、不截图</b>。课堂上看这一页，停在分组名称上就够，不展开具体条目。</p>
+<p>「工具与密钥」管工具集和密钥，「安全」管权限边界，常一起看：工具开了但权限被卡，表现为&quot;命令跑了但读不到文件&quot;。命令行对应 <code>hermes tools</code>。任务里出现&quot;没有这个工具&quot;时，先回这里确认开关，不要反复重装。</p>
+<p>密钥只在本机设置窗口里输入，<b>不写进提示词、不投屏、不截图</b>。课堂上看这一页停在分组名称就够。</p>
 <h3>另外五页｜看结构示意</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/nav-map.png" title="点击查看大图"><img src="assets/lesson33/nav-map.png" alt="左侧导航与设置面板的结构示意" loading="lazy" width="1375" height="1000"></a><figcaption></p>
-<p>图解：这是按上述界面画的示意图，不是实机截图。左边一列是&quot;东西放在哪&quot;，右边一列是&quot;规则改成什么&quot;，下面三张卡片是三项设置最终落到的三个地方：记忆落到 <code>MEMORY.md</code>／<code>USER.md</code>，技能落到 <code>SKILL.md</code>，产物落到本机文件夹。消息平台、产物、定时任务、外观这几页本课不逐个展开，用这张图对照着看结构即可。</figcaption></figure>
+<p>图解：这是按上述界面画的示意图，不是实机截图。左列是&quot;东西放在哪&quot;，右列是&quot;规则改成什么&quot;，下方三张卡片是设置的最终落点：记忆落到 <code>MEMORY.md</code>／<code>USER.md</code>，技能落到 <code>SKILL.md</code>，产物落到本机文件夹。</figcaption></figure>
 <h3>官方文档里的两个页面</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-skills-hub.png" title="点击查看大图"><img src="assets/lesson33/hermes-skills-hub.png" alt="官方 Web Dashboard 中的技能入口" loading="lazy" width="1280" height="720"></a><figcaption></p>
-<p>图解：这是官方文档里的管理面板示例，Skills 页面可以查找技能、浏览技能库，图中列表为空。桌面端的「技能与工具」是同一件事的另一个入口，能看已保存的技能和启用状态。</figcaption></figure>
+<p>图解：官方文档里的管理面板示例，Skills 页面可查找、浏览技能库，图中列表为空。桌面端「技能与工具」是同一件事的另一个入口。</figcaption></figure>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-model-picker.png" title="点击查看大图"><img src="assets/lesson33/hermes-model-picker.png" alt="官方 Web Dashboard 中的模型选择对话框" loading="lazy" width="1280" height="720"></a><figcaption></p>
-<p>图解：同一套面板里的模型选择框——左边选提供方，右边选具体模型，右下角 Switch 确认。<b>能在这个列表里看到模型名字，不等于已经接通账号或拿到额度。</b> 这也是本课不发任务的原因之一。</figcaption></figure>
+<p>图解：左选提供方，右选具体模型，右下角 Switch 确认。<b>列表里能看到模型名，不等于已经接通账号或拿到额度。</b></figcaption></figure>
 
       </section>
 <section class="lesson-section" id="sec-5">
         <h2>04 优势与边界</h2>
         <h3>先回头看一眼自己的综合作品</h3>
-<p>第26次课的综合作品里，其实已经用过本课要看的四样东西，只是当时藏在别的地方：</p>
+<p>第26次课的综合作品里已经用过这四样东西，只是当时藏在别处：</p>
 <table>
 <thead>
 <tr>
@@ -1748,7 +1739,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>用过的 Skill</td>
 <td>技能与工具、<code>SKILL.md</code></td>
-<td>当时是照着手册做，这里能看到文件本身和开关</td>
+<td>当时照着手册做，这里能看到文件本身和开关</td>
 </tr>
 <tr>
 <td>让助手记住的偏好</td>
@@ -1758,11 +1749,11 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <tr>
 <td>交上去的文件</td>
 <td>产物</td>
-<td>当时靠自己翻文件夹，这里是集中列表</td>
+<td>当时自己翻文件夹，这里是集中列表</td>
 </tr>
 </tbody>
 </table>
-<p>所以这一课不是&quot;又学一个新软件&quot;，而是把已经做过的事换个角度再看一遍：原来那些&quot;说不清在哪&quot;的配置，是有明确位置的。</p>
+<p>不是学新软件，是把做过的事换个角度再看一遍。</p>
 <h3>与 WorkBuddy 放在一起比</h3>
 <table>
 <thead>
@@ -1800,17 +1791,16 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>两边的定位不同，不是谁替代谁：一个把控制权交出来，一个把维护工作接过去。</p>
-<h3>三条优势，说清&quot;好在哪&quot;</h3>
-<p><b>第一，运行环境在自己手里。</b> 软件装在自己机器上，配置目录、日志、进程都能查；模型接哪个服务由自己决定，可以在不同服务商之间切换，需要时也能接本地模型。对想弄清&quot;Agent 到底怎么执行&quot;的人来说，这层可见性比多几个按钮更重要。</p>
-<p><b>第二，经验是文件，不是黑箱。</b> 记忆是 <code>MEMORY.md</code> 和 <code>USER.md</code>，技能是 <code>SKILL.md</code>，都在本机、都是纯文本。可以直接打开改一句、删掉过期条目、放进 Git 留版本；桌面端把开关和预算摆在设置里，看得见&quot;留了多少、还剩多少&quot;。<b>&quot;AI 为什么会记住我的偏好&quot;这件事，答案就是一个文件，不是玄学。</b></p>
-<p><b>第三，入口多，但共用一套配置。</b> 桌面端、终端、浏览器面板、消息网关读同一份记忆和技能。在桌面端看清结构，在终端精确执行，在手机上通过消息平台派任务，不必各建一套方法。换入口的学习成本，比换一个产品低得多。</p>
-<h3>三个代价，也要说清</h3>
-<p><b>模型要自己接。</b> 网页聊天账号不等于 API 账号，装好软件不会自动获得免费模型。要准备可用的 API Key、额度和服务地址（Base URL），否则界面能打开，任务发不出去。</p>
-<p><b>维护要自己来。</b> 版本更新、依赖、权限、后台进程、定时任务是否还在跑，都得自己盯。桌面端把状态放在左下角，只是让问题更容易被发现，不等于问题不会发生。</p>
-<p><b>界面还在快速变化。</b> 按钮名称、分组顺序、默认值都可能变。本课截图是 v0.22.6 的样子，自己机器上不一样时，按&quot;分组—用途&quot;去找，不要死记位置。来源不明的汉化补丁和&quot;一键脚本&quot;也不要随手装。</p>
+<p>两边定位不同，不是谁替代谁：一个把控制权交出来，一个把维护工作接过去。</p>
+<h3>三条优势</h3>
+<p><b>运行环境在自己手里。</b> 软件装在自己机器上，配置目录、日志、进程都能查；模型接哪个服务自己定，需要时也能接本地模型。</p>
+<p><b>经验是文件，不是黑箱。</b> 记忆是 <code>MEMORY.md</code> 和 <code>USER.md</code>，技能是 <code>SKILL.md</code>，都在本机、都是纯文本。可以打开改一句、删掉过期条目、放进 Git 留版本；桌面端把开关和预算摆在设置里，看得见&quot;留了多少、还剩多少&quot;。</p>
+<p><b>入口多，但共用一套配置。</b> 桌面端、终端、浏览器面板、消息网关读同一份记忆和技能：桌面端看清结构，终端精确执行，手机通过消息平台派任务，不必各建一套方法。</p>
+<h3>三个代价</h3>
+<p><b>模型要自己接。</b> 网页聊天账号不等于 API 账号，装好软件不会自动获得免费模型。要准备 API Key、额度和 Base URL，否则界面能打开，任务发不出去。</p>
+<p><b>维护要自己来。</b> 版本更新、依赖、权限、后台进程、定时任务是否还在跑，都得自己盯。左下角的状态只是让问题更容易被发现。</p>
+<p><b>界面还在快速变化。</b> 按钮名称、分组顺序、默认值都可能变，本课截图是 v0.22.6。自己机器上不一样时按&quot;分组—用途&quot;去找，不要死记位置；来源不明的汉化补丁和&quot;一键脚本&quot;也不要随手装。</p>
 <h3>四问判断卡｜换任何 Agent 产品都能用</h3>
-<p>这是本课真正要带走的方法。拿到一个新工具，先答这四个问题，再决定要不要用：</p>
 <table>
 <thead>
 <tr>
@@ -1842,9 +1832,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>把它填成一句话就是推荐：<b>&quot;给 ___ 用，因为 ___；不建议给 ___ 用，因为 ___。&quot;</b></p>
+<p>填成一句话就是推荐：<b>&quot;给 ___ 用，因为 ___；不建议给 ___ 用，因为 ___。&quot;</b></p>
 <h3>岗位对接｜面试里这些问题的问法</h3>
-<p>大三下学期进实习，这三类岗位会直接问本课的内容：</p>
 <table>
 <thead>
 <tr>
@@ -1871,18 +1860,17 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>答这类问题不需要背产品名，需要的是<b>知道配置分几层</b>：环境层（装没装、通没通）、模型层（接的谁、够不够额度）、工具层（开没开、权限够不够）、记忆层（留没留、满没满）。这四层在哪个 Agent 产品里都成立。</p>
+<p>答这类问题不需要背产品名，需要知道<b>配置分几层</b>：环境层（装没装、通没通）、模型层（接的谁、够不够额度）、工具层（开没开、权限够不够）、记忆层（留没留、满没满）。这四层在哪个 Agent 产品里都成立。</p>
 <h3>实习前的三条合规提醒</h3>
-<p>马上要进企业，这三条比技术细节更要紧：</p>
 <ol>
-<li><b>公司电脑装软件要先问。</b> 多数企业有自己的软件白名单，私自装开源工具可能违反终端管理规定，尤其是会读全盘文件的 Agent 类软件。</li>
-<li><b>涉密和客户材料不进云端模型。</b> 只要模型跑在别人的服务器上，发过去的文字就是出去了。判断标准不是&quot;要不要紧&quot;，而是&quot;这份材料公司允不允许离开内网&quot;。</li>
-<li><b>个人 Key 和个人账号要分清。</b> 用私人账号给公司干活，费用谁出、数据算谁的、离职后怎么处理，都是麻烦。公司要用，就走公司采购的账号。</li>
+<li><b>公司电脑装软件要先问。</b> 多数企业有软件白名单，私自装开源工具可能违反终端管理规定，尤其是会读全盘文件的 Agent 类软件。</li>
+<li><b>涉密和客户材料不进云端模型。</b> 模型跑在别人服务器上，发过去的文字就是出去了。判断标准不是&quot;要不要紧&quot;，而是&quot;这份材料公司允不允许离开内网&quot;。</li>
+<li><b>个人 Key 和个人账号要分清。</b> 用私人账号给公司干活，费用谁出、数据算谁的、离职后怎么处理都是麻烦。公司要用就走公司采购的账号。</li>
 </ol>
 <h3>选型判断</h3>
 <ul>
-<li>只在界面上完成日常办公、希望少折腾运行配置：继续用 WorkBuddy 更省事。</li>
-<li>想研究或改造 Agent 的工作方式、要把助手放在自己管理的机器上、要看清记忆和技能到底存了什么：Hermes 给出的控制空间更大。</li>
+<li>只在界面上完成日常办公、希望少折腾：继续用 WorkBuddy 更省事。</li>
+<li>想研究或改造 Agent 的工作方式、要把助手放在自己管理的机器上、要看清记忆和技能存了什么：Hermes 给出的控制空间更大。</li>
 <li>只是偶尔生成一两次内容：两个都不用装，直接用网页版。</li>
 </ul>
 <p>这是基于产品形态的判断，不是速度或回答质量的排名。</p>
@@ -1928,7 +1916,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>这张表只用来找证据，不用逐条抄。真正要交的，是一张四问卡。</p>
+<p>这张表只用来找证据，不用逐条抄。要交的是四问卡。</p>
 
       </section>
 <section class="lesson-section" id="finish">
@@ -1936,7 +1924,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <table>
 <thead>
 <tr>
-<th>本课要带走的能力</th>
+<th>要带走的能力</th>
 <th>用什么判断自己已经理解</th>
 </tr>
 </thead>
@@ -1951,7 +1939,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 <tr>
 <td>讲清优势</td>
-<td>能说出&quot;环境自己管、经验是文件、入口共用配置&quot;三条优势，并各配一个代价</td>
+<td>能说出&quot;环境自己管、经验是文件、入口共用配置&quot;三条，并各配一个代价</td>
 </tr>
 <tr>
 <td>看边界</td>
@@ -1963,9 +1951,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p><b>收束：</b> 桌面端的价值不在于按钮好看，而在于把原本藏在命令和文件里的东西摆到台面上——现在你能指出模型在哪、记忆存在哪、技能从哪来。看清这些之后，再用命令行就不会觉得是在盲操作。</p>
-<p><b>提交：</b> 学习通第27次课作业，交《Agent 产品选型对照卡》。文件或照片命名 <code>27_选型对照卡_学号姓名</code>；手写拍照也可以，只要四问、证据、推荐三部分齐全、字迹清楚。</p>
-<p>下一步做综合作品时，可以沿用同一套观察方法：先确认工具和模型是否就绪，再让 Agent 执行，最后回到文件里核对结果。这套判断不依赖某个版本，换工具也能用。</p>
+<p><b>收束：</b> 桌面端的价值不是按钮好看，而是把原本藏在命令和文件里的东西摆到台面上——现在你能指出模型在哪、记忆存在哪、技能从哪来，再用命令行就不会觉得是在盲操作。</p>
+<p><b>提交：</b> 学习通第27次课作业，交《Agent 产品选型对照卡》，命名 <code>27_选型对照卡_学号姓名</code>。手写拍照也可以，只要四问、证据、推荐齐全、字迹清楚。</p>
 
       </section>
     <a class="back-top" href="#top">返回顶部 ↑</a>
