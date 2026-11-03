@@ -1,561 +1,1910 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>第27次独立拓展课｜Pi Agent：让智能体读材料、做网页、再修改</title>
-<style>
-:root{--ink:#203047;--muted:#596b7d;--blue:#245fc5;--line:#dce4ee;--bg:#f5f7fb;--soft:#edf3ff;--white:#fff}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Segoe UI",sans-serif}
-a{color:var(--blue);text-underline-offset:4px}
-button,input,select,textarea{font:inherit}
-button,.download{border:1px solid #bdcde3;background:white;color:var(--blue);padding:7px 14px;border-radius:8px;cursor:pointer}
-button:hover{background:var(--soft)}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8cb5fb;outline-offset:3px}
-.layout{max-width:1360px;margin:auto;display:grid;grid-template-columns:235px minmax(0,1fr);gap:40px;padding:32px}
-aside{align-self:start;position:sticky;top:28px}
-.brand{font-weight:750;margin:18px 0 10px}
-nav{display:grid;gap:7px}
-nav a{display:block;padding:9px 12px;border-radius:8px;color:var(--muted);text-decoration:none}
-nav a:hover{background:#e6eefb;color:var(--blue)}
-main{min-width:0;max-width:990px}
-header{padding:25px 0 30px}
-.eyebrow{color:var(--blue);font-size:14px;font-weight:700;letter-spacing:.05em}
-h1{font-size:clamp(28px,3vw,43px);line-height:1.3;margin:12px 0 18px;letter-spacing:-.03em}
-h2{font-size:26px;line-height:1.45;margin:0 0 22px}
-h2 small{display:block;color:var(--blue);font-size:14px;margin-bottom:7px}
-h3{font-size:20px;line-height:1.5;margin:28px 0 12px}
-h4{font-size:17px;margin:22px 0 8px}
-p{margin:10px 0 16px}
-section{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:32px;margin-bottom:26px}
-.lead{font-size:19px;color:var(--muted)}
-.note{background:var(--soft);border-left:4px solid #789fe4;padding:14px 18px;border-radius:0 8px 8px 0;margin:18px 0}
-.warning{background:#fff7e7;border-left-color:#d7a449}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
-.card h3,.card h4{margin-top:0}
-code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
-:not(pre)>code{background:#edf1f7;padding:2px 5px;border-radius:4px}
-.copybox{border:1px solid var(--line);border-radius:10px;margin:14px 0 22px;overflow:hidden;background:#f8fafc}
-.copyhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
-pre{font:14px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:18px}
-textarea.prompt{display:block;width:100%;border:0;padding:18px;background:transparent;color:var(--ink);font:14px/1.85 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical;min-height:280px}
-.status{display:block;font-size:14px;color:var(--muted);padding:0 14px 8px;min-height:1.7em}
-.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:8px}
-table{border-collapse:collapse;width:100%;font-size:14px;min-width:580px}
-th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{background:#f0f4fa;font-weight:650}
-tr:last-child td{border-bottom:0}
-.steps{padding-left:24px}
-.steps>li{padding-left:4px;margin:0 0 20px}
-.steps p{margin:7px 0}
-details{border-top:1px solid var(--line);padding:12px 0}
-summary{color:var(--blue);cursor:pointer;font-weight:600}
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:18px;background:#f0f4fa;border-radius:10px}
-.flow span{background:white;border:1px solid var(--line);padding:7px 12px;border-radius:7px}
-.caption,.small{font-size:14px;color:var(--muted)}
-fieldset{border:1px solid var(--line);border-radius:10px;padding:18px;margin:16px 0}
-legend{font-weight:700;padding:0 7px}
-label{display:block;margin:8px 0 14px}
-select{display:block;width:100%;padding:9px;margin-top:5px;border:1px solid #b9c9dc;border-radius:7px;background:white;color:var(--ink)}
-ul,ol{padding-left:24px}
-li{margin-bottom:7px}
-.sources{font-size:14px}
-.sources a{overflow-wrap:anywhere}
-footer{padding:12px 0 35px;color:var(--muted)}
-@media(min-width:1250px){section{padding:38px 42px}}
-@media(max-width:900px){.layout{grid-template-columns:1fr;gap:15px;padding:20px}aside{position:static}.brand{margin:10px 0}nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}nav a{font-size:14px;padding:8px}header{padding-top:10px}}
-@media(max-width:560px){.layout{padding:14px}.grid{grid-template-columns:1fr}section{padding:23px 18px;border-radius:12px}nav{grid-template-columns:1fr 1fr}h2{font-size:23px}.lead{font-size:17px}pre,textarea.prompt{padding:14px}button{min-height:42px}.flow{gap:7px;padding:12px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{aside,.copyhead button,.download,form{display:none}.layout{display:block;padding:0}section{break-inside:auto;border:0;padding:15px 0}body{background:white}textarea.prompt{height:auto}}
-</style>
-</head>
-<body>
-<div class="layout">
-<aside aria-label="课程导航">
-<a href="index.html">← 返回课程目录</a>
-<p class="brand">第27次 · 独立拓展课</p>
-<nav aria-label="本课章节">
-<a href="#s00">00 知识回顾</a>
-<a href="#s01">01 任务预告</a>
-<a href="#s02">02 基础概念</a>
-<a href="#s03">03 核心案例</a>
-<a href="#s04">04 实践任务</a>
-<a href="#s05">05 本课总结</a>
-</nav>
-<p class="small">教学版本：Pi CLI 1.4.0<br>原正式课程：26课 · 64学时<br>本页为独立拓展，不计增正式学时。</p>
-</aside>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第27次课｜Hermes Agent 桌面端导览与优势</title><style>/* styles.css — 保留 lesson01-32 实际用到的兼容样式；未使用的旧导航/课例库组件已移除。*/
+:root {
+  --bg: #f5f7fb;
+  --ink: #172033;
+  --muted: #64748b;
+  --line: #dce3ee;
+  --brand: #3157d5;
+  --soft: #eaf0ff;
+  --card: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    16px/1.75 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.eyebrow {
+  margin: 0;
+  color: var(--brand);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.first-lesson-board .method-case {
+  margin: 0 0 17px;
+  border: 1px solid #bcd0fb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.method-case-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 15px 17px;
+  background: #edf3ff;
+}
+.method-case-head p {
+  margin: 0;
+  color: #1f55d5;
+  font-weight: 900;
+  font-size: 18px;
+}
+.method-case-head span {
+  color: #52647d;
+  font-size: 13px;
+}
+.method-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 15px;
+}
+.method-case-grid article {
+  padding: 13px;
+  border: 1px solid #e0e8f5;
+  border-radius: 9px;
+  background: #fbfcff;
+}
+.method-case-grid article:last-child {
+  grid-column: 1 / -1;
+}
+.case-focused .method-case-grid {
+  grid-template-columns: 1fr;
+}
+.case-focused .method-case-grid article:last-child {
+  grid-column: auto;
+}
+.feedback-demo {
+  margin: 0 15px 15px;
+  padding: 16px;
+  border: 1px solid #cddbf3;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.feedback-demo h3 {
+  margin: 0;
+  color: #1e3c91;
+  font-size: 17px;
+}
+.feedback-demo .demo-note {
+  margin: 7px 0 12px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.feedback-demo article {
+  margin-top: 9px;
+  padding: 12px 13px;
+  border-left: 4px solid #3157d5;
+  border-radius: 7px;
+  background: #fff;
+}
+.feedback-demo b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.feedback-demo p {
+  margin: 6px 0;
+  color: #334155;
+  line-height: 1.7;
+}
+.feedback-demo span {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.method-case-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 16px;
+}
+.method-case-grid p {
+  margin: 6px 0 0;
+  color: #46556d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.method-case-grid code,
+.method-case-output code {
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+.method-case-output {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 15px 15px;
+  padding: 12px 13px;
+  border-radius: 8px;
+  background: #fff8e8;
+  color: #684c14;
+}
+.method-case-output b {
+  flex: none;
+}
+.method-case-output span {
+  line-height: 1.6;
+}
+.model-case-figures {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 0 15px 15px;
+}
+.model-case-figures figure {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #d7e1f3;
+  border-radius: 10px;
+  background: #fbfcff;
+}
+.model-case-figures img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+.model-case-figures figcaption {
+  margin-top: 8px;
+  color: #52647d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.model-case-figures figcaption b {
+  color: #2855c4;
+}
+@media (max-width: 700px)  {
 
-<main>
-<header>
-<div class="eyebrow">从聊天中的答案，走向本地可修改的文件</div>
-<h1>Pi Agent：<br>让智能体读材料、做网页、再修改</h1>
-<p class="lead">把模拟商品资料放进练习文件夹，让 Pi 读取依据、写出 HTML；你在浏览器中看结果，再改变条件，让它更新同一份文件。</p>
-<p>适合已经会用聊天工具、认识基础 HTML 的同学。本课不比谁记住更多命令，而是看清：<strong>模型说了什么，工具实际做了什么，磁盘文件最后变成了什么。</strong></p>
-</header>
+  .method-case-head,
+  .method-case-output {
+    display: block;
+  }
+.method-case-head span {
+    display: block;
+    margin-top: 4px;
+  }
+.method-case-output span {
+    display: block;
+    margin-top: 4px;
+  }
+.method-case-grid {
+    grid-template-columns: 1fr;
+  }
+.model-case-figures {
+    grid-template-columns: 1fr;
+  }
+}
+.first-lesson-board .history-visual,
+.first-lesson-board .workflow-visual,
+.first-lesson-board .aigc-mindmap {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid #cddbf3;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f6f9ff, #fff);
+}
+.history-visual h3,
+.workflow-visual h3,
+.aigc-mindmap h3 {
+  margin: 0;
+  color: #1e3c91;
+  font-size: 19px;
+}
+.history-visual > p,
+.workflow-visual > p {
+  margin: 7px 0;
+  color: #52647d;
+  line-height: 1.65;
+}
+.history-stages {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.history-stages article {
+  position: relative;
+  padding: 12px 10px;
+  border: 1px solid #d5e0f4;
+  border-radius: 9px;
+  background: #fff;
+}
+.history-stages article:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  z-index: 1;
+  color: #3157d5;
+  font-size: 20px;
+  font-weight: 800;
+  transform: translateY(-50%);
+}
+.history-stages b {
+  display: block;
+  color: #2855c4;
+  font-size: 14px;
+}
+.history-stages span {
+  display: block;
+  margin-top: 5px;
+  color: #58677b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.history-visual figcaption {
+  margin-top: 11px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.workflow-visual > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
+}
+.workflow-visual span,
+.workflow-visual strong {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #fff;
+  color: #3157c4;
+  font-size: 14px;
+}
+.workflow-visual strong {
+  background: #3157d5;
+  color: #fff;
+}
+.workflow-visual i {
+  color: #3157d5;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 800;
+}
+.aigc-mindmap {
+  text-align: center;
+}
+.mindmap-center {
+  display: inline-block;
+  margin: 16px auto;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #3157d5;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 5px 15px rgba(49, 87, 213, 0.2);
+}
+.mindmap-branches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  position: relative;
+}
+.mindmap-branches article {
+  padding: 11px;
+  border: 1px solid #d5e0f4;
+  border-radius: 9px;
+  background: #fff;
+  text-align: left;
+}
+.mindmap-branches b {
+  display: block;
+  color: #2855c4;
+  font-size: 15px;
+}
+.mindmap-branches span {
+  display: block;
+  margin-top: 4px;
+  color: #58677b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.boundary-example {
+  margin: 14px 0;
+  padding: 15px;
+  border: 1px solid #bcd0fb;
+  border-radius: 11px;
+  background: #fff;
+}
+.boundary-example > b {
+  display: block;
+  color: #1e3c91;
+  font-size: 16px;
+}
+.boundary-example > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 10px;
+}
+.boundary-example article {
+  padding: 11px;
+  border-radius: 8px;
+  background: #f5f8ff;
+}
+.boundary-example article:nth-child(2) {
+  background: #fff8e8;
+}
+.boundary-example article:nth-child(3) {
+  background: #fff1f1;
+}
+.boundary-example strong {
+  display: block;
+  color: #244ebf;
+  font-size: 14px;
+}
+.boundary-example article:nth-child(2) strong {
+  color: #956b13;
+}
+.boundary-example article:nth-child(3) strong {
+  color: #b43e3e;
+}
+.boundary-example span,
+.boundary-example p {
+  display: block;
+  margin-top: 5px;
+  color: #52647d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.boundary-example p {
+  margin-bottom: 0;
+  padding-top: 10px;
+  border-top: 1px dashed #c5d3ed;
+}
+@media (max-width: 900px)  {
 
-<section id="s00">
-<h2><small>00 · 知识回顾</small>从“给材料、说要求”继续向前</h2>
-<p>使用聊天工具时，我们已经会给材料、说明要求、查看结果并继续追问。今天仍用这套方法，但材料不只粘贴在聊天框里，结果也不只停留在回答里：我们要让 Pi 读取本地文件，把网页写到磁盘，再按新条件修改。</p>
-<p><strong>想一想：</strong>聊天里出现了一整段 HTML，能否说明你的练习文件夹里已经有一个网页？</p>
-<details>
-<summary>展开参考答案</summary>
-<p>不能。文字回答和磁盘文件是两件事。要有实际的写入操作，并在文件夹里找到目标 HTML；用浏览器打开后，才能看到这份文件的网页效果。</p>
-</details>
-</section>
+  .history-stages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+.history-stages article:not(:last-child)::after {
+    display: none;
+  }
+}
+@media (max-width: 600px)  {
 
-<section id="s01">
-<h2><small>01 · 任务预告</small>只完成一个主要成果</h2>
-<p>你将根据自己选择的预算与偏好，制作一份<strong>运动耳机比较网页</strong>。网页来自本地的课堂模拟材料，展示 A/B/C 的差异，说明筛选依据；随后你改变一次条件，让 Pi 更新同一份 HTML。</p>
-<div class="grid">
-<div class="card">
-<h3>教师示范：台灯</h3>
-<p>从台灯底料出发，先按预算与桌面占用比较，再改变预算和优先项。示范如何引用文件、写网页、打开结果及回读修改后的文件。</p>
+  .history-stages,
+  .mindmap-branches,
+  .boundary-example > div {
+    grid-template-columns: 1fr;
+  }
+.workflow-visual > div {
+    justify-content: flex-start;
+  }
+.workflow-visual i {
+    transform: rotate(90deg);
+  }
+}
+.first-lesson-board .concept-subtitle {
+  margin: 22px 0 10px;
+  color: #172033;
+  font-size: 19px;
+}
+.first-lesson-board .core-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.first-lesson-board .core-concept-grid article {
+  padding: 14px;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  background: #fbfcff;
+}
+.first-lesson-board .core-concept-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 16px;
+}
+.first-lesson-board .core-concept-grid p {
+  margin: 6px 0 0;
+  color: #46556d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+@media (max-width: 800px)  {
+
+  .first-lesson-board .core-concept-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* 课程导航页：左右分栏与可折叠章节 */
+.index-page,
+.detail-page,
+.chapter-page {
+  background: #f5f7fb;
+  color: var(--ink);
+  overflow: hidden;
+}
+.sidebar-head .eyebrow {
+  color: var(--brand);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+@media (max-width: 800px)  {
+
+  .index-page,
+  .detail-page,
+  .chapter-page {
+    overflow: auto;
+  }
+}
+.extension-card p:not(.eyebrow),
+.extension-note p:not(.eyebrow) {
+  margin: 0 0 17px;
+  color: #52647d;
+}
+.chapter-outline b,
+.section-kicker {
+  color: var(--brand);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.section-kicker {
+  margin-bottom: 5px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.chapter-case-assignment > p:not(.section-kicker) {
+  margin: 0;
+  color: #52647d;
+  line-height: 1.65;
+}
+/* 布局精修：保留全部既有入口与功能，仅调整阅读层级、间距和对齐。 */
+:root {
+  --bg: #f7f9fc;
+  --ink: #172033;
+  --muted: #687588;
+  --line: #d9e1eb;
+  --brand: #2855c4;
+  --soft: #edf3ff;
+  --card: #fff;
+}
+body {
+  font-size: 16px;
+  line-height: 1.72;
+  text-rendering: optimizeLegibility;
+}
+.index-page,
+.detail-page,
+.chapter-page {
+  background: var(--bg);
+}
+:focus-visible {
+  outline: 3px solid rgba(40, 85, 196, 0.28);
+  outline-offset: 3px;
+}
+.visual-task {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 17px;
+  padding: 13px 15px;
+  border-radius: 9px;
+  background: #fff8e8;
+  border: 1px solid #f0d69d;
+  color: #684c14;
+}
+.visual-task b {
+  flex: 0 0 auto;
+}
+.visual-task span {
+  line-height: 1.65;
+}
+@media (max-width: 760px)  {
+
+  .visual-task {
+    display: block;
+  }
+.visual-task span {
+    display: block;
+    margin-top: 4px;
+  }
+}
+/* 导入与知识介绍按纵向阅读，避免导入卡产生空白区域。 */
+.lesson-page .lesson-grid {
+  grid-template-columns: 1fr;
+}
+.step-cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.step-cards article {
+  padding: 13px;
+  border: 1px solid #d7e1f3;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.step-cards b {
+  color: #3157d5;
+  font-size: 14px;
+}
+.step-cards p {
+  margin: 7px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.step-cards small {
+  color: #64748b;
+  font-size: 12px;
+}
+@media (max-width: 1000px)  {
+
+  .step-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px)  {
+.step-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.step-standard {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0;
+  padding: 14px 16px;
+  border: 1px dashed #9fb3df;
+  border-radius: 8px;
+  background: #f4f7ff;
+  color: #46556d;
+  line-height: 1.6;
+}
+.step-standard b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.step-standard small {
+  color: #64748b;
+  font-size: 12px;
+}
+.practice-brief {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.practice-brief article {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid #cfdbef;
+  border-radius: 9px;
+  background: #fff;
+}
+.practice-brief article:first-child,
+.practice-brief article:last-child {
+  grid-column: 1/-1;
+}
+.practice-brief b {
+  color: #2855c4;
+  font-size: 15px;
+}
+.practice-brief span {
+  color: #46556d;
+  line-height: 1.6;
+}
+.student-task-card {
+  margin: 0 0 18px;
+  padding: 18px;
+  border: 1px solid #b9cdf5;
+  border-left: 5px solid #3157d5;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f4f8ff, #fff);
+}
+.student-task-card > b {
+  display: block;
+  margin-bottom: 5px;
+  color: #2855c4;
+  font-size: 18px;
+}
+.student-task-card > strong {
+  display: block;
+  margin-bottom: 11px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+.student-task-card p {
+  margin: 7px 0;
+  color: #46556d;
+}
+.student-task-card p b {
+  color: #2855c4;
+}
+.student-task-card code {
+  display: inline;
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+@media (max-width: 700px)  {
+
+  .practice-brief {
+    grid-template-columns: 1fr;
+  }
+.practice-brief article:first-child,
+  .practice-brief article:last-child {
+    grid-column: auto;
+  }
+}
+.practice-material {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 15px 16px;
+  border: 1px solid #e6c56f;
+  border-radius: 10px;
+  background: #fff9e9;
+}
+.practice-material b {
+  flex: 0 0 100%;
+  color: #795711;
+  font-size: 16px;
+}
+.practice-material span {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #5d6470;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.task-wide-standard {
+  align-self: start;
+  margin: 0;
+}
+.practice-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid #8da8e9;
+  border-radius: 7px;
+  background: #edf3ff;
+  color: #244ebf;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.practice-download:hover,
+.practice-download:focus-visible {
+  background: #dfe9ff;
+}
+.lesson-template-board .core-concept-grid {
+  grid-template-columns: 1fr;
+}
+.lesson-template-board .core-concept-grid article {
+  padding: 17px 18px;
+}
+.lesson-template-board .core-concept-grid b {
+  font-size: 17px;
+  line-height: 1.55;
+}
+.lesson-template-board .core-concept-grid p {
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.lesson-template-board .core-concept-grid span {
+  display: block;
+  margin-top: 8px;
+  color: #687588;
+  font-size: 13px;
+}
+.classroom-bridge {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 0 10px 10px 0;
+  background: #edf3ff;
+}
+.classroom-bridge b {
+  color: #1f55d5;
+  font-size: 16px;
+}
+.classroom-bridge p {
+  margin: 6px 0 0;
+  color: #46556d;
+  line-height: 1.7;
+}
+.knowledge-check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 15px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 8px;
+  background: #eef3ff;
+}
+.knowledge-check b {
+  flex: 0 0 auto;
+  color: #244ebf;
+}
+.knowledge-check span {
+  color: #46556d;
+  line-height: 1.7;
+}
+@media (max-width: 650px)  {
+
+  .knowledge-check {
+    display: block;
+  }
+.knowledge-check span {
+    display: block;
+    margin-top: 5px;
+  }
+}
+/* 跟练步骤逐项展示，放大操作参考图。 */
+.lesson-page .step-cards {
+  grid-template-columns: 1fr;
+}
+.lesson-page .step-shot img {
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+}
+/* 第 1 次课：按“导航—成果—导论—方法—实操—拓展”组织为完整课堂页面。 */
+.first-lesson-board {
+  max-width: 1120px;
+}
+.first-lesson-board .detail-header {
+  margin-bottom: 20px;
+}
+.first-block .section-kicker {
+  margin: 0;
+  color: #1f55d5;
+  font-weight: 900;
+  font-size: 21px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+.nav-summary,
+.outcome-grid,
+.compare-grid,
+.method-grid,
+.extension-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+.lesson-navigation .nav-summary {
+  grid-template-columns: 1fr;
+}
+.nav-summary > div,
+.outcome-grid article,
+.compare-grid article,
+.method-grid article,
+.extension-grid article {
+  padding: 17px;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  background: #f8faff;
+}
+.nav-summary b,
+.outcome-grid b,
+.compare-grid b,
+.method-grid b,
+.extension-grid b {
+  display: block;
+  color: #2855c4;
+  font-size: 17px;
+}
+.nav-summary span,
+.outcome-grid p,
+.compare-grid p,
+.method-grid li,
+.extension-grid p,
+.extension-grid li {
+  color: #46556d;
+  line-height: 1.65;
+}
+.nav-summary ol,
+.method-grid ol,
+.extension-grid ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+.route-map,
+.knowledge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #edf3ff;
+  color: #3157c4;
+}
+.route-map b,
+.knowledge-strip b {
+  margin-right: 4px;
+  color: #172f72;
+}
+.route-map span,
+.knowledge-strip span {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.route-map i,
+.knowledge-strip i {
+  font-style: normal;
+  font-weight: 800;
+}
+.file-example {
+  margin: 12px 0 0 !important;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #3157c4 !important;
+  font-size: 14px;
+}
+.file-example code,
+.practice-task code {
+  overflow-wrap: anywhere;
+  color: #1f478f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.compare-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.term-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+.term-list b {
+  width: 100%;
+  color: #172033;
+}
+.term-list span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #edf3ff;
+  color: #3157c4;
+  font-size: 14px;
+}
+.mini-activity {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid #3157d5;
+  border-radius: 7px;
+  background: #f1f5ff;
+}
+.mini-activity b {
+  color: #244ebf;
+}
+.mini-activity p {
+  margin: 5px 0 0;
+  color: #46556d;
+}
+.task-table {
+  margin: 0;
+  border: 1px solid #dce5f4;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.task-table > div {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1.25fr;
+}
+.task-table > div > * {
+  padding: 11px 12px;
+  border-right: 1px solid #e3eaf6;
+  border-bottom: 1px solid #e3eaf6;
+  color: #46556d;
+  line-height: 1.55;
+}
+.task-table > div > *:last-child {
+  border-right: 0;
+}
+.task-table > div:last-child > * {
+  border-bottom: 0;
+}
+.task-table > div:first-child > * {
+  background: #edf3ff;
+  color: #244ebf;
+  font-weight: 800;
+}
+.method-grid {
+  margin-top: 15px;
+}
+.knowledge-strip {
+  margin-top: 15px;
+  background: #f7f9fc;
+}
+.task-label {
+  margin-top: 0 !important;
+  color: #2855c4 !important;
+  font-size: 18px;
+  font-weight: 800;
+}
+@media (max-width: 800px)  {
+.first-block .section-kicker {
+    font-size: 19px;
+  }
+.nav-summary,
+  .outcome-grid,
+  .compare-grid,
+  .method-grid,
+  .extension-grid,
+  .practice-task {
+    grid-template-columns: 1fr;
+  }
+.task-table {
+    overflow-x: auto;
+  }
+.task-table > div {
+    grid-template-columns: 120px 180px 180px;
+    min-width: 480px;
+  }
+}
+/* 32 次课页面不再显示课程侧栏，正文使用完整页面宽度。 */
+.lesson-page .course-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+.lesson-page .course-main-inner {
+  width: 100%;
+  max-width: 1400px;
+  padding-left: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+}
+/* 全课共用的视觉样式。以用户确认的第十课样式为标准；在旧样式之后加载。 */
+:root{--blue:#2456c4;--blue-dark:#173a86;--ink:#142033;--muted:#55657c;--line:#d7e2f4;--soft:#f5f8ff;--warm:#fff7e8;--ok:#ecfdf5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef3fa;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+img,svg,figure,picture,video{max-width:100%;height:auto;box-sizing:border-box}
+.page-shell,body .course-main-inner{width:calc(100% - 188px);max-width:1440px;margin:28px 24px 80px 164px}.hero,.lesson-section{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07)}
+.hero{padding:42px 48px}.eyebrow,.section-kicker{margin:0 0 10px;color:var(--blue);font-weight:800;letter-spacing:.06em}.hero h1{margin:0;font-size:clamp(36px,5vw,62px);line-height:1.15}
+.jump-nav{position:fixed;left:0;top:clamp(90px,15vh,170px);z-index:99;width:152px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-left:none;border-radius:0 14px 14px 0;box-shadow:3px 6px 20px rgba(23,58,134,.08);padding:10px 8px;display:flex;flex-direction:column;gap:6px;margin:0;transition:transform .28s cubic-bezier(.4,0,.2,1),box-shadow .2s ease;user-select:none}
+.jump-nav-header{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.jump-nav-title{font-size:13px;font-weight:800;color:var(--blue-dark);letter-spacing:.02em;display:flex;align-items:center;gap:4px}
+.jump-nav-toggle{background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px;border-radius:6px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s ease,color .15s ease}
+.jump-nav-toggle:hover{background:var(--soft);color:var(--blue)}
+.jump-nav-body{display:flex;flex-direction:column;gap:5px}
+.jump-nav-list{display:flex;flex-direction:column;gap:5px}
+.jump-nav a,.jump-nav-link{display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:8px;background:transparent;border:1px solid transparent;color:#334155;text-decoration:none;font-size:13px;font-weight:700;line-height:1.3;transition:all .18s ease}
+.jump-nav a:hover,.jump-nav-link:hover{background:#f0f5ff;color:var(--blue);transform:translateX(3px);border-color:#dbeafe}
+.jump-nav .nav-idx{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;border-radius:5px;background:var(--soft);border:1px solid var(--line);color:var(--blue);font-size:11px;font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.jump-nav .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jump-nav a.active,.jump-nav-link.active{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff!important;box-shadow:0 4px 12px rgba(36,86,196,.22);transform:translateX(4px);border-color:transparent}
+.jump-nav a.active .nav-idx,.jump-nav-link.active .nav-idx{background:rgba(255,255,255,.22);color:#fff;border-color:rgba(255,255,255,.4)}
+.jump-nav-top{display:flex;align-items:center;justify-content:center;gap:6px;padding:5px 6px;margin-top:2px;border-top:1px dashed var(--line);color:var(--muted);font-size:12px;text-decoration:none;font-weight:700;border-radius:6px;transition:all .15s ease}
+.jump-nav-top:hover{color:var(--blue);background:var(--soft)}
+.jump-nav.is-collapsed{transform:translateX(-122px);box-shadow:2px 4px 14px rgba(23,58,134,.06)}
+.jump-nav.is-collapsed .jump-nav-header{border-bottom:none;padding-bottom:2px}
+.jump-nav.is-collapsed .jump-nav-title{display:none}
+.jump-nav.is-collapsed .jump-nav-toggle{margin-left:auto;transform:rotate(180deg)}
+.jump-nav.is-collapsed .jump-nav-body{opacity:0;pointer-events:none;max-height:0;overflow:hidden}
+.back-top{color:var(--blue-dark);text-decoration:none;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.lesson-section{padding:38px 42px;margin-top:22px}.lesson-section h2{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:0 0 24px}.lesson-section h3{font-size:25px;line-height:1.4;color:var(--blue-dark);margin:0 0 14px}
+.task-focus,.result-card,.case-summary,.teacher-demo,.material-card,.success-state{border-radius:18px;padding:20px 24px;margin:18px 0}.task-focus{background:linear-gradient(135deg,#e9f1ff,#f8fbff);border:2px solid #bfd2fa;font-size:27px}.result-card{background:var(--soft);border:1px solid var(--line)}.filename{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue-dark);font-weight:800;overflow-wrap:anywhere}
+.concept-list,.step-list{display:grid;gap:20px}.concept-card,.step-card{position:relative;border:1px solid var(--line);background:#fbfcff;border-radius:20px;padding:26px}.one-line{font-size:20px}.thinking-question{margin:26px 0 14px;padding:18px 22px;background:var(--warm);border-left:5px solid #f59e0b;border-radius:14px;font-size:18px;line-height:1.75}
+details{border:1px solid #b7caf0;background:#eef4ff;border-radius:14px;padding:14px 18px}summary{cursor:pointer;color:var(--blue-dark);font-weight:800}.answer-panel p{margin:12px 0 0}
+.thinking-card{margin:32px 0 28px;padding:24px 28px;background:linear-gradient(135deg,#fffdf8 0%,#fff9ec 100%);border:1px solid #fde68a;border-left:5px solid #f59e0b;border-radius:18px;box-shadow:0 6px 20px rgba(245,158,11,.06)}
+.thinking-header{margin-bottom:12px}
+.thinking-badge{display:inline-block;margin-bottom:10px;padding:4px 12px;background:#fef3c7;color:#b45309;font-size:14px;font-weight:800;border-radius:999px;border:1px solid #fde68a;letter-spacing:.04em}
+.thinking-card .thinking-question{margin:0 0 14px!important;font-size:19px;font-weight:700;line-height:1.75;color:#78350f;background:transparent;border:none;padding:0}
+.thinking-card details.answer-panel{margin-top:16px;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:14px 20px;box-shadow:0 2px 8px rgba(245,158,11,.04)}
+.thinking-card details summary{cursor:pointer;color:#b45309;font-weight:800;font-size:16px;outline:none;user-select:none;transition:color .15s ease}
+.thinking-card details summary:hover{color:#d97706}
+.thinking-card details[open] summary{margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed #fde68a}
+.thinking-card .answer-body,.thinking-card .answer-panel p{margin:10px 0 0;color:#451a03;font-size:17px;line-height:1.8}
+.lesson-figure,.route-figure{margin:28px 0;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 4px 18px rgba(36,86,196,.05)}
+.lesson-figure a,.route-figure a{display:block;width:100%;overflow:hidden;background:#fff;text-align:center}
+.lesson-figure img,.route-figure img{display:block;width:100%;max-width:100%;height:auto;margin:0 auto;border:none;border-radius:0;background:#fff;object-fit:contain}
+.lesson-figure figcaption,.route-figure figcaption{color:var(--muted);font-size:15px;line-height:1.65;padding:12px 20px;margin:0;border-top:1px solid var(--line);background:#fbfdff;text-align:left}
+.case-summary{background:var(--soft);border:1px solid var(--line)}.teacher-demo{background:var(--warm);border:1px solid #f6d58a}.teacher-demo li{margin:8px 0}
+.step-card{padding:30px}.step-number{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;font-size:26px;font-weight:900;margin-bottom:12px}.material-card{background:var(--soft);border:1px solid var(--line)}.success-state{background:var(--ok);border:1px solid #a7e8c3}
+.copy-block{position:relative;margin:18px 0}.copy-button{border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;padding:11px 17px;cursor:pointer;margin-bottom:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#f8fafc;border-radius:14px;padding:20px;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}th{background:#eaf1ff;color:var(--blue-dark)}
+.back-top{display:inline-block;margin-top:20px}@media(max-width:640px){.page-shell,body .course-main-inner{width:min(100% - 16px,1400px);margin:8px auto 48px}.hero,.lesson-section{border-radius:16px}.hero{padding:28px 22px}.lesson-section{padding:26px 18px}.task-focus{font-size:22px}.concept-card,.step-card{padding:20px 16px}th,td{font-size:14px;padding:9px}pre{font-size:14px;padding:15px}}
+@media print{body{background:#fff}.jump-nav,.copy-button,.back-top{display:none}.page-shell{width:100%;margin:0}.hero,.lesson-section{box-shadow:none}}
+.route-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}.route-step{min-height:92px;padding:16px 10px;border:1px solid var(--line);border-radius:16px;background:var(--soft);text-align:center;font-weight:800;color:var(--blue-dark)}.route-step span{display:block;color:var(--blue);font-size:14px}.notice{padding:16px 18px;border-left:5px solid var(--blue);border-radius:12px;background:#eef4ff}.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.comparison-grid>div{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}.shot-label{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;background:#eaf1ff;color:var(--blue-dark);font-size:14px;font-weight:800}.software-shot img{max-width:900px;margin-inline:auto}.compact-list li{margin:6px 0}
+@media(max-width:640px){.route-list{grid-template-columns:1fr}.route-step{min-height:auto;text-align:left}.comparison-grid{grid-template-columns:1fr}.software-shot img{max-width:100%}.lesson-figure figcaption{font-size:15px}.lesson-section h3{font-size:22px}.one-line{font-size:18px}}
+
+body{font-size:19px;line-height:1.8}
+.page-shell,body .course-main-inner{max-width:1400px}
+.hero h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;text-wrap:balance}
+.lesson-section{scroll-margin-top:100px}
+.lesson-section h2{font-size:clamp(28px,3vw,36px);line-height:1.35;padding-bottom:16px;border-bottom:2px solid var(--line);margin:0 0 26px}
+.lesson-section h3{font-size:25px;line-height:1.5;margin:0 0 18px;color:var(--blue-dark)}
+.lesson-section h4{font-size:21px;line-height:1.5;margin:28px 0 14px;color:var(--blue-dark)}
+.lesson-section h5{font-size:21px;line-height:1.5;margin:0 0 16px;color:var(--blue-dark)}
+.lesson-section p{margin:12px 0}
+.lesson-section ul{margin:12px 0;padding-left:1.4em}
+.lesson-section li+li{margin-top:10px}
+.concept-card+.concept-card{margin-top:24px}
+.concept-card,.step-card{min-width:0;padding:26px}
+.step-list{gap:24px;margin-top:18px}
+.task-focus{font-size:22px;line-height:1.7;padding:20px 24px;margin:20px 0 24px!important}
+#task>h4{font-size:18px;color:var(--muted);margin:24px 0 8px}
+.filename{margin-top:8px!important;padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+.lesson-figure{margin:28px 0;max-width:100%}
+.lesson-figure img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+.lesson-figure figcaption{font-size:15px;line-height:1.65;padding:12px 20px;border-top:1px solid var(--line);background:#fbfdff}
+.thinking-question{margin:28px 0 16px!important;padding:18px 22px}
+.answer-panel{margin-top:16px}
+.answer-panel p{margin:12px 0 0}
+.step-card>p:has(>b:first-child){background:var(--ok);border:1px solid #a7e8c3;border-radius:12px;padding:14px 18px;margin-top:20px}
+pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;font-size:16px;line-height:1.85;margin:18px 0}
+#practice .step-card:first-child>pre{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.copy-block{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:22px 0}
+.copy-block pre{margin:0}
+.copy-button{align-self:flex-start;margin:0;padding:12px 20px;line-height:1.5}
+.copy-button:hover{background:var(--blue-dark)}
+.copy-button:focus-visible,.jump-nav a:focus-visible,summary:focus-visible{outline:3px solid #f59e0b;outline-offset:4px}
+table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:17px;line-height:1.75;margin:20px 0}
+th,td{padding:14px 16px;overflow-wrap:anywhere;word-break:normal}
+#practice tr:has(>th:nth-child(2):last-child) th:first-child{width:78%}
+#practice tr:has(>th:nth-child(2):last-child) th:last-child{width:22%}
+#finish th:nth-child(1){width:23%}
+#finish th:nth-child(2){width:39%}
+#finish th:nth-child(3){width:38%}
+tbody tr:nth-child(even){background:#f5f8ff}
+code{overflow-wrap:anywhere}
+[hidden]{display:none!important}
+@media(max-width:640px){
+ body{font-size:17px;line-height:1.8}
+ .hero{padding:26px 20px}
+ .lesson-section{padding:24px 18px;scroll-margin-top:16px}
+ .lesson-section h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ .lesson-section h3{font-size:22px}
+ .lesson-section h4,.lesson-section h5{font-size:19px}
+ .concept-card,.step-card{padding:20px 14px;border-radius:16px}
+ .concept-card+.concept-card{margin-top:20px}
+ .task-focus{font-size:19px;padding:16px}
+ .filename{font-size:16px;padding:12px}
+ .step-card>p:has(>b:first-child){padding:12px}
+ pre{font-size:14px;padding:14px}
+ table{font-size:14px;line-height:1.7}
+ th,td{padding:10px 8px}
+ #finish th:nth-child(1){width:22%}
+ #finish th:nth-child(2),#finish th:nth-child(3){width:39%}
+}
+@media(min-width:1024px){
+ .page-shell,body .course-main-inner{
+  width:calc(100% - 188px)!important;
+  max-width:1440px!important;
+  margin-left:164px!important;
+  margin-right:24px!important;
+ }
+ body:has(.jump-nav.is-collapsed) .page-shell,body:has(.jump-nav.is-collapsed) .course-main-inner{
+  margin-left:48px!important;
+  width:calc(100% - 72px)!important;
+ }
+}
+@media(max-width:1023px){
+ .page-shell,body .course-main-inner{
+  width:min(100% - 32px,1400px)!important;
+  max-width:100%!important;
+  margin:20px auto 60px!important;
+ }
+ .jump-nav{position:sticky;top:0;left:0;width:100%;border-radius:0;border:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 12px;gap:8px;transform:none!important;box-shadow:0 2px 10px rgba(0,0,0,.04);background:rgba(255,255,255,.96)}
+ .jump-nav-header,.jump-nav-top{display:none!important}
+ .jump-nav-body{display:flex;flex-direction:row;opacity:1!important;pointer-events:auto!important;max-height:none!important;overflow:visible!important}
+ .jump-nav-list{display:flex;flex-direction:row;gap:8px;flex-wrap:nowrap;white-space:nowrap}
+ .jump-nav a,.jump-nav-link{padding:6px 12px;font-size:13px;border:1px solid var(--line);border-radius:999px;background:#fff;transform:none!important}
+ .jump-nav .nav-label{opacity:1!important;max-width:none!important}
+ .jump-nav a.active,.jump-nav-link.active{transform:none!important}
+}
+@media print{
+ body{font-size:12pt}
+ .lesson-section h2{font-size:22pt}
+ .lesson-section h3{font-size:17pt}
+ .lesson-section h4,.lesson-section h5{font-size:14pt}
+ .lesson-section,.step-card,.concept-card{box-shadow:none}
+ h2,h3,h4,h5{break-after:avoid}
+ .lesson-figure{break-inside:avoid}
+ pre{background:#f5f8ff;color:var(--ink);border:1px solid var(--line)}
+}
+
+
+/* 旧课次模板使用同一套视觉规则，保留其既有内容布局。 */
+body.lesson-page{background:#eef3fa;color:var(--ink);font-size:19px;line-height:1.8}
+body .course-main{height:auto;min-height:100vh;overflow:visible;background:transparent;padding:0}
+body .course-shell{display:block;max-width:none;margin:0}
+body .course-main-inner{width:calc(100% - 188px);max-width:1440px;padding:0;margin:28px 24px 80px 164px}
+body .detail-header{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:42px 48px;margin:0 0 22px}
+body .detail-header h1{font-size:clamp(32px,4.2vw,50px);line-height:1.3;margin:0;color:var(--ink)}
+body .detail-header .hero-mark{color:var(--blue);font-size:16px;font-weight:800;margin:0 0 10px}
+body .first-block,body .part{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 36px rgba(36,86,196,.07);padding:38px 42px;margin:22px 0;scroll-margin-top:100px}
+body .first-block h2,body .part h2{font-size:clamp(28px,3vw,36px);line-height:1.35;margin:0 0 26px;padding-bottom:16px;border-bottom:2px solid var(--line);color:var(--ink)}
+body .first-block h3,body .part h3{font-size:25px;line-height:1.5;color:var(--blue-dark);margin:20px 0 16px}
+body .first-block h4,body .part h4{font-size:21px;line-height:1.5;color:var(--blue-dark);margin:24px 0 14px}
+body .first-block p,body .part p,body .practice-task p,body .practice-task ol{font-size:19px;line-height:1.8}
+body .section-kicker{color:var(--blue);font-size:18px;line-height:1.5;margin:0 0 10px}
+body .practice-task,body .core-concept-grid article,body .step-cards article{background:#fbfcff;border:1px solid var(--line);border-radius:20px;padding:26px;margin:0;min-width:0}
+body .practice-task+.practice-task{margin-top:24px}
+body .task-shot img,body .step-shot img,body .concept-example-figure img{width:100%;height:auto;max-height:none;object-fit:contain}
+body .file-example{padding:14px 18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:18px}
+body .core-concept-grid p{font-size:19px;line-height:1.8}
+@media(max-width:640px){
+ body.lesson-page{font-size:17px}
+ body .course-main-inner{width:calc(100% - 16px);margin:8px auto 48px;padding:0}
+ body .detail-header{padding:26px 20px;border-radius:16px}
+ body .first-block,body .part{padding:24px 18px;border-radius:16px;scroll-margin-top:16px}
+ body .first-block h2,body .part h2{font-size:27px;margin-bottom:22px;padding-bottom:12px}
+ body .first-block h3,body .part h3{font-size:22px}
+ body .first-block h4,body .part h4{font-size:19px}
+ body .first-block p,body .part p,body .practice-task p,body .practice-task ol,body .core-concept-grid p{font-size:17px}
+ body .practice-task,body .core-concept-grid article,body .step-cards article{padding:20px 14px;border-radius:16px}
+}
+@media print{
+ body .course-main-inner{width:100%;margin:0}
+ body .detail-header,body .first-block,body .part{box-shadow:none}
+ body .detail-header h1{font-size:26pt}
+ body .first-block h2,body .part h2{font-size:22pt}
+ body .first-block h3,body .part h3{font-size:17pt}
+ body .first-block p,body .part p{font-size:12pt}
+}
+
+/* 截图图注只展示描述；独立来源说明仅在显示层隐藏，不删除内容源。
+   不隐藏 source-card / source-content：它们可能包含截图或教学正文。
+   来源与描述混在普通文本中的情况，CSS无法按文字内容拆分。 */
+:is(.page-shell,.course-main) :is(.source,.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{
+ display:block;margin:10px 0 0;padding:0;border:0;background:transparent;
+ color:var(--muted);font-size:15px;font-weight:400;line-height:1.65;text-align:left;
+}
+body figure figcaption:empty{display:none}
+body figure figcaption :is(.data-source,.source-note,.source-credit,.image-source,.screenshot-source,.attribution){display:none!important}
+@media(max-width:640px){
+ body :is(.lesson-figure,.route-figure,.task-shot,.step-shot,.concept-example-figure,.source-shot,.model-case-figures,.history-visual) figcaption{font-size:14px;line-height:1.7;margin-top:8px}
+}
+
+/* ============================================================
+   PPT 幻灯片翻页演示模式 (Presentation Mode)
+   ============================================================ */
+body.is-ppt-mode{background:#0b1120!important;overflow:hidden!important;height:100vh!important;width:100vw!important;margin:0!important;padding:0!important}
+body.is-ppt-mode .page-shell,body.is-ppt-mode .course-main,body.is-ppt-mode .jump-nav,body.is-ppt-mode .back-top,body.is-ppt-mode .ppt-open-trigger{display:none!important}
+.ppt-stage{display:none;position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 20%,#1e293b 0%,#0b1120 100%);align-items:center;justify-content:center;overflow:hidden}
+body.is-ppt-mode .ppt-stage{display:flex!important}
+.ppt-cards-container{width:min(1420px,94vw);height:min(820px,88vh);position:relative;display:flex;align-items:center;justify-content:center}
+.ppt-slide-card{width:100%;height:100%;background:#ffffff;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.5);padding:36px 48px;overflow-y:auto;box-sizing:border-box;display:none;flex-direction:column;position:relative;animation:pptSlideIn .24s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes pptSlideIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ppt-slide-card.active{display:flex!important}
+.ppt-slide-card h1{font-size:clamp(30px,3vw,44px)!important;line-height:1.25!important;margin:0 0 16px!important;color:var(--ink)!important}
+.ppt-slide-card h2{font-size:clamp(25px,2.4vw,34px)!important;line-height:1.3!important;margin:0 0 18px!important;padding-bottom:12px!important;border-bottom:2px solid var(--line)!important;color:var(--blue-dark)!important}
+.ppt-slide-card h3{font-size:23px!important;color:var(--blue-dark)!important;margin:0 0 14px!important}
+.ppt-slide-card p,.ppt-slide-card li{font-size:19px!important;line-height:1.75!important}
+.ppt-slide-card pre{font-size:16px!important;line-height:1.7!important;padding:18px 22px!important;border-radius:14px!important}
+.ppt-slide-card .task-focus{font-size:23px!important;padding:20px 26px!important}
+.ppt-slide-card .lesson-figure img{max-height:360px!important;object-fit:contain!important;border-radius:12px!important}
+.ppt-slide-card table{font-size:17px!important}
+.ppt-slide-card th,.ppt-slide-card td{padding:12px 14px!important}
+.ppt-slide-badge{display:inline-flex;align-items:center;gap:6px;background:var(--soft);color:var(--blue);font-weight:800;font-size:14px;padding:4px 14px;border-radius:999px;border:1px solid var(--line);margin-bottom:14px;align-self:flex-start}
+.ppt-nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:32px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10001;transition:all .2s ease;user-select:none}
+.ppt-nav-btn:hover{background:rgba(36,86,196,.85);border-color:rgba(255,255,255,.6);transform:translateY(-50%) scale(1.1);box-shadow:0 8px 24px rgba(36,86,196,.4)}
+.ppt-nav-prev{left:20px}
+.ppt-nav-next{right:20px}
+.ppt-nav-btn:disabled{opacity:.12;cursor:not-allowed;pointer-events:none}
+.ppt-topbar{position:fixed;top:18px;right:28px;display:flex;align-items:center;gap:10px;z-index:10002}
+.ppt-top-btn{background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s ease}
+.ppt-top-btn:hover{background:rgba(255,255,255,.28);border-color:#fff;transform:translateY(-1px)}
+.ppt-top-btn.exit:hover{background:rgba(239,68,68,.85);border-color:transparent}
+.ppt-footer{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,23,42,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);padding:6px 18px;border-radius:999px;color:#e2e8f0;font-size:14px;font-weight:700;z-index:10002;box-shadow:0 10px 24px rgba(0,0,0,.35);user-select:none;white-space:nowrap}
+.ppt-footer .ppt-page-counter{color:#60a5fa;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ppt-footer .ppt-hint{color:#94a3b8;font-size:12px;font-weight:400;border-left:1px solid rgba(255,255,255,.18);padding-left:12px}
+.ppt-open-trigger{position:fixed;top:18px;right:24px;z-index:98;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:#fff;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(36,86,196,.3);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s cubic-bezier(.16,1,.3,1);user-select:none}
+.ppt-open-trigger:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 24px rgba(36,86,196,.45)}
+@media(max-width:640px){.ppt-open-trigger{display:none}}
+
+/* 2026-10-28 全课程缺陷修复：保持原视觉体系。 */
+.course-index-link{position:fixed;top:18px;left:14px;z-index:98;display:inline-flex;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--blue-dark);font-size:14px;font-weight:800;text-decoration:none}
+.course-index-link:focus-visible,.ppt-top-btn:focus-visible,.ppt-nav-btn:focus-visible,.ppt-open-trigger:focus-visible{outline:3px solid #f59e0b;outline-offset:4px}
+body.is-ppt-mode .course-index-link{display:none!important}
+@media(max-width:1023px){
+ .course-index-link{position:static;margin:10px 16px 8px}
+}
+@media(max-width:640px){
+ .lesson-section,body .first-block,body .part{scroll-margin-top:76px}
+}
+@media(min-width:641px) and (max-width:1023px){.ppt-open-trigger{top:64px}}
+.ppt-slide-card{scrollbar-gutter:stable}
+.ppt-slide-card th,.ppt-slide-card td{padding:8px 14px!important}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ .ppt-slide-card{animation:none}
+}
+@media print{
+ body,body.is-ppt-mode{overflow:visible!important;height:auto!important;width:auto!important;background:#fff!important;margin:0!important;padding:0!important}
+ body.is-ppt-mode .page-shell,body.is-ppt-mode .course-main{display:block!important}
+ .page-shell,body .course-main-inner{width:auto!important;max-width:none!important;margin:0!important}
+ .course-index-link,.jump-nav,.ppt-stage,.ppt-open-trigger,.back-top{display:none!important}
+}
+</style></head><body><a class="course-index-link" href="index.html">← 课程目录</a><nav class="jump-nav" aria-label="本课导航">
+    <div class="jump-nav-header">
+      <span class="jump-nav-title">📑 本课导读</span>
+      <button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航">
+        <span class="toggle-icon">‹</span>
+      </button>
+    </div>
+    <div class="jump-nav-body">
+      <div class="jump-nav-list">
+        <a class="jump-nav-link" href="#review"><span class="nav-idx">00</span><span class="nav-label">知识回顾</span></a>
+        <a class="jump-nav-link" href="#sec-2"><span class="nav-idx">01</span><span class="nav-label">本课目标</span></a>
+        <a class="jump-nav-link" href="#concepts"><span class="nav-idx">02</span><span class="nav-label">基础概念</span></a>
+        <a class="jump-nav-link" href="#sec-4"><span class="nav-idx">03</span><span class="nav-label">桌面端导览</span></a>
+        <a class="jump-nav-link" href="#sec-5"><span class="nav-idx">04</span><span class="nav-label">优势与边界</span></a>
+        <a class="jump-nav-link" href="#finish"><span class="nav-idx">05</span><span class="nav-label">本课总结</span></a>
+      </div>
+      <a class="jump-nav-top" href="#top" title="返回顶部">
+        <span class="top-icon">↑</span>
+        <span class="top-label">回顶部</span>
+      </a>
+    </div>
+  </nav>
+  <main class="page-shell" id="top">
+    <header class="hero">
+      <p class="eyebrow">AIGC应用与实践 · 第27次课 · 扩展课</p>
+      <h1>Hermes Agent 桌面端：把智能体的工作摆到界面上</h1>
+      <div style="margin-top:14px;color:var(--muted);font-size:18px;line-height:1.6;"><p>前几课里的 Agent 主要在终端里输入命令：会话靠 <code>/new</code> 开，工具靠 <code>/tools</code> 查，配置分散在命令和文件里。这一课打开 Nous Research 的 Hermes Agent 桌面端，把主界面、设置项、记忆开关逐一看过去，说清它在什么位置适合观察，又在哪些地方需要自己动手维护。</p>
 </div>
-<div class="card">
-<h3>你的实践：运动耳机</h3>
-<p>你亲自选择预算和优先项，再修改一次。页面不会替你预定推荐哪一款；结论要由你的条件和材料共同决定。</p>
-</div>
-</div>
-<div class="flow" aria-label="本课工作流程文字示意">
-<span>本地 Markdown</span>→<span>Pi 读取</span>→<span>写出 HTML</span>→<span>浏览器打开</span>→<span>改变条件</span>→<span>回读并刷新</span>
-</div>
-<p class="caption">文字流程示意：观察材料、工具记录和磁盘文件之间的关系，不是软件截图，也不执行 Pi 或在线模型调用。</p>
-<p>完成后集中看三件事：<strong>有材料依据、文件能打开、修改确实落在文件里。</strong>具体标准在本课总结中统一查看。</p>
-</section>
+    </header>
+    <section class="lesson-section" id="review">
+        <h2>00 知识回顾</h2>
+        <p>综合作品要求我们把材料、规则、生成和修改连在一起。前面演示 Hermes 时，输入位置主要是系统终端：<code>hermes</code> 启动对话，<code>/tools</code> 看工具，<code>/new</code> 开新会话。命令行的好处是动作清楚，一行命令对应一个动作；代价是配置散在不同地方——工具开关、模型、记忆、定时任务分别藏在命令和配置文件里，看一个整体需要来回查。</p>
+<p>换到桌面端，同一套能力被组织成左边的导航和右边的设置列表。本课不再安装一次，也不要求现场做文件任务，而是把桌面端从上到下看一遍：<b>入口有几个、设置改哪里、经验存在哪、优势背后要付出什么。</b></p>
 
-<section id="s02">
-<h2><small>02 · 基础概念</small>把“会回答”与“会操作文件”分开理解</h2>
-
-<h3>1. 模型负责判断，Pi 让判断接上工具</h3>
-<p>模型接收要求与材料，决定接下来回答文字，还是请求某个工具执行动作。Pi 是智能体运行框架，不是一个固定的大模型：它接收模型的工具请求、执行工具、记录结果，再把结果交回模型继续处理。因此，一次“做网页”可能包含多轮读取、写入和修改，而不只是一次回复。</p>
-<p><strong>对应本课：</strong>模型可以提出“先读取运动耳机资料，再写比较页”。真正读取文件、写入 HTML 的是 Pi 中启用的工具。只看到“已完成”的一句话，不足以证明文件存在。</p>
-<div class="tablewrap">
+      </section>
+<section class="lesson-section" id="sec-2">
+        <h2>01 本课目标</h2>
+        <p>本课不新增作品，目标是把&quot;界面&quot;当作可读的对象：能指着一个入口说出它管什么，能说出改一项设置会影响下一次对话的哪一部分。</p>
 <table>
-<thead><tr><th>默认工具</th><th>具体作用</th><th>本课对应动作</th></tr></thead>
+<thead>
+<tr>
+<th>要带走的能力</th>
+<th>用什么表现说明已经看懂</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><code>read</code></td><td>读取文件内容</td><td>读 Markdown；生成后回读 HTML</td></tr>
-<tr><td><code>write</code></td><td>写入文件，可覆盖已有内容</td><td>首次写出比较页</td></tr>
-<tr><td><code>edit</code></td><td>修改已有文字</td><td>更新条件、解释或页面代码</td></tr>
-<tr><td><code>bash</code></td><td>执行命令</td><td>可能用于文件相关操作；不要允许无关扫描或发布</td></tr>
+<tr>
+<td>认入口</td>
+<td>在左侧导航和设置列表里，指出会话、技能与工具、产物、定时任务分别管什么</td>
+</tr>
+<tr>
+<td>会看设置</td>
+<td>说出主模型、工具与密钥、持久记忆三项设置各自改变的结果</td>
+</tr>
+<tr>
+<td>讲清优势</td>
+<td>用自己的话说出桌面端相对命令行的好处，以及它带来的维护成本</td>
+</tr>
 </tbody>
 </table>
-</div>
-<p class="small">以上为默认启用工具，设置可以改变它们。实际是否发生读取、写入或编辑，要看本次工具记录，而不是只看工具名称。</p>
+<p><b>观察路线：</b> 主界面 → 左侧五个入口 → 设置面板全部分类 → 模型与推理 → 记忆与预算 → 语言与工具 → 优势与代价。</p>
+<p><b>本课的性质：</b> 这是一节观察与讨论课。界面上的每个按钮都会点开看，但不要求当场生成作品；需要动手完成的任务放在综合作品和后续课次里。看界面时以<b>当前版本</b>为准，下面的截图来自 Hermes Agent v0.22.6 桌面端（2026 年 11 月，简体中文界面、深色主题）。版本更新后按钮可能改名或挪位置，判断方法不变：先看分组名称，再用搜索框找。</p>
 
-<h3>2. 工作文件夹是材料所在位置，不是安全沙箱</h3>
-<p>从哪个文件夹启动 Pi，会影响它理解相对路径和组织任务的位置。把材料和目标网页放在同一独立练习文件夹，能减少读错文件、写错位置的机会。但这个文件夹<strong>不会自动限制工具的系统权限</strong>：工具按运行进程的权限工作，不能理解为“它绝对碰不到外面的文件”。</p>
-<p><strong>对应本课：</strong>只放课堂模拟资料，不放账号密钥、个人文档或真实订单。提示词要求只处理本练习文件夹，能表达任务边界，但不等于操作系统隔离。若出现扫描个人目录、安装无关软件或外发内容的请求，不要继续执行。</p>
+      </section>
+<section class="lesson-section" id="concepts">
+        <h2>02 基础概念</h2>
+        <h3>1｜Hermes 是软件，模型是另一件事</h3>
+<p>Hermes Agent 是 Nous Research 开源的智能体软件。它把你的要求交给模型，根据模型的工具调用去读文件、运行命令或保存成果，再把执行结果交回模型继续处理。桌面端是这个软件的图形界面版本，命令行、桌面端、浏览器管理面板都是它的入口。</p>
+<p>分清两件事：软件负责&quot;能不能执行&quot;，模型负责&quot;想得对不对&quot;。主界面右下角写着模型名称（截图里是 <code>Opus 4.6</code>）和推理档位（<code>Med</code>），那是当前接的是谁、用多大力气想；换个模型只是换&quot;想的人&quot;，读文件、写文件这些动作仍由软件执行。</p>
+<h3>2｜四个入口，各管一段</h3>
+<table>
+<thead>
+<tr>
+<th>入口</th>
+<th>怎么打开</th>
+<th>适合用来做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令行（CLI）</td>
+<td>系统终端输入 <code>hermes</code></td>
+<td>连续对话、斜杠命令、逐行看工具调用；排查环境问题</td>
+</tr>
+<tr>
+<td>桌面端（Desktop）</td>
+<td>打开 Hermes 应用</td>
+<td>会话列表、技能与工具、产物、定时任务、全部设置</td>
+</tr>
+<tr>
+<td>管理面板（Dashboard）</td>
+<td>终端运行 <code>hermes dashboard</code>，按提示打开本机地址</td>
+<td>在浏览器里改配置、浏览技能库</td>
+</tr>
+<tr>
+<td>消息网关（Gateway）</td>
+<td>终端配置后启动后台进程</td>
+<td>从消息平台派发任务、把结果投递回去</td>
+</tr>
+</tbody>
+</table>
+<p>四个入口读的是同一份配置：在桌面端把界面语言改成简体中文，回到终端仍是同一设置；在终端保存的技能，桌面端的技能与工具里也能找到。这一点决定了&quot;换入口&quot;不等于&quot;重建一套方法&quot;。</p>
+<p>本课主要看桌面端。命令行不是过时的东西——需要看清每一行工具返回、需要写进文档时，终端反而更直接。</p>
+<h3>3｜同一个动作，两种输入位置</h3>
+<p>桌面端把命令行的斜杠命令变成可点的项，但输入位置的区别仍然存在，混淆会导致&quot;输入了没反应&quot;：</p>
+<table>
+<thead>
+<tr>
+<th>输入位置</th>
+<th>输什么</th>
+<th>用来做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统终端</td>
+<td><code>hermes</code>、<code>hermes doctor</code>、<code>hermes model</code></td>
+<td>启动、检查环境、改配置</td>
+</tr>
+<tr>
+<td>桌面端输入框</td>
+<td>用中文说明材料、条件、要保存的文件</td>
+<td>让 Agent 执行任务</td>
+</tr>
+<tr>
+<td>桌面端输入框</td>
+<td><code>/help</code>、<code>/tools</code>、<code>/new</code> 等斜杠命令</td>
+<td>查看帮助、工具、新建会话</td>
+</tr>
+</tbody>
+</table>
+<h3>4｜记忆在桌面端变成了开关和数字</h3>
+<p>记忆保存值得以后沿用的简短信息，Hermes 的核心记忆是 <code>MEMORY.md</code>（做法与事实）和 <code>USER.md</code>（用户偏好）两个文件，有容量限制，新会话开始时载入快照。桌面端把它做成两行开关加两个数字：持久记忆、用户画像各一个开关，记忆预算和画像预算决定还能留多少字。</p>
+<p><b>开关关掉，不等于内容被删除</b>，只是新会话不再载入；文件仍在本机，可以打开看、可以编辑。判断&quot;记没记住&quot;要看文件里的实际内容，不能只看当前对话里它还记得上一句。</p>
+<h3>5｜技能是文件，不是自动训练</h3>
+<p>技能是一份按需读取的操作说明，核心文件是 <code>SKILL.md</code>：写清接收什么材料、按什么步骤处理、输出到哪里。保存成技能以后，下一份材料仍要由本次任务提供条件和参数，技能里不该写死旧商品名和旧答案。</p>
+<p>这些机制把经验保存在软件可读取的文件里，<b>不等于模型自动训练了参数，也不保证以后不会犯错</b>。输入换了，仍要看这次任务有没有加载相关方法、有没有用对条件。</p>
+<h3>6｜装上桌面端，不等于内容都在本机算</h3>
+<p>桌面端装在电脑上，文件工具在这台电脑操作；若接的是云端模型，发给模型的文字、文件片段和工具返回内容仍会经过相应服务。只有另行接本地模型，才把模型推理也放到本机；联网搜索与外部连接器各有自己的数据去向。</p>
+<p>开源软件本体、模型调用、联网工具和服务器是不同成本。桌面端只是把入口做得更好找，没有改变这个分工。</p>
+<h3>图解｜本次材料、长期信息与通用方法</h3>
+<figure class="lesson-figure"><a href="assets/lesson33/memory-skill.png" title="点击查看大图"><img src="assets/lesson33/memory-skill.png" alt="当前会话、跨会话记忆与技能的分工" loading="lazy" width="1400" height="660"></a><figcaption></p>
+<p>图解：会话保留这一次的材料；记忆保留值得沿用的信息；技能保留可再次执行的方法。三者都不是修改模型参数：会话结束就散，记忆受预算限制，技能要自己写清适用条件。</figcaption></figure>
 
-<h3>3. 上下文是当前判断所依据的信息，不是整个电脑</h3>
-<p>模型生成回答时，会依赖当前会话中的要求、已读取材料和工具返回的结果，这些信息共同构成当前上下文。文件放在磁盘上，不代表模型已经看过；只写一个文件名，也不代表读取成功。长对话中还可能遗漏早先约定，所以修改时要重新指出目标文件、保留项和新条件。</p>
-<p><strong>对应本课：</strong>先让文件真实存在，再在 Pi 输入区输入 <code>@</code> 查找并插入引用，例如 <code>@运动耳机模拟材料.md</code>。发送后观察读取记录，看到的内容应与本页底料一致。新一轮修改时再引用材料和目标 HTML，避免只说“改得更好一点”。</p>
-
-<h3>4. 修改有两条线：会话历史与磁盘文件</h3>
-<p>会话保存“你问过什么、模型做过什么”；磁盘文件保存“作品现在是什么”。改变条件后，Pi 必须再次读取当前作品，再编辑或重写文件。回读文件能帮助确认新条件确实进入了代码，但浏览器效果仍需你打开查看。</p>
-<p><strong>对应本课：</strong>把预算改了以后，页面上的预算、入选状态和说明都要同步变化；只在聊天中解释新预算不算完成修改。浏览器仍显示旧内容时，先刷新正确的本地 HTML，而不是刷新这张课程页。</p>
-<div class="note">
-<p><code>/tree</code> 可在当前会话树中回到其他位置，编辑旧提问可形成分支；<code>/resume</code> 切换已有会话；终端中的 <code>pi --continue</code> 接续当前工作文件夹最近会话。</p>
-<p><strong>这些操作都不是磁盘版本控制，不会自动恢复已写过的文件。</strong>若想保留旧作品，可在文件管理器中先复制一份 HTML，再继续修改。</p>
-</div>
-
-<h3>5. 三个操作位置，不要混着输入</h3>
-<div class="grid">
-<div class="card">
-<h4>终端</h4>
-<p>运行 <code>node --version</code>、安装命令、<code>cd</code> 和 <code>pi</code>。进入 Pi 前，这里是系统命令行。</p>
-</div>
-<div class="card">
-<h4>Pi 输入区</h4>
-<p>启动 Pi 后，在这里输入 <code>/login</code>、<code>/model</code>、<code>@</code> 文件引用和自然语言提示词。</p>
-</div>
-</div>
-<p><strong>浏览器：</strong>通过文件管理器打开生成的 <code>.html</code>，查看实际页面；它不是输入 Pi 命令的地方。</p>
-<p><code>/export</code> 导出的是会话记录（HTML 或 JSONL），<strong>不是生成商品比较作品的命令</strong>。作品要在提示词中明确要求写入目标 HTML 文件。</p>
-
-<h3>开始前：环境和账号要具备哪些条件？</h3>
+      </section>
+<section class="lesson-section" id="sec-4">
+        <h2>03 桌面端导览</h2>
+        <p>这一节按&quot;先看整体、再看设置&quot;的顺序走。每张截图都标出该看的位置，看完能对着自己的机器复述一遍就算过。</p>
+<h3>主界面｜左边导航，右边会话</h3>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-desktop-home.png" title="点击查看大图"><img src="assets/lesson33/hermes-desktop-home.png" alt="Hermes桌面端简体中文主界面" loading="lazy" width="4718592" height="4292935744"></a><figcaption></p>
+<p>图解：左上是两个分组标签「会话」「机器人」。下面依次是新建会话（⌘N）、技能与工具、消息平台、产物、定时任务，再往下是会话搜索框和历史会话列表。右侧是当前会话区，底部输入框写着「从一个目标开始」；右下角是模型名称、推理档位、语音按钮；左下角显示后端状态与账号；右下角还有当前版本号 v0.22.6。</figcaption></figure>
+<p>三个容易被忽略的细节：</p>
 <ul>
-<li>npm 安装路径需要 <strong>Node.js 22.19 或更高版本</strong>，安装过程需要网络及相应安装权限。</li>
-<li>原生 Windows 的默认 Bash 依赖 <strong>Git Bash</strong>，通常随 Git for Windows 安装。PowerShell 是可另行启用的工具，不是安装 Pi 后必然替代 Bash。</li>
-<li>准备可授权的模型账号、可用模型和额度。不同账号实际支持的服务不同，不保证某个订阅必然可用、免费或不限额。</li>
-<li>准备终端、文件管理器和浏览器；本课使用独立练习文件夹，不依赖 GZCCC Mac 安装包。</li>
+<li><b>模型和档位在输入框旁边</b>。换模型不必进设置，点开下拉就能临时切换；这个切换只影响当前对话，不改&quot;主模型&quot;默认值。</li>
+<li><b>后端状态是&quot;就绪&quot;才算能用</b>。左下角写着「后端 就绪」表示本机服务已启动；若显示未连接，任务发不出去，先看终端里的进程和诊断输出。</li>
+<li><b>会话列表是文件级的线索</b>。同一件事做了两轮修改，会留下两条会话；回头找证据时，先按标题找会话，再在会话里翻工具记录。</li>
 </ul>
-<div class="copybox">
-<div class="copyhead"><span>终端 · 环境检查与固定主包版本安装</span><button type="button" data-copy="install">复制命令</button></div>
-<pre id="install">node --version
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.4.0
-pi --version</pre>
-<span class="status" aria-live="polite"></span>
-</div>
-<p>先确认 Node 版本符合要求，再执行安装；最后查看 <code>pi --version</code> 是否显示 1.4.0。固定主包版本<strong>不等于锁定所有传递依赖</strong>。如果安装或账号授权受阻，先完成底料下载与条件选择；不要把后面的静态文本当作已经调用 Pi 的结果。可在具备环境的课堂设备上亲自完成一次读写与修改。</p>
-<div class="note warning">
-<strong>Pi CLI 与 GZCCC GPT 不是同一个入口。</strong>本课命令在终端中的 Pi CLI 使用；GZCCC GPT 只开放应用明确提供的受控工具，不能据此推断它也能任意运行 shell 或读写本地文件。
-</div>
-
-<p><strong>思考题：</strong>在 <code>/tree</code> 中回到旧提问，为什么浏览器里的网页不一定恢复到旧版？</p>
-<details>
-<summary>展开参考答案</summary>
-<p>会话树改变的是消息路径，已写入磁盘的 HTML 不会随之回滚。浏览器读的是当前磁盘文件。要恢复文件，需要已有副本、版本管理或再次明确修改，不能只靠切换分支。</p>
-</details>
-</section>
-
-<section id="s03">
-<h2><small>03 · 核心案例</small>教师示范：按条件制作台灯比较页</h2>
-<p>情境：为一张小桌挑选台灯。先用<strong>预算不超过180元、优先底座占用小</strong>的条件比较，再改成<strong>预算不超过230元、优先调光更细</strong>。观察的是条件如何进入文件、怎样改变页面，而不是寻找真实商品购买建议。</p>
-
-<article id="lampMaterial" data-title="台灯模拟材料" data-filename="台灯模拟材料.md">
-<h3>教师底料 · 台灯模拟材料.md</h3>
-<p data-md>课堂模拟：以下为原创无品牌 A/B/C 数据，不对应真实在售商品；价格仅用于课堂预算运算，不是市场报价。</p>
-<div class="tablewrap">
+<h3>五个入口分别管什么</h3>
 <table>
-<thead><tr><th>型号</th><th>模拟价格（元）</th><th>底座占用（平方厘米）</th><th>调光方式</th><th>调光细致度课堂值</th><th>供电方式</th></tr></thead>
+<thead>
+<tr>
+<th>入口</th>
+<th>打开后能做什么</th>
+<th>与命令行的对应</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>A</td><td>129</td><td>160</td><td>固定亮度</td><td>1</td><td>插电</td></tr>
-<tr><td>B</td><td>179</td><td>100</td><td>三档调光</td><td>2</td><td>插电</td></tr>
-<tr><td>C</td><td>219</td><td>120</td><td>连续调光</td><td>3</td><td>插电</td></tr>
+<tr>
+<td>新建会话 ⌘N</td>
+<td>开一个不带前文的干净上下文</td>
+<td><code>/new</code></td>
+</tr>
+<tr>
+<td>技能与工具</td>
+<td>查看已装技能、管理工具集与启用状态</td>
+<td><code>/skills</code>、<code>/tools</code></td>
+</tr>
+<tr>
+<td>消息平台</td>
+<td>接入消息应用、配对会话、查看连接状态</td>
+<td><code>hermes gateway setup</code>、<code>hermes gateway start</code></td>
+</tr>
+<tr>
+<td>产物</td>
+<td>集中查看会话里生成的文件</td>
+<td>会话中的文件写入</td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td>设置按时间触发的任务，查看运行记录</td>
+<td>定时任务配置</td>
+</tr>
+<tr>
+<td>搜索会话</td>
+<td>按标题或内容找回历史会话</td>
+<td><code>/sessions</code></td>
+</tr>
 </tbody>
 </table>
-</div>
-<p data-md>比较规则：先保留模拟价格不超过预算的型号。优先“底座占用小”时按占用数值从小到大比较；优先“调光更细”时按调光细致度课堂值从大到小比较。若并列，说明并列依据；若没有符合预算的型号，明确说明无符合项，不擅自加预算。</p>
-<p data-md>边界：调光细致度课堂值只用于本练习排序，不是行业等级。材料未提供照度、显色、频闪、认证或护眼效果，不得补造相关结论。页面应保留 A/B/C 全部数据，并区分符合预算与超预算型号。</p>
-<button class="download" type="button" data-download="lampMaterial">下载 台灯模拟材料.md</button>
-<span class="status" aria-live="polite"></span>
-</article>
-<p class="small">下载的是本页所列静态 Markdown 底料，不是模型生成的作品。下载后将文件放入实际练习文件夹，保持文件名不变。</p>
-
-<h3>第一段：建立位置，引用真实文件</h3>
-<ol class="steps">
-<li><strong>终端：</strong>在一个用于课堂练习的父文件夹中，逐行执行下面两条命令，建立并进入专用目录。如果目录已经存在，用 <code>cd pi-lamp</code> 进入，不必重新创建。
-<div class="copybox">
-<div class="copyhead"><span>终端 · 台灯练习目录</span><button type="button" data-copy="lampdir">复制命令</button></div>
-<pre id="lampdir">mkdir pi-lamp
-cd pi-lamp</pre>
-<span class="status" aria-live="polite"></span>
-</div>
-</li>
-<li><strong>文件管理器：</strong>把下载的 <code>台灯模拟材料.md</code> 移入这个 <code>pi-lamp</code> 文件夹。文件若被浏览器改成带编号的名称，先改回这里的名称。</li>
-<li><strong>终端：</strong>在该目录输入 <code>pi</code> 启动 CLI。随后在 <strong>Pi 输入区</strong>输入 <code>/login</code>，按界面选择可用服务并授权，再输入 <code>/model</code> 选择账号实际可用的模型。已有可用授权时无需重复登录。</li>
-<li><strong>Pi 输入区：</strong>输入 <code>@</code> 查找并插入 <code>台灯模拟材料.md</code>。下方提示词中的引用也要对应这份实际存在的文件。找不到时，先检查文件是否放在启动目录，而不是反复发送不存在的引用。</li>
-</ol>
-
-<h3>第二段：让 Pi 读取材料并写文件</h3>
-<div class="copybox">
-<div class="copyhead"><span>Pi 输入区 · 教师首次生成提示词</span><button type="button" data-copy="lampFirst">复制提示词</button></div>
-<pre id="lampFirst">@台灯模拟材料.md
-请实际读取这份本地材料，仅在当前台灯练习文件夹内操作，不联网补充商品信息，不安装无关软件，不向外发布。
-我的条件：预算不超过180元，优先“底座占用小”。严格按材料中的比较规则处理，不凭空补充功能或效果。
-请用文件工具写出“台灯比较.html”，不是只在聊天里贴代码。做成一个完整自包含的浅色HTML，包含移动端viewport、内嵌CSS，不使用外部库、字体或图片。
-页面保留“课堂模拟”标识，展示全部A/B/C数据、当前预算和优先项，区分符合预算与超预算型号。说明当前条件下的比较依据和取舍；没有符合项就说明无符合项，不擅自加预算。
-代码用清晰的小节组织，便于继续修改。
-写入后请再次读取“台灯比较.html”，确认当前条件及对应说明已进入文件；在回复中说明实际写入的文件路径和读取到的条件。不要声称已经替我打开浏览器或完成视觉检查。</pre>
-<span class="status" aria-live="polite"></span>
-</div>
-<p><strong>观察 Pi：</strong>关注材料读取、目标文件写入和写入后回读的记录；工具名称可能是 <code>read</code>、<code>write</code> 或 <code>edit</code>。如果只有文字回答、文件夹里没有 HTML，继续明确要求写入目标文件，不使用 <code>/export</code> 代替。</p>
-<p><strong>浏览器：</strong>从文件管理器打开 <code>台灯比较.html</code>，必要时选择“用浏览器打开”。看页面上的预算、优先项、完整数据与筛选说明；地址应指向这份本地 HTML，而不是课程页。</p>
-
-<h3>第三段：改变条件，更新同一个文件</h3>
-<div class="copybox">
-<div class="copyhead"><span>Pi 输入区 · 教师修改提示词</span><button type="button" data-copy="lampChange">复制提示词</button></div>
-<pre id="lampChange">@台灯模拟材料.md @台灯比较.html
-请先实际读取以上材料和当前HTML。
-把原来的“预算不超过180元、优先底座占用小”，改为“预算不超过230元、优先调光更细”。
-按材料中的比较规则重新比较，更新同一个“台灯比较.html”中的条件、符合预算状态、比较依据及结论，不只修改标题，不残留与旧条件冲突的文字。
-保留全部A/B/C原始数据、“课堂模拟”标识和自包含页面结构；只在当前练习文件夹内操作，不联网、不发布。
-写入后再次读取“台灯比较.html”，指出文件中的新预算和新优先项，并简述相对旧条件改变了哪些内容。若结论未变化，也要按材料解释，不强行制造变化。不要声称已替我刷新浏览器。</pre>
-<span class="status" aria-live="polite"></span>
-</div>
-<p><strong>观察回读与浏览器：</strong>先看 Pi 回读文件时是否包含新条件，再回到原来的本地网页刷新。预算扩大后，原来超预算的项目可能进入比较；优先项改变后，排序依据也要改变。若页面仍显示旧条件，先确认打开的是同一路径，再刷新；若文件本身仍是旧条件，把具体残留文字告诉 Pi，请它修改该位置。</p>
-
-<p><strong>思考题：</strong>把标题中的“180元”改成“230元”，但表格状态与比较理由没变，为什么不能算完成这次修改？</p>
-<details>
-<summary>展开参考答案</summary>
-<p>预算是筛选条件，不是装饰文字。新预算应重新影响符合预算状态；新优先项应影响比较依据。需要读取当前 HTML，改掉所有与新条件冲突的内容，再回读并刷新查看。</p>
-</details>
-</section>
-
-<section id="s04">
-<h2><small>04 · 实践任务</small>用 Pi 制作运动耳机比较页</h2>
-<p>把教师的台灯方法迁移到运动耳机：仍然是读材料、写文件、浏览器打开、改条件、回读文件，但这次预算和优先项由你选择。<strong>不要求与教师得到相同结论，也不要先指定 A/B/C 中的赢家。</strong></p>
-
-<article id="earMaterial" data-title="运动耳机模拟材料" data-filename="运动耳机模拟材料.md">
-<h3>学生底料 · 运动耳机模拟材料.md</h3>
-<p data-md>课堂模拟：以下为原创无品牌 A/B/C 数据，不对应真实在售商品；价格仅用于课堂预算运算，不是市场报价。续航与重量也是练习给定值，不是产品实测或性能承诺。</p>
-<div class="tablewrap">
+<p>入口名称随版本可能调整，<b>分组逻辑不变</b>：上面五项是&quot;东西放在哪&quot;（技能、消息、文件、时间），设置是&quot;规则改成什么&quot;。</p>
+<h3>设置面板｜一屏看完全部配置</h3>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-settings-models.png" title="点击查看大图"><img src="assets/lesson33/hermes-settings-models.png" alt="Hermes桌面端设置面板" loading="lazy" width="4718592" height="4292935744"></a><figcaption></p>
+<p>图解：顶部有搜索框（⌘K），可以按名称直接跳到某一项。左侧按用途分组，从上到下依次是：模型（主模型、备用模型、辅助模型、子智能体、多智能体协作）、对话、外观、工作区、安全、Browser、密码与登录、记忆与上下文（持久记忆、上下文与压缩）、语音、高级、通知、账单、提供方、网关、网页访问、键盘快捷键、工具与密钥、会话、插件、关于。图中停留在「模型 › 主模型」。</figcaption></figure>
+<p>这张图本身就是本课的重点：命令行里要靠记忆和文档去找的配置，在这里是一条条能点开的分类。<b>找不到某项时不要一层层翻，先在 ⌘K 里搜关键词</b>，例如&quot;记忆&quot;&quot;语言&quot;&quot;密钥&quot;。</p>
+<h3>模型｜主模型、备用模型与推理档位</h3>
+<p>设置 › 模型 › 主模型 页面上有四行关键信息：</p>
 <table>
-<thead><tr><th>型号</th><th>模拟价格（元）</th><th>单次续航（小时）</th><th>整套佩戴重量（克）</th><th>佩戴形式</th><th>操作方式</th></tr></thead>
+<thead>
+<tr>
+<th>项</th>
+<th>图中的值</th>
+<th>它决定什么</th>
+</tr>
+</thead>
 <tbody>
-<tr><td>A</td><td>149</td><td>6</td><td>24</td><td>耳挂式</td><td>实体按键</td></tr>
-<tr><td>B</td><td>229</td><td>9</td><td>36</td><td>颈挂式</td><td>实体按键</td></tr>
-<tr><td>C</td><td>299</td><td>7</td><td>18</td><td>入耳式</td><td>触控</td></tr>
+<tr>
+<td>提供方</td>
+<td><code>auto</code></td>
+<td>由软件在当前可用的服务里选择；接了自己的服务商时可指定</td>
+</tr>
+<tr>
+<td>模型</td>
+<td>设置提供方</td>
+<td>新会话默认用哪个模型</td>
+</tr>
+<tr>
+<td>推理</td>
+<td><code>中</code></td>
+<td>想得多还是想得快；档位越高，同样的任务越慢、消耗越多</td>
+</tr>
+<tr>
+<td>上下文窗口</td>
+<td><code>0</code></td>
+<td>页面写明&quot;保持为 0 则使用所选模型检测到的值&quot;，只在需要覆盖时填写</td>
+</tr>
 </tbody>
 </table>
-</div>
-<p data-md>比较规则：先保留模拟价格不超过预算的型号。优先“单次续航更长”时按小时数从大到小比较；优先“佩戴重量更轻”时按整套佩戴重量从小到大比较。若并列，说明并列依据；若没有符合预算的型号，明确说明无符合项，不擅自加预算。</p>
-<p data-md>边界：只比较给定字段，不推断音质、防水等级、运动安全、舒适度、降噪、认证或健康效果。佩戴形式和操作方式作为差异展示，不据此编造优劣。页面应保留 A/B/C 全部数据，并区分符合预算与超预算型号。</p>
-<button class="download" type="button" data-download="earMaterial">下载 运动耳机模拟材料.md</button>
-<span class="status" aria-live="polite"></span>
-</article>
-
-<h3>1. 先把材料放对，再启动 Pi</h3>
-<p><strong>终端：</strong>回到用于课堂练习的父文件夹，建立学生目录。如果你还在 Pi 中，不要把下面的系统命令当作自然语言要求发送；可另开一个终端操作。</p>
-<div class="copybox">
-<div class="copyhead"><span>终端 · 运动耳机练习目录</span><button type="button" data-copy="eardir">复制命令</button></div>
-<pre id="eardir">mkdir pi-earbuds
-cd pi-earbuds</pre>
-<span class="status" aria-live="polite"></span>
-</div>
-<p><strong>文件管理器：</strong>把 <code>运动耳机模拟材料.md</code> 放进实际的 <code>pi-earbuds</code> 目录。<strong>终端：</strong>在这个目录运行 <code>pi</code>；在 Pi 输入区用 <code>/login</code> 和 <code>/model</code> 完成必要的授权和模型选择。输入 <code>@</code>，确认能找到刚放入的底料。</p>
-
-<h3>2. 亲自选择一组会影响比较的条件</h3>
-<p>预算决定哪些型号能进入比较；优先项决定符合预算后先比较什么。下方只把你的选择填入提示词，<strong>不调用 Pi、不计算或展示最终推荐</strong>。</p>
-
-<form id="conditions">
-<div class="grid">
-<fieldset>
-<legend>第一次条件</legend>
-<label for="budget1">预算上限
-<select id="budget1" required>
-<option value="">请选择</option>
-<option value="180">180元</option>
-<option value="240">240元</option>
-<option value="320">320元</option>
-</select>
-</label>
-<label for="pref1">优先考虑
-<select id="pref1" required>
-<option value="">请选择</option>
-<option value="单次续航更长">单次续航更长</option>
-<option value="佩戴重量更轻">佩戴重量更轻</option>
-</select>
-</label>
-</fieldset>
-<fieldset>
-<legend>第二次条件</legend>
-<label for="budget2">修改后的预算上限
-<select id="budget2" required>
-<option value="">请选择</option>
-<option value="180">180元</option>
-<option value="240">240元</option>
-<option value="320">320元</option>
-</select>
-</label>
-<label for="pref2">修改后的优先项
-<select id="pref2" required>
-<option value="">请选择</option>
-<option value="单次续航更长">单次续航更长</option>
-<option value="佩戴重量更轻">佩戴重量更轻</option>
-</select>
-</label>
-</fieldset>
-</div>
-<p class="small">第二次至少改变预算或优先项中的一项。你可以现在准备两轮条件，但实际修改要等第一次网页已经写出并打开之后再进行。</p>
-<button type="submit">按我的选择生成两轮提示词</button>
-<p id="conditionStatus" class="small" role="status" aria-live="polite">尚未选择条件。以下文本需要先替换方括号中的内容，或使用上方选择器填入。</p>
-</form>
-
-<h3>3. 在 Pi 中生成首次网页，再用浏览器打开</h3>
-<p>把下面第一轮提示词复制到 <strong>Pi 输入区</strong>；用 <code>@</code> 查找插入实际底料。观察实际读取、写入与回读记录，随后在文件管理器中打开 <code>运动耳机比较.html</code>。</p>
-<div class="copybox">
-<div class="copyhead"><span>Pi 输入区 · 第一轮提示词</span><button type="button" data-copy="earFirst">复制提示词</button></div>
-<textarea id="earFirst" class="prompt" rows="15" readonly aria-label="运动耳机首次生成提示词">@运动耳机模拟材料.md
-请实际读取这份本地材料，仅在当前运动耳机练习文件夹内操作，不联网补充商品信息，不安装无关软件，不向外发布。
-我的条件：预算不超过【选择预算】元，优先“【选择优先项】”。请先确认这两个条件已经填写；若还有占位符，先问我，不自行假定。
-严格按材料的比较规则处理，不提前指定A/B/C中的赢家。
-请用文件工具写出“运动耳机比较.html”，不是只在聊天里贴代码。制作完整自包含的浅色HTML，包含移动端viewport与内嵌CSS，不依赖外部库、字体或图片。
-页面保留“课堂模拟”标识和A/B/C全部原始数据，显示当前预算、优先项、符合预算与超预算状态；按材料解释比较依据、取舍和局限。无符合项就明确说明，不擅自加预算。不补造音质、防水、舒适度、认证或健康效果。
-用清楚的小节组织代码，方便继续修改。
-写入后再次读取“运动耳机比较.html”，说明实际文件路径及读到的预算和优先项；不要声称已替我打开浏览器或完成视觉检查。</textarea>
-<span class="status" aria-live="polite"></span>
-</div>
-<p><strong>看到什么：</strong>练习文件夹中出现目标 HTML；浏览器能看到 A/B/C 数据、你选定的条件和有依据的比较说明。不要把这张课件或下载的 Markdown 当作最终作品。</p>
-
-<h3>4. 改条件，让 Pi 更新文件并回读</h3>
-<p>第一轮网页已打开后，在 <strong>同一 Pi 会话</strong>发送第二轮提示词。如果你在选择器里换了条件，先重新生成提示词，并确认“原条件”与第一次实际发送的内容一致。需要保留旧版时，可先在文件管理器中复制 HTML。</p>
-<div class="copybox">
-<div class="copyhead"><span>Pi 输入区 · 第二轮修改提示词</span><button type="button" data-copy="earChange">复制提示词</button></div>
-<textarea id="earChange" class="prompt" rows="13" readonly aria-label="运动耳机条件修改提示词">@运动耳机模拟材料.md @运动耳机比较.html
-请先实际读取材料与当前HTML，只在当前运动耳机练习文件夹内操作。
-原条件：预算不超过【原预算】元，优先“【原优先项】”。
-新条件：预算不超过【新预算】元，优先“【新优先项】”。
-若条件仍有占位符，先问我，不自行假定。
-请按材料规则更新同一个“运动耳机比较.html”，同步修改当前条件、符合预算状态、比较说明及结论；不能只改标题，也不能残留与新条件冲突的旧说明。
-保留全部A/B/C原始数据、“课堂模拟”标识和自包含结构，不补造功能，不联网、不发布。
-写入后再次读取目标HTML，指出文件中的新条件，说明相对旧条件改变了哪些部分。推荐若未改变，就按材料解释原因，不为体现修改而强行换型号。不要声称已替我刷新浏览器。</textarea>
-<span class="status" aria-live="polite"></span>
-</div>
-<p><strong>回读之后：</strong>回到浏览器中已打开的 <code>运动耳机比较.html</code>，刷新页面。看新条件、符合预算状态和说明是否一起更新。最终推荐没有改变也可能合理，关键是比较依据确实按新条件重新处理。</p>
-
-<h3>遇到具体问题，就指出具体位置</h3>
-<div class="tablewrap">
+<p>同一分组里还有四项，分工不同：<b>备用模型</b>在主模型调用失败时接上；<b>辅助模型</b>处理命名、摘要这类小任务；<b>子智能体</b>决定并行小任务用哪个模型；<b>多智能体协作</b>决定多个模型怎样分工。它们不影响主对话的输出风格，影响的是&quot;出错时会不会断&quot;和&quot;小任务花谁的钱&quot;。</p>
+<p>页面上一句提示值得记住：主模型<b>应用于新会话</b>，当前对话可在输入框的模型选择器里临时切换。所以改完主模型回到旧会话，看到的还是原来的模型。</p>
+<h3>记忆｜开关、预算与内置层</h3>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-memory-settings.png" title="点击查看大图"><img src="assets/lesson33/hermes-memory-settings.png" alt="Hermes桌面端持久记忆设置" loading="lazy" width="4718592" height="4292935744"></a><figcaption></p>
+<p>图解：页面顶端写着&quot;已选记忆提供方：无一 — 仅内置记忆&quot;。内置层说明 <code>MEMORY.md</code> 和 <code>USER.md</code> 是 Hermes 自己的记忆文件，独立于任何外部提供方，两者默认都会载入会话，可以在这里分别关闭。下面两行开关分别控制持久记忆和用户画像（图中都开着）；再下面是两个数字：记忆预算 2200、画像预算 1375；最后一行&quot;记忆提供方&quot;当前只有&quot;仅内置&quot;。</figcaption></figure>
+<p>怎么读这几个数字：预算决定&quot;能留多少字&quot;，不是&quot;记得多准&quot;。预算小，只能留最要紧的偏好；写满以后新内容挤掉旧内容，重要的条目不主动清理就会丢。想要更长的记忆，可以接外部记忆提供方，但那是另一种服务，涉及数据去向和费用，不在本课范围。</p>
+<p>侧栏里同一分组下还有&quot;上下文与压缩&quot;，管的是单次对话太长时怎么压缩前文。记忆管&quot;跨会话留什么&quot;，上下文管&quot;这一次留多长&quot;，两者不要混为一谈。</p>
+<h3>语言与外观｜界面中文来自官方语言包</h3>
+<p>界面里的中文是官方语言包翻译的静态文字，模型回答、工具输出和日志不会因此全部变成中文。设置 › 外观 里可以改界面语言；命令行等价做法是先设语言再重启界面：</p>
+<div class="copy-block">
+      <pre id="lesson33-code-1"><code class="language-text">hermes config set display.language zh
+</code></pre>
+      <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
+    </div><p>要让助手用中文回答，还要在提示里明确&quot;默认使用简体中文回答&quot;。只有模型接通后得到实际中文回答，才说明这条对话路线可用；模型没接通时，仍能分别检查程序版本和静态中文界面。</p>
+<h3>工具与密钥｜在哪里开，在哪里存</h3>
+<p>设置里的「工具与密钥」管工具集与密钥，「安全」管权限边界。命令行对应 <code>hermes tools</code>，按菜单选择入口并启用文件、Memory、Skills 相关项。默认配置可能关闭部分工具，任务里出现&quot;没有这个工具&quot;时，先回这里确认开关，而不是反复重装。</p>
+<p>密钥只在本机设置窗口输入，<b>不写进提示词、不投屏、不截图</b>。课堂上展示这一页时，停在分组名称上即可，不展开具体条目。</p>
+<h3>技能入口｜管理面板里的技能库</h3>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-skills-hub.png" title="点击查看大图"><img src="assets/lesson33/hermes-skills-hub.png" alt="官方Web Dashboard中的技能入口" loading="lazy" width="1280" height="720"></a><figcaption></p>
+<p>图解：这是官方文档里的管理面板示例，Skills 页面可以查找技能、浏览技能库；图中列表为空。桌面端的「技能与工具」是同一件事的另一个入口，能看已保存的技能及其启用状态。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-model-picker.png" title="点击查看大图"><img src="assets/lesson33/hermes-model-picker.png" alt="官方Web Dashboard中的模型选择对话框" loading="lazy" width="1280" height="720"></a><figcaption></p>
+<p>图解：同一套面板里的模型选择对话框——左侧选提供方，右侧选具体模型，右下角 Switch 确认。能在这个列表里看到模型名称，不等于已经接通账号或取得可用额度。</figcaption></figure>
+<h3>同一个动作，两种位置</h3>
 <table>
-<thead><tr><th>现象</th><th>处理动作</th></tr></thead>
+<thead>
+<tr>
+<th>动作</th>
+<th>桌面端</th>
+<th>命令行</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><code>@</code> 找不到底料</td><td>检查实际启动文件夹、下载文件位置及名称；处理浏览器自动添加的文件名编号后再引用。</td></tr>
-<tr><td>只有代码回答，没有 HTML 文件</td><td>继续要求用文件工具写入“运动耳机比较.html”，并实际回读；不要改用 <code>/export</code>。</td></tr>
-<tr><td>Pi 说改好了，但浏览器没变</td><td>核对目标文件路径并刷新。若回读内容仍旧，要求修改具体残留字段；不要只重复“再试一次”。</td></tr>
-<tr><td>出现底料没有的功能</td><td>指出具体句子，如“防水等级”；要求删除无依据结论，并保留材料边界说明。</td></tr>
-<tr><td>授权失败或额度不可用</td><td>查看账号实际可用服务与模型，或改用已具备授权环境的课堂设备；未完成调用时不把静态提示词算作作品。</td></tr>
+<tr>
+<td>开新会话</td>
+<td>新建会话 / ⌘N</td>
+<td><code>/new</code></td>
+</tr>
+<tr>
+<td>看有哪些工具</td>
+<td>技能与工具、设置 › 工具与密钥</td>
+<td><code>/tools list</code></td>
+</tr>
+<tr>
+<td>临时换模型</td>
+<td>输入框旁的模型选择器</td>
+<td><code>/model</code></td>
+</tr>
+<tr>
+<td>改默认模型</td>
+<td>设置 › 模型 › 主模型</td>
+<td><code>hermes model</code></td>
+</tr>
+<tr>
+<td>看记了什么</td>
+<td>设置 › 记忆与上下文 › 持久记忆，或直接打开 <a href="http://MEMORY.md">MEMORY.md</a></td>
+<td>打开同一文件</td>
+</tr>
+<tr>
+<td>接消息平台</td>
+<td>消息平台、设置 › 网关</td>
+<td><code>hermes gateway setup</code></td>
+</tr>
 </tbody>
 </table>
-</div>
+<p>两种位置不是二选一：桌面端适合看清结构，命令行适合精确控制。会看桌面端之后，再读终端里的配置说明就不会觉得是一堆陌生名词。</p>
 
-<p><strong>思考题：</strong>第二次已经改变预算，最终推荐却没有变化，是不是一定改错了？</p>
-<details>
-<summary>展开参考答案</summary>
-<p>不一定。预算变化可能没有新增符合项，也可能新增的型号在当前优先项下并不占优。要看新预算是否进入文件、状态是否重算、说明是否引用正确数据，不能只看推荐型号有没有变化。</p>
-</details>
-</section>
+      </section>
+<section class="lesson-section" id="sec-5">
+        <h2>04 优势与边界</h2>
+        <h3>与 WorkBuddy 放在一起比</h3>
+<table>
+<thead>
+<tr>
+<th>比较方面</th>
+<th>Hermes Agent</th>
+<th>WorkBuddy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品与部署</td>
+<td>源码开放，可自行修改并部署到自己的电脑或服务器</td>
+<td>桌面工作台加配套服务，安装即用</td>
+</tr>
+<tr>
+<td>界面组织</td>
+<td>桌面端 + 命令行 + 管理面板 + 消息网关，四套入口共用一份配置</td>
+<td>桌面工作台、助理与平台提供的入口</td>
+</tr>
+<tr>
+<td>经验存放</td>
+<td>记忆与技能是本机文件，可打开、可编辑、可纳入版本管理</td>
+<td>通过界面组织文件任务、专家与连接器</td>
+</tr>
+<tr>
+<td>需要承担</td>
+<td>模型接入、进程、权限、更新都要自己维护</td>
+<td>遵循客户端与云服务的账号、功能和运行条件</td>
+</tr>
+</tbody>
+</table>
+<h3>三条优势，说清&quot;好在哪&quot;</h3>
+<p><b>第一，运行环境在自己手里。</b> 软件装在自己的机器上，配置目录、日志、进程都能查；模型接哪个服务由自己决定，可以在不同服务商之间切换，也可以在需要时接本地模型。对要研究&quot;Agent 到底怎么执行&quot;的人来说，这一层可见性比多一个按钮更重要。</p>
+<p><b>第二，经验是文件，不是黑箱。</b> 记忆是 <code>MEMORY.md</code> 和 <code>USER.md</code>，技能是 <code>SKILL.md</code>，都在本机、都是纯文本。可以直接打开改一句、删掉过期条目、放进 Git 留版本；桌面端把开关和预算摆在设置里，看得见&quot;留了多少、还剩多少&quot;。这一点在讲&quot;AI 为什么会记住我的偏好&quot;时特别好用——它不是玄学，就是一个文件。</p>
+<p><b>第三，入口多，但共用一套配置。</b> 桌面端、终端、浏览器面板、消息网关读同一份记忆和技能。在桌面端看清结构，在终端精确执行，在手机上通过消息平台派任务，不需要各建一套方法。切换入口的学习成本因此比&quot;换一个产品&quot;低。</p>
+<h3>三个代价，也要说清</h3>
+<p><b>模型要自己接。</b> 网页聊天账号不等于 API 账号，装好软件不会自动获得免费模型。要准备可用的 API Key、额度和服务地址，否则界面能打开却发不出任务。</p>
+<p><b>维护要自己来。</b> 版本更新、依赖、权限、后台进程、定时任务是否还在跑，都要自己盯。桌面端把状态显示在左下角，只是让问题更容易被发现，不等于问题不会发生。</p>
+<p><b>界面还在快速变化。</b> 按钮名称、分组顺序、默认值都可能变。本课截图是 v0.22.6 的样子，看到自己的机器不一样时，按&quot;分组—用途&quot;去找，不要死记位置。来源不明的汉化补丁和&quot;一键脚本&quot;也不要随手装。</p>
+<h3>选型判断</h3>
+<p>以界面完成日常办公、希望少处理运行配置时，继续用 WorkBuddy 更省事；要研究和改造 Agent 的工作方式、要把助手放在自己管理的机器上、要看清记忆和技能到底存了什么，Hermes 给了更大的控制空间。这是基于产品形态的判断，不是速度或回答质量的排名。</p>
+<h3>课堂观察清单</h3>
+<p>看界面时按这张表逐项确认，不必写成长篇笔记：</p>
+<table>
+<thead>
+<tr>
+<th>看什么</th>
+<th>在哪看</th>
+<th>什么算正常</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端是否就绪</td>
+<td>主界面左下角</td>
+<td>显示「后端 就绪」</td>
+</tr>
+<tr>
+<td>当前用哪个模型</td>
+<td>输入框右下角</td>
+<td>模型名与推理档位可见，且与设置里的主模型能对上</td>
+</tr>
+<tr>
+<td>装了哪些技能</td>
+<td>技能与工具</td>
+<td>列表能打开，能看出启用状态</td>
+</tr>
+<tr>
+<td>记忆留了多少</td>
+<td>设置 › 记忆与上下文 › 持久记忆</td>
+<td>两个预算数字有值，两个开关状态明确</td>
+</tr>
+<tr>
+<td>界面语言是否生效</td>
+<td>任一设置页</td>
+<td>菜单与分组名称为中文，专有名词可能仍是英文</td>
+</tr>
+<tr>
+<td>消息平台是否连接</td>
+<td>消息平台</td>
+<td>能看出已连接或未连接，而不是空白页</td>
+</tr>
+</tbody>
+</table>
+<p>以上每项只回答&quot;看到什么&quot;，不要求每看一项就写一条记录。真正需要留下的，是下一节总结表里那三句话。</p>
 
-<section id="s05">
-<h2><small>05 · 本课总结</small>让修改落在真实文件里</h2>
-<p>今天的关键不是让模型多写一段解释，而是让 Pi 把本地材料转成可打开的网页，并根据你的新条件更新同一份文件。<strong>材料读取记录、实际 HTML、浏览器效果</strong>分别回答“依据是什么”“写到了哪里”“最终看到什么”。</p>
-<h3>集中查看这三项成果标准</h3>
-<ol>
-<li><strong>依据一致：</strong>A/B/C 数据与底料相符，保留课堂模拟标识；预算和优先项清楚，不补造功能与效果。</li>
-<li><strong>文件可用：</strong>目标 HTML 实际存在，能在浏览器打开；页面层次清楚，窄屏文字可读，表格可横向查看。</li>
-<li><strong>修改有效：</strong>至少一项条件由你改变过；回读文件和浏览器刷新后，新条件、筛选状态与解释相符。结论是否变化都能用材料说明。</li>
-</ol>
-<p>记住两个边界：<strong>工作文件夹不是自动安全沙箱；会话分支不会回滚磁盘文件。</strong></p>
+      </section>
+<section class="lesson-section" id="finish">
+        <h2>05 本课总结</h2>
+        <table>
+<thead>
+<tr>
+<th>本课要带走的能力</th>
+<th>用什么判断自己已经理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>认入口</td>
+<td>能说出会话、技能与工具、产物、定时任务各自管什么，不把设置页当成任务结果</td>
+</tr>
+<tr>
+<td>会看设置</td>
+<td>能解释主模型、工具开关、记忆预算三项改动分别影响下一次对话的哪一部分</td>
+</tr>
+<tr>
+<td>讲清优势</td>
+<td>能说出&quot;环境自己管、经验是文件、入口共用配置&quot;三条优势，并各配一个代价</td>
+</tr>
+<tr>
+<td>看边界</td>
+<td>能说明装上桌面端不等于内容都在本机计算，也能说出界面版本差异该怎么处理</td>
+</tr>
+</tbody>
+</table>
+<p><b>收束：</b> 桌面端的价值不在于按钮好看，而在于把原本藏在命令和文件里的东西摆到台面上——你现在能指出模型在哪、记忆存在哪、技能从哪来。看清这些之后，再用命令行就不会觉得是在盲操作。</p>
+<p>下一步继续做综合作品时，可以沿用同一套观察方法：先确认工具和模型是否就绪，再让 Agent 执行，最后回到文件里核对结果。学到的判断不依赖某个具体版本，换工具也能用。</p>
 
-<h3>真实来源与版本依据</h3>
-<p class="small">本课技术路径按 Pi CLI 1.4.0。以下链接用于查阅官方命令、工具与权限说明；商品底料是本页原创课堂模拟数据，不是官方商品示例。查看在线文档、安装和模型调用需要网络；本页阅读、条件填词及底料下载不依赖外部资源。</p>
-<ul class="sources">
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/README.md" target="_blank" rel="noopener noreferrer">Pi 1.4.0 README：安装与入门</a></li>
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/quickstart.md" target="_blank" rel="noopener noreferrer">1.4.0 快速开始：交互与文件引用</a></li>
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/how-pi-works.md" target="_blank" rel="noopener noreferrer">工作机制与权限：模型、工具和执行过程</a></li>
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/cli.md" target="_blank" rel="noopener noreferrer">CLI：工具与命令行选项</a></li>
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/windows.md" target="_blank" rel="noopener noreferrer">Windows：Git Bash 等运行条件</a></li>
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/providers.md" target="_blank" rel="noopener noreferrer">服务商与授权</a> · <a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/models.md" target="_blank" rel="noopener noreferrer">模型选择</a></li>
-<li><a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/sessions.md" target="_blank" rel="noopener noreferrer">会话、分支与继续会话</a> · <a href="https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/slash-commands.md" target="_blank" rel="noopener noreferrer">斜杠命令：包括 /export</a></li>
-</ul>
-</section>
-
-<footer>
-<a href="index.html">← 返回课程目录</a>
-<p class="small">第27次独立拓展课 · Pi Agent：让智能体读材料、做网页、再修改</p>
-</footer>
-<noscript>
-<p class="note warning">当前浏览器未启用 JavaScript。课程正文和提示词仍可阅读并手动复制；下载按钮与条件填词不可用。可复制表格和边界说明，手动保存为正文标明的 Markdown 文件名，再替换提示词中的方括号条件。</p>
-</noscript>
-</main>
-</div>
-
-<script>
-(function(){
-"use strict";
-const $=id=>document.getElementById(id);
-
-function selectText(el){
-  if(el.tagName==="TEXTAREA"){
-    el.focus();
-    el.select();
-  }else{
-    const selection=window.getSelection();
-    const range=document.createRange();
-    range.selectNodeContents(el);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    el.setAttribute("tabindex","-1");
-    el.focus();
-  }
+      </section>
+    <a class="back-top" href="#top">返回顶部 ↑</a>
+  </main><script>async function copyLessonText(text){
+ try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);return;}}catch(_){}
+ const previous=document.activeElement;
+ const area=document.createElement('textarea');area.value=text;area.readOnly=true;area.style.position='fixed';area.style.opacity='0';(lessonDialogs[lessonDialogs.length-1]?.element||document.body).appendChild(area);area.select();
+ try{if(!document.execCommand('copy'))throw Error('复制被浏览器拒绝');}
+ finally{area.remove();if(previous instanceof HTMLElement)previous.focus({preventScroll:true});}
 }
-
-document.querySelectorAll("[data-copy]").forEach(button=>{
-  button.addEventListener("click",async()=>{
-    const el=$(button.dataset.copy);
-    const status=button.closest(".copybox").querySelector(".status");
-    const text=el.tagName==="TEXTAREA"?el.value:el.textContent;
-    try{
-      if(!navigator.clipboard||!window.isSecureContext) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(text.trim());
-      status.textContent="已复制。请粘贴到标明的终端或 Pi 输入区。";
-    }catch(error){
-      selectText(el);
-      status.textContent="自动复制失败，文本已选中。请按 Ctrl+C / ⌘C，或在手机上长按文本复制。";
-    }
-  });
-});
-
-function materialMarkdown(article){
-  const lines=["# "+article.dataset.title,""];
-  article.querySelectorAll("[data-md],table").forEach(el=>{
-    if(el.tagName==="TABLE"){
-      const rows=Array.from(el.rows).map(row=>
-        Array.from(row.cells).map(cell=>
-          cell.textContent.trim().replace(/\|/g,"\\|")
-        )
-      );
-      lines.push("| "+rows[0].join(" | ")+" |");
-      lines.push("| "+rows[0].map(()=>"---").join(" | ")+" |");
-      rows.slice(1).forEach(row=>lines.push("| "+row.join(" | ")+" |"));
-      lines.push("");
-    }else{
-      lines.push(el.textContent.trim(),"");
-    }
-  });
-  return lines.join("\n");
+function selectLessonText(target){
+ target.scrollIntoView({block:'nearest',behavior:'instant'});
+ if(!target.hasAttribute('tabindex'))target.tabIndex=-1;
+ target.focus({preventScroll:true});
+ const range=document.createRange();range.selectNodeContents(target);
+ const selection=getSelection();selection.removeAllRanges();selection.addRange(range);
 }
+document.addEventListener('click',async event=>{
+ const button=event.target.closest?.('.copy-button[data-copy-target]');if(!button)return;
+ const scope=button.closest('.ppt-slide-card')||document;
+ const target=scope.querySelector('#'+CSS.escape(button.dataset.copyTarget));
+ const label=button.textContent.trim();
+ try{if(!target)throw Error('复制目标不存在');await copyLessonText(target.textContent.trim());button.textContent='已复制';}
+ catch(_){button.textContent='复制失败，请手动复制已选文本';if(target)selectLessonText(target);}
+ setTimeout(()=>button.textContent=label,2000);
+});
 
-document.querySelectorAll("[data-download]").forEach(button=>{
-  button.addEventListener("click",()=>{
-    const article=$(button.dataset.download);
-    const status=article.querySelector(".status");
-    let url;
-    try{
-      const blob=new Blob(["\uFEFF"+materialMarkdown(article)],{type:"text/markdown;charset=utf-8"});
-      url=URL.createObjectURL(blob);
-      const a=document.createElement("a");
-      a.href=url;
-      a.download=article.dataset.filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      status.textContent="已发起下载："+article.dataset.filename+"。请确认浏览器下载位置，并移入练习文件夹。";
-      setTimeout(()=>URL.revokeObjectURL(url),30000);
-    }catch(error){
-      if(url) URL.revokeObjectURL(url);
-      status.textContent="下载未能发起。可复制本表及说明，手动保存为 "+article.dataset.filename+"。";
-    }
+// 对话框按打开顺序处理，图片预览位于放映舞台之上。
+const lessonDialogs=[];
+function lessonVisible(element){
+ return element instanceof HTMLElement&&element.isConnected&&element.getClientRects().length>0&&
+  getComputedStyle(element).visibility!=='hidden'&&!element.closest('[inert]')&&!element.matches(':disabled');
+}
+function lessonFocusables(root){
+ return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),summary,[tabindex]:not([tabindex="-1"])')).filter(lessonVisible);
+}
+function lessonRestoreFocus(previous){
+ const navLinks=Array.from(document.querySelectorAll('.jump-nav a')).filter(link=>{
+  const box=link.getBoundingClientRect();return box.right>0&&box.left<innerWidth;
+ });
+ const target=[previous,document.querySelector('.ppt-open-trigger'),...navLinks].find(element=>lessonVisible(element)&&!element.matches('body,html'));
+ target?.focus({preventScroll:true});
+}
+function openLessonDialog(element,close,previous=document.activeElement){
+ const background=Array.from(document.body.children).filter(node=>node!==element&&!['SCRIPT','STYLE'].includes(node.tagName)).map(node=>({node,inert:node.inert}));
+ const entry={element,close,previous,background,overflow:document.body.style.overflow};
+ element.setAttribute('role','dialog');element.setAttribute('aria-modal','true');element.tabIndex=-1;
+ lessonDialogs.push(entry);background.forEach(({node})=>{node.inert=true;});document.body.style.overflow='hidden';
+ return entry;
+}
+function closeLessonDialog(element){
+ const top=lessonDialogs[lessonDialogs.length-1];if(!top||top.element!==element)return false;
+ lessonDialogs.pop();top.background.forEach(({node,inert})=>{node.inert=inert;});
+ document.body.style.overflow=top.overflow;lessonRestoreFocus(top.previous);return true;
+}
+document.addEventListener('keydown',event=>{
+ const top=lessonDialogs[lessonDialogs.length-1];if(!top||event.ctrlKey||event.metaKey||event.altKey)return;
+ if(event.key==='Escape'){
+  event.preventDefault();event.stopImmediatePropagation();top.close();return;
+ }
+ if(event.key!=='Tab')return;
+ const items=lessonFocusables(top.element),first=items[0]||top.element,last=items[items.length-1]||top.element;
+ if(!items.length||!items.includes(document.activeElement)||(!event.shiftKey&&document.activeElement===last)||(event.shiftKey&&document.activeElement===first)){
+  event.preventDefault();(event.shiftKey?last:first).focus({preventScroll:true});
+ }
+},true);
+document.addEventListener('focusin',event=>{
+ const top=lessonDialogs[lessonDialogs.length-1];if(top&&!top.element.contains(event.target)){
+  (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
+ }
+});
+document.addEventListener('click',event=>{
+ const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
+ overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
+ const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';
+ const close=document.createElement('button');close.type='button';close.textContent='关闭原图';close.style.cssText='position:absolute;top:12px;right:16px;padding:10px 16px;font-size:16px;cursor:pointer;';
+ const remove=()=>{if(closeLessonDialog(overlay))overlay.remove();};
+ close.addEventListener('click',remove);overlay.addEventListener('click',e=>{if(e.target===overlay)remove();});
+ overlay.append(image,close);document.body.append(overlay);openLessonDialog(overlay,remove,link);close.focus({preventScroll:true});
+});
+
+// 侧边栏导航：保持原结构、折叠偏好与滚动高亮。
+(function initJumpNav(){
+ const nav=document.querySelector('.jump-nav');if(!nav)return;
+ if(!nav.querySelector('.jump-nav-header')){
+  const oldLinks=Array.from(nav.querySelectorAll('a'));
+  nav.innerHTML='<div class="jump-nav-header"><span class="jump-nav-title">📑 本课导读</span><button type="button" class="jump-nav-toggle" aria-label="收起导航" title="收起/展开导航"><span class="toggle-icon">‹</span></button></div><div class="jump-nav-body"><div class="jump-nav-list"></div><a class="jump-nav-top" href="#top" title="返回顶部"><span class="top-icon">↑</span><span class="top-label">回顶部</span></a></div>';
+  const list=nav.querySelector('.jump-nav-list');
+  oldLinks.forEach((a,idx)=>{
+   a.className='jump-nav-link';const text=a.textContent.trim(),m=text.match(/^(\d{1,2})\s*(.*)$/);
+   const index=document.createElement('span');index.className='nav-idx';index.textContent=m?m[1]:String(idx).padStart(2,'0');
+   const label=document.createElement('span');label.className='nav-label';label.textContent=m?(m[2]||m[1]):text;
+   a.replaceChildren(index,label);list.appendChild(a);
   });
-});
-
-const firstTemplate=$("earFirst").value;
-const changeTemplate=$("earChange").value;
-const form=$("conditions");
-let generated=false;
-
-form.addEventListener("submit",event=>{
-  event.preventDefault();
-  if(!form.reportValidity()) return;
-  const b1=$("budget1").value,p1=$("pref1").value;
-  const b2=$("budget2").value,p2=$("pref2").value;
-  if(b1===b2&&p1===p2){
-    $("conditionStatus").textContent="两轮条件相同。请至少改变一次预算或优先项，再生成提示词。";
-    return;
+ }
+ const toggle=nav.querySelector('.jump-nav-toggle'),body=nav.querySelector('.jump-nav-body'),narrow=matchMedia('(max-width:1023px)'),storageKey='jumpNavCollapsed';
+ try{if(sessionStorage.getItem(storageKey)==='true')nav.classList.add('is-collapsed');}catch(_){}
+ function syncNavState(){
+  const collapsed=!narrow.matches&&nav.classList.contains('is-collapsed');if(body)body.inert=collapsed;
+  if(toggle){toggle.setAttribute('aria-expanded',String(!collapsed));toggle.setAttribute('aria-label',collapsed?'展开导航':'收起导航');toggle.title=collapsed?'展开导航':'收起导航';}
+ }
+ function toggleNav(collapsed){
+  const value=typeof collapsed==='boolean'?collapsed:!nav.classList.contains('is-collapsed');nav.classList.toggle('is-collapsed',value);
+  try{sessionStorage.setItem(storageKey,String(value));}catch(_){}syncNavState();
+ }
+ toggle?.addEventListener('click',event=>{event.stopPropagation();toggleNav();});
+ nav.addEventListener('click',event=>{if(nav.classList.contains('is-collapsed')&&!event.target.closest('a'))toggleNav(false);});
+ const links=Array.from(nav.querySelectorAll('a[href^="#"]')).filter(a=>!a.classList.contains('jump-nav-top')&&a.getAttribute('href')!=='#top');
+ const targets=links.map(link=>({link,target:document.getElementById(link.getAttribute('href').slice(1))})).filter(item=>item.target);
+ let active=null,ticking=false;
+ function updateActiveLink(){
+  let current=null;const position=scrollY+(narrow.matches?90:180);
+  for(const item of targets){if(position>=item.target.getBoundingClientRect().top+scrollY)current=item;else break;}
+  if(!current&&scrollY<250)current=targets[0];
+  if(targets.length&&scrollY+innerHeight>=document.documentElement.scrollHeight-2)current=targets[targets.length-1];
+  links.forEach(link=>{const selected=link===current?.link;link.classList.toggle('active',selected);if(selected)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+  if(current?.link!==active){
+   active=current?.link;
+   if(narrow.matches&&active){const box=active.getBoundingClientRect(),bounds=nav.getBoundingClientRect();if(box.left<bounds.left+12)nav.scrollLeft+=box.left-bounds.left-12;else if(box.right>bounds.right-12)nav.scrollLeft+=box.right-bounds.right+12;}
   }
-  $("earFirst").value=firstTemplate
-    .replace("【选择预算】",b1)
-    .replace("【选择优先项】",p1);
-  $("earChange").value=changeTemplate
-    .replace("【原预算】",b1)
-    .replace("【原优先项】",p1)
-    .replace("【新预算】",b2)
-    .replace("【新优先项】",p2);
-  generated=true;
-  $("conditionStatus").textContent=
-    "提示词已填入：第一次 "+b1+"元 / "+p1+
-    "；第二次 "+b2+"元 / "+p2+
-    "。这里只生成提示词文本，尚未调用 Pi，也未生成比较作品。";
-});
-
-form.addEventListener("change",()=>{
-  if(generated){
-    $("conditionStatus").textContent="选择已改变。请重新点击“按我的选择生成两轮提示词”，下方提示词才会更新。若已完成第一次生成，请保持原条件与实际发送内容一致。";
-  }
-});
+ }
+ function schedule(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateActiveLink();ticking=false;});}
+ window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',()=>{syncNavState();schedule();});
+ narrow.addEventListener('change',()=>{syncNavState();schedule();});syncNavState();updateActiveLink();
 })();
-</script>
-</body>
-</html>
+
+// 每个源节点只进入一个切片；嵌套标题和比较网格保持完整结构。
+function lessonSlideFragments(section){
+ const fragments=[];let buffer=[];
+ const meaningful=nodes=>nodes.some(node=>node.nodeType!==3||node.textContent.trim());
+ function add(nodes){if(meaningful(nodes))fragments.push(nodes);}
+ function flush(){add(buffer);buffer=[];}
+ function atomic(node){return node.nodeType===1&&node.matches('.step-card,.practice-task,.concept-card');}
+ function splitWrapper(wrapper){
+  let pending=[];
+  function commit(){if(meaningful(pending)){const clone=wrapper.cloneNode(false);pending.forEach(node=>clone.appendChild(node.cloneNode(true)));add([clone]);}pending=[];}
+  for(const node of wrapper.childNodes){
+   if(atomic(node)){commit();const clone=wrapper.cloneNode(false);clone.appendChild(node.cloneNode(true));add([clone]);}
+   else pending.push(node);
+  }
+  commit();
+ }
+ for(const node of section.childNodes){
+  if(node.nodeType===1&&node.tagName==='H2')continue;
+  if(node.nodeType===1&&node.tagName==='H3')flush();
+  if(atomic(node)){flush();add([node.cloneNode(true)]);}
+  else if(node.nodeType===1&&node.matches('.step-list,.step-cards,.concept-list')&&Array.from(node.children).some(atomic)){
+   flush();splitWrapper(node);
+  }else buffer.push(node.cloneNode(true));
+ }
+ flush();return fragments;
+}
+
+// 原生双模课件：保留现有控件与样式，安全分片并按来源定位。
+(function initPPTMode(){
+ if(!document.querySelector('.ppt-open-trigger')){
+  const trigger=document.createElement('button');trigger.type='button';trigger.className='ppt-open-trigger';trigger.innerHTML='<span>🖥️</span><span>幻灯片演示</span>';trigger.title='进入全屏翻页 PPT 演示模式（快捷键：P）';document.body.appendChild(trigger);
+ }
+ let pptSlides=[],currentSlideIndex=0,returnScroll={x:0,y:0};
+ function createPPTStage(){
+  let stage=document.querySelector('.ppt-stage');if(stage)return stage;
+  stage=document.createElement('div');stage.className='ppt-stage';stage.setAttribute('aria-label','PPT幻灯片放映区');
+  stage.innerHTML='<div class="ppt-topbar"><button type="button" class="ppt-top-btn" id="ppt-fullscreen-btn" title="全屏放映"><span>⛶</span><span>全屏</span></button><button type="button" class="ppt-top-btn exit" id="ppt-exit-btn" title="退出 PPT 模式（Esc）"><span>✕</span><span>返回文档</span></button></div><button type="button" class="ppt-nav-btn ppt-nav-prev" title="上一页（← / ↑ / PageUp）">‹</button><button type="button" class="ppt-nav-btn ppt-nav-next" title="下一页（→ / ↓ / Space / PageDown）">›</button><div class="ppt-footer"><span class="ppt-slide-title" id="ppt-current-title">封面导引</span><span class="ppt-page-counter" id="ppt-counter">1 / 1</span><span class="ppt-hint">按 ← → 翻页 · Tab 切换控件 · Esc 退出</span></div><div class="ppt-cards-container"></div>';
+  document.body.appendChild(stage);return stage;
+ }
+ function buildSlides(){
+  const stage=createPPTStage(),container=stage.querySelector('.ppt-cards-container');container.replaceChildren();pptSlides=[];
+  const hero=document.querySelector('.hero,.detail-header');
+  function addCard(nodes,source,title,badge,fragment){
+   const card=document.createElement('div');card.className='ppt-slide-card';card.dataset.sourceId=source.id||'top';card.dataset.sourceFragment=String(fragment);
+   const mark=document.createElement('span');mark.className='ppt-slide-badge';mark.textContent=badge;card.appendChild(mark);nodes.forEach(node=>card.appendChild(node));container.appendChild(card);pptSlides.push({card,title,source});
+  }
+  if(hero)addCard(Array.from(hero.childNodes,node=>node.cloneNode(true)),hero,'课程导引','🎯 本课主题',0);
+  document.querySelectorAll('.lesson-section,body.lesson-page .part').forEach((section,index)=>{
+   const heading=section.querySelector('h2'),badge=heading?.textContent.trim()||`板块 ${index+1}`,base=badge.replace(/^[0-9\s·|｜-]+/,'').trim();
+   lessonSlideFragments(section).forEach((nodes,fragment)=>{
+    const headingNode=nodes.map(node=>node.nodeType===1?(node.matches('h3,h4,h5')?node:node.querySelector('h3,h4,h5')):null).find(Boolean);
+    addCard(nodes,section,headingNode?.textContent.trim()||base,`📘 ${badge}`,fragment+1);
+   });
+  });
+ }
+ function readingTarget(){
+  const sections=Array.from(document.querySelectorAll('.hero,.detail-header,.lesson-section,body.lesson-page .part'));let target=sections[0];
+  for(const section of sections){if(section.getBoundingClientRect().top<=200)target=section;else break;}return target;
+ }
+ function showSlide(index){
+  if(!pptSlides.length)return;currentSlideIndex=Math.max(0,Math.min(index,pptSlides.length-1));
+  pptSlides.forEach((slide,i)=>{slide.card.classList.toggle('active',i===currentSlideIndex);if(i===currentSlideIndex)slide.card.scrollTop=0;});
+  const stage=document.querySelector('.ppt-stage');stage.querySelector('#ppt-counter').textContent=`${currentSlideIndex+1} / ${pptSlides.length}`;stage.querySelector('#ppt-current-title').textContent=pptSlides[currentSlideIndex].title;
+  stage.querySelector('.ppt-nav-prev').disabled=currentSlideIndex===0;stage.querySelector('.ppt-nav-next').disabled=currentSlideIndex===pptSlides.length-1;
+  const active=document.activeElement;if(document.body.classList.contains('is-ppt-mode')&&(!stage.contains(active)||active?.closest('.ppt-slide-card:not(.active)')||active?.disabled))stage.querySelector('#ppt-exit-btn').focus({preventScroll:true});
+ }
+ function closePPT(){
+  const stage=document.querySelector('.ppt-stage');if(lessonDialogs[lessonDialogs.length-1]?.element!==stage)return;
+  document.body.classList.remove('is-ppt-mode');closeLessonDialog(stage);window.scrollTo({left:returnScroll.x,top:returnScroll.y,behavior:'instant'});
+  if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{});
+ }
+ function openPPT(initialTarget=null){
+  if(document.body.classList.contains('is-ppt-mode')||lessonDialogs.length)return;
+  const previous=document.activeElement,source=initialTarget===null?readingTarget():initialTarget;returnScroll={x:scrollX,y:scrollY};
+  buildSlides();const stage=document.querySelector('.ppt-stage'),index=typeof source==='number'?source:Math.max(0,pptSlides.findIndex(slide=>slide.source===source));
+  document.body.classList.add('is-ppt-mode');openLessonDialog(stage,closePPT,previous);showSlide(index);stage.querySelector('#ppt-exit-btn').focus({preventScroll:true});
+ }
+ document.addEventListener('click',event=>{
+  if(event.target.closest('.ppt-open-trigger'))openPPT();
+  else if(event.target.closest('#ppt-exit-btn'))closePPT();
+  else if(event.target.closest('.ppt-nav-prev'))showSlide(currentSlideIndex-1);
+  else if(event.target.closest('.ppt-nav-next'))showSlide(currentSlideIndex+1);
+  else if(event.target.closest('#ppt-fullscreen-btn')){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.().catch(()=>{});}
+ });
+ window.addEventListener('keydown',event=>{
+  if(event.ctrlKey||event.metaKey||event.altKey)return;
+  const active=document.activeElement;if(active?.isContentEditable||active?.closest('input,textarea,select,[role="textbox"]'))return;
+  if(document.body.classList.contains('is-ppt-mode')){
+   if(lessonDialogs[lessonDialogs.length-1]?.element!==document.querySelector('.ppt-stage'))return;
+   if((event.code==='Space'||event.key===' ')&&active?.closest('button,summary,a[href]'))return;
+   if(['ArrowRight','ArrowDown','Space','PageDown'].includes(event.code)||event.key===' '){event.preventDefault();showSlide(currentSlideIndex+1);}
+   else if(['ArrowLeft','ArrowUp','PageUp'].includes(event.code)){event.preventDefault();showSlide(currentSlideIndex-1);}
+   else if(event.code==='Home'){event.preventDefault();showSlide(0);}
+   else if(event.code==='End'){event.preventDefault();showSlide(pptSlides.length-1);}
+  }else if(!lessonDialogs.length&&(event.key==='p'||event.key==='P')){event.preventDefault();openPPT();}
+ });
+ if(new URLSearchParams(location.search).get('mode')==='ppt')openPPT(0);
+})();
+</script></body></html>
