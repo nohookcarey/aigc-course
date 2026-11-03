@@ -76,21 +76,13 @@ Hermes Agent 是 Nous Research 开源的智能体软件，装在自己的电脑�
 
 ### 2｜CLI 与桌面端：两种长相，一套配置
 
-**命令行长这样。** 终端输入 `hermes` 就进去，界面是纯文字，一条命令一个动作。下面是本机执行 `hermes status` 的实际输出：
+**命令行长这样。** 终端输入 `hermes`，先出这张启动页：界面是纯文字，一条命令一个动作。
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│                 ☤ Hermes Agent Status                  │
-└─────────────────────────────────────────────────────────┘
+![本机运行 hermes 后出现的终端启动页](assets/hermes-cli-launch.png)
 
-  Model:        anthropic/claude-opus-4.6
-  Provider:     Auto
-  Gateway:      ✓ running
-  Platforms:    none configured
-  Jobs:         0
-```
+图解：v0.22.6 的启动页。顶部版本行 `Hermes Agent v0.22.6 (2026.9.24) · stable · local f0d94882e89a`；`Available Tools` 是这次能用的工具集（浏览器、代码执行、文件读写、记忆等），`Available Skills` 是本机已装的技能（apple、creative、devops、email、note-taking、productivity 等）；左下角是当前模型 `claude-opus-4.6`、机构 `Nous Research` 和这次会话的编号。
 
-版本行：`Hermes Agent v0.22.6 (2026.9.24) · stable · local f0d94882e89a`。这四行就把"接的谁、网关活没活、有没有在跑的任务"说完了——命令行不摆界面，只报状态。
+命令行不摆控件，只列事实：接的谁、能用什么工具、装了什么技能、会话是哪一个。输出的都是纯文本，能直接复制进脚本。
 
 **桌面端长这样。** 同一个软件打开后：
 
