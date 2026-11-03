@@ -1401,20 +1401,10 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <p>图解：会话保留这一次的材料，记忆保留值得沿用的信息，技能保留可再次执行的方法。三者都不修改模型参数。</figcaption></figure>
 <p><b>软件负责执行，模型负责想。</b> 换模型只换&quot;想的人&quot;，读写文件仍由软件做。模型可能跑在云端，发出去的文字仍会离开本机——这条算代价，04 节展开。</p>
 <h3>2｜CLI 与桌面端：两种长相，一套配置</h3>
-<p><b>命令行长这样。</b> 终端输入 <code>hermes</code> 就进去，界面是纯文字，一条命令一个动作。下面是本机执行 <code>hermes status</code> 的实际输出：</p>
-<div class="copy-block">
-      <pre id="lesson33-code-1"><code class="language-text">┌─────────────────────────────────────────────────────────┐
-│                 ☤ Hermes Agent Status                  │
-└─────────────────────────────────────────────────────────┘
-
-  Model:        anthropic/claude-opus-4.6
-  Provider:     Auto
-  Gateway:      ✓ running
-  Platforms:    none configured
-  Jobs:         0
-</code></pre>
-      <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
-    </div><p>版本行：<code>Hermes Agent v0.22.6 (2026.9.24) · stable · local f0d94882e89a</code>。这四行就把&quot;接的谁、网关活没活、有没有在跑的任务&quot;说完了——命令行不摆界面，只报状态。</p>
+<p><b>命令行长这样。</b> 终端输入 <code>hermes</code>，先出这张启动页：界面是纯文字，一条命令一个动作。</p>
+<figure class="lesson-figure"><a href="assets/lesson33/hermes-cli-launch.png" title="点击查看大图"><img src="assets/lesson33/hermes-cli-launch.png" alt="本机运行 hermes 后出现的终端启动页" loading="lazy" width="1400" height="745"></a><figcaption></p>
+<p>图解：v0.22.6 的启动页。顶部版本行 <code>Hermes Agent v0.22.6 (2026.9.24) · stable · local f0d94882e89a</code>；<code>Available Tools</code> 是这次能用的工具集（浏览器、代码执行、文件读写、记忆等），<code>Available Skills</code> 是本机已装的技能（apple、creative、devops、email、note-taking、productivity 等）；左下角是当前模型 <code>claude-opus-4.6</code>、机构 <code>Nous Research</code> 和这次会话的编号。</figcaption></figure>
+<p>命令行不摆控件，只列事实：接的谁、能用什么工具、装了什么技能、会话是哪一个。输出的都是纯文本，能直接复制进脚本。</p>
 <p><b>桌面端长这样。</b> 同一个软件打开后：</p>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-desktop-home.png" title="点击查看大图"><img src="assets/lesson33/hermes-desktop-home.png" alt="Hermes 桌面端简体中文主界面" loading="lazy" width="1760" height="1105"></a><figcaption></p>
 <p>图解：整窗全貌（v0.22.6，简体中文、深色主题）。左上两个分组标签「会话」「机器人」，下面是导航项、搜索框、历史会话；右侧会话区；左下角后端状态；右下角版本号。</figcaption></figure>
@@ -1724,9 +1714,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <h3>语言与外观｜界面中文来自语言包</h3>
 <p>界面中文是官方语言包翻译的静态文字，模型回答、工具输出和日志不会因此全变中文。设置 › 外观 可改界面语言，命令行等价做法：</p>
 <div class="copy-block">
-      <pre id="lesson33-code-2"><code class="language-text">hermes config set display.language zh
+      <pre id="lesson33-code-1"><code class="language-text">hermes config set display.language zh
 </code></pre>
-      <button class="copy-button" data-copy-target="lesson33-code-2" type="button">复制代码</button>
+      <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
     </div><p>要让助手用中文回答，还要在提示里明确&quot;默认使用简体中文回答&quot;。</p>
 <h3>工具与密钥｜在哪开，在哪关</h3>
 <p>「工具与密钥」管工具集和密钥，「安全」管权限边界，常一起看：工具开了但权限被卡，表现为&quot;命令跑了但读不到文件&quot;。命令行对应 <code>hermes tools</code>。任务里出现&quot;没有这个工具&quot;时，先回这里确认开关，不要反复重装。</p>
