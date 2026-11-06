@@ -23,14 +23,6 @@ body{margin:0;background:#f4f7fc;color:#172033;font-family:-apple-system,BlinkMa
 h1{margin:0;font-size:clamp(30px,4.1vw,46px);line-height:1.3;letter-spacing:.02em}
 .course-meta{margin:14px 0 0;color:#edf2ff;font-size:16px;line-height:1.7}
 
-/* 导学 */
-.intro-block{margin-top:18px;padding:26px 30px;border:1px solid #e2e8f3;border-radius:20px;background:#fff;box-shadow:0 6px 20px rgba(40,68,128,.05)}
-.intro-text{margin:0 0 18px;font-size:17px;line-height:1.85;color:#2b3a55}
-.intro-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 26px;margin:0}
-.intro-facts>div{display:grid;gap:4px;padding-top:12px;border-top:1px solid #eef2fa}
-.intro-facts dt{color:#3157d5;font-size:13px;font-weight:800;letter-spacing:.04em}
-.intro-facts dd{margin:0;font-size:15px;line-height:1.75;color:#3c4a63}
-
 /* 工具条 */
 .toolbar{margin:26px 0 6px;padding:16px 18px;border:1px solid #e2e8f3;border-radius:16px;background:#fff}
 .toolbar-row{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
@@ -72,14 +64,12 @@ h1{margin:0;font-size:clamp(30px,4.1vw,46px);line-height:1.3;letter-spacing:.02e
 
 @media (max-width:850px){
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .intro-facts{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   .wrap{padding:20px 14px 40px}
   .course-cover{border-radius:18px}
   .brand-lockup{padding:22px 24px}
   .cover-body{padding:26px 24px 28px}
-  .intro-block{padding:20px 18px}
   .grid{grid-template-columns:1fr}
   .lesson-card{min-height:0}
 }
@@ -96,17 +86,6 @@ h1{margin:0;font-size:clamp(30px,4.1vw,46px);line-height:1.3;letter-spacing:.02e
       <p class="course-meta">2026—2027 学年第一学期 · 26 次课 · 64 学时 · 另设 1 节选学</p>
     </div>
   </header>
-
-  <section class="intro-block" aria-labelledby="intro-h">
-    <h2 id="intro-h" class="sr-only">课程说明</h2>
-    <p class="intro-text">本课程按“先看懂、再动手、最后交付”的顺序推进：前六次课弄清 AI 怎么工作，中间用 WorkBuddy 完成文档、表格、PPT、知识库与多模态内容等真实工作任务，最后进入开发、工作流与综合作品。每次课都有一个可提交的成果，课程不设纯理论讲授。</p>
-    <dl class="intro-facts">
-      <div><dt>适用对象</dt><dd>城市轨道交通学院 · 城市轨道交通运营管理专业 2026运营1班、2班（清远校区）</dd></div>
-      <div><dt>任课教师</dt><dd>才洋 · 广州城建职业学院 未来技术应用学院</dd></div>
-      <div><dt>考核方式</dt><dd>形成性考核 60%（平时作业与实训 30% ＋ 课堂考勤 20% ＋ 学习态度 10%）＋ 终结性考核 40%（期末综合项目答辩）</dd></div>
-      <div><dt>使用提示</dt><dd>课件在手机与电脑上均可直接阅读，图片点击可看大图。课堂材料与作业提交在学习通内完成，本页面只放学习内容。</dd></div>
-    </dl>
-  </section>
 
   <section class="toolbar" aria-label="查找与进度">
     <div class="toolbar-row">
