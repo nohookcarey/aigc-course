@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">上下文怎样帮助AI理解云</title>
+  <desc id="desc">天空中的云和云盘中的云通过不同上下文线索连接到不同含义，并附有RNN和Transformer的区别。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2d63d7"/></marker>
+    <style>
+      .title{font:700 34px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#17233d}.label{font:700 24px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#2057c6}.text{font:500 22px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#253552}.small{font:500 19px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#536480}.box{fill:#f7f9ff;stroke:#b9cdf8;stroke-width:2;rx:18}.meaning{fill:#eaf2ff;stroke:#88acef;stroke-width:2;rx:18}.line{stroke:#2d63d7;stroke-width:4;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#fff"/>
+  <text x="600" y="58" text-anchor="middle" class="title">上下文怎样帮助 AI 理解“云”</text>
+  <rect x="485" y="95" width="230" height="82" class="meaning"/><text x="600" y="146" text-anchor="middle" class="label">目标词：云</text>
+
+  <rect x="55" y="225" width="340" height="92" class="box"/><text x="225" y="265" text-anchor="middle" class="text">今天的云很厚</text><text x="225" y="295" text-anchor="middle" class="text">可能要下雨</text>
+  <rect x="430" y="225" width="250" height="92" class="meaning"/><text x="555" y="263" text-anchor="middle" class="label">线索</text><text x="555" y="294" text-anchor="middle" class="text">下雨</text>
+  <rect x="765" y="225" width="380" height="92" class="box"/><text x="955" y="264" text-anchor="middle" class="label">含义 1</text><text x="955" y="296" text-anchor="middle" class="text">天空中的云</text>
+  <path d="M395 271 H430" class="line"/><path d="M680 271 H765" class="line"/>
+
+  <rect x="55" y="370" width="340" height="92" class="box"/><text x="225" y="410" text-anchor="middle" class="text">请把作业上传到云盘</text><text x="225" y="440" text-anchor="middle" class="small">课后可查看和下载</text>
+  <rect x="430" y="370" width="250" height="92" class="meaning"/><text x="555" y="408" text-anchor="middle" class="label">线索</text><text x="555" y="439" text-anchor="middle" class="text">上传、云盘</text>
+  <rect x="765" y="370" width="380" height="92" class="box"/><text x="955" y="409" text-anchor="middle" class="label">含义 2</text><text x="955" y="441" text-anchor="middle" class="text">网络中的数据存储服务</text>
+  <path d="M395 416 H430" class="line"/><path d="M680 416 H765" class="line"/>
+
+  <rect x="55" y="510" width="1090" height="70" class="meaning"/><text x="600" y="553" text-anchor="middle" class="text">结论：同一个词在不同句子中，会根据上下文线索确定含义。</text>
+  <rect x="55" y="610" width="1090" height="62" class="box"/><text x="600" y="649" text-anchor="middle" class="small">RNN：信息按顺序传递　｜　Transformer：目标词可直接关联上下文中的相关线索</text>
+</svg>

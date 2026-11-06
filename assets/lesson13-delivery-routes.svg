@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="490" viewBox="0 0 1200 490" role="img">
+<title>先看交付要求，再选制作路线</title>
+<rect width="1200" height="490" rx="20" fill="#f5f7fc"/>
+<g font-family="PingFang SC,Microsoft YaHei,sans-serif">
+<text x="42" y="59" font-size="32" font-weight="700" fill="#18223d">先看交付要求，再选制作路线</text>
+<text x="42" y="99" font-size="21" fill="#526079">三条路线各有用途；本课最终都要用实际文件核验。</text>
+<rect x="42" y="139" width="353" height="253" rx="16" fill="white" stroke="#dce2ef"/>
+<text x="66" y="185" font-size="25" font-weight="700" fill="#4464db">代码生成 PPTX</text>
+<text x="66" y="232" font-size="21" fill="#29354b" transform="translate(0,0)">PptxGenJS / python-pptx</text>
+<text x="66" y="232" font-size="21" fill="#29354b" transform="translate(0,40)">按代码组织文本与对象</text>
+<text x="66" y="232" font-size="21" fill="#29354b" transform="translate(0,80)">检查位置、字体与内容</text>
+<rect x="419" y="139" width="353" height="253" rx="16" fill="white" stroke="#dce2ef"/>
+<text x="443" y="185" font-size="25" font-weight="700" fill="#087d8c">AI 演示工作流</text>
+<text x="443" y="232" font-size="21" fill="#29354b" transform="translate(0,0)">PPT Master / Presenton</text>
+<text x="443" y="232" font-size="21" fill="#29354b" transform="translate(0,40)">按所选配置生成页面</text>
+<text x="443" y="232" font-size="21" fill="#29354b" transform="translate(0,80)">区分原生对象与页面快照</text>
+<rect x="796" y="139" width="353" height="253" rx="16" fill="white" stroke="#dce2ef"/>
+<text x="820" y="185" font-size="25" font-weight="700" fill="#98662a">Markdown / 网页演示</text>
+<text x="820" y="232" font-size="21" fill="#29354b" transform="translate(0,0)">Marp / Slidev / reveal.js</text>
+<text x="820" y="232" font-size="21" fill="#29354b" transform="translate(0,40)">适合文本与网页展示</text>
+<text x="820" y="232" font-size="21" fill="#29354b" transform="translate(0,80)">确认导出方式及编辑能力</text>
+<text x="42" y="446" font-size="22" font-weight="600" fill="#18223d">本课交付：打开 PPTX → 修改一段文字 → 检查对象与版式 → 保存后重新打开</text>
+</g></svg>

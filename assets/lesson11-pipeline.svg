@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="pipe-title pipe-desc">
+  <title id="pipe-title">发票报销数据清洗与审计留痕全流程图解</title>
+  <desc id="pipe-desc">原始票据读图、逐字段核查、疑点标记留痕、多口径公式测算与导出平账全流程</desc>
+  <defs>
+    <filter id="p-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="step-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="360" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- 顶部标题 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="40" y="42" font-size="20" font-weight="800" fill="#0f172a">📊 发票报销 AI 结构化清洗与审计留痕五步全流程</text>
+    <text x="40" y="66" font-size="13" fill="#64748b">从原始零散凭证到合规财务表格：步步有依据，行行留痕迹</text>
+  </g>
+
+  <!-- 五大流程节点 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" transform="translate(30, 95)">
+    
+    <!-- 节点 1 -->
+    <g transform="translate(0, 0)">
+      <rect width="210" height="225" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#p-shadow)"/>
+      <rect width="210" height="36" rx="12" fill="#eff6ff"/>
+      <rect y="20" width="210" height="16" fill="#eff6ff"/>
+      <text x="18" y="24" font-size="13" font-weight="800" fill="#1d4ed8">步骤 1｜票据识读</text>
+      
+      <circle cx="28" cy="62" r="14" fill="#3b82f6"/>
+      <text x="28" y="67" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">1</text>
+      <text x="52" y="67" font-size="13" font-weight="700" fill="#0f172a">多模态/OCR识别</text>
+      
+      <text x="18" y="105" font-size="12" fill="#475569">• 扫描或拍照发票原件</text>
+      <text x="18" y="128" font-size="12" fill="#475569">• 识别日期、项目与金额</text>
+      <text x="18" y="151" font-size="12" fill="#dc2626">• 警惕折痕/反光吞点</text>
+      
+      <rect x="14" y="172" width="182" height="38" rx="6" fill="#f1f5f9"/>
+      <text x="22" y="196" font-size="11" font-weight="700" fill="#64748b">产出：原始文本草稿</text>
+    </g>
+
+    <!-- 箭头 1 -->
+    <path d="M 218 112 L 236 112 M 230 106 L 236 112 L 230 118" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- 节点 2 -->
+    <g transform="translate(244, 0)">
+      <rect width="210" height="225" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#p-shadow)"/>
+      <rect width="210" height="36" rx="12" fill="#eff6ff"/>
+      <rect y="20" width="210" height="16" fill="#eff6ff"/>
+      <text x="18" y="24" font-size="13" font-weight="800" fill="#1d4ed8">步骤 2｜逐字段核对</text>
+      
+      <circle cx="28" cy="62" r="14" fill="#3b82f6"/>
+      <text x="28" y="67" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">2</text>
+      <text x="52" y="67" font-size="13" font-weight="700" fill="#0f172a">人工定位与防伪</text>
+      
+      <text x="18" y="105" font-size="12" fill="#475569">• 对照原图核验小数点</text>
+      <text x="18" y="128" font-size="12" fill="#475569">• 审查发票代码与章印</text>
+      <text x="18" y="151" font-size="12" fill="#ea580c">• 空白项绝不私自填补</text>
+      
+      <rect x="14" y="172" width="182" height="38" rx="6" fill="#f1f5f9"/>
+      <text x="22" y="196" font-size="11" font-weight="700" fill="#64748b">产出：核验过的四列字段</text>
+    </g>
+
+    <!-- 箭头 2 -->
+    <path d="M 462 112 L 480 112 M 474 106 L 480 112 L 474 118" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- 节点 3 -->
+    <g transform="translate(488, 0)">
+      <rect width="210" height="225" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#p-shadow)"/>
+      <rect width="210" height="36" rx="12" fill="#eff6ff"/>
+      <rect y="20" width="210" height="16" fill="#eff6ff"/>
+      <text x="18" y="24" font-size="13" font-weight="800" fill="#1d4ed8">步骤 3｜疑点标记留痕</text>
+      
+      <circle cx="28" cy="62" r="14" fill="#3b82f6"/>
+      <text x="28" y="67" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">3</text>
+      <text x="52" y="67" font-size="13" font-weight="700" fill="#0f172a">保留原始凭证行</text>
+      
+      <text x="18" y="105" font-size="12" fill="#475569">• D4写“日期缺失待查”</text>
+      <text x="18" y="128" font-size="12" fill="#475569">• D5写“疑似重复待核”</text>
+      <text x="18" y="151" font-size="12" fill="#166534">• 双行完整保留绝不删</text>
+      
+      <rect x="14" y="172" width="182" height="38" rx="6" fill="#f1f5f9"/>
+      <text x="22" y="196" font-size="11" font-weight="700" fill="#64748b">产出：带审计备注明细</text>
+    </g>
+
+    <!-- 箭头 3 -->
+    <path d="M 706 112 L 724 112 M 718 106 L 724 112 L 718 118" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- 节点 4 -->
+    <g transform="translate(732, 0)">
+      <rect width="210" height="225" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#p-shadow)"/>
+      <rect width="210" height="36" rx="12" fill="#eff6ff"/>
+      <rect y="20" width="210" height="16" fill="#eff6ff"/>
+      <text x="18" y="24" font-size="13" font-weight="800" fill="#1d4ed8">步骤 4｜多口径公式测算</text>
+      
+      <circle cx="28" cy="62" r="14" fill="#3b82f6"/>
+      <text x="28" y="67" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">4</text>
+      <text x="52" y="67" font-size="13" font-weight="700" fill="#0f172a">WPS函数独立复算</text>
+      
+      <text x="18" y="105" font-size="12" fill="#475569">• C7=SUM(C2:C5) 66.5元</text>
+      <text x="18" y="128" font-size="12" fill="#475569">• C8=SUMIF 打印类 24元</text>
+      <text x="18" y="151" font-size="12" fill="#475569">• C9=C7-C5 假设扣减54.5</text>
+      
+      <rect x="14" y="172" width="182" height="38" rx="6" fill="#f1f5f9"/>
+      <text x="22" y="196" font-size="11" font-weight="700" fill="#64748b">产出：动态公式计算区</text>
+    </g>
+
+    <!-- 箭头 4 -->
+    <path d="M 950 112 L 968 112 M 962 106 L 968 112 L 962 118" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- 节点 5 -->
+    <g transform="translate(976, 0)">
+      <rect width="164" height="225" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" filter="url(#p-shadow)"/>
+      <rect width="164" height="36" rx="12" fill="#dcfce7"/>
+      <rect y="20" width="164" height="16" fill="#dcfce7"/>
+      <text x="14" y="24" font-size="13" font-weight="800" fill="#15803d">步骤 5｜合规归档</text>
+      
+      <circle cx="24" cy="62" r="14" fill="#22c55e"/>
+      <text x="24" y="67" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">5</text>
+      <text x="46" y="67" font-size="13" font-weight="700" fill="#14532d">重开核验</text>
+      
+      <text x="14" y="105" font-size="12" fill="#166534">• 双工作表完整</text>
+      <text x="14" y="128" font-size="12" fill="#166534">• 过程与公式留存</text>
+      <text x="14" y="151" font-size="12" fill="#166534">• 规范标准命名</text>
+      
+      <rect x="12" y="172" width="140" height="38" rx="6" fill="#ffffff" stroke="#bbf7d0"/>
+      <text x="18" y="196" font-size="11" font-weight="700" fill="#15803d">交付：标准.xlsx</text>
+    </g>
+
+  </g>
+</svg>

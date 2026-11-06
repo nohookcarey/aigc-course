@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="dim-title dim-desc">
+  <title id="dim-title">维度与指标：从数据表到图表的透视全景图</title>
+  <desc id="dim-desc">解析维度、指标在商业分析中的关系，展示横向按月汇总与纵向按产品汇总的交叉核验逻辑</desc>
+  <defs>
+    <filter id="dim-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="380" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- 顶部标题 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="40" y="42" font-size="20" font-weight="800" fill="#0f172a">📐 维度（分析视角）与指标（数值度量）交叉核验全景图</text>
+    <text x="40" y="66" font-size="13" fill="#64748b">横向按月度汇总，纵向按产品分类：双向 680 元独立闭环印证</text>
+  </g>
+
+  <!-- 左侧：核心概念解析卡 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" transform="translate(40, 95)">
+    <rect width="360" height="250" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" filter="url(#dim-shadow)"/>
+    <text x="24" y="34" font-size="16" font-weight="800" fill="#1e40af">💡 概念核心：维度 vs 指标</text>
+    
+    <rect x="20" y="52" width="320" height="78" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+    <text x="32" y="76" font-size="13" font-weight="700" fill="#1d4ed8">▶ 维度（Dimension）：从什么角度看？</text>
+    <text x="32" y="98" font-size="12" fill="#475569">• 时间维度：1月、2月、3月（看发展趋势）</text>
+    <text x="32" y="118" font-size="12" fill="#475569">• 分类维度：A产品、B产品（看结构差异）</text>
+
+    <rect x="20" y="142" width="320" height="88" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+    <text x="32" y="166" font-size="13" font-weight="700" fill="#1d4ed8">▶ 指标（Metric）：衡量多少的量化数值？</text>
+    <text x="32" y="188" font-size="12" fill="#475569">• 销售额（元）：必须是数值，带单位表头</text>
+    <text x="32" y="210" font-size="12" fill="#dc2626">• 严谨准则：无成本数据时，严禁自行折算利润！</text>
+  </g>
+
+  <!-- 右侧：真实表格交叉核验模型 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" transform="translate(440, 95)">
+    <rect width="720" height="250" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#dim-shadow)"/>
+    <text x="24" y="34" font-size="15" font-weight="800" fill="#0f172a">📊 表格结构交叉印证模型：横纵总额互相核对</text>
+
+    <!-- 模拟 Excel 表格 -->
+    <g transform="translate(24, 52)">
+      <!-- 表头 -->
+      <rect x="0" y="0" width="120" height="30" fill="#e2e8f0" stroke="#cbd5e1"/>
+      <text x="60" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">月份 (时间)</text>
+      
+      <rect x="120" y="0" width="140" height="30" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="190" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">A产品（元）</text>
+
+      <rect x="260" y="0" width="140" height="30" fill="#ffedd5" stroke="#fdba74"/>
+      <text x="330" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">B产品（元）</text>
+
+      <rect x="400" y="0" width="160" height="30" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="480" y="20" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">横向月度合计(D列)</text>
+
+      <!-- 数据行 1 -->
+      <rect x="0" y="30" width="120" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="60" y="48" text-anchor="middle" font-size="12" fill="#475569">1月</text>
+      <rect x="120" y="30" width="140" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="190" y="48" text-anchor="middle" font-size="12" fill="#1e3a8a">120</text>
+      <rect x="260" y="30" width="140" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="330" y="48" text-anchor="middle" font-size="12" fill="#9a3412">80</text>
+      <rect x="400" y="30" width="160" height="28" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="480" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">200 (=B2+C2)</text>
+
+      <!-- 数据行 2 -->
+      <rect x="0" y="58" width="120" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="60" y="76" text-anchor="middle" font-size="12" fill="#475569">2月</text>
+      <rect x="120" y="58" width="140" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="190" y="76" text-anchor="middle" font-size="12" fill="#1e3a8a">150</text>
+      <rect x="260" y="58" width="140" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="330" y="76" text-anchor="middle" font-size="12" fill="#9a3412">90</text>
+      <rect x="400" y="58" width="160" height="28" fill="#fefce8" stroke="#e2e8f0"/>
+      <text x="480" y="76" text-anchor="middle" font-size="12" font-weight="800" fill="#854d0e">240 [并列最高月]</text>
+
+      <!-- 数据行 3 -->
+      <rect x="0" y="86" width="120" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="60" y="104" text-anchor="middle" font-size="12" fill="#475569">3月</text>
+      <rect x="120" y="86" width="140" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="190" y="104" text-anchor="middle" font-size="12" fill="#1e3a8a">130</text>
+      <rect x="260" y="86" width="140" height="28" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="330" y="104" text-anchor="middle" font-size="12" fill="#9a3412">110</text>
+      <rect x="400" y="86" width="160" height="28" fill="#fefce8" stroke="#e2e8f0"/>
+      <text x="480" y="104" text-anchor="middle" font-size="12" font-weight="800" fill="#854d0e">240 [并列最高月]</text>
+
+      <!-- 产品汇总行 -->
+      <rect x="0" y="114" width="120" height="34" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="60" y="136" text-anchor="middle" font-size="12" font-weight="800" fill="#1e40af">纵向产品合计</text>
+      
+      <rect x="120" y="114" width="140" height="34" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="190" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">400 元 (B8)</text>
+
+      <rect x="260" y="114" width="140" height="34" fill="#ffedd5" stroke="#fdba74"/>
+      <text x="330" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#c2410c">280 元 (B9)</text>
+
+      <rect x="400" y="114" width="160" height="34" fill="#f0fdf4" stroke="#86efac"/>
+      <text x="480" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">月度总计: 680 元</text>
+      
+      <!-- 交叉核验结论标签 -->
+      <g transform="translate(0, 158)">
+        <rect width="670" height="28" rx="6" fill="#f0fdf4" stroke="#bbf7d0"/>
+        <text x="335" y="19" text-anchor="middle" font-size="12" font-weight="800" fill="#15803d">
+          🔍 交叉核验成功：产品合计 (400 + 280 = 680) ≡ 月度合计 (200 + 240 + 240 = 680)，两路完全吻合！
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

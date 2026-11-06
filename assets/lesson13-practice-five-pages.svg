@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">校园信息安全提醒：作业恰好5页大纲</title>
+  <desc id="desc">5张幻灯片卡片直观对应作业要求，不多不少恰好5页</desc>
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="420" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <rect x="0" y="0" width="1200" height="76" rx="20" fill="#ffffff" stroke="#f1f5f9"/>
+    <rect x="40" y="16" width="8" height="44" rx="4" fill="#059669"/>
+    <text x="60" y="46" font-size="24" font-weight="900" fill="#0f172a">📋 你的作业必须恰好 5 页！不多也不少！</text>
+    <rect x="980" y="20" width="180" height="36" rx="18" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="1070" y="43" text-anchor="middle" font-size="14" font-weight="900" fill="#059669">禁止多加第6页感谢页</text>
+  </g>
+
+  <!-- 5张幻灯片缩略卡片 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    
+    <!-- 第 1 页 -->
+    <g transform="translate(40, 95)">
+      <rect width="212" height="300" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect width="212" height="36" rx="12" fill="#eff6ff"/>
+      <rect y="24" width="212" height="12" fill="#eff6ff"/>
+      <text x="106" y="24" text-anchor="middle" font-size="15" font-weight="900" fill="#1d4ed8">第 1 页 · 封面</text>
+
+      <g transform="translate(16, 50)">
+        <rect width="180" height="120" rx="6" fill="#1e3a8a"/>
+        <text x="90" y="45" text-anchor="middle" font-size="15" font-weight="900" fill="#ffffff">校园信息安全提醒</text>
+        <rect x="35" y="60" width="110" height="20" rx="10" fill="#3b82f6"/>
+        <text x="90" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">3分钟课堂练习</text>
+        <text x="90" y="102" text-anchor="middle" font-size="10" fill="#93c5fd">你的名字</text>
+      </g>
+
+      <rect x="16" y="190" width="180" height="85" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="106" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#1e40af">写清大标题与名字</text>
+      <text x="106" y="242" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">必须注明“课堂练习”</text>
+      <text x="106" y="260" text-anchor="middle" font-size="12" fill="#64748b">严禁写学校官方红头</text>
+    </g>
+
+    <!-- 第 2 页 -->
+    <g transform="translate(268, 95)">
+      <rect width="212" height="300" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect width="212" height="36" rx="12" fill="#f8fafc"/>
+      <rect y="24" width="212" height="12" fill="#f8fafc"/>
+      <text x="106" y="24" text-anchor="middle" font-size="15" font-weight="900" fill="#334155">第 2 页 · 发图前打码</text>
+
+      <g transform="translate(16, 50)">
+        <rect width="180" height="120" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="14" y="26" font-size="13" font-weight="900" fill="#0f172a">发截图前“三打码”</text>
+        <rect x="14" y="38" width="152" height="22" rx="4" fill="#fee2e2"/>
+        <text x="20" y="53" font-size="11" font-weight="bold" fill="#b91c1c">❌ 二维码彻底遮盖</text>
+        <rect x="14" y="64" width="152" height="22" rx="4" fill="#fee2e2"/>
+        <text x="20" y="79" font-size="11" font-weight="bold" fill="#b91c1c">❌ 手机号/学号打码</text>
+        <rect x="14" y="90" width="152" height="22" rx="4" fill="#fee2e2"/>
+        <text x="20" y="105" font-size="11" font-weight="bold" fill="#b91c1c">❌ 裁掉私聊记录</text>
+      </g>
+
+      <rect x="16" y="190" width="180" height="85" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+      <text x="106" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#991b1b">提炼 3 条打码动作</text>
+      <text x="106" y="242" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">不讲空泛大道理</text>
+      <text x="106" y="260" text-anchor="middle" font-size="12" fill="#64748b">不要超长整段话</text>
+    </g>
+
+    <!-- 第 3 页 -->
+    <g transform="translate(496, 95)">
+      <rect width="212" height="300" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect width="212" height="36" rx="12" fill="#f8fafc"/>
+      <rect y="24" width="212" height="12" fill="#f8fafc"/>
+      <text x="106" y="24" text-anchor="middle" font-size="15" font-weight="900" fill="#334155">第 3 页 · 原件与副本</text>
+
+      <g transform="translate(16, 50)">
+        <rect width="180" height="120" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="14" y="26" font-size="13" font-weight="900" fill="#0f172a">两分法：保留母本</text>
+        <rect x="14" y="38" width="70" height="70" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+        <text x="49" y="66" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">原件</text>
+        <text x="49" y="86" text-anchor="middle" font-size="10" fill="#64748b">只读归档</text>
+
+        <rect x="96" y="38" width="70" height="70" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+        <text x="131" y="66" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">副本</text>
+        <text x="131" y="86" text-anchor="middle" font-size="10" fill="#64748b">带日期改</text>
+      </g>
+
+      <rect x="16" y="190" width="180" height="85" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="106" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#14532d">左边原件，右边副本</text>
+      <text x="106" y="242" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">原件千万别直接改</text>
+      <text x="106" y="260" text-anchor="middle" font-size="12" fill="#64748b">修改一律另存新文件</text>
+    </g>
+
+    <!-- 第 4 页 -->
+    <g transform="translate(724, 95)">
+      <rect width="212" height="300" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect width="212" height="36" rx="12" fill="#f8fafc"/>
+      <rect y="24" width="212" height="12" fill="#f8fafc"/>
+      <text x="106" y="24" text-anchor="middle" font-size="15" font-weight="900" fill="#334155">第 4 页 · 提交前复核</text>
+
+      <g transform="translate(16, 50)">
+        <rect width="180" height="120" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="14" y="26" font-size="13" font-weight="900" fill="#0f172a">关掉文件重新打开</text>
+        <circle cx="28" cy="52" r="8" fill="#dbeafe"/>
+        <text x="28" y="56" text-anchor="middle" font-size="10" font-weight="bold" fill="#1d4ed8">1</text>
+        <text x="44" y="56" font-size="11" font-weight="bold" fill="#1e293b">检查文件名与位置</text>
+
+        <circle cx="28" cy="78" r="8" fill="#dbeafe"/>
+        <text x="28" y="82" text-anchor="middle" font-size="10" font-weight="bold" fill="#1d4ed8">2</text>
+        <text x="44" y="82" font-size="11" font-weight="bold" fill="#1e293b">关掉WPS再重开！</text>
+
+        <circle cx="28" cy="104" r="8" fill="#dbeafe"/>
+        <text x="28" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="#1d4ed8">3</text>
+        <text x="44" y="108" font-size="11" font-weight="bold" fill="#1e293b">按 F5 放映看大字</text>
+      </g>
+
+      <rect x="16" y="190" width="180" height="85" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="106" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#1e40af">终极防翻车：关掉重开</text>
+      <text x="106" y="242" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">确认 5 页都在没丢失</text>
+      <text x="106" y="260" text-anchor="middle" font-size="12" fill="#64748b">防“自以为存了”的空档</text>
+    </g>
+
+    <!-- 第 5 页 -->
+    <g transform="translate(952, 95)">
+      <rect width="212" height="300" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect width="212" height="36" rx="12" fill="#ecfdf5"/>
+      <rect y="24" width="212" height="12" fill="#ecfdf5"/>
+      <text x="106" y="24" text-anchor="middle" font-size="15" font-weight="900" fill="#047857">第 5 页 · 行动自查</text>
+
+      <g transform="translate(16, 50)">
+        <rect width="180" height="120" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="14" y="24" font-size="13" font-weight="900" fill="#065f46">3 条打勾清单</text>
+        <text x="14" y="48" font-size="11" font-weight="bold" fill="#1e293b">☑ 分享范围检查了吗？</text>
+        <text x="14" y="70" font-size="11" font-weight="bold" fill="#1e293b">☑ 原件只读保留了吗？</text>
+        <text x="14" y="92" font-size="11" font-weight="bold" fill="#1e293b">☑ 重开确认没丢字吗？</text>
+        <rect x="6" y="100" width="168" height="16" rx="3" fill="#fef3c7"/>
+        <text x="90" y="112" text-anchor="middle" font-size="9" font-weight="bold" fill="#b45309">★ 底部备注写修改原因</text>
+      </g>
+
+      <rect x="16" y="190" width="180" height="85" rx="8" fill="#fef3c7" stroke="#fde047"/>
+      <text x="106" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#b45309">收尾：底端填好备注</text>
+      <text x="106" y="242" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">写清用了什么AI、改了啥</text>
+      <text x="106" y="260" text-anchor="middle" font-size="12" fill="#78350f">严禁增加第6页致谢！</text>
+    </g>
+
+  </g>
+</svg>

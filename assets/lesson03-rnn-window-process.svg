@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">RNN 按顺序理解服务窗口的过程</title>
+  <desc id="desc">句子中的词语按从左到右顺序传递，服务线索通过隐藏状态传到窗口，再得到办事地点的判断。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2d63d7"/></marker>
+    <style>
+      .title{font:700 34px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#17233d}.label{font:700 23px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#2258ca}.text{font:500 22px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#2b3d5d}.small{font:500 18px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#536480}.node{fill:#f7f9ff;stroke:#a9c2f6;stroke-width:2;rx:16}.focus{fill:#e5efff;stroke:#2d63d7;stroke-width:3;rx:16}.state{fill:#fff7e8;stroke:#e8bb61;stroke-width:2;rx:13}.line{stroke:#2d63d7;stroke-width:4;fill:none;marker-end:url(#arrow)}.note{fill:#f4f7ff;stroke:#d2dff8;stroke-width:2;rx:16}
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#fff"/>
+  <text x="600" y="58" text-anchor="middle" class="title">RNN：信息按顺序传递</text>
+  <text x="600" y="94" text-anchor="middle" class="small">案例句子：请到服务窗口办理业务</text>
+
+  <rect x="70" y="170" width="150" height="72" class="node"/><text x="145" y="216" text-anchor="middle" class="text">请到</text>
+  <rect x="285" y="170" width="150" height="72" class="focus"/><text x="360" y="216" text-anchor="middle" class="label">服务</text>
+  <rect x="500" y="170" width="150" height="72" class="focus"/><text x="575" y="216" text-anchor="middle" class="label">窗口</text>
+  <rect x="715" y="170" width="150" height="72" class="node"/><text x="790" y="216" text-anchor="middle" class="text">办理</text>
+  <rect x="930" y="170" width="150" height="72" class="node"/><text x="1005" y="216" text-anchor="middle" class="text">业务</text>
+  <path d="M220 206 H285" class="line"/><path d="M435 206 H500" class="line"/><path d="M650 206 H715" class="line"/><path d="M865 206 H930" class="line"/>
+
+  <text x="600" y="294" text-anchor="middle" class="small">每读到一个词，就把前面的信息压缩后继续往后传</text>
+  <rect x="75" y="340" width="220" height="86" class="state"/><text x="185" y="376" text-anchor="middle" class="label">隐藏状态 1</text><text x="185" y="405" text-anchor="middle" class="small">收到“请到”</text>
+  <rect x="370" y="340" width="220" height="86" class="state"/><text x="480" y="376" text-anchor="middle" class="label">隐藏状态 2</text><text x="480" y="405" text-anchor="middle" class="small">带着“服务”线索</text>
+  <rect x="665" y="340" width="220" height="86" class="state"/><text x="775" y="376" text-anchor="middle" class="label">隐藏状态 3</text><text x="775" y="405" text-anchor="middle" class="small">传到“窗口”附近</text>
+  <path d="M295 383 H370" class="line"/><path d="M590 383 H665" class="line"/>
+
+  <rect x="235" y="500" width="730" height="80" class="note"/><text x="600" y="534" text-anchor="middle" class="label">判断结果：这里的“窗口”更接近“提供服务的办事地点”</text><text x="600" y="564" text-anchor="middle" class="small">特点：线索必须逐步传递；句子很长时，较早的信息可能变弱。</text>
+  <text x="600" y="646" text-anchor="middle" class="small">课堂观察：用箭头追踪“服务”这个线索怎样一步步传到“窗口”。</text>
+</svg>

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="chart-title chart-desc">
+  <title id="chart-title">商务柱状图规范三大黄金法则</title>
+  <desc id="chart-desc">展示基线归零防误导、数据源精准选定以及图表要素防遮挡三大核心制作法则</desc>
+  <defs>
+    <filter id="c-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="420" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- 顶部标题 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="45" y="44" font-size="20" font-weight="800" fill="#0f172a">📊 商务柱状图三大黄金法则：让数据真实、清晰、直击重点</text>
+    <text x="45" y="68" font-size="13" fill="#64748b">拒绝花哨、拒绝误导：在 WPS 中制作高品质商务汇报图表的实操标准</text>
+  </g>
+
+  <!-- 三大卡片 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" transform="translate(45, 95)">
+    
+    <!-- 法则 1 -->
+    <g transform="translate(0, 0)">
+      <rect width="350" height="295" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5" filter="url(#c-shadow)"/>
+      <rect width="350" height="38" rx="14" fill="#f0fdf4"/>
+      <rect y="20" width="350" height="18" fill="#f0fdf4"/>
+      <text x="20" y="25" font-size="14" font-weight="800" fill="#15803d">法则一｜基线必须归零 (Y轴从 0 起始)</text>
+      
+      <!-- 示意图对比 -->
+      <g transform="translate(20, 52)">
+        <rect width="310" height="110" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <!-- 零基线正确示范 -->
+        <line x1="30" y1="15" x2="30" y2="85" stroke="#94a3b8" stroke-width="1.5"/>
+        <line x1="30" y1="85" x2="280" y2="85" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="24" y="88" text-anchor="end" font-size="10" font-weight="800" fill="#15803d">0</text>
+        <text x="24" y="22" text-anchor="end" font-size="9" fill="#64748b">400</text>
+        <rect x="65" y="25" width="55" height="60" fill="#3b82f6" rx="2"/>
+        <rect x="175" y="43" width="55" height="42" fill="#f97316" rx="2"/>
+        <text x="92" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a8a">A: 400</text>
+        <text x="202" y="38" text-anchor="middle" font-size="10" font-weight="700" fill="#7c2d12">B: 280</text>
+        <text x="155" y="102" text-anchor="middle" font-size="10" font-weight="700" fill="#166534">✅ 正确：高度比严格等于 400:280 ≈ 1.4:1</text>
+      </g>
+      
+      <text x="20" y="185" font-size="13" font-weight="700" fill="#0f172a">为什么是铁律？</text>
+      <text x="20" y="208" font-size="12" fill="#475569">人眼通过柱体长度感知数量。截断</text>
+      <text x="20" y="228" font-size="12" fill="#475569">坐标轴属于严重的“视觉数据造假”，</text>
+      <text x="20" y="248" font-size="12" fill="#475569">汇报给领导会直接引发决策失误！</text>
+      <text x="20" y="274" font-size="11" font-weight="700" fill="#166534">WPS设置：双击Y轴 ➔ 最小值设为 0</text>
+    </g>
+
+    <!-- 法则 2 -->
+    <g transform="translate(380, 0)">
+      <rect width="350" height="295" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.5" filter="url(#c-shadow)"/>
+      <rect width="350" height="38" rx="14" fill="#eff6ff"/>
+      <rect y="20" width="350" height="18" fill="#eff6ff"/>
+      <text x="20" y="25" font-size="14" font-weight="800" fill="#1d4ed8">法则二｜精准数据源 (仅选 A7:B9)</text>
+      
+      <!-- 示意图对比 -->
+      <g transform="translate(20, 52)">
+        <rect width="310" height="110" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <rect x="25" y="18" width="120" height="74" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-dasharray="3 3"/>
+        <text x="85" y="42" text-anchor="middle" font-size="11" font-weight="800" fill="#1d4ed8">选区 A7:B9</text>
+        <text x="85" y="62" text-anchor="middle" font-size="10" fill="#1e40af">产品名 + 两数值</text>
+        <text x="85" y="80" text-anchor="middle" font-size="10" fill="#1e40af">仅 2 根独立柱</text>
+
+        <path d="M 160 55 L 185 55 M 180 50 L 185 55 L 180 60" fill="none" stroke="#64748b" stroke-width="2"/>
+        <rect x="195" y="25" width="40" height="60" fill="#3b82f6"/>
+        <rect x="245" y="43" width="40" height="42" fill="#f97316"/>
+        <text x="215" y="98" text-anchor="middle" font-size="9" fill="#334155">A</text>
+        <text x="265" y="98" text-anchor="middle" font-size="9" fill="#334155">B</text>
+      </g>
+      
+      <text x="20" y="185" font-size="13" font-weight="700" fill="#0f172a">为什么不能全选？</text>
+      <text x="20" y="208" font-size="12" fill="#475569">全选会导致月份明细与总计混淆，</text>
+      <text x="20" y="228" font-size="12" fill="#475569">产生无意义的“合计柱”，稀释焦点。</text>
+      <text x="20" y="248" font-size="12" fill="#475569">做图前先明确目标：只比两产品总额！</text>
+      <text x="20" y="274" font-size="11" font-weight="700" fill="#1d4ed8">WPS设置：名称框直接输入 A7:B9 插入</text>
+    </g>
+
+    <!-- 法则 3 -->
+    <g transform="translate(760, 0)">
+      <rect width="350" height="295" rx="14" fill="#ffffff" stroke="#fed7aa" stroke-width="1.5" filter="url(#c-shadow)"/>
+      <rect width="350" height="38" rx="14" fill="#fff7ed"/>
+      <rect y="20" width="350" height="18" fill="#fff7ed"/>
+      <text x="20" y="25" font-size="14" font-weight="800" fill="#c2410c">法则三｜完整要素与防遮挡排版</text>
+      
+      <!-- 示意图对比 -->
+      <g transform="translate(20, 52)">
+        <rect width="310" height="110" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <rect x="15" y="12" width="280" height="22" rx="4" fill="#ffedd5"/>
+        <text x="155" y="27" text-anchor="middle" font-size="11" font-weight="800" fill="#9a3412">1—3月A/B产品销售额比较（元）</text>
+        
+        <rect x="25" y="42" width="120" height="40" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+        <text x="85" y="60" text-anchor="middle" font-size="10" fill="#64748b">数据表格区域</text>
+        <text x="85" y="74" text-anchor="middle" font-size="9" fill="#94a3b8">(第 1~12 行)</text>
+
+        <rect x="165" y="42" width="130" height="55" rx="4" fill="#fefce8" stroke="#fde047"/>
+        <text x="230" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#854d0e">图表移到下方</text>
+        <text x="230" y="78" text-anchor="middle" font-size="9" font-weight="800" fill="#b45309">第 16 行以下空白！</text>
+        <text x="230" y="90" text-anchor="middle" font-size="8" fill="#64748b">绝不覆盖上方数据单元格</text>
+      </g>
+      
+      <text x="20" y="185" font-size="13" font-weight="700" fill="#0f172a">专业交付细节：</text>
+      <text x="20" y="208" font-size="12" fill="#475569">① 标题务必包含“时间段 + 对象 + 单位”；</text>
+      <text x="20" y="228" font-size="12" fill="#475569">② 柱子少时删除多余图例，直接标数据；</text>
+      <text x="20" y="248" font-size="12" fill="#475569">③ 移动图表位置，保证表格与图并存。</text>
+      <text x="20" y="274" font-size="11" font-weight="700" fill="#c2410c">细节见功底：严禁图表压住原始数据！</text>
+    </g>
+
+  </g>
+</svg>

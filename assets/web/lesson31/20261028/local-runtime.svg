@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="880" viewBox="0 0 760 880" role="img" aria-labelledby="title desc">
+  <title id="title">本地复习助手怎样生成回答</title>
+  <desc id="desc">先联网安装Ollama并下载模型。运行时在自己的电脑中，由Ollama加载本地Qwen3模型，根据提供的笔记生成复习卡。下载完成后，这个文字生成过程可以离线进行。</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#196c5b" stroke-width="2"/></marker></defs>
+  <rect width="760" height="880" rx="24" fill="#f3f7f5"/>
+  <g font-family="PingFang SC,Microsoft YaHei,sans-serif" fill="#173b32">
+    <text x="44" y="62" font-size="32" font-weight="700">一台电脑中的三个分工</text>
+    <rect x="44" y="90" width="672" height="114" rx="16" fill="#e3ede8"/>
+    <text x="70" y="135" font-size="28" font-weight="700">准备阶段需要网络</text>
+    <text x="70" y="177" font-size="26">安装 Ollama ＋ 下载 qwen3:1.7b</text>
+    <rect x="44" y="234" width="672" height="578" rx="18" fill="#fff" stroke="#8ab5a5" stroke-width="2"/>
+    <text x="70" y="278" font-size="26" font-weight="700">运行阶段：这些工作发生在本机</text>
+    <rect x="80" y="308" width="600" height="100" rx="14" fill="#edf2fd"/>
+    <text x="105" y="348" font-size="29" font-weight="700">你提供笔记和要求</text>
+    <text x="105" y="385" font-size="25">材料写什么、卡片复习什么</text>
+    <path d="M380 414 V448" stroke="#196c5b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="80" y="461" width="600" height="128" rx="14" fill="#e8f3ed"/>
+    <text x="105" y="501" font-size="29" font-weight="700">Ollama 加载本地 Qwen3</text>
+    <text x="105" y="539" font-size="25">Ollama：负责运行与管理</text>
+    <text x="105" y="574" font-size="25">Qwen3：根据输入生成文字</text>
+    <path d="M380 596 V629" stroke="#196c5b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="80" y="642" width="600" height="100" rx="14" fill="#fff4d9"/>
+    <text x="105" y="682" font-size="29" font-weight="700">得到三张复习卡</text>
+    <text x="105" y="719" font-size="25">继续追问，可以修改其中一张</text>
+    <text x="80" y="783" font-size="25" font-weight="700">模型已下载后，上面这段过程可以离线。</text>
+    <text x="44" y="852" font-size="23" fill="#4c675e">概念示意：粘贴笔记不会自动训练模型或建立知识库。</text>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="490" viewBox="0 0 1200 490" role="img">
+<title>能导出 PPTX，还要继续检查</title>
+<rect width="1200" height="490" rx="20" fill="#f5f7fc"/>
+<g font-family="PingFang SC,Microsoft YaHei,sans-serif">
+<text x="42" y="59" font-size="32" font-weight="700" fill="#18223d">能导出 PPTX，还要继续检查</text>
+<text x="42" y="99" font-size="21" fill="#526079">产品介绍只帮助选择；当前账号权限与实际文件决定能否完成本课。</text>
+<rect x="42" y="139" width="353" height="253" rx="16" fill="white" stroke="#dce2ef"/>
+<text x="66" y="185" font-size="25" font-weight="700" fill="#4464db">1 先确认条件</text>
+<text x="66" y="232" font-size="21" fill="#29354b" transform="translate(0,0)">账号、订阅、地区与网络</text>
+<text x="66" y="232" font-size="21" fill="#29354b" transform="translate(0,40)">插件或网页入口可用</text>
+<text x="66" y="232" font-size="21" fill="#29354b" transform="translate(0,80)">当前账号允许所需导出</text>
+<rect x="419" y="139" width="353" height="253" rx="16" fill="white" stroke="#dce2ef"/>
+<text x="443" y="185" font-size="25" font-weight="700" fill="#087d8c">2 再打开文件</text>
+<text x="443" y="232" font-size="21" fill="#29354b" transform="translate(0,0)">确认不是整页图片</text>
+<text x="443" y="232" font-size="21" fill="#29354b" transform="translate(0,40)">选中文字并实际修改</text>
+<text x="443" y="232" font-size="21" fill="#29354b" transform="translate(0,80)">检查字体、图片与表格</text>
+<rect x="796" y="139" width="353" height="253" rx="16" fill="white" stroke="#dce2ef"/>
+<text x="820" y="185" font-size="25" font-weight="700" fill="#98662a">3 保存并重新打开</text>
+<text x="820" y="232" font-size="21" fill="#29354b" transform="translate(0,0)">修改结果确实保存</text>
+<text x="820" y="232" font-size="21" fill="#29354b" transform="translate(0,40)">关键内容没有遗漏</text>
+<text x="820" y="232" font-size="21" fill="#29354b" transform="translate(0,80)">受限时转到 WPS 完成</text>
+<text x="42" y="446" font-size="22" font-weight="600" fill="#18223d">不以星级、付费价格或“支持导出”代替实际文件检查</text>
+</g></svg>

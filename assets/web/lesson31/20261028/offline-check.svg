@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="830" viewBox="0 0 760 830" role="img" aria-labelledby="title desc">
+  <title id="title">怎样验证本地模型在离线生成</title>
+  <desc id="desc">先下载并运行本地模型，再断开电脑所有网络连接，输入一条新要求，等待出现新回答，最后恢复网络。看到旧聊天记录不等于离线生成。</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#196c5b" stroke-width="2"/></marker></defs>
+  <rect width="760" height="830" rx="24" fill="#f3f7f5"/>
+  <g font-family="PingFang SC,Microsoft YaHei,sans-serif" fill="#173b32">
+    <text x="44" y="62" font-size="32" font-weight="700">看一次“断网后的新生成”</text>
+    <g fill="#fff" stroke="#b7cdc1" stroke-width="2">
+      <rect x="44" y="94" width="672" height="110" rx="16"/>
+      <rect x="44" y="246" width="672" height="110" rx="16"/>
+      <rect x="44" y="398" width="672" height="110" rx="16"/>
+      <rect x="44" y="550" width="672" height="110" rx="16" fill="#e8f3ed"/>
+    </g>
+    <g fill="#196c5b"><circle cx="90" cy="149" r="25"/><circle cx="90" cy="301" r="25"/><circle cx="90" cy="453" r="25"/><circle cx="90" cy="605" r="25"/></g>
+    <g fill="#fff" font-size="27" font-weight="700" text-anchor="middle"><text x="90" y="159">1</text><text x="90" y="311">2</text><text x="90" y="463">3</text><text x="90" y="615">4</text></g>
+    <text x="136" y="140" font-size="29" font-weight="700">下载完成，进入本地对话</text>
+    <text x="136" y="180" font-size="25">完整标签：qwen3:1.7b</text>
+    <text x="136" y="292" font-size="29" font-weight="700">断开这台电脑的网络</text>
+    <text x="136" y="332" font-size="25">Wi-Fi、网线和其他连接都要断开</text>
+    <text x="136" y="444" font-size="29" font-weight="700">输入一条新的修改要求</text>
+    <text x="136" y="484" font-size="25">例如：把第1张卡改成“先……再……”</text>
+    <text x="136" y="596" font-size="29" font-weight="700">等到新回答，再恢复网络</text>
+    <text x="136" y="636" font-size="25">观察回答是否处理了刚才的新要求</text>
+    <g stroke="#196c5b" stroke-width="3" marker-end="url(#arrow)"><path d="M380 211 V235"/><path d="M380 363 V387"/><path d="M380 515 V539"/></g>
+    <rect x="44" y="695" width="672" height="98" rx="16" fill="#fff4d9"/>
+    <text x="70" y="735" font-size="27" font-weight="700">旧聊天记录仍在 ≠ 模型正在生成</text>
+    <text x="70" y="773" font-size="25">顺序示意｜断网之后，仍能处理新的要求。</text>
+  </g>
+</svg>

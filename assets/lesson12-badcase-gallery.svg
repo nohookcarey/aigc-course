@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Excel 数据汇总与图表呈现四大典型翻车现场剖析</title>
+  <desc id="desc">展示坐标轴截断欺诈、图表与维度错配、交叉汇总重复相加与脱离数据主观脑补四大典型反面案例与避坑指南</desc>
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="header-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="620" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题栏 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <rect x="0" y="0" width="1200" height="96" rx="20" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+    <rect x="50" y="24" width="8" height="48" rx="4" fill="url(#header-grad)"/>
+    <text x="72" y="52" font-size="24" font-weight="800" fill="#0f172a">⚠️ 警惕！Excel 数据汇总与图表呈现的四大“翻车现场”</text>
+    <text x="72" y="78" font-size="14" fill="#64748b">为什么 AI 生成的分析报告与图表经常误导领导？向管理层汇报前必须破除的四大硬伤</text>
+    
+    <rect x="1000" y="32" width="150" height="34" rx="17" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="1075" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#dc2626">数据制图避坑指南</text>
+  </g>
+
+  <!-- 4 个翻车案例卡片 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    
+    <!-- 卡片 1: 截断坐标轴欺诈 -->
+    <g transform="translate(48, 118)">
+      <rect width="260" height="470" rx="16" fill="#ffffff" stroke="#fecaca" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="260" height="42" rx="16" fill="#fef2f2"/>
+      <rect y="24" width="260" height="18" fill="#fef2f2"/>
+      <text x="20" y="27" font-size="15" font-weight="800" fill="#dc2626">❌ 翻车一：“截断坐标轴欺诈”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(18, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <line x1="28" y1="20" x2="28" y2="105" stroke="#94a3b8" stroke-width="1.5"/>
+        <line x1="28" y1="105" x2="200" y2="105" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="22" y="108" text-anchor="end" font-size="9" fill="#dc2626" font-weight="800">270</text>
+        <text x="22" y="30" text-anchor="end" font-size="9" fill="#64748b">400</text>
+        <!-- 截断下的柱子 -->
+        <rect x="55" y="25" width="45" height="80" fill="#3b82f6"/>
+        <rect x="125" y="98" width="45" height="7" fill="#f97316"/>
+        <text x="77" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a8a">400</text>
+        <text x="147" y="94" text-anchor="middle" font-size="10" font-weight="700" fill="#7c2d12">280</text>
+        <text x="112" y="116" text-anchor="middle" font-size="9" font-weight="800" fill="#ef4444">看起来相差 10 倍！严重失真</text>
+      </g>
+      
+      <text x="20" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="20" y="222" font-size="12" fill="#64748b">Y轴刻意从 270 起始而非 0，</text>
+      <text x="20" y="240" font-size="12" fill="#64748b">把 400 与 280 的正常差距</text>
+      <text x="20" y="258" font-size="12" fill="#64748b">放大为悬殊巨浪，误导决策！</text>
+
+      <rect x="18" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="20" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="18" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="28" y="342" font-size="12" font-weight="700" fill="#15803d">① 柱状图纵轴必须归零</text>
+      <text x="28" y="362" font-size="11" fill="#166534">坐标轴最低刻度必须强制为 0。</text>
+      <text x="28" y="388" font-size="12" font-weight="700" fill="#15803d">② 提示词加死约束</text>
+      <text x="28" y="408" font-size="11" fill="#166534">“纵坐标必须从 0 起始不截断”。</text>
+      <text x="28" y="434" font-size="11" font-weight="700" fill="#047857">客观比例是商务制图第一铁律！</text>
+    </g>
+
+    <!-- 卡片 2: 图表与维度错配 -->
+    <g transform="translate(332, 118)">
+      <rect width="260" height="470" rx="16" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="260" height="42" rx="16" fill="#fff7ed"/>
+      <rect y="24" width="260" height="18" fill="#fff7ed"/>
+      <text x="20" y="27" font-size="15" font-weight="800" fill="#ea580c">❌ 翻车二：“图表与维度错配”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(18, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="20" y="28" font-size="11" fill="#64748b">本课要求：比较A与B两类产品</text>
+        <!-- 错误图表示意：选中了整个大表 -->
+        <rect x="18" y="42" width="188" height="60" rx="4" fill="#fee2e2"/>
+        <text x="112" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">AI误将1-3月与合计全选进图表</text>
+        <text x="112" y="82" text-anchor="middle" font-size="11" font-weight="800" fill="#dc2626">出现“合计”680元巨无霸柱子！</text>
+        <text x="112" y="112" text-anchor="middle" font-size="9" fill="#64748b">观众根本看不懂到底在比什么</text>
+      </g>
+      
+      <text x="20" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="20" y="222" font-size="12" fill="#64748b">数据源选择不精准，把月度明细、</text>
+      <text x="20" y="240" font-size="12" fill="#64748b">产品名和总计行杂糅一锅炖，</text>
+      <text x="20" y="258" font-size="12" fill="#64748b">图表群魔乱舞，失去分析意义！</text>
+
+      <rect x="18" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="20" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="18" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="28" y="342" font-size="12" font-weight="700" fill="#15803d">① 精准选取数据区域</text>
+      <text x="28" y="362" font-size="11" fill="#166534">本课仅选中产品汇总区 A7:B9。</text>
+      <text x="28" y="388" font-size="12" font-weight="700" fill="#15803d">② 提示词限定元素</text>
+      <text x="28" y="408" font-size="11" fill="#166534">“仅对比A与B两根柱，不选总计”。</text>
+      <text x="28" y="434" font-size="11" font-weight="700" fill="#047857">一个问题只对应一张干净的图！</text>
+    </g>
+
+    <!-- 卡片 3: 交叉汇总重复相加 -->
+    <g transform="translate(616, 118)">
+      <rect width="260" height="470" rx="16" fill="#ffffff" stroke="#fecaca" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="260" height="42" rx="16" fill="#fef2f2"/>
+      <rect y="24" width="260" height="18" fill="#fef2f2"/>
+      <text x="20" y="27" font-size="15" font-weight="800" fill="#dc2626">❌ 翻车三：“交叉汇总重复相加”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(18, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="20" y="28" font-size="11" fill="#64748b">横向月度合计：200+240+240=680</text>
+        <text x="20" y="48" font-size="11" fill="#64748b">纵向产品合计：400+280=680</text>
+        <rect x="15" y="65" width="194" height="30" rx="4" fill="#fee2e2" stroke="#f87171"/>
+        <text x="112" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">AI算季度总额：680+680=1360！</text>
+        <text x="112" y="112" text-anchor="middle" font-size="10" font-weight="800" fill="#dc2626">把核验数字又加了一遍，虚高1倍</text>
+      </g>
+      
+      <text x="20" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="20" y="222" font-size="12" fill="#64748b">把用于“交叉核验”的两个总额</text>
+      <text x="20" y="240" font-size="12" fill="#64748b">再次进行加总求和，导致原始数据</text>
+      <text x="20" y="258" font-size="12" fill="#64748b">被重复计算，销售额直接翻倍虚报！</text>
+
+      <rect x="18" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="20" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="18" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="28" y="342" font-size="12" font-weight="700" fill="#15803d">① 明确交叉核验的本质</text>
+      <text x="28" y="362" font-size="11" fill="#166534">横向与纵向仅比对相等，绝不相加。</text>
+      <text x="28" y="388" font-size="12" font-weight="700" fill="#15803d">② 提示词明确算术逻辑</text>
+      <text x="28" y="408" font-size="11" fill="#166534">“原始销售明细仅参与计算一次”。</text>
+      <text x="28" y="434" font-size="11" font-weight="700" fill="#047857">总额就是 680 元，不多也不少！</text>
+    </g>
+
+    <!-- 卡片 4: 脱离数据主观臆测 -->
+    <g transform="translate(900, 118)">
+      <rect width="252" height="470" rx="16" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="252" height="42" rx="16" fill="#fff7ed"/>
+      <rect y="24" width="252" height="18" fill="#fff7ed"/>
+      <text x="18" y="27" font-size="15" font-weight="800" fill="#ea580c">❌ 翻车四：“脱离数据主观脑补”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(14, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="12" y="28" font-size="11" fill="#64748b">数据事实：A产品销售额400元</text>
+        <text x="12" y="48" font-size="11" fill="#64748b">数据事实：B产品销售额280元</text>
+        <rect x="10" y="65" width="204" height="30" rx="4" fill="#ffedd5" stroke="#fb923c"/>
+        <text x="112" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="#9a3412">AI脑补：“A质量更好、利润丰厚，</text>
+        <text x="112" y="93" text-anchor="middle" font-size="10" font-weight="700" fill="#9a3412">深受消费者信赖，应淘汰B产品！”</text>
+        <text x="112" y="112" text-anchor="middle" font-size="9" font-weight="800" fill="#c2410c">无成本、无销量数据却大放厥词</text>
+      </g>
+      
+      <text x="18" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="18" y="222" font-size="12" fill="#64748b">只有销售额数字，没有成本数据，</text>
+      <text x="18" y="240" font-size="12" fill="#64748b">AI却根据概率无中生有编造</text>
+      <text x="18" y="258" font-size="12" fill="#64748b">利润、质量与营销结论，信口开河！</text>
+
+      <rect x="14" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="18" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="14" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="24" y="342" font-size="12" font-weight="700" fill="#15803d">① 区分数据发现与推论</text>
+      <text x="24" y="362" font-size="11" fill="#166534">发现只写差额120元、2/3月并列。</text>
+      <text x="24" y="388" font-size="12" font-weight="700" fill="#15803d">② 坚守数据底线</text>
+      <text x="24" y="408" font-size="11" fill="#166534">“数字支持到哪里，结论写到哪里”。</text>
+      <text x="24" y="434" font-size="11" font-weight="700" fill="#047857">绝不把销售额等同于利润或质量！</text>
+    </g>
+
+  </g>
+</svg>

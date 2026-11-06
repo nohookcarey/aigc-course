@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Transformer 关联上下文理解服务窗口的过程</title>
+  <desc id="desc">目标词窗口直接关联服务、办理和业务等上下文线索，从而判断窗口指提供服务的办事地点。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2d63d7"/></marker>
+    <style>
+      .title{font:700 34px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#17233d}.label{font:700 23px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#2258ca}.text{font:500 22px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#2b3d5d}.small{font:500 18px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#536480}.node{fill:#f7f9ff;stroke:#a9c2f6;stroke-width:2;rx:16}.focus{fill:#e5efff;stroke:#2d63d7;stroke-width:3;rx:16}.clue{fill:#fff7e8;stroke:#e8bb61;stroke-width:2;rx:16}.line{stroke:#2d63d7;stroke-width:4;fill:none;marker-end:url(#arrow)}.light{stroke:#84a6ef;stroke-width:3;fill:none;marker-end:url(#arrow)}.note{fill:#f4f7ff;stroke:#d2dff8;stroke-width:2;rx:16}
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#fff"/>
+  <text x="600" y="58" text-anchor="middle" class="title">Transformer：直接关联相关线索</text>
+  <text x="600" y="94" text-anchor="middle" class="small">案例句子：请到服务窗口办理业务</text>
+
+  <rect x="85" y="180" width="160" height="72" class="node"/><text x="165" y="226" text-anchor="middle" class="text">请到</text>
+  <rect x="315" y="180" width="160" height="72" class="clue"/><text x="395" y="226" text-anchor="middle" class="label">服务</text>
+  <rect x="520" y="150" width="160" height="132" class="focus"/><text x="600" y="205" text-anchor="middle" class="label">目标词</text><text x="600" y="245" text-anchor="middle" class="label">窗口</text>
+  <rect x="725" y="180" width="160" height="72" class="clue"/><text x="805" y="226" text-anchor="middle" class="label">办理</text>
+  <rect x="955" y="180" width="160" height="72" class="clue"/><text x="1035" y="226" text-anchor="middle" class="label">业务</text>
+  <path d="M475 214 H520" class="line"/><path d="M725 214 H680" class="line"/><path d="M955 215 C850 320 740 330 650 282" class="light"/>
+  <text x="600" y="332" text-anchor="middle" class="small">“窗口”可以直接查看与自己最相关的上下文，而不只依赖前一步传来的信息</text>
+
+  <rect x="135" y="390" width="260" height="90" class="clue"/><text x="265" y="427" text-anchor="middle" class="label">相关线索 1</text><text x="265" y="458" text-anchor="middle" class="text">服务</text>
+  <rect x="470" y="390" width="260" height="90" class="clue"/><text x="600" y="427" text-anchor="middle" class="label">相关线索 2</text><text x="600" y="458" text-anchor="middle" class="text">办理</text>
+  <rect x="805" y="390" width="260" height="90" class="clue"/><text x="935" y="427" text-anchor="middle" class="label">相关线索 3</text><text x="935" y="458" text-anchor="middle" class="text">业务</text>
+  <path d="M600 282 C520 330 355 347 300 390" class="light"/><path d="M600 282 V390" class="line"/><path d="M600 282 C680 330 845 347 900 390" class="light"/>
+
+  <rect x="190" y="540" width="820" height="78" class="note"/><text x="600" y="573" text-anchor="middle" class="label">判断结果：这里的“窗口”更接近“提供服务的办事地点”</text><text x="600" y="603" text-anchor="middle" class="small">特点：目标词可直接关联多个重要线索，再综合做出判断。</text>
+  <text x="600" y="668" text-anchor="middle" class="small">课堂观察：看“窗口”连向哪些词；连线越重要，说明该线索越值得参考。</text>
+</svg>

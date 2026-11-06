@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">发票报销 AI 整理四大典型翻车现场剖析</title>
+  <desc id="desc">展示小数点失明、自作聪明补日期、擅自删行杀凭证与口径混淆乱汇总四大典型反面案例与避坑指南</desc>
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="header-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect width="1200" height="620" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题栏 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <rect x="0" y="0" width="1200" height="96" rx="20" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+    <rect x="50" y="24" width="8" height="48" rx="4" fill="url(#header-grad)"/>
+    <text x="72" y="52" font-size="24" font-weight="800" fill="#0f172a">⚠️ 警惕！发票报销 AI 整理的四大典型“翻车现场”</text>
+    <text x="72" y="78" font-size="14" fill="#64748b">为什么不能把票据照片直接丢给 AI 就报销？财务审计前必须守住的四道红线</text>
+    
+    <rect x="1000" y="32" width="150" height="34" rx="17" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="1075" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#dc2626">财务报销避坑指南</text>
+  </g>
+
+  <!-- 4 个翻车案例卡片 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    
+    <!-- 卡片 1: 小数点失明 -->
+    <g transform="translate(48, 118)">
+      <rect width="260" height="470" rx="16" fill="#ffffff" stroke="#fecaca" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="260" height="42" rx="16" fill="#fef2f2"/>
+      <rect y="24" width="260" height="18" fill="#fef2f2"/>
+      <text x="20" y="27" font-size="15" font-weight="800" fill="#dc2626">❌ 翻车一：“小数点失明”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(18, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="20" y="32" font-size="12" fill="#64748b">发票实物原图：</text>
+        <rect x="20" y="44" width="184" height="30" rx="4" fill="#fee2e2" stroke="#f87171"/>
+        <text x="112" y="64" text-anchor="middle" font-size="14" font-weight="700" fill="#991b1b">¥ 18.50（微小折痕）</text>
+        <text x="112" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#ef4444">AI 误识别为 ➔ 1850 元！</text>
+      </g>
+      
+      <text x="20" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="20" y="222" font-size="12" fill="#64748b">折痕反光致使小数点被吞，</text>
+      <text x="20" y="240" font-size="12" fill="#64748b">18.5元小额办公品变成千元支出，</text>
+      <text x="20" y="258" font-size="12" fill="#64748b">直接导致报销总额暴增上百倍！</text>
+
+      <rect x="18" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="20" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="18" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="28" y="342" font-size="12" font-weight="700" fill="#15803d">① 必须逐字核对原图原件</text>
+      <text x="28" y="362" font-size="11" fill="#166534">牢记“先核实一条，再跑批量”。</text>
+      <text x="28" y="388" font-size="12" font-weight="700" fill="#15803d">② 提示词加死约束</text>
+      <text x="28" y="408" font-size="11" fill="#166534">“带两位小数，遇折痕核验”。</text>
+      <text x="28" y="434" font-size="11" font-weight="700" fill="#047857">严禁不看原图直接取总额！</text>
+    </g>
+
+    <!-- 卡片 2: 自作聪明补日期 -->
+    <g transform="translate(332, 118)">
+      <rect width="260" height="470" rx="16" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="260" height="42" rx="16" fill="#fff7ed"/>
+      <rect y="24" width="260" height="18" fill="#fff7ed"/>
+      <text x="20" y="27" font-size="15" font-weight="800" fill="#ea580c">❌ 翻车二：“自作聪明补日期”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(18, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="20" y="32" font-size="12" fill="#64748b">凭证字段状态：</text>
+        <rect x="20" y="44" width="184" height="30" rx="4" fill="#ffedd5" stroke="#fb923c"/>
+        <text x="112" y="64" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">开票日期：[空白未提供]</text>
+        <text x="112" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#c2410c">AI 脑补 ➔ 填为“今天日期”！</text>
+      </g>
+      
+      <text x="20" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="20" y="222" font-size="12" fill="#64748b">大模型遇到空缺习惯性“圆谎”，</text>
+      <text x="20" y="240" font-size="12" fill="#64748b">自动用当前日期填补空白，</text>
+      <text x="20" y="258" font-size="12" fill="#64748b">掩盖了跨期、失效发票事实！</text>
+
+      <rect x="18" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="20" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="18" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="28" y="342" font-size="12" font-weight="700" fill="#15803d">① 明确标注【待核查】</text>
+      <text x="28" y="362" font-size="11" fill="#166534">空白仍保持空白，备注说明原因。</text>
+      <text x="28" y="388" font-size="12" font-weight="700" fill="#15803d">② 提示词锁定红线</text>
+      <text x="28" y="408" font-size="11" fill="#166534">“材料未提供信息一律留空”。</text>
+      <text x="28" y="434" font-size="11" font-weight="700" fill="#047857">绝不替材料伪造任何事实！</text>
+    </g>
+
+    <!-- 卡片 3: 武断删行杀凭证 -->
+    <g transform="translate(616, 118)">
+      <rect width="260" height="470" rx="16" fill="#ffffff" stroke="#fecaca" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="260" height="42" rx="16" fill="#fef2f2"/>
+      <rect y="24" width="260" height="18" fill="#fef2f2"/>
+      <text x="20" y="27" font-size="15" font-weight="800" fill="#dc2626">❌ 翻车三：“武断删行杀凭证”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(18, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="20" y="28" font-size="11" fill="#64748b">凭证2：2026-09-10 打印 12元</text>
+        <text x="20" y="48" font-size="11" fill="#64748b">凭证4：2026-09-10 打印 12元</text>
+        <rect x="15" y="65" width="194" height="26" rx="4" fill="#fee2e2" stroke="#f87171"/>
+        <text x="112" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">AI判定：重复报销，直接删除！</text>
+        <text x="112" y="108" text-anchor="middle" font-size="11" font-weight="800" fill="#dc2626">凭证4行凭空蒸发！无法平账</text>
+      </g>
+      
+      <text x="20" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="20" y="222" font-size="12" fill="#64748b">同日同金额完全可能是两笔支出，</text>
+      <text x="20" y="240" font-size="12" fill="#64748b">AI擅自判定重复并删去数据行，</text>
+      <text x="20" y="258" font-size="12" fill="#64748b">破坏原始凭证链，财务彻底瘫痪！</text>
+
+      <rect x="18" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="20" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="18" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="28" y="342" font-size="12" font-weight="700" fill="#15803d">① 保留双行，标注【疑似】</text>
+      <text x="28" y="362" font-size="11" fill="#166534">备注“疑似重复，待查流水凭证”。</text>
+      <text x="28" y="388" font-size="12" font-weight="700" fill="#15803d">② 提示词严格约束</text>
+      <text x="28" y="408" font-size="11" fill="#166534">“未经证据证实，绝不可删除行”。</text>
+      <text x="28" y="434" font-size="11" font-weight="700" fill="#047857">删行是财务红线，由人工定夺！</text>
+    </g>
+
+    <!-- 卡片 4: 口径混淆乱汇总 -->
+    <g transform="translate(900, 118)">
+      <rect width="252" height="470" rx="16" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="252" height="42" rx="16" fill="#fff7ed"/>
+      <rect y="24" width="252" height="18" fill="#fff7ed"/>
+      <text x="18" y="27" font-size="15" font-weight="800" fill="#ea580c">❌ 翻车四：“口径混淆乱汇总”</text>
+      
+      <!-- 模拟视觉画面 -->
+      <g transform="translate(14, 56)">
+        <rect width="224" height="120" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="12" y="28" font-size="11" fill="#64748b">打印类2笔共24元（SUMIF）</text>
+        <text x="12" y="48" font-size="11" fill="#64748b">假设扣减后54.5元（情景）</text>
+        <rect x="10" y="65" width="204" height="26" rx="4" fill="#ffedd5" stroke="#fb923c"/>
+        <text x="112" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3412">AI将24元写为“争议待扣金额”</text>
+        <text x="112" y="108" text-anchor="middle" font-size="11" font-weight="800" fill="#c2410c">将54.5元标为“已批准报销额”！</text>
+      </g>
+      
+      <text x="18" y="200" font-size="13" font-weight="700" fill="#0f172a">致命表现：</text>
+      <text x="18" y="222" font-size="12" fill="#64748b">分不清原始总额、分类合计</text>
+      <text x="18" y="240" font-size="12" fill="#64748b">与假设情景金额的本质区别，</text>
+      <text x="18" y="258" font-size="12" fill="#64748b">把试算演练当成领导批准结论！</text>
+
+      <rect x="14" y="280" width="224" height="1" fill="#f1f5f9"/>
+
+      <text x="18" y="306" font-size="13" font-weight="700" fill="#166534">✅ 正确实操破解：</text>
+      <rect x="14" y="320" width="224" height="135" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="24" y="342" font-size="12" font-weight="700" fill="#15803d">① 三大口径清晰分离</text>
+      <text x="24" y="362" font-size="11" fill="#166534">原始总额 / 分类汇总 / 情景假设。</text>
+      <text x="24" y="388" font-size="12" font-weight="700" fill="#15803d">② 必须标明试算前提</text>
+      <text x="24" y="408" font-size="11" fill="#166534">“54.5元仅在记录4确认为重复时成立”。</text>
+      <text x="24" y="434" font-size="11" font-weight="700" fill="#047857">不写假设前提，数字就是废纸！</text>
+    </g>
+
+  </g>
+</svg>

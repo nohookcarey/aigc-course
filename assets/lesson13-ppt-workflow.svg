@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">PPT自动生成与质量核验全流程</title>
+  <desc id="desc">展示从大纲约束、AI生成PPTX、WPS文字可编辑性检验、到演讲者备注与放映交付的闭环流程。</desc>
+  <defs>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1e3a8a" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect width="1200" height="560" rx="24" fill="#f8faff" stroke="#dbeafe" stroke-width="2"/>
+
+  <!-- 顶部主标题 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="60" y="65" font-size="28" font-weight="800" fill="#1e40af">全流程示意图｜从“提示词约束”到“可交付PPTX”的四道质量关</text>
+    <text x="60" y="98" font-size="16" fill="#64748b">AI负责快速生成版式结构，人工负责锁定页数、核验事实与确认可编辑性</text>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <!-- 步骤 1 -->
+    <g transform="translate(60, 130)">
+      <rect width="240" height="280" rx="16" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" filter="url(#card-shadow)"/>
+      <rect width="240" height="42" rx="16" fill="#eff6ff"/>
+      <rect y="26" width="240" height="16" fill="#eff6ff"/>
+      <text x="120" y="28" text-anchor="middle" font-size="17" font-weight="800" fill="#1d4ed8">01 明确约束与大纲</text>
+      
+      <circle cx="36" cy="75" r="14" fill="#dbeafe"/>
+      <text x="36" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">1</text>
+      <text x="60" y="80" font-size="15" font-weight="700" fill="#1e293b">锁定汇报受众</text>
+      <text x="60" y="102" font-size="13" fill="#64748b">明确是给高职新生看</text>
+
+      <circle cx="36" cy="135" r="14" fill="#dbeafe"/>
+      <text x="36" y="140" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">2</text>
+      <text x="60" y="140" font-size="15" font-weight="700" fill="#1e293b">限定恰好5页</text>
+      <text x="60" y="162" font-size="13" fill="#64748b">封面+3页要点+行动清单</text>
+
+      <rect x="16" y="195" width="208" height="65" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+      <text x="26" y="218" font-size="12" font-weight="700" fill="#b91c1c">避坑警示：</text>
+      <text x="26" y="238" font-size="12" fill="#991b1b">不给宽泛提示词</text>
+      <text x="26" y="254" font-size="12" fill="#991b1b">严禁AI自由发挥扩页</text>
+    </g>
+
+    <!-- 步骤 2 -->
+    <g transform="translate(340, 130)">
+      <rect width="240" height="280" rx="16" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" filter="url(#card-shadow)"/>
+      <rect width="240" height="42" rx="16" fill="#eff6ff"/>
+      <rect y="26" width="240" height="16" fill="#eff6ff"/>
+      <text x="120" y="28" text-anchor="middle" font-size="17" font-weight="800" fill="#1d4ed8">02 AI驱动生成</text>
+
+      <circle cx="36" cy="75" r="14" fill="#dbeafe"/>
+      <text x="36" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">1</text>
+      <text x="60" y="80" font-size="15" font-weight="700" fill="#1e293b">输入结构化提示词</text>
+      <text x="60" y="102" font-size="13" fill="#64748b">规定页面顺序与短句</text>
+
+      <circle cx="36" cy="135" r="14" fill="#dbeafe"/>
+      <text x="36" y="140" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">2</text>
+      <text x="60" y="140" font-size="15" font-weight="700" fill="#1e293b">导出为 PPTX 文件</text>
+      <text x="60" y="162" font-size="13" fill="#64748b">下载到本地，非仅预览</text>
+
+      <rect x="16" y="195" width="208" height="65" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+      <text x="26" y="218" font-size="12" font-weight="700" fill="#b91c1c">避坑警示：</text>
+      <text x="26" y="238" font-size="12" fill="#991b1b">只返大纲不算完成</text>
+      <text x="26" y="254" font-size="12" fill="#991b1b">拒绝整页图片“伪PPT”</text>
+    </g>
+
+    <!-- 步骤 3 -->
+    <g transform="translate(620, 130)">
+      <rect width="240" height="280" rx="16" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" filter="url(#card-shadow)"/>
+      <rect width="240" height="42" rx="16" fill="#eff6ff"/>
+      <rect y="26" width="240" height="16" fill="#eff6ff"/>
+      <text x="120" y="28" text-anchor="middle" font-size="17" font-weight="800" fill="#1d4ed8">03 WPS真机检验</text>
+
+      <circle cx="36" cy="75" r="14" fill="#dbeafe"/>
+      <text x="36" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">1</text>
+      <text x="60" y="80" font-size="15" font-weight="700" fill="#1e293b">点选文字验证可编</text>
+      <text x="60" y="102" font-size="13" fill="#64748b">光标能插入修改文本</text>
+
+      <circle cx="36" cy="135" r="14" fill="#dbeafe"/>
+      <text x="36" y="140" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">2</text>
+      <text x="60" y="140" font-size="15" font-weight="700" fill="#1e293b">依据材料人工修订</text>
+      <text x="60" y="162" font-size="13" fill="#64748b">精简长段、对齐标题</text>
+
+      <rect x="16" y="195" width="208" height="65" rx="8" fill="#fffbeb" stroke="#fef3c7"/>
+      <text x="26" y="218" font-size="12" font-weight="700" fill="#b45309">质量标准：</text>
+      <text x="26" y="238" font-size="12" fill="#92400e">删除无依据的罚款/制度</text>
+      <text x="26" y="254" font-size="12" fill="#92400e">待定日期注明待确认</text>
+    </g>
+
+    <!-- 步骤 4 -->
+    <g transform="translate(900, 130)">
+      <rect width="240" height="280" rx="16" fill="#ffffff" stroke="#3b82f6" stroke-width="2" filter="url(#card-shadow)"/>
+      <rect width="240" height="42" rx="16" fill="#dbeafe"/>
+      <rect y="26" width="240" height="16" fill="#dbeafe"/>
+      <text x="120" y="28" text-anchor="middle" font-size="17" font-weight="800" fill="#1e40af">04 备注与交付</text>
+
+      <circle cx="36" cy="75" r="14" fill="#bfdbfe"/>
+      <text x="36" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#1e40af">1</text>
+      <text x="60" y="80" font-size="15" font-weight="700" fill="#1e293b">填写第5页备注</text>
+      <text x="60" y="102" font-size="13" fill="#64748b">记录工具名与改动原因</text>
+
+      <circle cx="36" cy="135" r="14" fill="#bfdbfe"/>
+      <text x="36" y="140" text-anchor="middle" font-size="13" font-weight="800" fill="#1e40af">2</text>
+      <text x="60" y="140" font-size="15" font-weight="700" fill="#1e293b">全屏放映与重开</text>
+      <text x="60" y="162" font-size="13" fill="#64748b">检查无裁切，保存重开</text>
+
+      <rect x="16" y="195" width="208" height="65" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="26" y="218" font-size="12" font-weight="700" fill="#15803d">达标交付物：</text>
+      <text x="26" y="238" font-size="12" fill="#166534">13_校园安全提醒_姓名.pptx</text>
+      <text x="26" y="254" font-size="12" fill="#166534">恰好5页完整且文字可编辑</text>
+    </g>
+
+    <!-- 连接箭头 -->
+    <path d="M305 270 L330 270" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="335,270 327,265 327,275" fill="#3b82f6"/>
+
+    <path d="M585 270 L610 270" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="615,270 607,265 607,275" fill="#3b82f6"/>
+
+    <path d="M865 270 L890 270" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="895,270 887,265 887,275" fill="#3b82f6"/>
+
+    <!-- 底部结论总结横条 -->
+    <g transform="translate(60, 445)">
+      <rect width="1080" height="70" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <text x="540" y="42" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">
+        💡 核心实训底线：AI负责大纲版式初稿，人工负责事实边界把关，确保交付给领导或同学的文件“真能看、真能改、无假话”。
+      </text>
+    </g>
+  </g>
+</svg>
