@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" role="img" aria-label="上下文窗口示意图">
+  <rect width="960" height="380" fill="#ffffff"/>
+  <text x="40" y="46" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="22" font-weight="600" fill="#101828">上下文窗口：模型当前能参考的范围</text>
+
+  <!-- 对话流 -->
+  <g font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="15">
+    <rect x="40" y="96" width="120" height="56" rx="8" fill="#f2f4f7" stroke="#d0d5dd"/>
+    <text x="100" y="129" text-anchor="middle" fill="#667085">第1轮</text>
+
+    <rect x="176" y="96" width="120" height="56" rx="8" fill="#f2f4f7" stroke="#d0d5dd"/>
+    <text x="236" y="129" text-anchor="middle" fill="#667085">第2轮</text>
+
+    <rect x="312" y="96" width="120" height="56" rx="8" fill="#f2f4f7" stroke="#d0d5dd"/>
+    <text x="372" y="129" text-anchor="middle" fill="#667085">第3轮</text>
+
+    <rect x="448" y="96" width="120" height="56" rx="8" fill="#e8f0ff" stroke="#2f5fd0"/>
+    <text x="508" y="129" text-anchor="middle" fill="#1d3f9e">第4轮</text>
+
+    <rect x="584" y="96" width="120" height="56" rx="8" fill="#e8f0ff" stroke="#2f5fd0"/>
+    <text x="644" y="129" text-anchor="middle" fill="#1d3f9e">第5轮</text>
+
+    <rect x="720" y="96" width="120" height="56" rx="8" fill="#e8f0ff" stroke="#2f5fd0"/>
+    <text x="780" y="129" text-anchor="middle" fill="#1d3f9e">第6轮</text>
+  </g>
+
+  <!-- 窗口范围 -->
+  <rect x="436" y="76" width="416" height="96" rx="12" fill="none" stroke="#2f5fd0" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="644" y="196" text-anchor="middle" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#1d3f9e">当前可参考范围</text>
+
+  <!-- 截断示意 -->
+  <g stroke="#98a2b3" stroke-width="2">
+    <line x1="40" y1="252" x2="396" y2="252"/>
+  </g>
+  <text x="40" y="286" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#667085">更早的内容：超出范围后可能无法被完整参考</text>
+
+  <!-- 新增内容 -->
+  <g stroke="#2f5fd0" stroke-width="2">
+    <line x1="852" y1="124" x2="906" y2="124"/>
+    <polygon points="906,124 896,119 896,129" fill="#2f5fd0" stroke="none"/>
+  </g>
+  <text x="852" y="196" text-anchor="end" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#1d3f9e">继续对话</text>
+
+  <text x="40" y="336" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#98a2b3">概念示意，用于说明“能同时参考的内容有限”，不代表任何具体产品的实际窗口大小。</text>
+</svg>

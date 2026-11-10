@@ -1297,7 +1297,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <b>学习目标</b>
 <ol>
 <li>解释Token、温度和上下文窗口</li>
-<li>比较不同参数的输出差异</li>
+<li>比较不同提问方式的输出差异</li>
 <li>能写出可复现的测试记录</li>
 </ol>
 </div>
@@ -1312,7 +1312,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <article>
 <b>本课实操交付物</b>
 <p>保存步骤3、4的两轮回答，并写出 1 条差异。</p>
-<p class="file-example">保存建议：第2次_AI是怎么“想”的：从输入到输出_姓名</p>
+<p class="file-example">提交方式与文件命名见学习通本次作业说明</p>
 </article>
 <article>
 <b>统一完成标准</b>
@@ -1336,8 +1336,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </article>
 <article class="concept-card">
 <b>概念 3｜温度影响稳定性和多样性</b>
-<p>温度可以理解为“回答时敢不敢尝试不同选择”：温度低通常更稳定，温度高通常更多样，但也可能更偏离要求。正式通知偏低温度，创意标题可以适当提高。</p>
-<span>学完后用本课任务中的例子复述一次。</span>
+<p>温度可以理解为“回答时敢不敢尝试不同选择”：温度低通常更稳定，温度高通常更多样，但也可能更偏离要求。正式通知需要稳定，创意标题可以适当放开。本课用的 WorkBuddy 不开放这个设置，所以动手时用提问条件代替它。</p>
+<span>合上页面，用自己的话说清“温度调低适合哪类任务、调高适合哪类任务”，并指出本课为什么改用提问条件来控制结果。</span>
 <figure class="lesson-figure">
 <img src="assets/lesson02-image01.png" alt="模型参数设置界面，展示生成随机性、Top p 和回复长度等选项" style="width: 100%; height: auto; display: block; " data-image-id="lesson02-image-39" loading="lazy">
 <figcaption>参数设置示例：生成随机性、Top p、最大回复长度等会共同影响模型输出。 课堂上重点观察“温度（生成随机性）”与回答稳定性、多样性的关系。</figcaption>
@@ -1346,7 +1346,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <article class="concept-card">
 <b>概念 4｜上下文窗口有限、同题多答会变化</b>
 <p>上下文窗口像模型当前能铺在桌面上查看的资料范围，超出后早期内容可能无法被完整参考。同题多答还会受概率采样影响，所以测试时要记录输入、轮次和结果。</p>
-<img src="assets/image.png" alt="上下文窗口示意图" style="width: 100%; height: auto; display: block; margin: 0 auto;" data-image-id="lesson02-image-43" loading="lazy">
+<img src="assets/lesson02-context-window.svg" alt="上下文窗口示意：六轮对话中，只有虚线框内的后三轮在可参考范围内，更早内容可能被截断" style="width: 100%; height: auto; display: block; margin: 0 auto;" data-image-id="lesson02-image-43" loading="lazy">
 </article>
 </div>
 <div class="knowledge-check">
@@ -1369,26 +1369,26 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <div class="method-case-grid">
 <article>
 <b>① 案例背景</b>
-<p>小明让 AI 连续三次为“班级旧书交换”活动想标题，发现每次用词不完全相同：这是 AI 在不同选择中生成结果的表现。</p>
+<p>小芸的通知初稿开头太平，她想让 AI 写三条更醒目的开头；同样的话发了两遍，两次用词并不完全一样。</p>
 </article>
 <article>
 <b>② 案例分析</b>
-<p>把同一问题连续问三次，再分别设置较低和较高的温度，比较标题或回答的相似程度。建议使用扣子编程 https://code.coze.cn/w/<br>因为智能体把参数开放给用户，一般聊天助手未必开放这个设置。<br>第一步：AI 生成一个工作流，等待生成完毕<br>
-<img src="assets/image copy.png" style="width: 100%; height: auto; display: block; margin: 0 auto;" data-image-id="lesson02-image-67" alt="第2课温度对比操作示范配图1" loading="lazy">第二步：设置温度为 0； 同一问题提问3次，查看结果有何不同。<br>
-<img src="assets/image copy 2.png" style="width: 100%; height: auto; display: block; margin: 0 auto;" data-image-id="lesson02-image-69" alt="第2课温度对比操作示范配图2" loading="lazy">第三步：设置温度为 1.5； 同一问题提问3次，查看结果有何不同。<br>
+<p>在 WorkBuddy 里把同一句要求连发两次，再补上对象、字数限制发第三次，比较三次结果的差别。<br>聊天窗口不开放温度这类参数，你能控制的是提问里写清多少条件。<br>第一步：新建任务，发送“为实习面试改期通知写三条开头，每条不超过15字”，等结果出来。<br>
+<img src="assets/lesson02-case01.png" style="width: 100%; height: auto; display: block; margin: 0 auto;" data-image-id="lesson02-image-67" alt="课堂演示：在输入框发送“为实习面试改期通知写三条开头，每条不超过15字”" loading="lazy">第二步：原样再发一次，对比两次结果在措辞、长度和重点上的差别。<br>
+<img src="assets/lesson02-case02.png" style="width: 100%; height: auto; display: block; margin: 0 auto;" data-image-id="lesson02-image-69" alt="课堂演示：同一句话不改动，在输入框再发一遍" loading="lazy">第三步：补上“面向同学、语气简洁、不用感叹号”再发一次，看结果是否更接近你要的。<br>
 </p>
 </article>
 <article>
 <b>③ 容易误会</b>
-<p>“每次回答不同”不代表 AI 在故意出错，也不代表它已经记住了你。温度只影响生成时的选择倾向；敏感信息仍不应输入模型。</p>
+<p>“每次回答不同”不代表 AI 在故意出错，也不代表它已经记住了你。模型设置里有随机性，聊天窗口不开放给你调；能控制的是提问的详略。敏感信息仍不应输入模型。</p>
 </article>
 <article>
 <b>④ 你将学会</b>
-<p>观察并说明：温度较低时回答通常更稳定，温度较高时选择通常更多样；最后仍要人工判断哪一版更适合任务。</p>
+<p>观察并说明：条件写得越清楚，结果越接近你要的；最后仍要人工判断哪一版更适合任务。</p>
 </article>
 </div>
 <div class="method-case-output">
-<b>案例结论</b><span>同一句话的多次回答不完全相同是正常现象。低温度更适合需要稳定格式的通知，高温度可用于先想多个标题；无论哪一种，都要由人选择可用结果。</span>
+<b>案例结论</b><span>同一要求的多次回答不完全相同是正常现象。需要稳定格式的通知，就把对象、字数、语气写进提问；需要多个备选时，一次要多条。无论哪一种，都要由人选择可用结果。</span>
 </div>
 </section>
 <section class="aigc-mindmap">
@@ -1430,43 +1430,43 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <h3>步骤 1｜进入新任务</h3>
 <p>打开 WorkBuddy，点击左侧“新建任务”，确认页面中央出现任务输入框。</p>
 <figure class="lesson-figure">
-<img src="assets/lesson02-image02.png" alt="进入新任务的本地课堂操作参考图" data-image-id="lesson02-image-102" loading="lazy">
-<figcaption>进入新任务的本地课堂操作参考图</figcaption>
+<img src="assets/lesson02-image02.png" alt="新建任务后的输入框：光标停在框内，先确认位置再输入" data-image-id="lesson02-image-102" loading="lazy">
+<figcaption>新建任务后的输入框：光标停在框内，先确认位置再输入</figcaption>
 </figure>
 <small>✓ 完成后再进入下一步。</small>
 </article>
 <article class="step-card">
 <h3>步骤 2｜得到第一条结果</h3>
-<p>复制并发送：请为校园旧书交换活动写一句20字以内的宣传语。等待出现第一条结果。</p>
+<p>复制并发送：请为实习面试改期通知写一句20字以内的开头。等待出现第一条结果。</p>
 <figure class="lesson-figure">
-<img src="assets/lesson02-image03.png" alt="得到第一条结果的本地课堂操作参考图" data-image-id="lesson02-image-107" loading="lazy">
-<figcaption>得到第一条结果的本地课堂操作参考图</figcaption>
+<img src="assets/lesson02-image03.png" alt="输入框里是本次要发送的那句话：发出后等第一条结果出现，再进入下一步" data-image-id="lesson02-image-107" loading="lazy">
+<figcaption>输入框里是本次要发送的那句话：发出后等第一条结果出现，再进入下一步</figcaption>
 </figure>
 <small>✓ 完成后再进入下一步。</small>
 </article>
 <article class="step-card">
 <h3>步骤 3｜改变输入要求</h3>
-<p>继续发送：请生成3条宣传语，分别使用正式、活泼、温暖三种语气，每条20字以内。</p>
+<p>继续发送：请生成3条开头，分别使用正式、简洁、亲切三种语气，每条20字以内。</p>
 <figure class="lesson-figure">
-<img src="assets/lesson02-image04.png" alt="改变输入要求的本地课堂操作参考图" data-image-id="lesson02-image-112" loading="lazy">
-<figcaption>改变输入要求的本地课堂操作参考图</figcaption>
+<img src="assets/lesson02-image04.png" alt="输入框里是加了三条规定的那句话：三条开头应一次给出" data-image-id="lesson02-image-112" loading="lazy">
+<figcaption>输入框里是加了三条规定的那句话：三条开头应一次给出</figcaption>
 </figure>
 <small>✓ 完成后再进入下一步。</small>
 </article>
 <article class="step-card">
 <h3>步骤 4｜测试上下文</h3>
-<p>继续发送：把第2条改得更像高职学生的口吻。观察 AI 是否能接着上一轮内容修改。</p>
+<p>继续发送：把第2条改得更像班群里发通知的口吻。观察 AI 是否能接着上一轮内容修改。</p>
 <figure class="lesson-figure">
-<img src="assets/lesson02-image05.png" alt="测试上下文的本地课堂操作参考图" data-image-id="lesson02-image-117" loading="lazy">
-<figcaption>测试上下文的本地课堂操作参考图</figcaption>
+<img src="assets/lesson02-image05.png" alt="输入框里是“把第2条改成班群口吻”的指令：AI 能接上一轮内容，说明上下文在起作用" data-image-id="lesson02-image-117" loading="lazy">
+<figcaption>输入框里是“把第2条改成班群口吻”的指令：AI 能接上一轮内容，说明上下文在起作用</figcaption>
 </figure>
 <small>✓ 完成后再进入下一步。</small>
 </article>
 <article class="step-card">
 <h3>步骤 5｜完成对比记录</h3>
-<p>保存步骤3的三条宣传语和步骤4的修改结果，在文档写出“输入改变后，结果的数量、语气或内容发生了什么变化”。</p>
+<p>保存步骤3的三条开头和步骤4的修改结果，在文档写出“输入改变后，结果的数量、语气或内容发生了什么变化”。</p>
 <div class="step-standard">
-<b>本步完成标准</b><span>保存步骤3的三条宣传语和步骤4的修改结果，在文档写出“输入改变后，结果的数量、语气或内容发生了什么变化”。</span><small>本步不需要额外截图；按上方动作完成后，再对照本课“完成标准”自查。</small>
+<b>本步完成标准</b><span>保存步骤3的三条开头和步骤4的修改结果，在文档写出“输入改变后，结果的数量、语气或内容发生了什么变化”。</span><small>本步不需要额外截图；按上方动作完成后，再对照本课“完成标准”自查。</small>
 </div>
 <small>✓ 完成后再进入下一步。</small>
 </article>
@@ -1498,7 +1498,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </article>
 <article>
 <b>下节预告</b>
-<p>下一节《神经网络与Transformer：AI的大脑结构》会在今天的基础上继续练习新的方法和工具。</p>
+<p>下一节《神经网络与Transformer：AI的大脑结构》：看文字怎样变成向量，注意力又怎样让模型决定该关注哪一部分。</p>
 </article>
 </div>
 </section><footer><p>第一章｜AIGC 理论基础 · 第 2 次课 · 2 学时</p></footer><a class="back-top" href="#top">返回顶部 ↑</a><footer class="site-foot">

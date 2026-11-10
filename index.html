@@ -25,8 +25,6 @@
 
 body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:auto;padding:40px 24px 64px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-
 /* 封面：一块安静的深色，靠留白和字号撑住 */
 .course-cover{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
 .brand-lockup{padding:24px 32px}
@@ -36,19 +34,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
 .cover-body h1{margin:0;font-size:clamp(26px,3.2vw,36px);font-weight:600;line-height:1.3;letter-spacing:0}
 .course-meta{margin:12px 0 0;color:rgba(255,255,255,.62);font-size:14px;line-height:1.7;font-variant-numeric:tabular-nums}
 
-/* 工具条 */
-.toolbar{margin:24px 0 0;padding:16px 20px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-.toolbar-row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.search-box{flex:1 1 320px;min-width:240px}
-.search-box input{width:100%;padding:8px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);font-size:14px;color:var(--ink);transition:border-color .15s ease}
-.search-box input::placeholder{color:var(--ink-3)}
-.search-box input:focus{outline:2px solid rgba(35,79,183,.35);outline-offset:1px;border-color:var(--accent)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.chip{padding:8px 12px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink-2);font-size:13px;font-weight:500;cursor:pointer;transition:border-color .15s ease,color .15s ease,background-color .15s ease}
-.chip:hover{border-color:#98a2b3;color:var(--ink)}
-.chip.is-on{border-color:var(--accent);background:var(--accent);color:#fff}
-.chip:focus-visible,.card-main:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.empty-hint{margin:12px 0 0;color:var(--ink-3);font-size:13px}
+/* 目录：封面之下直接进入模块 */
 
 /* 模块与卡片 */
 .catalog{margin-top:32px}
@@ -61,6 +47,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
 .lesson-card{position:relative;display:flex;height:100%;padding:20px;border:1px solid var(--line);border-radius:10px;background:var(--surface);transition:border-color .15s ease,background-color .15s ease}
 .lesson-card:hover{border-color:var(--line-strong);background:#fcfcfd}
 .card-main{display:grid;gap:8px;width:100%;text-decoration:none;color:var(--ink)}
+.card-main:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* 签名细节：课次号前的目录引导线，全站唯一一处强调色 */
 .card-no{display:inline-flex;align-items:center;gap:8px;color:var(--ink-3);font-size:12px;font-weight:500;line-height:1.6;font-variant-numeric:tabular-nums}
@@ -90,10 +77,9 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
   .module{margin-top:28px}
   .module-head h2{font-size:17px}
   .lesson-card{padding:16px;height:auto}
-  .chip{padding:4px 12px;font-size:12px}
 }
 @media (prefers-reduced-motion:reduce){
-  .lesson-card,.chip,.search-box input{transition:none}
+  .lesson-card{transition:none}
 }
 </style></head>
 <body><main class="wrap">
@@ -106,128 +92,112 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
     </div>
   </header>
 
-  <section class="toolbar" aria-label="查找课件">
-    <div class="toolbar-row">
-      <label class="search-box"><span class="sr-only">搜索课件</span><input id="q" type="search" placeholder="搜索课题或关键词，例如 Excel、知识库、简历" autocomplete="off"></label>
-    </div>
-    <div class="chips" role="group" aria-label="按模块筛选">
-      <button class="chip is-on" type="button" data-mod="all">全部 26</button>
-      <button class="chip" type="button" data-mod="m1">认知与原理</button>
-      <button class="chip" type="button" data-mod="m2">WorkBuddy 与协作</button>
-      <button class="chip" type="button" data-mod="m3">AI 办公实战</button>
-      <button class="chip" type="button" data-mod="m4">知识库、连接器与多模态</button>
-      <button class="chip" type="button" data-mod="m5">开发、工作流与综合作品</button>
-      <button class="chip" type="button" data-mod="elective">选学</button>
-    </div>
-    <p class="empty-hint" id="empty-hint" hidden>没有匹配的课次，换个关键词试试。</p>
-  </section>
-
   <div class="catalog" id="catalog">
-  <section class="module" data-mod="m1" aria-labelledby="m1-h">
+  <section class="module" aria-labelledby="m1-h">
       <div class="module-head"><h2 id="m1-h">模块一｜认知与原理</h2><p>说清 AIGC 怎么工作，能判断一个任务该不该交给 AI。</p></div>
       <div class="grid">
-        <article class="lesson-card" data-mod="m1" data-key="第1次课 ai发展史全景与aigc初体验 完成两项小任务">
+        <article class="lesson-card">
           <a class="card-main" href="lesson01.html">
             <span class="card-no">第1次课 · 2学时</span>
             <b class="card-title">AI发展史全景与AIGC初体验</b>
-            <em class="card-task">完成两项小任务</em>
+            <em class="card-task">先知道今天要完成什么</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m1" data-key="第2次课 ai是怎么“想”的：从输入到输出 跟着五步，完成个人作品">
+        <article class="lesson-card">
           <a class="card-main" href="lesson02.html">
             <span class="card-no">第2次课 · 2学时</span>
             <b class="card-title">AI是怎么“想”的：从输入到输出</b>
-            <em class="card-task">跟着五步，完成个人作品</em>
+            <em class="card-task">先知道本节课要完成什么</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m1" data-key="第3次课 神经网络与transformer：ai的大脑结构 让 ai 生成一张“云词义判断”流程图">
+        <article class="lesson-card">
           <a class="card-main" href="lesson03.html">
             <span class="card-no">第3次课 · 2学时</span>
             <b class="card-title">神经网络与Transformer：AI的大脑结构</b>
-            <em class="card-task">让 AI 生成一张“云词义判断”流程图</em>
+            <em class="card-task">先知道本节课要完成什么</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m1" data-key="第4次课 预训练与后训练：大模型的“教育” 跟着五步，完成个人作品">
+        <article class="lesson-card">
           <a class="card-main" href="lesson04.html">
             <span class="card-no">第4次课 · 2学时</span>
             <b class="card-title">预训练与后训练：大模型的“教育”</b>
-            <em class="card-task">跟着五步，完成个人作品</em>
+            <em class="card-task">先知道本节课要完成什么</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m1" data-key="第5次课 rlhf与强化学习：deepseek r1深度解析 跟着五步，完成个人作品">
+        <article class="lesson-card">
           <a class="card-main" href="lesson05.html">
             <span class="card-no">第5次课 · 2学时</span>
             <b class="card-title">RLHF与强化学习：DeepSeek R1深度解析</b>
-            <em class="card-task">跟着五步，完成个人作品</em>
+            <em class="card-task">先知道本节课要完成什么</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m1" data-key="第6次课 ai绘图原理：stable diffusion深度解析 五步完成校园技能节配图对比">
+        <article class="lesson-card">
           <a class="card-main" href="lesson06.html">
             <span class="card-no">第6次课 · 2学时</span>
             <b class="card-title">AI绘图原理：Stable Diffusion深度解析</b>
-            <em class="card-task">五步完成校园技能节配图对比</em>
+            <em class="card-task">把想法变成配图，也说得清它怎样生成</em>
           </a>
         </article>
       </div>
     </section>
-<section class="module" data-mod="m2" aria-labelledby="m2-h">
+<section class="module" aria-labelledby="m2-h">
       <div class="module-head"><h2 id="m2-h">模块二｜WorkBuddy 与协作</h2><p>会用 Skill 与专家团，把重复动作交出去。</p></div>
       <div class="grid">
-        <article class="lesson-card" data-mod="m2" data-key="第7次课 workbuddy入门与第一个任务 先看图完成判断，再制作创意市集招募通知记录">
+        <article class="lesson-card">
           <a class="card-main" href="lesson07.html">
             <span class="card-no">第7次课 · 2学时</span>
             <b class="card-title">WorkBuddy入门与第一个任务</b>
             <em class="card-task">先看图完成判断，再制作创意市集招募通知记录</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m2" data-key="第8次课 skill：给ai装操作手册 用 skill 改写“校园手机摄影挑战赛”介绍">
+        <article class="lesson-card">
           <a class="card-main" href="lesson08.html">
             <span class="card-no">第8次课 · 2学时</span>
             <b class="card-title">Skill：给AI装操作手册</b>
-            <em class="card-task">用 Skill 改写“校园手机摄影挑战赛”介绍</em>
+            <em class="card-task">今天，只完成这一个作品</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m2" data-key="第9次课 专家与专家团 为一款新品做品牌情绪板">
+        <article class="lesson-card">
           <a class="card-main" href="lesson09.html">
             <span class="card-no">第9次课 · 2学时</span>
             <b class="card-title">专家与专家团</b>
-            <em class="card-task">为一款新品做品牌情绪板</em>
+            <em class="card-task">今天，只完成这一个作品</em>
           </a>
         </article>
       </div>
     </section>
-<section class="module" data-mod="m3" aria-labelledby="m3-h">
+<section class="module" aria-labelledby="m3-h">
       <div class="module-head"><h2 id="m3-h">模块三｜AI 办公实战</h2><p>独立完成文档、表格、PPT、文件管理与会议记录。</p></div>
       <div class="grid">
-        <article class="lesson-card" data-mod="m3" data-key="第10次课 办公实战：word文档生成与批量处理 批量生成与处理 word 文档">
+        <article class="lesson-card">
           <a class="card-main" href="lesson10.html">
             <span class="card-no">第10次课 · 2学时</span>
             <b class="card-title">办公实战：Word文档生成与批量处理</b>
             <em class="card-task">批量生成与处理 Word 文档</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m3" data-key="第11次课 excel数据处理（上）：发票报销自动整理 动手整理 4 条模拟报销记录">
+        <article class="lesson-card">
           <a class="card-main" href="lesson11.html">
             <span class="card-no">第11次课 · 2学时</span>
             <b class="card-title">Excel数据处理（上）：发票报销自动整理</b>
             <em class="card-task">动手整理 4 条模拟报销记录</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m3" data-key="第12次课 excel数据处理（下）：数据汇总分析与可视化 动手完成 a/b 产品汇总与柱状图制作">
+        <article class="lesson-card">
           <a class="card-main" href="lesson12.html">
             <span class="card-no">第12次课 · 2学时</span>
             <b class="card-title">Excel数据处理（下）：数据汇总分析与可视化</b>
             <em class="card-task">动手完成 A/B 产品汇总与柱状图制作</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m3" data-key="第13次课 办公实战：ppt自动生成 以高职新生为受众，制作一份五页的可编辑《校园信息安全提醒》pptx">
+        <article class="lesson-card">
           <a class="card-main" href="lesson13.html">
             <span class="card-no">第13次课 · 2学时</span>
             <b class="card-title">办公实战：PPT自动生成</b>
             <em class="card-task">以高职新生为受众，制作一份五页的可编辑《校园信息安全提醒》PPTX</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m3" data-key="第14次课 文件管理与会议记录 以《校园报修小程序》为实战，制作文件索引与会议行动看板">
+        <article class="lesson-card">
           <a class="card-main" href="lesson14.html">
             <span class="card-no">第14次课 · 2学时</span>
             <b class="card-title">文件管理与会议记录</b>
@@ -236,24 +206,24 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
         </article>
       </div>
     </section>
-<section class="module" data-mod="m4" aria-labelledby="m4-h">
+<section class="module" aria-labelledby="m4-h">
       <div class="module-head"><h2 id="m4-h">模块四｜知识库、连接器与多模态</h2><p>建一个真能用的知识库，连外部系统，一份素材出两种表达。</p></div>
       <div class="grid">
-        <article class="lesson-card" data-mod="m4" data-key="第15次课 知识库与业务协同：一条问题、一处依据 做一页讲座准备清单">
+        <article class="lesson-card">
           <a class="card-main" href="lesson15.html">
             <span class="card-no">第15次课 · 4学时</span>
             <b class="card-title">知识库与业务协同：一条问题、一处依据</b>
             <em class="card-task">做一页讲座准备清单</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m4" data-key="第16次课 连接器与智能体接力：把材料变成可执行的下一步 用腾讯文档mcp创建奶茶口味调查问卷">
+        <article class="lesson-card">
           <a class="card-main" href="lesson18.html">
             <span class="card-no">第16次课 · 2学时</span>
             <b class="card-title">连接器与智能体接力：把材料变成可执行的下一步</b>
             <em class="card-task">用腾讯文档MCP创建奶茶口味调查问卷</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m4" data-key="第17次课 多模态内容生产：一份素材，两种表达 我的15秒芋泥奶茶短片">
+        <article class="lesson-card">
           <a class="card-main" href="lesson20.html">
             <span class="card-no">第17次课 · 2学时</span>
             <b class="card-title">多模态内容生产：一份素材，两种表达</b>
@@ -262,66 +232,66 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
         </article>
       </div>
     </section>
-<section class="module" data-mod="m5" aria-labelledby="m5-h">
+<section class="module" aria-labelledby="m5-h">
       <div class="module-head"><h2 id="m5-h">模块五｜开发、工作流与综合作品</h2><p>写小工具、编排工作流，交付一个可验收的期末项目。</p></div>
       <div class="grid">
-        <article class="lesson-card" data-mod="m5" data-key="第18次课 ai编程入门：制作图片批量压缩工具 制作自己的日程小工具">
+        <article class="lesson-card">
           <a class="card-main" href="lesson24.html">
             <span class="card-no">第18次课 · 2学时</span>
             <b class="card-title">AI编程入门：制作图片批量压缩工具</b>
             <em class="card-task">制作自己的日程小工具</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第19次课 ai整理实习招聘信息：提取要求，筛选岗位 制作你的实习岗位筛选与决策包">
+        <article class="lesson-card">
           <a class="card-main" href="lesson25.html">
             <span class="card-no">第19次课 · 2学时</span>
             <b class="card-title">AI整理实习招聘信息：提取要求，筛选岗位</b>
             <em class="card-task">制作你的实习岗位筛选与决策包</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第20次课 ai制作简历：针对岗位定制简历 引用 ima 岗位表，生成三份不同岗位简历">
+        <article class="lesson-card">
           <a class="card-main" href="lesson26.html">
             <span class="card-no">第20次课 · 2学时</span>
             <b class="card-title">AI制作简历：针对岗位定制简历</b>
             <em class="card-task">引用 ima 岗位表，生成三份不同岗位简历</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第21次课 浏览器自动化：用playwright mcp完成网页比价 寻找最低价的心理学书籍">
+        <article class="lesson-card">
           <a class="card-main" href="lesson27.html">
             <span class="card-no">第21次课 · 2学时</span>
             <b class="card-title">浏览器自动化：用Playwright MCP完成网页比价</b>
             <em class="card-task">寻找最低价的心理学书籍</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第22次课 ai工作流：让模型理解，让规则执行 商品咨询工作流">
+        <article class="lesson-card">
           <a class="card-main" href="lesson28.html">
             <span class="card-no">第22次课 · 2学时</span>
             <b class="card-title">AI工作流：让模型理解，让规则执行</b>
             <em class="card-task">商品咨询工作流</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第23次课 ai项目架构：从工业级规范到极简落地 完成一份商家网站商单">
+        <article class="lesson-card">
           <a class="card-main" href="lesson29.html">
             <span class="card-no">第23次课 · 2学时</span>
             <b class="card-title">AI项目架构：从工业级规范到极简落地</b>
             <em class="card-task">完成一份商家网站商单</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第24次课 aigc变现：把ai技能做成可交付服务 认出七种交付方式与三类真实业务">
+        <article class="lesson-card">
           <a class="card-main" href="lesson30.html">
             <span class="card-no">第24次课 · 2学时</span>
             <b class="card-title">AIGC变现：把AI技能做成可交付服务</b>
             <em class="card-task">认出七种交付方式与三类真实业务</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第25次课 ollama轻量模型部署：搭建离线复习助手 制作自己的离线复习助手">
+        <article class="lesson-card">
           <a class="card-main" href="lesson31.html">
             <span class="card-no">第25次课 · 2学时</span>
             <b class="card-title">Ollama轻量模型部署：搭建离线复习助手</b>
             <em class="card-task">制作自己的离线复习助手</em>
           </a>
         </article>
-        <article class="lesson-card" data-mod="m5" data-key="第26次课 期末综合作品：用ai完成一个可用项目 个人独立完成，四道题任选一道">
+        <article class="lesson-card">
           <a class="card-main" href="lesson32.html">
             <span class="card-no">第26次课 · 12学时</span>
             <b class="card-title">期末综合作品：用AI完成一个可用项目</b>
@@ -333,7 +303,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
   <section class="module module-elective" aria-labelledby="elective-h">
       <div class="module-head"><h2 id="elective-h">选学 · 不计入总学时</h2><p>拓展内容，自愿学习，不参与课次编号与总学时统计。</p></div>
       <div class="grid">
-        <article class="lesson-card is-elective" data-mod="elective" data-key="hermes agent：核心优势、两种界面与它能做什么 选学">
+        <article class="lesson-card is-elective">
           <a class="card-main" href="lesson33.html"><span class="card-no">选学 · 2学时</span><b class="card-title">Hermes Agent：核心优势、两种界面与它能做什么</b><em class="card-task">看一个 Agent 产品的优势、界面与配置放在哪</em></a>
         </article>
       </div>
@@ -346,33 +316,4 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:-apple-system,
     <p class="foot-line">课堂材料与作业提交请在学习通内完成；本页面仅提供学习内容。</p>
   </footer>
 </main>
-<script>
-(function(){
-  var cards=[].slice.call(document.querySelectorAll('.lesson-card[data-key]')),
-      q=document.getElementById('q'),chips=[].slice.call(document.querySelectorAll('.chip')),
-      hint=document.getElementById('empty-hint');
-  var mod='all',term='';
-  function apply(){
-    var shown=0;
-    cards.forEach(function(c){
-      var okMod=(mod==='all'||c.dataset.mod===mod);
-      var okTerm=!term||(c.dataset.key||'').indexOf(term)>-1;
-      var vis=okMod&&okTerm;
-      c.hidden=!vis;if(vis)shown++;
-    });
-    document.querySelectorAll('.module').forEach(function(s){
-      var any=[].slice.call(s.querySelectorAll('.lesson-card')).some(function(c){return !c.hidden;});
-      s.hidden=!any;
-    });
-    if(hint)hint.hidden=shown>0;
-  }
-  if(q)q.addEventListener('input',function(){term=q.value.trim().toLowerCase();apply();});
-  chips.forEach(function(ch){
-    ch.addEventListener('click',function(){
-      chips.forEach(function(c){c.classList.remove('is-on');});
-      ch.classList.add('is-on');mod=ch.dataset.mod;apply();
-    });
-  });
-})();
-</script>
 </body></html>
