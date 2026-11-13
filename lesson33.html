@@ -1427,7 +1427,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <p><b>软件负责执行，模型负责想。</b> 换模型只换&quot;想的人&quot;，读写文件仍由软件做。模型可能跑在云端，发出去的文字仍会离开本机——这条算代价，04 节展开。</p>
 <h3>2｜CLI 与桌面端：两种长相，一套配置</h3>
 <p><b>命令行长这样。</b> 终端输入 <code>hermes</code>，先出这张启动页：界面是纯文字，一条命令一个动作。</p>
-<figure class="lesson-figure"><a href="assets/lesson33/hermes-cli-launch.png" title="点击查看大图"><img src="assets/lesson33/hermes-cli-launch.png" alt="本机运行 hermes 后出现的终端启动页" loading="lazy" width="1400" height="745"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/review-20261112/I159-hermes-cli-launch-redacted.png" title="点击查看大图"><img src="assets/review-20261112/I159-hermes-cli-launch-redacted.png" alt="本机运行 hermes 后出现的终端启动页" loading="lazy" width="1400" height="745"></a><figcaption></p>
 <p>图解：v0.22.6 的启动页。顶部版本行 <code>Hermes Agent v0.22.6 (2026.9.24) · stable · local f0d94882e89a</code>；<code>Available Tools</code> 是这次能用的工具集（浏览器、代码执行、文件读写、记忆等），<code>Available Skills</code> 是本机已装的技能（apple、creative、devops、email、note-taking、productivity 等）；左下角是当前模型 <code>claude-opus-4.6</code>、机构 <code>Nous Research</code> 和这次会话的编号。</figcaption></figure>
 <p>命令行不摆控件，只列事实：接的谁、能用什么工具、装了什么技能、会话是哪一个。输出的都是纯文本，能直接复制进脚本。</p>
 <p><b>桌面端长这样。</b> 同一个软件打开后：</p>
@@ -1517,7 +1517,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 <tr>
 <td>上下文窗口</td>
-<td>一次对话最多能装多少 token（字词的最小单位）；超了要压缩或截断</td>
+<td>一次对话可容纳多少 token（模型切分文本后的计量单位，不等于汉字数或词数）；接近上限时需要压缩、截断或分段</td>
 </tr>
 <tr>
 <td><code>auto</code></td>
@@ -1540,15 +1540,15 @@ body.is-ppt-mode .course-index-link{display:none!important}
 
       </section>
 <section class="lesson-section" id="sec-4">
-        <h2>03 六个特长：它比前几课用的工具多出什么</h2>
-        <p>前几课的工具，能力边界大致是&quot;能对话、能生成、能存成文件&quot;。Hermes 在这之外多做六件事，每件都有落点，只有一件不在界面上。</p>
+        <h2>03 六个功能入口：衔接已经学过的方法</h2>
+        <p>前几课已经用过Skill执行、浏览器操作、规则文件与定时任务。这里用Hermes的功能入口继续观察这些方法怎样实现，比较配置、运行与维护方式；产品名称不同不等于能力第一次出现。</p>
 <table>
 <thead>
 <tr>
 <th>能力</th>
 <th>界面在哪</th>
 <th>命令行</th>
-<th>前几课有没有</th>
+<th>与已学方法怎样衔接</th>
 </tr>
 </thead>
 <tbody>
@@ -1556,57 +1556,57 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <td>动手</td>
 <td>技能与工具</td>
 <td><code>/tools</code>、<code>hermes skills</code></td>
-<td>第8次课做过 Skill，但没有能执行的环境</td>
+<td>第8次课已有Skill调用；这里继续区分技能说明与可执行工具</td>
 </tr>
 <tr>
 <td>连人</td>
 <td>消息平台</td>
 <td><code>hermes gateway</code></td>
-<td>没有</td>
+<td>通过消息平台接收任务，另核可调用对象与运行权限</td>
 </tr>
 <tr>
 <td>定时</td>
 <td>定时任务</td>
 <td><code>hermes cron</code></td>
-<td>没有</td>
+<td>第22次课已介绍定时；这里换用Hermes配置入口</td>
 </tr>
 <tr>
 <td>自动</td>
 <td><b>不在界面上</b></td>
 <td><code>hermes hooks</code></td>
-<td>没有</td>
+<td>衔接工作流的事件触发，进一步看Agent生命周期节点</td>
 </tr>
 <tr>
 <td>留痕</td>
 <td>产物</td>
 <td>会话里写文件</td>
-<td>只有半份：文件散在文件夹</td>
+<td>第22次课已有规则与修改记录；这里继续看产物和运行记录</td>
 </tr>
 <tr>
 <td>管住</td>
 <td>设置 › 安全</td>
 <td><code>hermes approvals</code>、<code>hermes security</code>、<code>hermes pause</code></td>
-<td>没有</td>
+<td>衔接前课重要变更先确认，再看审批、安全与停止入口</td>
 </tr>
 </tbody>
 </table>
 <h3>1｜动手：技能与工具</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-skills-tools.png" title="点击查看大图"><img src="assets/lesson33/hermes-skills-tools.png" alt="技能与工具页：技能、插件、Connectors、工具集四个标签" loading="lazy" width="1400" height="852"></a><figcaption></p>
 <p>图解：顶部四个标签是 技能 44、插件、Connectors、工具集 23；下面是搜索框与分类筛选（Account Management、Accounting、Advertising 等，右侧 <code>+222</code>）。第一张大卡是内置技能 Computer Use（<code>Built in</code>、<code>v2.1.0</code>，右侧开关为「开」）；再往下是 Agentic AI 分类的第三方技能，如 NVIDIA 的 Ethos Explore、Ethos Orchestrate、Ethos Write、Nemo Fabric Build Adapter。</figcaption></figure>
-<p>两个数字要分清：<b>技能 44 是&quot;会做什么&quot;，工具集 23 是&quot;能动什么&quot;</b>。技能可以装、可以关；工具集决定它能不能读文件、跑命令、开浏览器。第8次课写的那份 <code>SKILL.md</code>，在 Hermes 里就是&quot;技能&quot;栏里的一个条目，不是另学一套。</p>
-<p>Computer Use 这张卡值得停一下：它让 Agent 直接操作桌面——第8次课到第26次课做的所有事，都在&quot;生成内容&quot;这一层，这一张卡把边界推到了&quot;替你点鼠标&quot;。</p>
+<p>两个数字要分清：<b>技能 44 是&quot;会做什么&quot;，工具集 23 是&quot;能动什么&quot;</b>。技能可以装、可以关；工具集决定它能不能读文件、跑命令、开浏览器。第8次课的 <code>SKILL.md</code> 同样用于描述做事方法；迁移时还要核对工具名称、依赖与权限，不能只复制文件就默认兼容。</p>
+<p>Computer Use用于直接操作桌面。它与第21次课的浏览器自动化都涉及实际动作，但控制对象和权限不同：前者面向桌面窗口，后者面向浏览器页面；不能把此前的工具调用都归为只生成内容。</p>
 <h3>2｜连人：消息平台</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-platforms.png" title="点击查看大图"><img src="assets/lesson33/hermes-platforms.png" alt="消息平台页：左侧平台清单，右侧 Telegram 配置" loading="lazy" width="1400" height="852"></a><figcaption></p>
 <p>图解：左列是平台清单，从上到下 Telegram、Discord、Slack、Mattermost、Matrix、WhatsApp、Signal、BlueBubbles（iMessage）、Email、SMS（Twilio）、钉钉、飞书、Google Chat、企业微信（群机器人）、企业微信（应用）、微信、QQ、元宝。右侧是当前选中的 Telegram：状态标着「已禁用」「需要设置」，往下是「快速设置」（扫码创建机器人）、「获取你的凭据」、「必须」填的 Bot 令牌、「推荐」填的允许 Telegram 用户 ID，最后是 Webhook secret。</figcaption></figure>
-<p>接上以后，<b>在手机上发一句话，跑任务的是你自己电脑</b>——这是&quot;连人&quot;的全部意义。</p>
-<p>代价要说清：<b>Bot 令牌就是钥匙</b>。谁拿到令牌和用户 ID，就能用你的额度、在你机器上指挥这个 Agent。所以「允许的用户 ID」那一栏不是可选项，不填就等于任何人都能私聊你的机器人。</p>
+<p>消息平台接通后，手机消息可交给已运行的网关，再由配置好的模型和工具处理。网关运行在哪台设备、能访问哪些文件，取决于实际部署与授权。</p>
+<p><b>Bot令牌是凭据，用户ID是允许对象的标识。</b> 令牌不公开；泄露时应撤销并重新配置。按官方Telegram指引，未设置允许用户时，网关默认拒绝所有用户；配置好允许对象后再测试访问范围，不能把用户ID当作密码。</p>
 <h3>3｜定时：定时任务</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-cron.png" title="点击查看大图"><img src="assets/lesson33/hermes-cron.png" alt="定时任务面板：左侧常用模板，右侧空状态说明" loading="lazy" width="1400" height="852"></a><figcaption></p>
 <p>图解：左侧顶部是任务计数，下面是「常用」模板：Morning briefing、Important-mail monitor、Weekly review、Workday start reminder、Custom reminder、Evening wind-down、Topic news digest、Bills &amp; renewals reminder、Price &amp; availability watch、Competitor news watch、Habit check-in、Hydration &amp; movement nud…、Weekly meal plan、Daily learning drip、Gratitude &amp; reflection prom…、On-this-day discovery。右侧空状态写着：&quot;按 cron 表达式排程一个提示词。Hermes 会运行它，并把结果发送到你选择的目的地。&quot;</figcaption></figure>
 <p><b>cron 表达式是五段：分 时 日 月 周。</b> <code>0 8 * * 1-5</code> 是周一到周五早上 8 点；<code>30 18 * * 5</code> 是每周五 18:30。写错段数是最常见的失败原因——五段、空格分隔、周段 1 是周一。</p>
-<p>定时和&quot;连人&quot;要配合才完整：只开定时，结果出在电脑屏幕上；再把消息平台接上，&quot;结果发送到目的地&quot;那一栏才有东西可选。</p>
+<p>配置定时任务时，要同时确定结果保存或发送到哪里。需要消息通知时选择已配置的接收位置；保存了排程，还要在触发后查看实际运行结果，不能只看任务存在。</p>
 <h3>4｜自动：钩子</h3>
-<p><b>钩子＝在固定节点上，自动跑一段你自己写的脚本。</b> 节点由 Hermes 定，脚本内容由你写。前 26 次课一次没出现过这东西，它是&quot;从会对话的工具&quot;变成&quot;能嵌进流程的工具&quot;的关键一步。</p>
+<p><b>钩子是在约定的事件节点触发自定义处理。</b> 这里进一步观察工具调用前后等Agent生命周期节点；它与第22次课的工作流触发方法有关，触发对象和配置位置有所不同。</p>
 <table>
 <thead>
 <tr>
@@ -1638,7 +1638,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>它和提示词的区别，一句话：<b>提示词是劝，钩子是拦。</b> 提示词写&quot;不要删文件&quot;，模型仍可能删；<code>pre_tool_call</code> 脚本返回拦截，这次工具调用就真的不发生。</p>
+<p>提示词说明任务意图，钩子则在指定事件执行程序逻辑。<code>pre_tool_call</code>可以按规则阻止匹配的工具调用，其他钩子也可只记录日志或整理结果；保护范围取决于匹配条件、返回值和出错处理，并非所有钩子都会拦截。</p>
 <p>配置写在 <code>~/.hermes/config.yaml</code> 里，一个事件一段：</p>
 <div class="copy-block">
       <pre id="lesson33-code-1"><code class="language-yaml">hooks:
@@ -1651,9 +1651,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <button class="copy-button" data-copy-target="lesson33-code-1" type="button">复制代码</button>
     </div><p>三个容易踩的点：</p>
 <ul>
-<li><b>桌面端没有这一页。</b> 设置 19 类里翻不到钩子，它只在配置文件里，用 <code>hermes hooks list</code>（看有哪些）、<code>test</code>（拿假数据试跑）、<code>doctor</code>（查权限、超时、改动）、<code>revoke</code>（撤销同意）来管。这就是命令行和图形界面的真实分界：<b>界面管常用的，配置文件管全部的。</b></li>
+<li><b>桌面端没有这一页。</b> 设置 19 类里翻不到钩子，它只在配置文件里，用 <code>hermes hooks list</code>（看有哪些）、<code>test</code>（拿假数据试跑）、<code>doctor</code>（查权限、超时、改动）、<code>revoke</code>（撤销同意）来管。这就是命令行和图形界面的真实分界：<b>界面提供常用入口，配置文件和命令行还可提供其他选项。</b></li>
 <li><b>第一次跑要你同意。</b> 每个「事件＋命令」组合首次执行会问一次，同意记录写在 <code>~/.hermes/shell-hooks-allowlist.json</code>；换命令、换路径都要重新同意。</li>
-<li><b>钩子等于在你机器上执行任意脚本。</b> 别人给的钩子脚本，先读完再用；<code>hooks list</code> 里出现你不认识的条目，当场删掉。</li>
+<li><b>钩子脚本会以相应运行进程的权限执行。</b> 使用前读清脚本与触发范围；<code>hooks list</code>出现不认识的条目时，先停用并查来源、事件和命令，再决定保留或移除。</li>
 </ul>
 <h3>5｜管住：审批、审计、紧急停止</h3>
 <table>
@@ -1682,7 +1682,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<p>这三条都是<b>为&quot;没人看着也在跑&quot;准备的</b>。问一句答一句不需要它们；一旦让 Agent 定时跑、接消息跑，就需要有人能一键叫停、有账可查。</p>
+<p>调用工具时应明确权限、变更范围与运行记录；定时或通过消息接收任务时，还要知道怎样停止继续接收新任务，并查看已经发生的操作。</p>
 <h3>6｜配置在哪：模型、记忆、设置 19 类</h3>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-settings-list.png" title="点击查看大图"><img src="assets/lesson33/hermes-settings-list.png" alt="设置面板的分类列表" loading="lazy" width="940" height="870"></a><figcaption></p>
 <p>图解：设置共 19 类：模型、对话、外观、工作区、安全、Browser、密码与登录、记忆与上下文、语音、高级、通知、账单、提供方、网关、网页访问、键盘快捷键、工具与密钥、会话、插件。顶部搜索框 <code>⌘K</code> 可按名称直达。</figcaption></figure>
@@ -1722,7 +1722,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <p>图解：顶部说明&quot;应用于新会话，可在输入框的模型选择器中临时切换当前对话&quot;。字段是提供方 <code>auto</code>、模型（按钮「设置 提供方」）、推理 <code>中</code>、上下文窗口 <code>0</code>，附一行说明：&quot;仅覆盖主聊天模型检测到的上下文窗口（以 token 计）。保持为 0 则使用所选模型检测到的值。不影响辅助模型/MoA 模型。&quot;</figcaption></figure>
 <figure class="lesson-figure"><a href="assets/lesson33/hermes-memory-panel.png" title="点击查看大图"><img src="assets/lesson33/hermes-memory-panel.png" alt="设置 › 记忆与上下文 › 持久记忆" loading="lazy" width="1800" height="946"></a><figcaption></p>
 <p>图解：面包屑是「设置 › 记忆与上下文 › 持久记忆」。顶部&quot;已选记忆提供方：无一 — 仅内置记忆&quot;；内置层说明 <code>MEMORY.md</code> 和 <code>USER.md</code> 是 Hermes 自己的记忆，独立于外部提供方，默认都载入会话，可用开关分别关闭。往下是持久记忆和用户画像两个开关（图中都开着），记忆预算 2200、画像预算 1375。</figcaption></figure>
-<p>预算决定&quot;能留多少字&quot;，不是&quot;记得多准&quot;。预算小只能留最要紧的偏好；写满后新内容挤掉旧内容。<b>记忆管跨会话留什么，上下文管这一次留多长。</b></p>
+<p>预算限制可保留的文本长度，不是记忆准确度指标。内置记忆写入超限时会报错，需要整理条目后再写，不会自动静默挤掉旧内容。<b>记忆决定跨会话保存哪些内容，上下文窗口限制当前模型请求可容纳的内容。</b></p>
 <p>界面上点开的每一项，最后都落到一个文件：记忆落到 <code>MEMORY.md</code>／<code>USER.md</code>，技能落到 <code>SKILL.md</code>，钩子落到 <code>config.yaml</code>。<b>界面是入口，文件才是本体</b>——这也是它能被 Git 管起来、能被别人接手的原因。</p>
 <h3>7｜它擅长什么，不必用什么</h3>
 <p>六件事组装起来，擅长的任务集中在四类：</p>
@@ -2014,7 +2014,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 <tr>
 <td>认得特长</td>
-<td>能说出六个特长里至少四个，并讲清钩子和界面功能的区别：界面管常用的，配置文件管全部的</td>
+<td>能说明六个功能入口中至少四个的用途，区分已学方法与本产品的配置方式，不把入口存在当作任务已经执行</td>
 </tr>
 <tr>
 <td>分清界面</td>
@@ -2104,8 +2104,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

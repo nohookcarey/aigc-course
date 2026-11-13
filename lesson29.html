@@ -1413,7 +1413,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <h4>原则一｜先明确规则，再执行具体操作</h4>
 <p>客户需求说明最终要看到什么，包括服务内容、交互和报价；项目规则说明AI如何操作这些文件，例如保留原图片、只改相关模块、更新已确认的需求。<code>AGENTS.md</code> 是本课存放项目规则的文件，<code>brief.md</code> 保存客户需求。使用时明确让WorkBuddy读取它们，不把文件存在等同于AI已经采用规则。</p>
 <p><b>例子：</b> “新增大型犬套餐159元”写入 <code>brief.md</code>；“套餐数据集中维护，不重做整页”写入 <code>AGENTS.md</code>。规则文件用于指导AI，不能代替文件权限或自动拦截机制。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/rules-preview.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/rules-preview.svg" alt="WorkBuddy中打开本课AGENTS.md项目规则" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/review-20261112/I138-rules-preview-redacted.svg" title="点击查看大图"><img src="assets/review-20261112/I138-rules-preview-redacted.svg" alt="WorkBuddy中打开本课AGENTS.md项目规则" loading="lazy" width="1144" height="925"></a><figcaption></p>
 <p>在右侧“文件”页签打开 <code>AGENTS.md</code>，看“只修改相关部分”和“将已确认的变更更新到 <code>brief.md</code>”两条规则；它们说明修改方式，具体套餐与报价仍以客户简报为准。</figcaption></figure>
 <h4>原则二｜模型处理语言，程序执行可明确的计算与操作</h4>
 <p>模型适合理解需求、提取语义、提出方案和组织表达；适合精确计算、批量处理和重复校验的部分，可写成脚本或调用工具。工作流负责约定先后顺序，脚本负责执行其中明确的一步。两者分工后，出错时更容易定位是材料、规则、计算还是表达出了问题。</p>
@@ -1588,10 +1588,10 @@ body.is-ppt-mode .course-index-link{display:none!important}
 └── README.md       打开方式与常见修改位置
 </code></pre>
       <button class="copy-button" data-copy-target="lesson29-code-3" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/concept-file-roles.png" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/concept-file-roles.png" alt="网站修改要求与文件职责概念图" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/concept-file-roles.png" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/concept-file-roles.png" alt="网站修改要求与文件职责概念图" loading="lazy" width="1536" height="1024"></a><figcaption></p>
 <p>先看修改对象，再找对应文件：价格与筛选逻辑在 <code>app.js</code>，颜色与间距在 <code>styles.css</code>，栏目结构在 <code>index.html</code>。图片放在 <code>assets</code>；若替换图片时改变文件名，还要同步修改引用路径。</figcaption></figure>
 <h3>第一步｜选择工作目录，读取客户需求</h3>
-<p>使用教师提供的《第23课商家网站素材》，将其中的“教师_宠物洗护店”复制为独立项目目录。在WorkBuddy新建任务，通过“选择工作空间”选中这个目录。目录里先有 <code>AGENTS.md</code>、<code>brief.md</code> 和 <code>assets</code>；同一网站的后续修改继续使用这个目录。</p>
+<p><a href="https://nohookcarey.github.io/aigc-course/assets/course-materials/%E7%AC%AC23%E8%AF%BE.zip">下载第23课商家网站素材</a>，将其中的“教师_宠物洗护店”复制为独立项目目录。在WorkBuddy新建任务，通过“选择工作空间”选中这个目录。目录里先有 <code>AGENTS.md</code>、<code>brief.md</code> 和 <code>assets</code>；同一网站的后续修改继续使用这个目录。</p>
 <div class="copy-block">
       <pre id="lesson29-code-4"><code class="language-text">读取当前项目的 AGENTS.md、brief.md，查看 assets 中已有图片。
 先用简短列表说明：页面有哪些模块，猫犬切换后显示什么，各文件分别负责什么。
@@ -1600,12 +1600,12 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson29-code-4" type="button">复制代码</button>
     </div><p>页面预期是什么、文件分别做什么，可以先看这份简报和文件分工；不需要先创建八个文件夹。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-website/00-workspace.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-website/00-workspace.svg" alt="WorkBuddy选择工作空间入口" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-website/00-workspace.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-website/00-workspace.svg" alt="WorkBuddy选择工作空间入口" loading="lazy" width="1600" height="200"></a><figcaption></p>
 <p>输入区下方的“选择工作空间”用于指定项目目录；后续任务继续选择同一目录。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/workspace-selected.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/workspace-selected.svg" alt="WorkBuddy工作空间已选中教师毛球洗护目录" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/review-20261112/I141-workspace-selected-redacted.svg" title="点击查看大图"><img src="assets/review-20261112/I141-workspace-selected-redacted.svg" alt="WorkBuddy工作空间已选中教师毛球洗护目录" loading="lazy" width="1640" height="285"></a><figcaption></p>
 <p>选中后，工作空间位置显示“教师_毛球洗护”这一目录名；若仍显示“选择工作空间”，先选目录，再发送任务。</figcaption></figure>
 <p>在右侧面板选择“查看工作空间”，打开 <code>brief.md</code>，先找到四款套餐和猫犬切换要求，再让WorkBuddy读取文件并生成。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/brief-preview.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/brief-preview.svg" alt="WorkBuddy预览毛球洗护客户简报" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/review-20261112/I142-brief-preview-redacted.svg" title="点击查看大图"><img src="assets/review-20261112/I142-brief-preview-redacted.svg" alt="WorkBuddy预览毛球洗护客户简报" loading="lazy" width="1144" height="1190"></a><figcaption></p>
 <p>在简报中核对犬套餐69元和99元、猫套餐99元和139元；初版不含大型犬套餐。预览到文件只说明文件可查看，发送后还要看任务是否读取并实际写入网页文件。</figcaption></figure>
 <h3>第二步｜生成初版，在浏览器查看交互</h3>
 <div class="copy-block">
@@ -1619,9 +1619,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson29-code-5" type="button">复制代码</button>
     </div><p>在文件管理器中打开项目目录，双击 <code>index.html</code>，分别点击“猫”和“犬”，再展开一款套餐。应看到两类套餐相互切换，价格与简报一致。手机预览时，套餐卡片可以排成一列。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/01-dog-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/01-dog-focus.svg" alt="参考网站犬分类" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/01-dog-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/01-dog-focus.svg" alt="参考网站犬分类" loading="lazy" width="770" height="370"></a><figcaption></p>
 <p>参考网站的犬分类显示69元和99元两款套餐。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/02-cat-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/02-cat-focus.svg" alt="参考网站猫分类与内容展开" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/02-cat-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/02-cat-focus.svg" alt="参考网站猫分类与内容展开" loading="lazy" width="770" height="470"></a><figcaption></p>
 <p>切到猫分类后显示99元和139元套餐；展开卡片可查看服务内容。</figcaption></figure>
 <h3>第三步｜客户新增套餐，在初版上继续修改</h3>
 <p><b>新要求：</b> 增加“大型犬基础洗护159元”，服务内容为基础清洁、吹干与梳毛，只出现在犬分类；原有套餐、图片和风格保持。</p>
@@ -1633,10 +1633,10 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson29-code-6" type="button">复制代码</button>
     </div><p>修改后，在右侧结果面板查看“变更”，打开实际改过的文件；本次套餐数据主要看 <code>app.js</code>，已确认需求看 <code>brief.md</code>。如果你的版本先显示“文件”页签，可先从文件列表打开它们。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/official-changes.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/official-changes.svg" alt="WorkBuddy变更面板中的修改文件列表" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/review-20261112/I145-official-changes-redacted.svg" title="点击查看大图"><img src="assets/review-20261112/I145-official-changes-redacted.svg" alt="WorkBuddy变更面板中的修改文件列表" loading="lazy" width="766" height="260"></a><figcaption></p>
 <p>官方界面示例中的日报文件仅用于辨认“变更”面板和文件列表；在自己的项目里，核对套餐数据与简报的具体改动，再回浏览器看效果。</figcaption></figure>
 <p>刷新页面：犬分类现在有三款，猫分类仍有两款。若新增套餐只在“全部”中出现而犬分类没有，回到 <code>app.js</code> 检查它的分类字段与筛选条件，而不是重做页面。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/03-added-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/03-added-focus.svg" alt="参考网站新增大型犬套餐" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/03-added-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/03-added-focus.svg" alt="参考网站新增大型犬套餐" loading="lazy" width="1140" height="370"></a><figcaption></p>
 <p>新增的大型犬套餐为159元，与原来两款犬套餐同时显示。</figcaption></figure>
 <h3>第四步｜新会话接手，完成一次小改价</h3>
 <p>先让WorkBuddy把“怎么打开、价格在哪里改、图片在哪里换、当前已完成什么”写进 <code>README.md</code>。随后新建任务，再次选择同一个工作目录。</p>
@@ -1648,7 +1648,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson29-code-7" type="button">复制代码</button>
     </div><p>刷新页面，犬基础洗护显示79元，大型犬仍是159元，猫套餐仍是99元和139元。这里延续的是项目文件中的需求与实现，不需要凭空建立 <code>state.json</code> 来表示“有记忆”。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/04-price-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/04-price-focus.svg" alt="参考网站定向改价" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/04-price-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/04-price-focus.svg" alt="参考网站定向改价" loading="lazy" width="1140" height="370"></a><figcaption></p>
 <p>只调整犬基础洗护为79元，其他犬套餐仍为99元和159元。</figcaption></figure>
 
       </section>
@@ -1681,7 +1681,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tr>
 </tbody>
 </table>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/practice-flow-vertical.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/practice-flow-vertical.svg" alt="商家网站实践流程" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/practice-flow-vertical.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/practice-flow-vertical.svg" alt="商家网站实践流程" loading="lazy" width="640" height="860"></a><figcaption></p>
 <p>从自己的商家需求出发，先完成网站和交互，再处理客户变更。</figcaption></figure>
 <h3>操作①｜选择需求和图片，确定自己的风格</h3>
 <p>选择一个学生素材目录，复制到自己的工作位置，在WorkBuddy选择它作为工作空间。打开 <code>brief.md</code>，确定服务对象，再亲自选定主色、页面感觉与图片位置。不要只把教师店名换掉。</p>
@@ -1716,9 +1716,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson29-code-10" type="button">复制代码</button>
     </div><p>实际点击两个分类，看内容是否变化。只改变按钮颜色、卡片仍全部显示，不算完成筛选。若卡片始终不变，将浏览器中看到的现象告诉WorkBuddy，让它修正分类字段或筛选逻辑。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/05-student-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/05-student-focus.svg" alt="饮品店独立参考网站咖啡分类" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/05-student-focus.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/05-student-focus.svg" alt="饮品店独立参考网站咖啡分类" loading="lazy" width="770" height="370"></a><figcaption></p>
 <p>饮品参考网站切到咖啡后，只显示生椰拿铁和冷萃咖啡；果茶卡片不在这一分类中。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/student-mobile.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/student-mobile.svg" alt="饮品参考网站在手机宽度下的布局" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson29/20261027-visual-review/student-mobile.svg" title="点击查看大图"><img src="assets/web/lesson29/20261027-visual-review/student-mobile.svg" alt="饮品参考网站在手机宽度下的布局" loading="lazy" width="390" height="430"></a><figcaption></p>
 <p>窄屏下查看导航、标题换行与说明文字是否排在页面内；不要把电脑截图缩小后当作手机布局。分类是否有效，仍需点击后观察内容变化。</figcaption></figure>
 <h3>操作④｜处理变更，交给新会话继续修改</h3>
 <p>从自己简报中的变更选一条：新增服务或套餐、调整一组价格、增加分类。把具体名称、价格或分类补入提示词，不只说“优化一下”。</p>
@@ -1742,26 +1742,29 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <table>
 <thead>
 <tr>
-<th>看什么</th>
 <th>达到什么程度</th>
+<th>看什么</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>内容与阅读</td>
 <td>四类信息完整，图片与商家用途相符，电脑和手机都能阅读</td>
+<td>内容与阅读</td>
 </tr>
 <tr>
-<td>交互与变更</td>
 <td>分类实际改变内容；新增需求已生效，原功能仍能使用</td>
+<td>交互与变更</td>
 </tr>
 <tr>
-<td>项目可继续修改</td>
 <td>新会话能依据说明改对位置；你能指出需求、代码和图片分别放在哪里</td>
+<td>项目可继续修改</td>
+</tr>
+<tr>
+<td>基础要求是完整展示、一个有效交互与一次客户变更；提升空间在布局、交互准确性和修改质量，不在目录建得多不多。</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>基础要求是完整展示、一个有效交互与一次客户变更；提升空间在布局、交互准确性和修改质量，不在目录建得多不多。</p>
 
       </section>
 <section class="lesson-section" id="finish">
@@ -1801,7 +1804,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <a class="pager-link pager-prev" href="lesson28.html"><span class="pager-label">← 上一课</span><b class="pager-title">第22次课 · AI工作流：让模型理解，让规则执行</b></a>
       <a class="pager-link pager-next" href="lesson30.html"><span class="pager-label">下一课 →</span><b class="pager-title">第24次课 · AIGC变现：把AI技能做成可交付服务</b></a>
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -1872,8 +1875,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

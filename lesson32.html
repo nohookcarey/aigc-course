@@ -1607,7 +1607,7 @@ body.lesson32-revision .ppt-slide-card th,body.lesson32-revision .ppt-slide-card
       <a class="pager-link pager-prev" href="lesson31.html"><span class="pager-label">← 上一课</span><b class="pager-title">第25次课 · Ollama轻量模型部署：搭建离线复习助手</b></a>
       
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -1678,8 +1678,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

@@ -1490,7 +1490,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </ul>
 <h4>2. 高职学生通用：黄金三段式工作流脚手架</h4>
 <p>本课的周报与商品咨询都可以按“输入处理→模型加工→检查保存”理解；具体检查条件要随任务调整：</p>
-<figure class="lesson-figure"><a href="assets/lesson28-workflow-scaffold.jpg" title="点击查看大图"><img src="assets/lesson28-workflow-scaffold.jpg" alt="AI工作流黄金三段式架构：前置守门员、核心加工厂、终点质检员" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/lesson28-workflow-scaffold.jpg" title="点击查看大图"><img src="assets/lesson28-workflow-scaffold.jpg" alt="AI工作流黄金三段式架构：前置守门员、核心加工厂、终点质检员" loading="lazy" width="1376" height="768"></a><figcaption></p>
 <p>图解：从输入前置过滤、模型核心语义加工，到终点严格质检写盘的标准工程三段式骨架。</figcaption></figure>
 <h4>3. 双轨故障排查指南（Troubleshooting Checklist）</h4>
 <p>实操跑出 Bug 时，按照以下规则快速定位归因：</p>
@@ -1531,12 +1531,12 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <h2>03 核心案例</h2>
         <h3>教师示范｜从一周求职实训记录生成周报</h3>
 <p><b>课堂模拟情境：</b> 实习生每天在工作区留下岗位整理、简历进展和沟通记录等零散文本，周末需要归纳为规范周报。材料中既有不在本周的旧记录，也有同一事项不同阶段的更新版本，还夹杂着未脱敏的联系方式，以及一项尚未执行的下周计划。本例统计周期为 2026年10月19日至25日。</p>
-<figure class="lesson-figure"><a href="assets/lesson28-workflow-pipeline.jpg" title="点击查看大图"><img src="assets/lesson28-workflow-pipeline.jpg" alt="周报端到端自动化AI工作流全景链路图" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/lesson28-workflow-pipeline.jpg" title="点击查看大图"><img src="assets/lesson28-workflow-pipeline.jpg" alt="周报端到端自动化AI工作流全景链路图" loading="lazy" width="1376" height="768"></a><figcaption></p>
 <p>图解：按箭头观察材料清单怎样传给模型，以及审核通过后怎样保存文件；模板填充在第四步完成。</figcaption></figure>
 <hr>
 <h3>第一步｜创建或选择工作目录</h3>
 <p>在WorkBuddy输入框下方选择一个独立的周报演练文件夹。可以使用已有课堂材料，也可以从空目录开始，先发送下面的提示词生成输入文件。第二步才生成或检查规则脚本，不需要事先准备脚本。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/01-start.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/01-start.jpg" alt="WorkBuddy新建任务与工作空间入口" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/01-start.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/01-start.jpg" alt="WorkBuddy新建任务与工作空间入口" loading="lazy" width="1645" height="810"></a><figcaption></p>
 <p>图解：在输入框下方选择演练目录，再查看任务使用的工作空间。</figcaption></figure>
 <p><b>范围要求</b>：提示词写明只操作演练目录，执行时展开工具记录查看实际路径。选择工作空间不等于系统已经禁止访问其他目录。</p>
 <p><b>先生成材料与规则：</b> 下方内容均为课堂模拟。已有同名文件时只检查是否符合约定；内容不一致就说明差异并停止，不覆盖，也不混入其他材料。</p>
@@ -1661,7 +1661,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 将草稿保存为工作缓存/草稿.md，暂不保存正式周报；后续模板填充以这份草稿和材料清单为依据。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson28-code-4" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/07-teacher-review.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/07-teacher-review.jpg" alt="WorkBuddy生成草稿并调用两位审核员" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/07-teacher-review.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/07-teacher-review.jpg" alt="WorkBuddy生成草稿并调用两位审核员" loading="lazy" width="2220" height="1330"></a><figcaption></p>
 <p>图解：右侧查看四栏草稿，左侧展开协作记录查看审核子任务；第四步将对填充后的草稿执行审核。</figcaption></figure>
 <p><b>质量要求</b>：大模型必须严格基于 <code>materials.json</code> 中的事实，不得凭空外推；计划事项绝不能写成已完成。</p>
 <hr>
@@ -1713,7 +1713,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 不要改原材料，不创建定时任务，不发送或公开周报。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson28-code-7" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/09-teacher-saved.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/09-teacher-saved.jpg" alt="WorkBuddy保存回读与最终周报" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/09-teacher-saved.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/09-teacher-saved.jpg" alt="WorkBuddy保存回读与最终周报" loading="lazy" width="2220" height="1340"></a><figcaption></p>
 <p>图解：左侧查看保存与回读结果，右侧打开正式周报；模板填充与正式保存是两个动作。</figcaption></figure>
 <p><b>闭环检验</b>：必须在返回路径中真实打开周报文件。模型口头回答“已保存”不代表成功，只有操作系统文件系统出现该文件，才证明流程执行完毕。</p>
 <hr>
@@ -1749,7 +1749,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 完成创建后返回实际任务名称、周期、下一次执行时间和工作空间；无法创建就说明原因，不声称已创建。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson28-code-9" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/16-schedule-config.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/16-schedule-config.jpg" alt="每周周报定时任务配置" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson28/workbuddy-weekly-20261026/16-schedule-config.jpg" title="点击查看大图"><img src="assets/web/lesson28/workbuddy-weekly-20261026/16-schedule-config.jpg" alt="每周周报定时任务配置" loading="lazy" width="1605" height="1150"></a><figcaption></p>
 <p>图解：新建表单中可查看每周一09:00与执行要求；下方还需选择工作空间，确认后再到任务列表查看。</figcaption></figure>
 <p>用“立即运行”检查本次结果，并打开对应周报文件。立即运行成功不等于已验证到点触发；到点后还要查看运行记录。课堂练习结束后暂停演练任务。</p>
 
@@ -1819,7 +1819,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson28-code-11" type="button">复制代码</button>
     </div><p><b>看懂分工：</b> 340克超过300克上限，可以按明确数值判断；怎样把限制解释得清楚、礼貌，由模型组织语言。尺寸合适还不代表承重合适，不能直接承诺“放心使用”。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson28/product-consulting-20261026/01-category.svg" title="点击查看大图"><img src="assets/web/lesson28/product-consulting-20261026/01-category.svg" alt="结构化分类结果中的类别字段" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson28/product-consulting-20261026/01-category.svg" title="点击查看大图"><img src="assets/web/lesson28/product-consulting-20261026/01-category.svg" alt="结构化分类结果中的类别字段" loading="lazy" width="960" height="510"></a><figcaption></p>
 <p>红框中的“类别”是脚本读取的字段；本任务把包含这些字段的结果保存为 classified_messages.json。</figcaption></figure>
 <h3>操作③｜运行脚本，按类别保存</h3>
 <p>让WorkBuddy生成并运行 <code>route_messages.py</code>。学生不必输入代码，重点看程序是否按已有的“类别”字段保存结果。</p>
@@ -1837,7 +1837,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 保留原始文件与旧结果。运行完成后打开本次生成的三份回复和 summary.md。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson28-code-12" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson28/product-consulting-20261026/02-results.svg" title="点击查看大图"><img src="assets/web/lesson28/product-consulting-20261026/02-results.svg" alt="三类回复文件与实际数量汇总" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson28/product-consulting-20261026/02-results.svg" title="点击查看大图"><img src="assets/web/lesson28/product-consulting-20261026/02-results.svg" alt="三类回复文件与实际数量汇总" loading="lazy" width="2210" height="1180"></a><figcaption></p>
 <p>红框展示按类别保存与数量汇总的状态；本任务三类文件分别命名为 product_replies.md、order_replies.md、after_sales_replies.md。</figcaption></figure>
 <h3>操作④｜修改一条回复，查看结果</h3>
 <p>选一条回复提出具体修改。例如，把承重说明改成两句话，先回答能不能用，再解释依据。修改结构化结果后重新运行脚本，避免只改显示出来的文字。</p>
@@ -1936,7 +1936,7 @@ commit只合并本轮实际成功保存的编号与原咨询；没有成功保�
       <a class="pager-link pager-prev" href="lesson27.html"><span class="pager-label">← 上一课</span><b class="pager-title">第21次课 · 浏览器自动化：用Playwright MCP完成网页比价</b></a>
       <a class="pager-link pager-next" href="lesson29.html"><span class="pager-label">下一课 →</span><b class="pager-title">第23次课 · AI项目架构：从工业级规范到极简落地</b></a>
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -2007,8 +2007,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

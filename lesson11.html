@@ -1322,7 +1322,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <h3>今天要完成什么？</h3>
 <ul>
 <li><b>最终作品</b>：一份整理规范的报销核验表（包含原始明细、疑点备注和求和公式）。</li>
-<li><b>交作业文件名</b>：<code>11_模拟报销核验表_姓名.xlsx</code></li>
+<li><b>文件要求</b>：一份可编辑Excel核验表，原记录、公式与标注均保留。</li>
 <li><b>合格标准（看这5条）</b>：
 <ol>
 <li>同一个 Excel 文件中，包含 <code>报销练习</code> 和 <code>AI过程记录</code> 两个工作表；</li>
@@ -1335,7 +1335,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </ul>
 <h3>避坑预警：借助 AI 处理票据时的常见偏差</h3>
 <p>将票据照片交给 AI 识别提取能大幅提升效率，但由于图片拍摄角度、反光或票据样式差异，AI 容易产生以下 4 类典型偏差，需要我们重点把关：</p>
-<figure class="lesson-figure"><a href="assets/lesson11-badcase-gallery.svg" title="点击查看大图"><img src="assets/lesson11-badcase-gallery.svg" alt="发票报销AI处理四大典型翻车现场剖析" loading="lazy"></a><figcaption>图解：注意防范小数点被折痕遮挡、未提供日期被自动填充、重复记录被误删及统计口径混淆四类偏差。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/lesson11-badcase-gallery.svg" title="点击查看大图"><img src="assets/lesson11-badcase-gallery.svg" alt="发票报销AI处理四大典型翻车现场剖析" loading="lazy" width="1200" height="620"></a><figcaption>图解：注意防范小数点被折痕遮挡、未提供日期被自动填充、重复记录被误删及统计口径混淆四类偏差。</figcaption></figure>
 <h4>四大常见偏差与应对对照表</h4>
 <table>
 <thead>
@@ -1380,12 +1380,12 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <h3>概念 1｜票据识别与规范录入</h3>
 <p>通过手机拍摄的票据照片，AI 能够快速识别文字并整理到表格中。但“识别完成”不等于“核对无误”，票据上的折痕、阴影很容易干扰识别精度，例如将 <code>18.50</code> 元误读为 <code>1850</code> 元。</p>
 <p>在实务操作中，即使面对大批量单据，也要养成先仔细对照第一条基准记录的习惯，确认表头对应、格式与小数点无误后，再推进后续数据的整理。</p>
-<figure class="lesson-figure"><a href="assets/lesson11-pipeline.svg" title="点击查看大图"><img src="assets/lesson11-pipeline.svg" alt="发票报销数据清洗与审计留痕全流程全景图" loading="lazy"></a><figcaption>图解：发票整理五步走：识图 ➔ 对照核对 ➔ 标记疑点 ➔ 公式算账 ➔ 保存交差。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/review-20261112/lesson11-pipeline.svg" title="点击查看大图"><img src="assets/review-20261112/lesson11-pipeline.svg" alt="发票报销数据清洗与审计留痕全流程全景图" loading="lazy" width="1200" height="360"></a><figcaption>图解：发票整理五步走：识图 ➔ 对照核对 ➔ 标记疑点 ➔ 公式算账 ➔ 保存交差。</figcaption></figure>
 <hr>
 <h3>概念 2｜缺失信息留白与重复凭证核实</h3>
 <p>遇到未印开票日期的发票，单元格应保持留白并在备注栏注明“待查”，不可为了版面整齐而主观填入当日日期，以免影响后续账期归属。</p>
 <p>若同一天出现两笔相同金额的支出（如两笔 12 元打印费），可能对应不同时间的真实开支，也可能存在重复；仅凭项目和金额相同还不能确定。未经实际核实前，应在备注栏注明“疑似重复待核”，完整保留两行记录。报销工作讲求“单据与记录一一对应”，哪怕后续证实确系重复，也应通过合规审批流程调整，不可在初始整理时直接删行。</p>
-<figure class="lesson-figure"><a href="assets/lesson11-duplicate-decision.svg" title="点击查看大图"><img src="assets/lesson11-duplicate-decision.svg" alt="疑似重复凭证排查决策树" loading="lazy"></a><figcaption>图解：发现两笔一模一样的发票？写上“疑似重复”，坚决保留双行！</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/review-20261112/lesson11-duplicate-decision.svg" title="点击查看大图"><img src="assets/review-20261112/lesson11-duplicate-decision.svg" alt="疑似重复凭证排查决策树" loading="lazy" width="1200" height="420"></a><figcaption>图解：发现两笔一模一样的发票？写上“疑似重复”，坚决保留双行！</figcaption></figure>
 <div class="thinking-card">
   <div class="thinking-header">
     <span class="thinking-badge">💡 思考探究</span>
@@ -1417,7 +1417,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <h2>03 核心案例</h2>
         <h3>典型场景分析：两笔 8.5 元的饮用水支出，能否直接删行？</h3>
 <p>小王协助部门整理票据，发现两张同日购买饮用水的发票，金额均为 8.50 元。交给 AI 处理后，AI 回复：“检测到重复报销，已自动删减一笔，报销金额 8.5 元”。</p>
-<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-case-result.svg" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-case-result.svg" alt="案例原材料与修订结论对比示意图" loading="lazy"></a><figcaption>图解：左侧为未加核实擅自删行的偏差做法；右侧为完整保留记录、清晰注明待核要点的规范处理。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-case-result.svg" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-case-result.svg" alt="案例原材料与修订结论对比示意图" loading="lazy" width="1000" height="404"></a><figcaption>图解：左侧为未加核实擅自删行的偏差做法；右侧为完整保留记录、清晰注明待核要点的规范处理。</figcaption></figure>
 <h4>偏差分析与规范做法</h4>
 <ul>
 <li><b>偏差所在：</b> 在未经单据与经办人确认的情况下，直接假定为重复开支并删除单据记录，导致账实不符。</li>
@@ -1450,17 +1450,18 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </ul>
 <hr>
 <h3>第 1 步｜下载练习表，建立过程记录表</h3>
+<p><a href="https://nohookcarey.github.io/aigc-course/assets/course-materials/%E7%AC%AC11%E8%AF%BE%E7%BB%83%E4%B9%A0%E8%A1%A8.zip">下载第11课练习表</a>，解压后打开XLSX。</p>
 <ol>
 <li><b>下载练习表格（本课统一通过下载获取表格，无需手动录入原始数据）</b>：
 <ul>
-<li><b>学习通位置</b>：登录<b>超星学习通</b> ➔ 进入**《AIGC 应用与实践》<b>课程 ➔ 点击</b>“资料”** ➔ 进入**“人工1、2班，课程课件”**文件夹 ➔ 下载 <b><code>第11次课_模拟费用练习表(1).xlsx</code></b>。</li>
+<li><b>原平台下载入口（使用该课程账号时）</b>：登录<b>超星学习通</b> ➔ 进入**《AIGC 应用与实践》<b>课程 ➔ 点击</b>“资料”** ➔ 进入**“人工1、2班，课程课件”**文件夹 ➔ 下载 <b><code>第11次课_模拟费用练习表(1).xlsx</code></b>。</li>
 </ul>
 </li>
 <li>用 WPS 打开下载好的练习表，保持 <code>报销练习</code> 工作表内容不动，点击底部 <b><code>+</code></b> 号新建工作表，重命名为 <code>AI过程记录</code>；</li>
 <li>在新工作表的 A1 至 A5 单元格中，依次录入 5 个栏目名称：<code>原材料</code>、<code>AI计划</code>、<code>审查结论</code>、<code>整理草稿</code>、<code>核对记录</code>。对应内容分别放在 B1 至 B5；双击对应单元格进入编辑状态后粘贴，并启用自动换行，避免多行内容覆盖其他栏目。</li>
 </ol>
-<figure class="lesson-figure"><a href="assets/lesson11-chaoxing-download-guide.png" title="点击查看大图"><img src="assets/lesson11-chaoxing-download-guide.png" alt="学习通中本课练习表格位置指引" loading="lazy"></a><figcaption>图解：在学习通《AIGC 应用与实践》课程的“资料 ➔ 人工1、2班，课程课件”中找到《第11次课_模拟费用练习表(1).xlsx》并下载。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-wps-step1.png" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-wps-step1.png" alt="WPS步骤1初始状态：看第4行空白日期与E列来源编号" loading="lazy"></a><figcaption>图解：在 WPS 中打开表格，确认第 4 行日期处于留白状态，第 7 至 9 行留作公式计算。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/review-20261112/I044-lesson11-chaoxing-download-guide-redacted.png" title="点击查看大图"><img src="assets/review-20261112/I044-lesson11-chaoxing-download-guide-redacted.png" alt="学习通中本课练习表格位置指引" loading="lazy" width="1024" height="642"></a><figcaption>图解：原平台入口位于学习通《AIGC 应用与实践》课程的“资料 ➔ 人工1、2班，课程课件”中找到《第11次课_模拟费用练习表(1).xlsx》并下载。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-wps-step1.png" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-wps-step1.png" alt="WPS步骤1初始状态：看第4行空白日期与E列来源编号" loading="lazy" width="4718592" height="4292935744"></a><figcaption>图解：在 WPS 中打开表格，确认第 4 行日期处于留白状态，第 7 至 9 行留作公式计算。</figcaption></figure>
 <hr>
 <h3>第 2 步｜输入提示词 A，获取整理规划</h3>
 <p>打开 <b>WorkBuddy</b> 对话框，把练习表作为本次任务附件，或将含表头的四行原始明细与下方提示词 A 一并发送。先确认 AI 能读取这四行材料，再继续：</p>
@@ -1475,7 +1476,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 5. 明确说明需经人工审批确认，不直接判定报销通过。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson11-code-1" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/lesson10-12-real-20260919/lesson11-plan-review.jpg" title="点击查看大图"><img src="assets/lesson10-12-real-20260919/lesson11-plan-review.jpg" alt="WorkBuddy首次回复计划审查" loading="lazy"></a><figcaption>图解：将 AI 给出的处理思路复制粘贴至 <code>AI过程记录</code> 表的 B2（对应“AI计划”）。</figcaption></figure>
+    </div><figure class="lesson-figure"><a href="assets/review-20261112/I046-lesson11-plan-review-redacted.png" title="点击查看大图"><img src="assets/review-20261112/I046-lesson11-plan-review-redacted.png" alt="WorkBuddy首次回复计划审查" loading="lazy" width="892" height="768"></a><figcaption>图解：将 AI 给出的处理思路复制粘贴至 <code>AI过程记录</code> 表的 B2（对应“AI计划”）。</figcaption></figure>
 <hr>
 <h3>第 3 步｜人工核验：把关 AI 处理方案</h3>
 <p>对照以下 3 项标准核验 AI 给出的计划：</p>
@@ -1484,7 +1485,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <li><b>日期处理是否得当？</b> 记录3日期必须明确建议留空；</li>
 <li><b>口径划分是否清晰？</b> 明确区分总额、分类科目与情景测算的差异。</li>
 </ol>
-<figure class="lesson-figure"><a href="assets/lesson10-12-real-20260919/lesson11-plan-corrected.jpg" title="点击查看大图"><img src="assets/lesson10-12-real-20260919/lesson11-plan-corrected.jpg" alt="WorkBuddy纠正后的合格计划" loading="lazy"></a><figcaption>图解：核验无误后，在 <code>AI过程记录</code> 表的 B3（对应“审查结论”）填写：“核验通过：4行完整保留，日期留白待查，口径划分规范”。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/review-20261112/I047-lesson11-plan-corrected-redacted.png" title="点击查看大图"><img src="assets/review-20261112/I047-lesson11-plan-corrected-redacted.png" alt="WorkBuddy纠正后的合格计划" loading="lazy" width="892" height="768"></a><figcaption>图解：核验无误后，在 <code>AI过程记录</code> 表的 B3（对应“审查结论”）填写：“核验通过：4行完整保留，日期留白待查，口径划分规范”。</figcaption></figure>
 <hr>
 <h3>第 4 步｜获取参考草稿并在表格中配置公式</h3>
 <p>向 <b>WorkBuddy</b> 发送<b>提示词 B</b>，获取公式编写参考：</p>
@@ -1511,14 +1512,14 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </ul>
 </li>
 </ol>
-<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-wps-step3.png" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-wps-step3.png" alt="WPS步骤4操作：D4与D5疑点备注录入" loading="lazy"></a><figcaption>图解：在 D4、D5 规范填入核验备注，保持 4 行原始记录清晰完整。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-wps-step4.png" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-wps-step4.png" alt="WPS步骤4操作：C8单元格SUMIF公式与计算结果" loading="lazy"></a><figcaption>图解：C7、C8、C9 应用标准函数公式，支持后续数据动态联动。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-wps-step3.png" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-wps-step3.png" alt="WPS步骤4操作：D4与D5疑点备注录入" loading="lazy" width="4718592" height="4292935744"></a><figcaption>图解：在 D4、D5 规范填入核验备注，保持 4 行原始记录清晰完整。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/lesson11-synced-1789669259074/web/lesson11-wps-step4.png" title="点击查看大图"><img src="assets/lesson11-synced-1789669259074/web/lesson11-wps-step4.png" alt="WPS步骤4操作：C8单元格SUMIF公式与计算结果" loading="lazy" width="4718592" height="4292935744"></a><figcaption>图解：C7、C8、C9 应用标准函数公式，支持后续数据动态联动。</figcaption></figure>
 <hr>
 <h3>第 5 步｜规范命名保存与复核检查</h3>
 <ol>
 <li>点击 WPS 菜单栏 <code>文件</code> ➔ <code>另存为</code>；</li>
 <li>保存类型选择 <code>Excel 文件 (*.xlsx)</code>；</li>
-<li>将文件名命名为：<code>11_模拟报销核验表_姓名.xlsx</code>；</li>
+<li>另存为工作副本，保留原始练习表；</li>
 <li>点击保存后，<b>关闭 WPS 软件</b>；</li>
 <li>找到保存好的文件，<b>双击重新打开</b>，确认两个工作表与公式运算均处于正常状态。</li>
 </ol>
@@ -1570,7 +1571,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <hr>
 <blockquote>
 <p><b>下节预告</b>：
-下一节《Excel数据处理（下）：数据汇总分析与可视化》，把本课整理好的明细汇总成对比柱状图，练习坐标轴规范，并写出有数据依据的结论。</p>
+下一节《Excel数据处理（下）：数据汇总分析与可视化》，换用销售数据练习两路汇总和对比柱状图，检查坐标轴，并写出有数据依据的结论。</p>
 </blockquote>
 
       </section>
@@ -1580,7 +1581,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <a class="pager-link pager-prev" href="lesson10.html"><span class="pager-label">← 上一课</span><b class="pager-title">第10次课 · 办公实战：Word文档生成与批量处理</b></a>
       <a class="pager-link pager-next" href="lesson12.html"><span class="pager-label">下一课 →</span><b class="pager-title">第12次课 · Excel数据处理（下）：数据汇总分析与可视化</b></a>
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -1651,8 +1652,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

@@ -1325,7 +1325,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
         <h3>1｜本地部署：回答在自己的电脑上生成</h3>
 <p>本地部署是把运行模型的软件和模型文件放到自己的电脑上，由这台电脑计算回答。模型下载完成后，可以离线处理粘贴进去的文字；第一次下载、访问网页、查询最新信息仍需要网络。能本地聊天，不等于已经拥有联网搜索、MCP或知识库功能。</p>
 <p><b>例子：</b> 断网后，把一段已经粘贴进去的课堂笔记改写成复习卡可以继续做；让它查询今天的商品价格，则需要另外连接网络和检索工具。它也不会因为运行在本机，就自动读到电脑上的所有文件。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson31/20261028/local-runtime.svg" title="点击查看大图"><img src="assets/web/lesson31/20261028/local-runtime.svg" alt="本地复习助手中的软件、模型、笔记与回答" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson31/20261028/local-runtime.svg" title="点击查看大图"><img src="assets/web/lesson31/20261028/local-runtime.svg" alt="本地复习助手中的软件、模型、笔记与回答" loading="lazy" width="760" height="880"></a><figcaption></p>
 <p>图解：模型先下载到电脑；提问时，Ollama调用本地模型，根据你提供的笔记生成回答。</figcaption></figure>
 <h3>2｜Ollama与Qwen：运行软件和模型是两件东西</h3>
 <p>Ollama负责下载、加载和管理模型，Qwen是模型家族。本课使用的完整标签是<code>qwen3:1.7b</code>，标签写完整才能选中同一个规格。只装好Ollama，还没有完成模型下载；电脑里能看到模型，也不表示它此刻正在运行。</p>
@@ -1446,6 +1446,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </code></pre>
       <button class="copy-button" data-copy-target="lesson31-code-5" type="button">复制代码</button>
     </div><p><b>观察重点：</b> 第一张应同时说明下载与启动；第二张应保留“模型已经下载”的条件；第三张应区分当前对话读取和训练。卡片写成短段落也可以，关键是这三个问题都得到回答。</p>
+<figure class="lesson-figure"><a href="assets/review-20261112/lesson31-real-answer.png" title="点击查看大图"><img src="assets/review-20261112/lesson31-real-answer.png" alt="小模型根据明确要求回答三个复习重点" loading="lazy" width="1000" height="730"></a><figcaption></p>
+<p>三张卡分别说明pull与run、离线条件、对话材料与训练的区别。</figcaption></figure>
 <p>例如，第2张的答案可以表达为：“先下载好本地模型，再由本机加载运行，就能在断网后处理输入的文字。”这是一种内容写法，实际措辞可以不同；不要把“支持离线”改成“不用下载也能使用”。</p>
 <h3>操作④｜断网后提出一条新要求</h3>
 <p>等回答结束后，暂时断开这台电脑的Wi-Fi或网线，保留Ollama和对话窗口；同时开着手机热点或其他网络连接时，也要先断开它。然后发送下面这条新要求，看到新回答后恢复网络。</p>
@@ -1453,8 +1455,9 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <pre id="lesson31-code-6"><code class="language-text">把刚才第1张卡改成适合初学者的说法，用“先……再……”说明pull与run的区别，保留两个命令的名称，只重写这一张卡。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson31-code-6" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson31/20261028/offline-check.svg" title="点击查看大图"><img src="assets/web/lesson31/20261028/offline-check.svg" alt="下载完成后验证离线生成的顺序" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson31/20261028/offline-check.svg" title="点击查看大图"><img src="assets/web/lesson31/20261028/offline-check.svg" alt="下载完成后验证离线生成的顺序" loading="lazy" width="760" height="830"></a><figcaption></p>
 <p>图解：先完成下载，再断开网络；断网后提出新要求并得到新回答，才是在验证本地生成。</figcaption></figure>
+<p>若新回答漏掉pull或run，指出漏掉的命令名，要求补全；再次遗漏时，自己把两个命令名补回卡片，并对照笔记读一遍。离线能生成文字，也仍需看内容是否符合要求。</p>
 <p>在对话中输入<code>/bye</code>回到PowerShell，再输入<code>ollama list</code>可找到本地模型。模型刚运行完时，输入<code>ollama ps</code>还能看到它的加载状态；空闲一段时间后自动卸载，不会删除已下载的模型文件。</p>
 <table>
 <thead>
@@ -1557,7 +1560,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <a class="pager-link pager-prev" href="lesson30.html"><span class="pager-label">← 上一课</span><b class="pager-title">第24次课 · AIGC变现：把AI技能做成可交付服务</b></a>
       <a class="pager-link pager-next" href="lesson32.html"><span class="pager-label">下一课 →</span><b class="pager-title">第26次课 · 期末综合作品：用AI完成一个可用项目</b></a>
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -1628,8 +1631,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

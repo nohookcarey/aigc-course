@@ -1384,7 +1384,7 @@ npx -v
       <button class="copy-button" data-copy-target="lesson27-code-2" type="button">复制代码</button>
     </div><p><b>选择浏览器：</b> 用Edge就保留msedge；用Chrome只把msedge改为chrome。两者任选一个，不需要同时安装。第一次配置、编辑器只有空的mcpServers时可粘贴整段；已有其他MCP时保留原项，只把playwright-course21这一项追加到mcpServers内，条目之间用英文逗号分隔。</p>
 <p>点“保存”，回到MCP列表。首次连接会出现“信任”，核对包名为@playwright/mcp后点击，再等服务启动。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/wb-connected.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/wb-connected.webp" alt="WorkBuddy中已启用的Playwright MCP服务" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/wb-connected.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/wb-connected.webp" alt="WorkBuddy中已启用的Playwright MCP服务" loading="lazy" width="1286" height="609"></a><figcaption></p>
 <p>playwright-course21右侧开关打开，名称旁显示绿色状态点。</figcaption></figure>
 <h3>操作③｜发起一次真正的浏览器任务</h3>
 <p>回到“新建任务”，发送下面的要求。自定义MCP在服务管理中启用；无需到普通连接器搜索框中反复搜索同名项目。遇到工具调用确认，查看将要打开的网址，再允许本次打开和读取操作。</p>
@@ -1399,15 +1399,15 @@ npx -v
 </code></pre>
       <button class="copy-button" data-copy-target="lesson27-code-3" type="button">复制代码</button>
     </div><p>发送后点开“已完成”旁的箭头，再展开任务过程和其中的browser navigate、browser click等工具记录，看网址与点击对象。同时看新开的浏览器是否进入Travel。只回复“我已经打开”但没有工具调用和页面变化，任务还没有执行。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/wb-tool-call.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/wb-tool-call.webp" alt="WorkBuddy通过Playwright MCP执行打开与点击" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/wb-tool-call.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/wb-tool-call.webp" alt="WorkBuddy通过Playwright MCP执行打开与点击" loading="lazy" width="1600" height="869"></a><figcaption></p>
 <p>展开任务过程及browser navigate，可看到本次打开的网址参数。</figcaption></figure>
 <h3>操作④｜看比较结果与商品详情</h3>
-<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/travel-category.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/travel-category.webp" alt="模拟书店Travel分类中的图书和标价" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/travel-category.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/travel-category.webp" alt="模拟书店Travel分类中的图书和标价" loading="lazy" width="1280" height="850"></a><figcaption></p>
 <p>分类标题是Travel，每张书卡显示标价；书名被省略时可进入详情读取完整标题。</figcaption></figure>
 <p>AI整理完价格后，让它打开选中的图书详情。结果应同时有比较表和可打开的详情链接，不能只给一句“推荐这本”。任务结束后练习窗口若自动关闭，仍可点击返回的详情链接查看商品。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/wb-result.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/wb-result.webp" alt="WorkBuddy旅游书价格比较结果" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/wb-result.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/wb-result.webp" alt="WorkBuddy旅游书价格比较结果" loading="lazy" width="1600" height="707"></a><figcaption></p>
 <p>比较表按原币种标价排列，最便宜的一项位于前面。</figcaption></figure>
-<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/travel-detail.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/travel-detail.webp" alt="Playwright MCP打开的最低价旅游书详情" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/travel-detail.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/travel-detail.webp" alt="Playwright MCP打开的最低价旅游书详情" loading="lazy" width="1200" height="800"></a><figcaption></p>
 <p>详情页显示完整书名、£23.21和库存状态，对应比较表中的同一本书。</figcaption></figure>
 <p><b>遇到问题时改对应位置：</b> 没有工具调用，回到服务管理看Playwright是否启动，再新建任务；报找不到浏览器，确认msedge或chrome与本机已安装的软件一致；只读到部分商品，补充“检查分页，继续读取直到分类结束”。网页没有价格排序按钮时，让AI比较读取到的价格，不要要求它点击不存在的按钮。</p>
 
@@ -1426,7 +1426,7 @@ npx -v
 本次只比较Psychology分类，不混入其他分类，不加购物车、不购买。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson27-code-4" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/books-category.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/books-category.webp" alt="模拟书店Psychology分类的图书与标价" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/books-category.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/books-category.webp" alt="模拟书店Psychology分类的图书与标价" loading="lazy" width="1280" height="1280"></a><figcaption></p>
 <p>页面标题Psychology表示已进入心理学分类，结果总数显示在标题下方。</figcaption></figure>
 <h3>操作③｜由你增加一个筛选条件</h3>
 <p>将下面的预算替换为你选择的英镑金额，例如£20或£30，再发送。比较表应随条件改变；没有符合条件的书，就返回没有结果，而不是放宽预算。</p>
@@ -1447,7 +1447,7 @@ npx -v
 描述没有给出系统或容量的商品不纳入本次筛选，不根据品牌猜配置。这是模拟商城，不购买。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson27-code-6" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/tablets-page1.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/tablets-page1.webp" alt="Web Scraper分页商城中的Tablets商品与分页" loading="lazy"></a><figcaption></p>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson27/20261018-browser/tablets-page1.webp" title="点击查看大图"><img src="assets/web/lesson27/20261018-browser/tablets-page1.webp" alt="Web Scraper分页商城中的Tablets商品与分页" loading="lazy" width="1280" height="1120"></a><figcaption></p>
 <p>Tablets分类有多页结果；商品描述中的系统和容量用于筛选。</figcaption></figure>
 <p><b>这一步的难点：</b> 把范围、多个条件和翻页规则同时交代清楚。价格统一使用该站显示的$，不与书店的£混算。</p>
 
@@ -1486,7 +1486,7 @@ npx -v
       <a class="pager-link pager-prev" href="lesson26.html"><span class="pager-label">← 上一课</span><b class="pager-title">第20次课 · AI制作简历：针对岗位定制简历</b></a>
       <a class="pager-link pager-next" href="lesson28.html"><span class="pager-label">下一课 →</span><b class="pager-title">第22次课 · AI工作流：让模型理解，让规则执行</b></a>
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -1557,8 +1557,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

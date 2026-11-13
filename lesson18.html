@@ -1315,7 +1315,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
       </section>
 <section class="lesson-section" id="task">
         <h2>01 任务预告</h2>
-        <p><b>本课成果：</b> 观看教师把本地活动材料变成准备清单；自己用WorkBuddy的腾讯文档MCP创建一份“奶茶口味偏好调查”收集表。</p>
+        <p><b>本课成果：</b> 观看教师把本地活动材料变成准备清单；自己用WorkBuddy的腾讯文档MCP创建空收集表，再到腾讯文档网页设置“奶茶口味偏好调查”的六道题。</p>
 <p><b>合格标准：</b> Plan模式配合grilling确认问卷要求；高级模型形成计划，便宜模型按计划执行；六道题的题型与选项正确，填写链接可打开，两份模拟回答能保存。</p>
 
       </section>
@@ -1371,7 +1371,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 </tbody>
 </table>
 <p><b>瑞幸咖啡已经提供官方MCP服务：</b> AI可以调用查门店、搜商品、订单预览、创建订单等工具。例如“找一家附近的瑞幸，再看看有哪些冰美式”，背后是AI选择工具、瑞幸系统返回门店与商品结果；发起点单还要确认门店、规格和金额，支付由用户完成。本课只观察官方平台，不实际购买。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson18/13-luckin-mcp.png" title="点击查看大图"><img src="assets/web/lesson18/13-luckin-mcp.png" alt="瑞幸咖啡官方MCP服务页面" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson18/13-luckin-mcp.png" title="点击查看大图"><img src="assets/web/lesson18/13-luckin-mcp.png" alt="瑞幸咖啡官方MCP服务页面" loading="lazy" width="1425" height="651"></a><figcaption></p>
 <p>页面展示瑞幸官方MCP服务与接入、工具文档入口。</figcaption></figure>
 <p>越来越多软件正在开放MCP、CLI或Skill能力，MCP正成为AI调用外部工具的通用标准之一。接入取决于软件是否提供服务、AI应用是否兼容以及账号权限；不是所有软件都已经支持MCP。</p>
 <p><b>依据：</b> <a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture">MCP官方架构</a>、<a href="https://open.lkcoffee.com/mcp">瑞幸官方MCP服务</a>、<a href="https://open.lkcoffee.com/docs">瑞幸工具文档</a>。</p>
@@ -1381,7 +1381,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <h3>4｜模型接力：高级模型规划，便宜模型执行</h3>
 <p>规划阶段要发现缺项、比较处理方式、确定步骤；执行阶段按已确认的字段与规则整理文件。因此本课先用Plan与较强模型完成规划，再在同一任务中切换低成本模型、退出Plan执行。</p>
 <p><b>交接要带齐：</b> 目标、材料、已确认决策、执行步骤、成果格式与验收标准。换模型后不要重新猜需求。若换到新任务，需要把这份交接内容完整粘贴过去。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson18/08-model-menu.jpg" title="点击查看大图"><img src="assets/web/lesson18/08-model-menu.jpg" alt="WorkBuddy模型选择与消耗倍率" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson18/08-model-menu.jpg" title="点击查看大图"><img src="assets/web/lesson18/08-model-menu.jpg" alt="WorkBuddy模型选择与消耗倍率" loading="lazy" width="2400" height="1600"></a><figcaption></p>
 <p>模型菜单显示可选档位及消耗倍率。</figcaption></figure>
 <p>具体模型、倍率和优惠随版本与账号变化，课堂以当前菜单为准；实际总消耗还取决于上下文长度和调用次数。</p>
 
@@ -1407,8 +1407,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 设备尚未办理借用。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson18-code-1" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson18/07-mcp-connected.jpg" title="点击查看大图"><img src="assets/web/lesson18/07-mcp-connected.jpg" alt="WorkBuddy自定义MCP管理入口" loading="lazy"></a><figcaption></p>
-<p>MCP服务管理中已添加classroom-files；此界面仅证明配置入口，不证明工具调用成功。</figcaption></figure>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson18/07-mcp-connected.jpg" title="点击查看大图"><img src="assets/web/lesson18/07-mcp-connected.jpg" alt="WorkBuddy自定义MCP管理入口" loading="lazy" width="2400" height="1600"></a><figcaption></p>
+<p>在MCP服务管理中找到classroom-files；进入任务后展开实际调用卡，查看目录检查与读写结果。</figcaption></figure>
 <p><b>Windows课堂配置参考：</b> 教师先在电脑创建 <code>C:/AIGC16</code>，安装可用的Node.js，再在MCP配置中添加下列服务；已有服务须保留。首次启动需联网下载官方包。</p>
 <div class="copy-block">
       <pre id="lesson18-code-2"><code class="language-json">{
@@ -1423,7 +1423,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <button class="copy-button" data-copy-target="lesson18-code-2" type="button">复制代码</button>
     </div><p>实际开始前调用 <code>list_allowed_directories</code>，核对范围指向课堂目录；客户端若提供Roots，最终范围可能改变，应以该工具结果为准。配置时请按操作系统选择对应路径；Windows系统可使用反斜杠或斜杠指定本地目录。</p>
 <p><b>技能准备：</b> 打开“专家·技能·连接器→技能”，搜索 <code>grill</code>，选择grill-me；尚未安装时在技能卡中安装，再到“我安装的”确认已启用。课堂直接调用现有技能，无需复制技能文件。</p>
-<figure class="lesson-figure"><a href="assets/web/lesson18/12-grill-me-entry.jpg" title="点击查看大图"><img src="assets/web/lesson18/12-grill-me-entry.jpg" alt="WorkBuddy现有grill-me技能" loading="lazy"></a><figcaption></p>
+<figure class="lesson-figure"><a href="assets/web/lesson18/12-grill-me-entry.jpg" title="点击查看大图"><img src="assets/web/lesson18/12-grill-me-entry.jpg" alt="WorkBuddy现有grill-me技能" loading="lazy" width="2400" height="1600"></a><figcaption></p>
 <p>技能详情显示名称、追问用途和调用示例。</figcaption></figure>
 <p><b>开始条件：</b> 文件系统MCP已连接，grill-me技能已启用，账号可选择规划与执行两档模型。首次使用需要Node.js/npx环境和联网取得官方服务包；本课使用教师预先配置的课堂电脑，不要求学生编写程序。</p>
 <h3>步骤2｜Plan＋grilling＋高级模型，先追问</h3>
@@ -1436,8 +1436,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 得到我的回答并确认需求完整后，再形成计划，注明每步的工具、输入、输出与验收标准。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson18-code-3" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson18/14-plan-existing-skill.jpg" title="点击查看大图"><img src="assets/web/lesson18/14-plan-existing-skill.jpg" alt="Plan与grilling规划输入" loading="lazy"></a><figcaption></p>
-<p>输入区显示“计划”和“极致”，任务要求先追问再形成计划。</figcaption></figure>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson18/12-grill-me-entry.jpg" title="点击查看大图"><img src="assets/web/lesson18/12-grill-me-entry.jpg" alt="WorkBuddy现有grill-me技能入口" loading="lazy" width="2400" height="1600"></a><figcaption></p>
+<p>在技能卡找到grill-me，按上面的代码块发起只规划的任务。</figcaption></figure>
 <h3>步骤3｜审查计划，补齐决定</h3>
 <p>教师回答：“预计20人；缺的1支话筒列入待办，不写成已借到；清单用于内部筹备，不发通知。”如果AI继续问格式，回答“简短TXT，三条待办，姓名用岗位称呼”。需求对齐后明确确认，让高级模型输出最终计划。</p>
 <p><b>计划应包含：</b> 读取两份材料→整合活动字段→计算话筒缺口→生成三条待办→MCP写文件→MCP回读核验。先前的“拟用场地”和“可借设备”应保持待办理状态。</p>
@@ -1475,10 +1475,10 @@ body.is-ppt-mode .course-index-link{display:none!important}
 
       </section>
 <section class="lesson-section" id="practice">
-        <h2>04 实践任务｜用腾讯文档MCP创建奶茶口味调查问卷</h2>
-        <p><b>你的任务：</b> 2人合作，通过WorkBuddy的腾讯文档MCP创建“奶茶口味偏好调查”收集表。问卷用于了解口味、甜度、冰量和价格偏好；完成两份模拟试填，最终只交一个填写链接。本任务不需配置文件系统服务或安装Node.js。</p>
+        <h2>04 实践任务｜MCP建表，网页配置奶茶口味调查</h2>
+        <p><b>你的任务：</b> 2人合作，通过WorkBuddy的腾讯文档MCP创建空收集表，在腾讯文档网页配置“奶茶口味偏好调查”。问卷用于了解口味、甜度、冰量和价格偏好；完成两份模拟试填，最终只交一个填写链接。本任务不需配置文件系统服务或安装Node.js。</p>
 <p><b>开始条件：</b> WorkBuddy已连接本人腾讯文档账号，grill-me已启用，网络可用。首次连接由本人在“连接器→腾讯文档”查看授权范围后完成登录；授权涉及账号中的文档读取与管理，不使用存有敏感资料的账号。基础任务用当前可用模型完成，不要求购买套餐。</p>
-<h3>第1步｜整理材料（5分钟）</h3>
+<h3>第1步｜准备题目与连接器</h3>
 <p>打开“专家·技能·连接器→连接器”，搜索腾讯文档。连接后将以下原创任务材料粘贴到新任务；只收集偏好，不设置姓名、手机号或学号字段。</p>
 <div class="copy-block">
       <pre id="lesson18-code-5"><code class="language-text">【课堂模拟任务：奶茶口味偏好调查】
@@ -1501,40 +1501,48 @@ body.is-ppt-mode .course-index-link{display:none!important}
 成果：一份能填写、能保存回答的腾讯文档收集表及其填写链接。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson18-code-5" type="button">复制代码</button>
-    </div><figure class="lesson-figure"><a href="assets/web/lesson18/11-tencent-docs-entry.jpg" title="点击查看大图"><img src="assets/web/lesson18/11-tencent-docs-entry.jpg" alt="WorkBuddy腾讯文档连接器入口" loading="lazy"></a><figcaption></p>
-<p>在连接器卡中找到腾讯文档；本图只展示开始入口，不展示已创建的问卷。</figcaption></figure>
+    </div><figure class="lesson-figure"><a href="assets/web/lesson18/11-tencent-docs-entry.jpg" title="点击查看大图"><img src="assets/web/lesson18/11-tencent-docs-entry.jpg" alt="WorkBuddy腾讯文档连接器入口" loading="lazy" width="2400" height="1600"></a><figcaption></p>
+<p>在连接器卡中找到腾讯文档，连接本人账号后再创建空收集表。</figcaption></figure>
 <p><b>检查点：</b> 六题围绕奶茶偏好；第2题是多选，第6题可留空；价格选项没有交叉区间。</p>
-<h3>第2步｜先出计划（7分钟）</h3>
+<h3>第2步｜先规划工具与网页的分工</h3>
 <p>选择较强模型，打开Plan，调用grill-me：</p>
 <div class="copy-block">
       <pre id="lesson18-code-6"><code class="language-text">使用WorkBuddy已启用的grill-me技能，先澄清再规划。
 根据上面的课堂模拟任务，我要通过腾讯文档MCP创建“奶茶口味偏好调查”收集表。
 先问清组号、题型与必答设置、试填范围，每题给一个适合初学者的建议。
-我确认后再给执行计划：检查腾讯文档实际提供的工具、创建六题收集表、读取核对题目、取得填写链接、预览并提交两份模拟回答、检查记录数。
+我确认后再给执行计划：检查腾讯文档实际提供的工具、创建空收集表、在网页配置六题与必答设置、发布并取得填写链接、提交两份模拟回答、在统计页检查记录。
 当前只规划，不创建收集表，也不发送链接。确认工具能创建收集表，而不是仅创建普通文档。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson18-code-6" type="button">复制代码</button>
     </div><p><b>检查点：</b> 计划明确收集表、单选/多选/简答和填写链接；只在聊天框列出六道题，还没有完成创建。</p>
-<h3>第3步｜审查计划（5分钟）</h3>
+<h3>第3步｜确认题目与两人试填范围</h3>
 <p>回答：“组号用自己的组号；按材料保留六题，第1—5题必答，第6题选答；只给本组两人试填，暂不公开发放。”继续回答必要追问，再确认计划。</p>
 <p><b>交接内容：</b> 标题、六题全文、题型与必答规则、两份模拟试填、一个填写链接。确认没有新增姓名等身份字段，问题不出现“最受欢迎”“一定更好喝”等诱导表述。两份测试回答只用于检查功能，不能据此得出市场结论。</p>
-<h3>第4步｜生成草稿（10分钟）</h3>
+<h3>第4步｜用MCP建空表，在网页设置六题</h3>
 <p>同一任务切换便宜模型、退出Plan，替换组号后执行：</p>
 <div class="copy-block">
-      <pre id="lesson18-code-7"><code class="language-text">执行刚才确认的计划，通过腾讯文档MCP创建收集表，标题为“16_奶茶口味调查_组号”。
-题目、选项和说明使用上面的任务材料：第1、3、4、5题单选，第2题多选，第6题简答；前五题必答，第六题选答。不要收集姓名、手机号、学号。
-先检查当前腾讯文档工具是否支持创建收集表及这些题型，再用实际提供的工具创建。记录真实工具名称，不编造工具名或链接。
-创建后用腾讯文档工具读取或核对题目与设置，返回收集表标识、管理入口和填写链接，并清楚标注用途；最终交付使用填写链接。
-不要代填回答，不发送给全班，不更改账号中其他文档。
-若题型或收集表创建不受支持，报告具体缺少的能力；不要拿普通在线文档或本地题目清单冒充问卷。
+      <pre id="lesson18-code-7"><code class="language-text">执行刚才确认的计划。先查看腾讯文档MCP实际开放的工具，再创建标题为“16_奶茶口味调查_组号”的空收集表，执行前替换组号。
+使用当前工具支持的收集表类型，例如 create_file 的 file_type=&quot;form&quot;；记录实际工具名称和返回的收集表入口，不编造工具名或链接。
+当前连接器创建的是空收集表。不要声称六题已写入、已读取设置或已保存回答。
+返回可打开的收集表入口，并按上面的任务材料列出网页配置顺序：四道单选、一道口味多选和一道选答简答，前五题必答，第六题选答。不要新增身份字段。
+不代填回答，不发送给全班，不更改其他文档。若当前连接器没有 form 类型，报告具体能力限制，先由教师确认可用连接器再继续。
 </code></pre>
       <button class="copy-button" data-copy-target="lesson18-code-7" type="button">复制代码</button>
-    </div><p><b>检查点：</b> 展开腾讯文档MCP实际调用记录；从管理入口看到六题收集表，从填写链接看到可选择的题目。标题、题型、选项和必答标记与材料一致。</p>
-<h3>第5步｜核对保存（8分钟）</h3>
-<p>先在预览中测试：第2题能同时选两种口味，第6题留空不影响提交，必答题漏答会提示补齐。再取得收集表的填写链接，仅交给本组同伴试填；不把编辑或管理链接当成填写链接。</p>
-<p><b>两份模拟试填：</b> 第一份选择“1—2次、原味＋芋泥、五分糖、少冰、10元至不足15元”，第6题留空；第二份选择“0次、抹茶＋水果、无糖、热饮、15元至不足20元”，第6题填写“桂花味”。在结果页查看两条记录，核对多选和简答保存正确；这两条均为测试数据。</p>
+    </div><p>打开工具返回的收集表入口，用同一腾讯文档账号登录；如已处于填写页，点击底部“编辑收集表”。在编辑页填写标题和说明，再依次添加：第1题“单选题”、第2题“多选题”、第3—5题“单选题”、第6题“问答题”。将上面的题干与选项逐项填入；选项不够时点击“添加选项”。前五题勾选“必填”，第六题取消“必填”。</p>
+<p><b>设置一次有效选择：</b> 先按用途决定匿名填写，并在收集表设置中启用；不加入姓名、手机号或学号。第2题必须能选择两种口味，第6题必须允许留空。六题设置完毕，点击右上角“发布”，从分享界面复制填写链接；不要把文档编辑权限改为所有人可编辑。</p>
+<figure class="lesson-figure"><a href="assets/review-20261113-fixes/lesson16-question-types.png" title="点击查看大图"><img src="assets/review-20261113-fixes/lesson16-question-types.png" alt="腾讯文档编辑页中的题型面板、多选题选项与必填开关" loading="lazy" width="1253" height="578"></a><figcaption></p>
+<p>左侧添加单选、多选或问答题；第2题列出口味选项，题卡底部“必填”已勾选。</figcaption></figure>
+<figure class="lesson-figure"><a href="assets/review-20261113-fixes/lesson16-optional-question.png" title="点击查看大图"><img src="assets/review-20261113-fixes/lesson16-optional-question.png" alt="第6题问答题的选答设置" loading="lazy" width="965" height="670"></a><figcaption></p>
+<p>第6题保留简答输入，将题卡底部“必填”取消。</figcaption></figure>
+<p><b>检查点：</b> MCP调用结果对应这份空表；网页编辑页能看到六题、题型和前五题的必填标记。工具建表与网页配题分别完成，不把列出的题目清单当作已写入表单。</p>
+<h3>第5步｜发布填写入口，保存两份测试回答</h3>
+<p>在已发布的填写页测试：第2题能同时选两种口味，第6题留空不影响提交，必答题漏答会提示补齐。再把填写链接仅交给本组同伴试填；不把编辑或管理链接当成填写链接。</p>
+<p><b>根据用途调整：</b> 先判断第2题的“其他”是否足以容纳本组偏好；需要明确一种常喝口味时，把它替换为该口味，保持其余选项与多选设置，再在试填时观察新选项是否保存。</p>
+<p><b>两份模拟试填：</b> 第一份选择“1—2次、原味＋芋泥、五分糖、少冰、10元至不足15元”，第6题留空；第二份选择“0次、抹茶＋水果、无糖、热饮、15元至不足20元”，第6题填写“桂花味”。切回所有者页面，点击顶部“统计”，查看两条记录，核对多选和简答保存正确；这两条均为测试数据。</p>
+<figure class="lesson-figure"><a href="assets/review-20261113-fixes/lesson16-saved-responses.png" title="点击查看大图"><img src="assets/review-20261113-fixes/lesson16-saved-responses.png" alt="腾讯文档统计页中的两份匿名模拟记录" loading="lazy" width="1200" height="240"></a><figcaption></p>
+<p>“填写份数”为2，下面列出两份保存记录；本例由同一账号测试，因此填写人数为1。打开每份记录，再看多选内容和选答是否保存。</figcaption></figure>
 <p><b>最终交付：</b> 一份标题为 <code>16_奶茶口味调查_组号</code> 的腾讯文档收集表填写链接。教师能打开题目，小组在管理端能看到两条模拟测试记录；无需另交TXT、Word或截图。</p>
-<p><b>遇到困难：</b> 问卷找不到时核对腾讯文档账号与返回的收集表标识；填写者权限不足时由所有者检查收集表的填写设置。连接失败可与已连接同学合作。若当前工具只能创建普通文档，保留题目草稿并请教师协助确认可用的收集表工具；手工建表要如实记录，不能算作MCP创建完成。创建后需核对题型、必答设置并完成试填验证，确保问卷真实可用。</p>
+<p><b>遇到困难：</b> 问卷找不到时，核对腾讯文档账号与工具返回的收集表标识。工具建成空表后仍需要网页配置；当前连接器没有配题或读取回答工具时，直接在网页编辑与“统计”页操作。填写权限不足时由所有者检查填写设置；连接失败可与已连接同学合作。普通在线文档和本地题目清单不能替代收集表。</p>
 <p><b>任务参考：</b> 根据<a href="https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Practice-Cases/Practice-Eleven">WorkBuddy官方“实践十一：一句话，管理你的腾讯文档”</a>中的收集表创建案例做教学改编；<a href="https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Knowledge-Base/Tencent-Doc">腾讯文档连接说明</a>。本任务使用腾讯文档收集表，操作前以当前连接器实际开放的工具为准。</p>
 
       </section>
@@ -1561,8 +1569,8 @@ body.is-ppt-mode .course-index-link{display:none!important}
 <td>高级模型规划，便宜模型按已确认计划执行</td>
 </tr>
 <tr>
-<td>MCP创建与核对</td>
-<td>有腾讯文档MCP调用记录，真实收集表与六题内容一致</td>
+<td>工具与网页分工</td>
+<td>有MCP创建空表记录；在网页完成六题、必填设置与结果查看</td>
 </tr>
 <tr>
 <td>问卷可用</td>
@@ -1583,7 +1591,7 @@ body.is-ppt-mode .course-index-link{display:none!important}
       <a class="pager-link pager-prev" href="lesson15.html"><span class="pager-label">← 上一课</span><b class="pager-title">第15次课 · 知识库与业务协同：一条问题、一处依据</b></a>
       <a class="pager-link pager-next" href="lesson20.html"><span class="pager-label">下一课 →</span><b class="pager-title">第17次课 · 多模态内容生产：一份素材，两种表达</b></a>
     </nav>
-    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-06</p>
+    <p class="foot-line">AIGC应用与实践 · 2026—2027 学年第一学期 · 更新 2026-11-13</p>
     <p class="foot-line foot-ai"><b>AI 使用声明：</b>本课程允许使用 AI 工具完成学习任务，但提交时须注明所用工具、以及本人修改过的部分。直接提交 AI 原始输出且未说明的，按未完成处理。</p>
     <p class="foot-line"><a href="index.html">返回课程目录</a></p>
   </footer></main><script>async function copyLessonText(text){
@@ -1654,8 +1662,15 @@ document.addEventListener('focusin',event=>{
   (lessonFocusables(top.element)[0]||top.element).focus({preventScroll:true});
  }
 });
+// 网页外链图与单文件内嵌图共用预览；给原本无链接的figure图片保留键盘入口。
+document.querySelectorAll('figure img').forEach(image=>{
+ let link=image.closest('a');
+ if(!link){link=document.createElement('a');link.href=image.getAttribute('src');image.replaceWith(link);link.append(image);}
+ const target=new URL(link.getAttribute('href'),location.href),source=new URL(image.getAttribute('src'),location.href);
+ if(target.href===source.href||target.protocol==='data:')link.dataset.lessonImagePreview='true';
+});
 document.addEventListener('click',event=>{
- const link=event.target.closest?.('a[href^="data:image/"]');if(!link)return;event.preventDefault();
+ const link=event.target.closest?.('a[data-lesson-image-preview],a[href^="data:image/"]');if(!link)return;event.preventDefault();
  const overlay=document.createElement('div');overlay.setAttribute('aria-label','原图预览');
  overlay.style.cssText='position:fixed;inset:0;z-index:10003;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:48px 16px;';
  const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img')?.alt||'原图预览';image.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;';

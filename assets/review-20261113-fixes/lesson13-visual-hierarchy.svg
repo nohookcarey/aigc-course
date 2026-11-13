@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">放映可读性：标题与重点清楚</title>
+  <desc id="desc">对比满屏小字念稿与大标题搭配三条行动短句的视觉效果</desc>
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="520" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题 -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <rect x="0" y="0" width="1200" height="84" rx="20" fill="#ffffff" stroke="#f1f5f9"/>
+    <rect x="40" y="20" width="8" height="44" rx="4" fill="#8b5cf6"/>
+    <text x="60" y="52" font-size="26" font-weight="900" fill="#0f172a">🎯 放映可读性：按实际投屏距离调整</text>
+    <rect x="990" y="24" width="170" height="36" rx="18" fill="#faf5ff" stroke="#e9d5ff"/>
+    <text x="1075" y="47" text-anchor="middle" font-size="14" font-weight="900" fill="#7c3aed">拒绝Word搬家</text>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+
+    <!-- 左侧：错误满屏字 -->
+    <g transform="translate(50, 110)">
+      <rect width="520" height="370" rx="16" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="520" height="46" rx="16" fill="#fff7ed"/>
+      <rect y="26" width="520" height="20" fill="#fff7ed"/>
+      <text x="30" y="30" font-size="18" font-weight="900" fill="#c2410c">❌ 错误：满屏密密麻麻的小字</text>
+      <text x="490" y="30" text-anchor="end" font-size="14" font-weight="900" fill="#ea580c">【看睡着】</text>
+
+      <!-- 模拟幻灯片 -->
+      <g transform="translate(25, 65)">
+        <rect width="470" height="180" rx="8" fill="#fafaf9" stroke="#e7e5e4" stroke-width="2"/>
+        <text x="20" y="30" font-size="13" font-weight="bold" fill="#78716c">关于日常文件处理与安全防范的说明事项（字号太小12pt）</text>
+        <g fill="#cbd5e1">
+          <rect x="20" y="42" width="430" height="6" rx="3"/>
+          <rect x="20" y="54" width="410" height="6" rx="3"/>
+          <rect x="20" y="66" width="430" height="6" rx="3"/>
+          <rect x="20" y="78" width="390" height="6" rx="3"/>
+          <rect x="20" y="90" width="420" height="6" rx="3"/>
+          <rect x="20" y="102" width="380" height="6" rx="3"/>
+        </g>
+
+        <rect x="65" y="125" width="340" height="40" rx="20" fill="#ea580c"/>
+        <text x="235" y="150" text-anchor="middle" font-size="15" font-weight="900" fill="#ffffff">台下完全不想看！台上沦为念字机器！</text>
+      </g>
+
+      <g transform="translate(25, 265)">
+        <rect width="470" height="75" rx="10" fill="#fff7ed" stroke="#ffedd5" stroke-width="1.5"/>
+        <text x="20" y="32" font-size="16" font-weight="900" fill="#9a3412">⚠️ 翻车硬伤：</text>
+        <text x="20" y="58" font-size="14" font-weight="700" fill="#c2410c">把 Word 段落原封不动贴在 PPT 上，没有重点，字小如蚂蚁！</text>
+      </g>
+    </g>
+
+    <!-- 右侧：正确结构化 -->
+    <g transform="translate(630, 110)">
+      <rect width="520" height="370" rx="16" fill="#ffffff" stroke="#86efac" stroke-width="2" filter="url(#shadow)"/>
+      <rect width="520" height="46" rx="16" fill="#f0fdf4"/>
+      <rect y="26" width="520" height="20" fill="#f0fdf4"/>
+      <text x="30" y="30" font-size="18" font-weight="900" fill="#15803d">✅ 正确：大标题 + 3条行动短句</text>
+      <text x="490" y="30" text-anchor="end" font-size="14" font-weight="900" fill="#16a34a">【重点清楚】</text>
+
+      <!-- 模拟幻灯片 -->
+      <g transform="translate(25, 65)">
+        <rect width="470" height="180" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+
+        <!-- 大标题 -->
+        <text x="20" y="38" font-size="22" font-weight="900" fill="#1e40af">保留原件，在副本修改</text>
+
+        <!-- 3条短句卡片 -->
+        <g transform="translate(20, 52)">
+          <rect width="136" height="60" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+          <text x="68" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#1d4ed8">1. 原始文件</text>
+          <text x="68" y="46" text-anchor="middle" font-size="12" font-weight="bold" fill="#64748b">单独保存原件</text>
+        </g>
+        <g transform="translate(166, 52)">
+          <rect width="136" height="60" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+          <text x="68" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#15803d">2. 复制副本</text>
+          <text x="68" y="46" text-anchor="middle" font-size="12" font-weight="bold" fill="#64748b">在工作副本修改</text>
+        </g>
+        <g transform="translate(312, 52)">
+          <rect width="136" height="60" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+          <text x="68" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#dc2626">3. 分享截图</text>
+          <text x="68" y="46" text-anchor="middle" font-size="12" font-weight="bold" fill="#64748b">先打码二维码</text>
+        </g>
+
+        <rect x="65" y="125" width="340" height="40" rx="20" fill="#16a34a"/>
+        <text x="235" y="150" text-anchor="middle" font-size="15" font-weight="900" fill="#ffffff">在实际投屏距离下读清标题与重点</text>
+      </g>
+
+      <g transform="translate(25, 265)">
+        <rect width="470" height="75" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+        <text x="20" y="32" font-size="16" font-weight="900" fill="#14532d">✨ 合格标杆：</text>
+        <text x="20" y="58" font-size="14" font-weight="700" fill="#15803d">按投屏距离调整字号、行距与留白。</text>
+      </g>
+    </g>
+
+  </g>
+</svg>
